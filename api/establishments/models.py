@@ -1,18 +1,40 @@
+from django.conf import settings
 from django.db import models
-import uuid
+
 
 class Establishment(models.Model):
-    uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     name = models.CharField()
+    legal_name = models.CharField()
+    cif = models.CharField(max_length=9, unique=True)
+    description = models.TextField(blank=True)
+    zip_code = models.CharField(max_length=10)
+    city = models.CharField()
     address = models.TextField()
     phone = models.CharField(max_length=16)
+    opened = models.BooleanField(default=False)
+
 
 class Table(models.Model):
-    qr_code = models.TextField()
-    # people = 
+    establishment = models.ForeignKey(
+        'establishments.Establishment', related_name='tables', on_delete=models.CASCADE
+    )
+    max_guests = models.PositiveSmallIntegerField()
+    active = models.BooleanField(default=True)
+
 
 class Manage(models.Model):
-    pass
-    # role = 
-    # start_date = 
-    # end_date = 
+    class Role(models.TextChoices):
+        WAITER = 'waiter'
+        MANAGER = 'manager'
+        KITCHEN = 'kitchen'
+
+    establishment = models.ForeignKey(
+        'establishments.Establishment', related_name='manages', on_delete=models.PROTECT
+    )
+    member = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='manages', on_delete=models.CASCADE
+    )
+
+    role = models.CharField(choices=Role)
+    joined_at = models.DateField(auto_now_add=True)
+    end_date = models.DateField(blank=True, null=True)
