@@ -13,6 +13,9 @@ class Establishment(models.Model):
     phone = models.CharField(max_length=16)
     opened = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Table(models.Model):
     establishment = models.ForeignKey(
@@ -20,6 +23,9 @@ class Table(models.Model):
     )
     max_guests = models.PositiveSmallIntegerField()
     active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f' Mesa {self.pk}'
 
 
 class Manage(models.Model):
@@ -38,3 +44,6 @@ class Manage(models.Model):
     role = models.CharField(choices=Role)
     joined_at = models.DateField(auto_now_add=True)
     end_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.member.first_name}: {self.role}'
