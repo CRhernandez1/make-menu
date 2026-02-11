@@ -17,7 +17,8 @@ class Order(models.Model):
     )
     placed_at = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
-    closed_at = models.DateTimeField()
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    closed_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.pk}: {self.get_status_display()}'
@@ -29,12 +30,12 @@ class OrderDetail(models.Model):
     )
 
     product = models.ForeignKey(
-        'products.product', related_name='orders_details', on_delete=models.PROTECT
+        'products.Product', related_name='orders_details', on_delete=models.PROTECT
     )
 
     price = models.DecimalField(max_digits=6, decimal_places=2)
     notes = models.TextField(blank=True)
-    quantity = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return f'{self.pk}: {self.price}'
