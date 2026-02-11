@@ -25,7 +25,7 @@ class Table(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f' Mesa {self.pk}'
+        return f'Mesa {self.pk}'
 
 
 class Manage(models.Model):

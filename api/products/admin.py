@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Component, Ingredient, Product
+from .models import Allergen, Category, Component, Ingredient, Product
 
 
 @admin.register(Product)
@@ -15,4 +15,14 @@ class IngredientAdmin(admin.ModelAdmin):
 
 @admin.register(Component)
 class ComponentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Allergen)
+class AllergenAdmin(admin.ModelAdmin):
     pass

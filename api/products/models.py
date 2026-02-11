@@ -45,7 +45,7 @@ class Ingredient(models.Model):
         blank=True,
         related_name='ingredients',
     )
-    ingredient_type = models.CharField(choices=Type.choices, default=Type.OTHER)
+    ingredient_type = models.CharField(choices=Type, default=Type.OTHER)
     name = models.CharField()
     description = models.TextField(blank=True)
     available = models.BooleanField(default=True)
@@ -56,11 +56,11 @@ class Ingredient(models.Model):
 
 class Component(models.Model):
     class Unity(models.TextChoices):
-        UNITY = 'ud', 'Unidades'
-        GRAMS = 'gr', 'Gramos'
-        KILOGRAMS = 'kg', 'Kilos'
-        LITERS = 'l', 'Litros'
-        MILILITERS = 'ml', 'Mililitros'
+        UNITY = 'ea'
+        GRAMS = 'gr'
+        KILOGRAMS = 'kg'
+        LITERS = 'l'
+        MILILITERS = 'ml'
 
     product = models.ForeignKey(
         'products.product', related_name='components', on_delete=models.PROTECT
@@ -69,8 +69,8 @@ class Component(models.Model):
         'products.ingredient', related_name='components', on_delete=models.PROTECT
     )
     quantity = models.DecimalField(max_digits=6, decimal_places=2)
-    unity = models.CharField(choices=Unity.choices, max_length=2)
-    removable = models.BooleanField(default=True)
+    unity = models.CharField(choices=Unity, max_length=2)
+    removable = models.BooleanField(default=False)
 
 
 class Allergen(models.Model):

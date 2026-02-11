@@ -9,9 +9,7 @@ class Member(models.Model):
         settings.AUTH_USER_MODEL, related_name='member', on_delete=models.CASCADE
     )
     phone = models.CharField(max_length=16, blank=True)
-    avatar = models.ImageField(
-        upload_to='avatar', default='avatar/noavatar.png', blank=True, null=True
-    )
+    avatar = models.ImageField(upload_to='avatar', default='avatar/noavatar.png')
 
     def __str__(self):
         return self.user.first_name
