@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from .models import Establishment
+from .serializers import EstablishmentSerializer
 
-# Create your views here.
+
+def establishments_list(request):
+    establishments = Establishment.objects.all()
+    return EstablishmentSerializer(establishments).json_response()
