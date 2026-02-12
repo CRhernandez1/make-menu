@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NavBar from './components/NavBar.vue'
-import LandingView from './views/LandingView.vue'
+import NavBar from './components/landing-page/NavBar.vue';
+import LandingView from './views/LandingView.vue';
+import './assets/css/base.css';
 </script>
 
 <template>
-  <NavBar />
   <LandingView />
 </template>
 

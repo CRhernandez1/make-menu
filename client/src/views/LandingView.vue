@@ -1,5 +1,11 @@
 <template>
-  <h1 class="text-3xl font-bold underline">Landing Page</h1>
+  <div class="landing-page">
+    <NavBar />
+    <MainContent />
+  </div>
 </template>
-<script></script>
-<style></style>
+<script setup lang="ts">
+import MainContent from '@/components/landing-page/MainContent.vue';
+import NavBar from '../components/landing-page/NavBar.vue';
+</script>
+<style scoped></style>
