@@ -1,0 +1,402 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "establishment": 1,
+    "name": "Antipasti"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "establishment": 1,
+    "name": "Pizzas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "establishment": 1,
+    "name": "Pastas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "establishment": 1,
+    "name": "Postres Italianos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "establishment": 1,
+    "name": "Vinos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "establishment": 2,
+    "name": "Entrantes"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 7,
+  "fields": {
+    "establishment": 2,
+    "name": "Burgers Ternera"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 8,
+  "fields": {
+    "establishment": 2,
+    "name": "Burgers Pollo"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 9,
+  "fields": {
+    "establishment": 2,
+    "name": "Bebidas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 10,
+  "fields": {
+    "establishment": 2,
+    "name": "Complementos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 11,
+  "fields": {
+    "establishment": 3,
+    "name": "Desayunos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 12,
+  "fields": {
+    "establishment": 3,
+    "name": "Bollería"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 13,
+  "fields": {
+    "establishment": 3,
+    "name": "Cafés"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 14,
+  "fields": {
+    "establishment": 3,
+    "name": "Zumos Naturales"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 15,
+  "fields": {
+    "establishment": 3,
+    "name": "Tostadas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 16,
+  "fields": {
+    "establishment": 4,
+    "name": "Ramen"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 17,
+  "fields": {
+    "establishment": 4,
+    "name": "Sushi"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 18,
+  "fields": {
+    "establishment": 4,
+    "name": "Tempura"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 19,
+  "fields": {
+    "establishment": 4,
+    "name": "Bebidas Japonesas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 20,
+  "fields": {
+    "establishment": 4,
+    "name": "Tés"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 21,
+  "fields": {
+    "establishment": 5,
+    "name": "Raciones"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 22,
+  "fields": {
+    "establishment": 5,
+    "name": "Tapas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 23,
+  "fields": {
+    "establishment": 5,
+    "name": "Cervezas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 24,
+  "fields": {
+    "establishment": 5,
+    "name": "Vinos de la casa"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 25,
+  "fields": {
+    "establishment": 5,
+    "name": "Bocadillos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 26,
+  "fields": {
+    "establishment": 6,
+    "name": "Tacos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 27,
+  "fields": {
+    "establishment": 6,
+    "name": "Burritos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 28,
+  "fields": {
+    "establishment": 6,
+    "name": "Nachos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 29,
+  "fields": {
+    "establishment": 6,
+    "name": "Margaritas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 30,
+  "fields": {
+    "establishment": 6,
+    "name": "Antojitos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 31,
+  "fields": {
+    "establishment": 7,
+    "name": "Ensaladas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 32,
+  "fields": {
+    "establishment": 7,
+    "name": "Poke Bowls"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 33,
+  "fields": {
+    "establishment": 7,
+    "name": "Smoothies"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 34,
+  "fields": {
+    "establishment": 7,
+    "name": "Wraps"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 35,
+  "fields": {
+    "establishment": 7,
+    "name": "Snacks Fit"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 36,
+  "fields": {
+    "establishment": 8,
+    "name": "Carnes a la brasa"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 37,
+  "fields": {
+    "establishment": 8,
+    "name": "Guarniciones"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 38,
+  "fields": {
+    "establishment": 8,
+    "name": "Cortes Selectos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 39,
+  "fields": {
+    "establishment": 8,
+    "name": "Vinos Tintos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 40,
+  "fields": {
+    "establishment": 8,
+    "name": "Entrantes Premium"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 41,
+  "fields": {
+    "establishment": 9,
+    "name": "Marisco Fresco"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 42,
+  "fields": {
+    "establishment": 9,
+    "name": "Pescados al Horno"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 43,
+  "fields": {
+    "establishment": 9,
+    "name": "Arroces"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 44,
+  "fields": {
+    "establishment": 9,
+    "name": "Frituras"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 45,
+  "fields": {
+    "establishment": 9,
+    "name": "Vinos Blancos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 46,
+  "fields": {
+    "establishment": 10,
+    "name": "Hot Dogs"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 47,
+  "fields": {
+    "establishment": 10,
+    "name": "Batidos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 48,
+  "fields": {
+    "establishment": 10,
+    "name": "Sandwiches"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 49,
+  "fields": {
+    "establishment": 10,
+    "name": "Tortitas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 50,
+  "fields": {
+    "establishment": 10,
+    "name": "Acompañantes"
+  }
+}
+]

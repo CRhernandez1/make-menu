@@ -1,0 +1,152 @@
+[
+{
+  "model": "establishments.establishment",
+  "pk": 1,
+  "fields": {
+    "name": "Restaurante L'Antiga",
+    "legal_name": "Restaurante L'Antiga S.L.",
+    "cif": "L52572210",
+    "description": "General mí la donde muchas aun problemas. Según mujer buscar luego marco cargo actitud.",
+    "zip_code": "19723",
+    "city": "La Coruña",
+    "address": "Via Flor Angulo 6 Puerta 2 \nSevilla, 45953",
+    "phone": "45422873360",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 2,
+  "fields": {
+    "name": "El Faro de la Costa",
+    "legal_name": "El Faro de la Costa S.L.",
+    "cif": "T91848362",
+    "description": "Fácil hay soy alguna los. Aun era lópez imágenes dado.",
+    "zip_code": "29815",
+    "city": "Cáceres",
+    "address": "Vial Juan Bautista Sola 16 Apt. 93 \nCeuta, 36598",
+    "phone": "76649806078",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 3,
+  "fields": {
+    "name": "Restaurante Horizonte",
+    "legal_name": "Restaurante Horizonte S.L.",
+    "cif": "J13485152",
+    "description": "Importancia hablar nivel asociación actitud. Pueblo palabra época tienen cada hacen. Según ve decir española hubo oro.",
+    "zip_code": "17868",
+    "city": "Ciudad",
+    "address": "Cuesta de Rosa Lamas 6\nMálaga, 16895",
+    "phone": "18248858148",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 4,
+  "fields": {
+    "name": "Brasería Los Olivos",
+    "legal_name": "Brasería Los Olivos S.L.",
+    "cif": "v92543371",
+    "description": "E diario alguien puesto informe mar. Estudios relación fueron punto.",
+    "zip_code": "30369",
+    "city": "Huelva",
+    "address": "Glorieta Sigfrido Baró 58 Puerta 9 \nGuadalajara, 03723",
+    "phone": "87658810100",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 5,
+  "fields": {
+    "name": "La Taberna de las Flores",
+    "legal_name": "La Taberna de las Flores S.L.",
+    "cif": "f24587883",
+    "description": "Larga sino presenta entre señaló señaló. Pero supuesto defensa hubo paz paciente don. Seguro hora julio curso hablar varios. Poner esta cuanto político sabe otros único.",
+    "zip_code": "48264",
+    "city": "La Rioja",
+    "address": "Pasaje Esperanza Carbó 4\nCádiz, 15728",
+    "phone": "62509963490",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 6,
+  "fields": {
+    "name": "Entre Fogones",
+    "legal_name": "Entre Fogones S.L.",
+    "cif": "P03775805",
+    "description": "Estilo grandes lenguaje electoral pie. Acuerdo vio él salir campaña. Cada hecho están razón muchos. Natural menor día dentro.",
+    "zip_code": "41603",
+    "city": "León",
+    "address": "Ronda Josefina Ibarra 67\nCeuta, 16425",
+    "phone": "61030714552",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 7,
+  "fields": {
+    "name": "Entre Fogones",
+    "legal_name": "Entre Fogones S.L.",
+    "cif": "c84223468",
+    "description": "Saber figura organización mucho total parece. Cultural evitar escuela comunidad ir estas rafael. Pesar estaba tarde distintas caso anterior él.",
+    "zip_code": "23281",
+    "city": "Burgos",
+    "address": "Cañada de Lara Casals 13\nLugo, 36630",
+    "phone": "16501674165",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 8,
+  "fields": {
+    "name": "Asador La Encina",
+    "legal_name": "Asador La Encina S.L.",
+    "cif": "o18056087",
+    "description": "Popular partido libre fuentes. Martín hicieron evitar primeros derecha. Militar a puerta entonces mismos obras.",
+    "zip_code": "30986",
+    "city": "Zaragoza",
+    "address": "Urbanización de Gil Prieto 3\nCuenca, 41344",
+    "phone": "03761756456",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 9,
+  "fields": {
+    "name": "La Posada de San Juan",
+    "legal_name": "La Posada de San Juan S.L.",
+    "cif": "j19791647",
+    "description": "Cosa dios especialmente primer. Empresa económico volver datos especial animales qué pronto. Ya sigue expresión casi razón importante.",
+    "zip_code": "32919",
+    "city": "Álava",
+    "address": "Callejón de Alma Gilabert 7 Piso 9 \nValencia, 49335",
+    "phone": "88513999069",
+    "opened": false
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 10,
+  "fields": {
+    "name": "El Picoteo de la Plaza",
+    "legal_name": "El Picoteo de la Plaza S.L.",
+    "cif": "k07755628",
+    "description": "Buen especie partidos ambiente viejo haber objetivo. Alta donde todo aquí movimiento pensar tampoco puntos. Sólo nacional anterior vamos armas muerte libros. M que mientras autoridades.",
+    "zip_code": "43833",
+    "city": "Guadalajara",
+    "address": "Camino María Teresa Donoso 739 Apt. 09 \nZamora, 36880",
+    "phone": "96497210891",
+    "opened": true
+  }
+}
+]

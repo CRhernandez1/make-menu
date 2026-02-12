@@ -12,7 +12,7 @@ class Member(models.Model):
     avatar = models.ImageField(upload_to='avatar', default='avatar/noavatar.png')
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
 
 
 class Token(models.Model):

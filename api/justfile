@@ -188,3 +188,12 @@ poedit app locale="es":
 [group('redis')]
 rq:
     uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker 
+
+# load establishments data
+load-mmdata:
+    uv run manage.py loaddata fixtures/*.json
+
+# clean tables
+clean-data:
+    uv run manage.py flush
+    just create-su

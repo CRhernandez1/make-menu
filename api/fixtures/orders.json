@@ -1,0 +1,2602 @@
+[
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "status": 1,
+    "table": 1,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.107Z",
+    "paid": false,
+    "total": "309.53",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "status": 2,
+    "table": 2,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.173Z",
+    "paid": false,
+    "total": "116.83",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 6,
+  "fields": {
+    "status": 2,
+    "table": 12,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.208Z",
+    "paid": false,
+    "total": "254.78",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 7,
+  "fields": {
+    "status": -1,
+    "table": 6,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.264Z",
+    "paid": false,
+    "total": "173.23",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 8,
+  "fields": {
+    "status": 3,
+    "table": 3,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.319Z",
+    "paid": true,
+    "total": "124.24",
+    "closed_at": "2026-02-12T13:24:57.319Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 9,
+  "fields": {
+    "status": -1,
+    "table": 1,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.355Z",
+    "paid": false,
+    "total": "218.75",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 10,
+  "fields": {
+    "status": 1,
+    "table": 9,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.400Z",
+    "paid": false,
+    "total": "31.41",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 11,
+  "fields": {
+    "status": 2,
+    "table": 3,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.427Z",
+    "paid": false,
+    "total": "244.70",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 12,
+  "fields": {
+    "status": 2,
+    "table": 10,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.479Z",
+    "paid": false,
+    "total": "165.96",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 13,
+  "fields": {
+    "status": 3,
+    "table": 8,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.519Z",
+    "paid": true,
+    "total": "111.99",
+    "closed_at": "2026-02-12T13:24:57.519Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 14,
+  "fields": {
+    "status": 1,
+    "table": 2,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.550Z",
+    "paid": false,
+    "total": "174.69",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 15,
+  "fields": {
+    "status": 3,
+    "table": 11,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.594Z",
+    "paid": true,
+    "total": "178.19",
+    "closed_at": "2026-02-12T13:24:57.594Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 16,
+  "fields": {
+    "status": 2,
+    "table": 2,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.640Z",
+    "paid": false,
+    "total": "71.33",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 17,
+  "fields": {
+    "status": 3,
+    "table": 2,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.684Z",
+    "paid": true,
+    "total": "174.58",
+    "closed_at": "2026-02-12T13:24:57.684Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 18,
+  "fields": {
+    "status": -1,
+    "table": 11,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.744Z",
+    "paid": false,
+    "total": "106.84",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 19,
+  "fields": {
+    "status": -1,
+    "table": 3,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.780Z",
+    "paid": false,
+    "total": "50.75",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 20,
+  "fields": {
+    "status": 3,
+    "table": 9,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.804Z",
+    "paid": true,
+    "total": "107.13",
+    "closed_at": "2026-02-12T13:24:57.804Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 21,
+  "fields": {
+    "status": 1,
+    "table": 7,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.836Z",
+    "paid": false,
+    "total": "124.22",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 22,
+  "fields": {
+    "status": -1,
+    "table": 8,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.875Z",
+    "paid": false,
+    "total": "171.57",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 23,
+  "fields": {
+    "status": 3,
+    "table": 13,
+    "establishment": 1,
+    "placed_at": "2026-02-12T13:24:57.907Z",
+    "paid": true,
+    "total": "74.77",
+    "closed_at": "2026-02-12T13:24:57.907Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 24,
+  "fields": {
+    "status": 1,
+    "table": 20,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:57.937Z",
+    "paid": false,
+    "total": "160.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 25,
+  "fields": {
+    "status": 1,
+    "table": 20,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:57.976Z",
+    "paid": false,
+    "total": "203.91",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 26,
+  "fields": {
+    "status": -1,
+    "table": 16,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.030Z",
+    "paid": false,
+    "total": "103.33",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 27,
+  "fields": {
+    "status": 3,
+    "table": 18,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.062Z",
+    "paid": true,
+    "total": "140.55",
+    "closed_at": "2026-02-12T13:24:58.062Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 28,
+  "fields": {
+    "status": 3,
+    "table": 19,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.107Z",
+    "paid": true,
+    "total": "215.63",
+    "closed_at": "2026-02-12T13:24:58.107Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 29,
+  "fields": {
+    "status": -1,
+    "table": 18,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.154Z",
+    "paid": false,
+    "total": "34.39",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 30,
+  "fields": {
+    "status": 1,
+    "table": 25,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.184Z",
+    "paid": false,
+    "total": "180.61",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 31,
+  "fields": {
+    "status": -1,
+    "table": 14,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.247Z",
+    "paid": false,
+    "total": "204.58",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 32,
+  "fields": {
+    "status": -1,
+    "table": 25,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.306Z",
+    "paid": false,
+    "total": "118.16",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 33,
+  "fields": {
+    "status": 1,
+    "table": 16,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.348Z",
+    "paid": false,
+    "total": "37.99",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 34,
+  "fields": {
+    "status": 1,
+    "table": 14,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.377Z",
+    "paid": false,
+    "total": "106.52",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 35,
+  "fields": {
+    "status": -1,
+    "table": 14,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.417Z",
+    "paid": false,
+    "total": "142.93",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 36,
+  "fields": {
+    "status": -1,
+    "table": 22,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.468Z",
+    "paid": false,
+    "total": "98.40",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 37,
+  "fields": {
+    "status": 2,
+    "table": 17,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.514Z",
+    "paid": false,
+    "total": "130.55",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 38,
+  "fields": {
+    "status": 2,
+    "table": 23,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.548Z",
+    "paid": false,
+    "total": "60.19",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 39,
+  "fields": {
+    "status": 1,
+    "table": 17,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.577Z",
+    "paid": false,
+    "total": "80.42",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 40,
+  "fields": {
+    "status": 3,
+    "table": 26,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.608Z",
+    "paid": true,
+    "total": "87.81",
+    "closed_at": "2026-02-12T13:24:58.608Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 41,
+  "fields": {
+    "status": 3,
+    "table": 22,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.644Z",
+    "paid": true,
+    "total": "33.72",
+    "closed_at": "2026-02-12T13:24:58.644Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 42,
+  "fields": {
+    "status": 3,
+    "table": 17,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.675Z",
+    "paid": true,
+    "total": "81.98",
+    "closed_at": "2026-02-12T13:24:58.675Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 43,
+  "fields": {
+    "status": -1,
+    "table": 17,
+    "establishment": 2,
+    "placed_at": "2026-02-12T13:24:58.739Z",
+    "paid": false,
+    "total": "52.59",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 44,
+  "fields": {
+    "status": 3,
+    "table": 28,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:58.778Z",
+    "paid": true,
+    "total": "195.63",
+    "closed_at": "2026-02-12T13:24:58.778Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 45,
+  "fields": {
+    "status": -1,
+    "table": 34,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:58.820Z",
+    "paid": false,
+    "total": "150.23",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 46,
+  "fields": {
+    "status": 1,
+    "table": 33,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:58.868Z",
+    "paid": false,
+    "total": "183.06",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 47,
+  "fields": {
+    "status": 1,
+    "table": 33,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:58.919Z",
+    "paid": false,
+    "total": "192.09",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 48,
+  "fields": {
+    "status": 3,
+    "table": 36,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:58.980Z",
+    "paid": true,
+    "total": "119.13",
+    "closed_at": "2026-02-12T13:24:58.980Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 49,
+  "fields": {
+    "status": 2,
+    "table": 29,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.006Z",
+    "paid": false,
+    "total": "150.43",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 50,
+  "fields": {
+    "status": 3,
+    "table": 33,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.045Z",
+    "paid": true,
+    "total": "228.70",
+    "closed_at": "2026-02-12T13:24:59.044Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 51,
+  "fields": {
+    "status": -1,
+    "table": 31,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.096Z",
+    "paid": false,
+    "total": "55.26",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 52,
+  "fields": {
+    "status": -1,
+    "table": 35,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.127Z",
+    "paid": false,
+    "total": "118.69",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 53,
+  "fields": {
+    "status": 2,
+    "table": 37,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.152Z",
+    "paid": false,
+    "total": "96.52",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 54,
+  "fields": {
+    "status": 2,
+    "table": 35,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.186Z",
+    "paid": false,
+    "total": "213.10",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 55,
+  "fields": {
+    "status": 3,
+    "table": 36,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.231Z",
+    "paid": true,
+    "total": "244.29",
+    "closed_at": "2026-02-12T13:24:59.231Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 56,
+  "fields": {
+    "status": 3,
+    "table": 34,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.287Z",
+    "paid": true,
+    "total": "117.88",
+    "closed_at": "2026-02-12T13:24:59.286Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 57,
+  "fields": {
+    "status": -1,
+    "table": 31,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.330Z",
+    "paid": false,
+    "total": "177.74",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 58,
+  "fields": {
+    "status": 3,
+    "table": 31,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.376Z",
+    "paid": true,
+    "total": "102.72",
+    "closed_at": "2026-02-12T13:24:59.376Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 59,
+  "fields": {
+    "status": 2,
+    "table": 34,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.402Z",
+    "paid": false,
+    "total": "204.17",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 60,
+  "fields": {
+    "status": 1,
+    "table": 36,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.450Z",
+    "paid": false,
+    "total": "131.34",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 61,
+  "fields": {
+    "status": 3,
+    "table": 28,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.480Z",
+    "paid": true,
+    "total": "78.28",
+    "closed_at": "2026-02-12T13:24:59.480Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 62,
+  "fields": {
+    "status": 1,
+    "table": 33,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.513Z",
+    "paid": false,
+    "total": "126.45",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 63,
+  "fields": {
+    "status": 3,
+    "table": 29,
+    "establishment": 3,
+    "placed_at": "2026-02-12T13:24:59.540Z",
+    "paid": true,
+    "total": "66.08",
+    "closed_at": "2026-02-12T13:24:59.540Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 64,
+  "fields": {
+    "status": 1,
+    "table": 47,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.567Z",
+    "paid": false,
+    "total": "179.47",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 65,
+  "fields": {
+    "status": 1,
+    "table": 41,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.607Z",
+    "paid": false,
+    "total": "98.66",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 66,
+  "fields": {
+    "status": 1,
+    "table": 44,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.640Z",
+    "paid": false,
+    "total": "98.53",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 67,
+  "fields": {
+    "status": -1,
+    "table": 44,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.684Z",
+    "paid": false,
+    "total": "165.86",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 68,
+  "fields": {
+    "status": 2,
+    "table": 39,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.749Z",
+    "paid": false,
+    "total": "140.72",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 69,
+  "fields": {
+    "status": -1,
+    "table": 47,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.786Z",
+    "paid": false,
+    "total": "126.79",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 70,
+  "fields": {
+    "status": -1,
+    "table": 48,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.830Z",
+    "paid": false,
+    "total": "51.36",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 71,
+  "fields": {
+    "status": 1,
+    "table": 49,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.860Z",
+    "paid": false,
+    "total": "105.99",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 72,
+  "fields": {
+    "status": 1,
+    "table": 46,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.894Z",
+    "paid": false,
+    "total": "35.51",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 73,
+  "fields": {
+    "status": 2,
+    "table": 45,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.919Z",
+    "paid": false,
+    "total": "85.39",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 74,
+  "fields": {
+    "status": 2,
+    "table": 45,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:24:59.952Z",
+    "paid": false,
+    "total": "174.46",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 75,
+  "fields": {
+    "status": 2,
+    "table": 38,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.003Z",
+    "paid": false,
+    "total": "100.36",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 76,
+  "fields": {
+    "status": 1,
+    "table": 40,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.034Z",
+    "paid": false,
+    "total": "147.11",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 77,
+  "fields": {
+    "status": -1,
+    "table": 47,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.080Z",
+    "paid": false,
+    "total": "154.63",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 78,
+  "fields": {
+    "status": 1,
+    "table": 48,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.128Z",
+    "paid": false,
+    "total": "147.99",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 79,
+  "fields": {
+    "status": 2,
+    "table": 48,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.176Z",
+    "paid": false,
+    "total": "215.86",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 80,
+  "fields": {
+    "status": 1,
+    "table": 38,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.226Z",
+    "paid": false,
+    "total": "46.34",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 81,
+  "fields": {
+    "status": -1,
+    "table": 46,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.252Z",
+    "paid": false,
+    "total": "124.12",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 82,
+  "fields": {
+    "status": 2,
+    "table": 46,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.286Z",
+    "paid": false,
+    "total": "199.14",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 83,
+  "fields": {
+    "status": -1,
+    "table": 45,
+    "establishment": 4,
+    "placed_at": "2026-02-12T13:25:00.331Z",
+    "paid": false,
+    "total": "155.49",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 84,
+  "fields": {
+    "status": -1,
+    "table": 54,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.384Z",
+    "paid": false,
+    "total": "71.16",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 85,
+  "fields": {
+    "status": -1,
+    "table": 56,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.420Z",
+    "paid": false,
+    "total": "60.98",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 86,
+  "fields": {
+    "status": 3,
+    "table": 58,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.456Z",
+    "paid": true,
+    "total": "39.39",
+    "closed_at": "2026-02-12T13:25:00.456Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 87,
+  "fields": {
+    "status": -1,
+    "table": 53,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.480Z",
+    "paid": false,
+    "total": "53.15",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 88,
+  "fields": {
+    "status": 3,
+    "table": 52,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.507Z",
+    "paid": true,
+    "total": "192.78",
+    "closed_at": "2026-02-12T13:25:00.507Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 89,
+  "fields": {
+    "status": 3,
+    "table": 56,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.559Z",
+    "paid": true,
+    "total": "41.59",
+    "closed_at": "2026-02-12T13:25:00.559Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 90,
+  "fields": {
+    "status": 1,
+    "table": 56,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.584Z",
+    "paid": false,
+    "total": "108.31",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 91,
+  "fields": {
+    "status": -1,
+    "table": 58,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.629Z",
+    "paid": false,
+    "total": "122.04",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 92,
+  "fields": {
+    "status": -1,
+    "table": 58,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.664Z",
+    "paid": false,
+    "total": "49.78",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 93,
+  "fields": {
+    "status": 3,
+    "table": 51,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.703Z",
+    "paid": true,
+    "total": "214.59",
+    "closed_at": "2026-02-12T13:25:00.703Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 94,
+  "fields": {
+    "status": -1,
+    "table": 52,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.756Z",
+    "paid": false,
+    "total": "126.30",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 95,
+  "fields": {
+    "status": 2,
+    "table": 55,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.787Z",
+    "paid": false,
+    "total": "184.12",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 96,
+  "fields": {
+    "status": 1,
+    "table": 52,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.843Z",
+    "paid": false,
+    "total": "102.21",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 97,
+  "fields": {
+    "status": -1,
+    "table": 54,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.883Z",
+    "paid": false,
+    "total": "125.59",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 98,
+  "fields": {
+    "status": 2,
+    "table": 51,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.922Z",
+    "paid": false,
+    "total": "85.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 99,
+  "fields": {
+    "status": -1,
+    "table": 51,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.947Z",
+    "paid": false,
+    "total": "183.58",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 100,
+  "fields": {
+    "status": -1,
+    "table": 56,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:00.996Z",
+    "paid": false,
+    "total": "87.93",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 101,
+  "fields": {
+    "status": -1,
+    "table": 57,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:01.029Z",
+    "paid": false,
+    "total": "182.70",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 102,
+  "fields": {
+    "status": 3,
+    "table": 53,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:01.074Z",
+    "paid": true,
+    "total": "109.82",
+    "closed_at": "2026-02-12T13:25:01.074Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 103,
+  "fields": {
+    "status": 1,
+    "table": 52,
+    "establishment": 5,
+    "placed_at": "2026-02-12T13:25:01.123Z",
+    "paid": false,
+    "total": "188.52",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 104,
+  "fields": {
+    "status": 3,
+    "table": 64,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.163Z",
+    "paid": true,
+    "total": "148.53",
+    "closed_at": "2026-02-12T13:25:01.163Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 105,
+  "fields": {
+    "status": 2,
+    "table": 67,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.199Z",
+    "paid": false,
+    "total": "231.33",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 106,
+  "fields": {
+    "status": 3,
+    "table": 63,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.243Z",
+    "paid": true,
+    "total": "139.68",
+    "closed_at": "2026-02-12T13:25:01.243Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 107,
+  "fields": {
+    "status": 1,
+    "table": 67,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.276Z",
+    "paid": false,
+    "total": "188.60",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 108,
+  "fields": {
+    "status": -1,
+    "table": 69,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.326Z",
+    "paid": false,
+    "total": "167.82",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 109,
+  "fields": {
+    "status": 2,
+    "table": 67,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.370Z",
+    "paid": false,
+    "total": "170.37",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 110,
+  "fields": {
+    "status": 1,
+    "table": 59,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.420Z",
+    "paid": false,
+    "total": "178.73",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 111,
+  "fields": {
+    "status": 1,
+    "table": 63,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.460Z",
+    "paid": false,
+    "total": "129.64",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 112,
+  "fields": {
+    "status": 1,
+    "table": 64,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.504Z",
+    "paid": false,
+    "total": "32.05",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 113,
+  "fields": {
+    "status": 1,
+    "table": 59,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.530Z",
+    "paid": false,
+    "total": "70.97",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 114,
+  "fields": {
+    "status": 2,
+    "table": 64,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.559Z",
+    "paid": false,
+    "total": "109.82",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 115,
+  "fields": {
+    "status": 1,
+    "table": 64,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.599Z",
+    "paid": false,
+    "total": "127.88",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 116,
+  "fields": {
+    "status": 1,
+    "table": 67,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.638Z",
+    "paid": false,
+    "total": "181.60",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 117,
+  "fields": {
+    "status": 1,
+    "table": 62,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.674Z",
+    "paid": false,
+    "total": "263.34",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 118,
+  "fields": {
+    "status": 2,
+    "table": 64,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.726Z",
+    "paid": false,
+    "total": "168.88",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 119,
+  "fields": {
+    "status": 2,
+    "table": 67,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.771Z",
+    "paid": false,
+    "total": "91.96",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 120,
+  "fields": {
+    "status": 2,
+    "table": 60,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.807Z",
+    "paid": false,
+    "total": "62.85",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 121,
+  "fields": {
+    "status": -1,
+    "table": 59,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.831Z",
+    "paid": false,
+    "total": "51.78",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 122,
+  "fields": {
+    "status": -1,
+    "table": 62,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.856Z",
+    "paid": false,
+    "total": "146.90",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 123,
+  "fields": {
+    "status": 2,
+    "table": 59,
+    "establishment": 6,
+    "placed_at": "2026-02-12T13:25:01.900Z",
+    "paid": false,
+    "total": "141.73",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 124,
+  "fields": {
+    "status": 2,
+    "table": 74,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:01.941Z",
+    "paid": false,
+    "total": "219.35",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 125,
+  "fields": {
+    "status": -1,
+    "table": 70,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:01.988Z",
+    "paid": false,
+    "total": "107.09",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 126,
+  "fields": {
+    "status": -1,
+    "table": 74,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.026Z",
+    "paid": false,
+    "total": "135.73",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 127,
+  "fields": {
+    "status": 1,
+    "table": 72,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.080Z",
+    "paid": false,
+    "total": "143.48",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 128,
+  "fields": {
+    "status": 2,
+    "table": 74,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.114Z",
+    "paid": false,
+    "total": "130.98",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 129,
+  "fields": {
+    "status": 1,
+    "table": 73,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.160Z",
+    "paid": false,
+    "total": "168.42",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 130,
+  "fields": {
+    "status": 3,
+    "table": 70,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.220Z",
+    "paid": true,
+    "total": "164.51",
+    "closed_at": "2026-02-12T13:25:02.220Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 131,
+  "fields": {
+    "status": 2,
+    "table": 73,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.268Z",
+    "paid": false,
+    "total": "115.95",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 132,
+  "fields": {
+    "status": -1,
+    "table": 70,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.303Z",
+    "paid": false,
+    "total": "187.46",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 133,
+  "fields": {
+    "status": 1,
+    "table": 76,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.350Z",
+    "paid": false,
+    "total": "77.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 134,
+  "fields": {
+    "status": -1,
+    "table": 71,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.388Z",
+    "paid": false,
+    "total": "165.70",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 135,
+  "fields": {
+    "status": -1,
+    "table": 72,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.439Z",
+    "paid": false,
+    "total": "67.86",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 136,
+  "fields": {
+    "status": 1,
+    "table": 72,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.472Z",
+    "paid": false,
+    "total": "140.32",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 137,
+  "fields": {
+    "status": -1,
+    "table": 70,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.519Z",
+    "paid": false,
+    "total": "149.58",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 138,
+  "fields": {
+    "status": 3,
+    "table": 76,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.560Z",
+    "paid": true,
+    "total": "79.68",
+    "closed_at": "2026-02-12T13:25:02.560Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 139,
+  "fields": {
+    "status": 2,
+    "table": 75,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.587Z",
+    "paid": false,
+    "total": "154.18",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 140,
+  "fields": {
+    "status": 2,
+    "table": 70,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.628Z",
+    "paid": false,
+    "total": "151.01",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 141,
+  "fields": {
+    "status": -1,
+    "table": 71,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.683Z",
+    "paid": false,
+    "total": "86.54",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 142,
+  "fields": {
+    "status": -1,
+    "table": 73,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.730Z",
+    "paid": false,
+    "total": "77.17",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 143,
+  "fields": {
+    "status": 3,
+    "table": 74,
+    "establishment": 7,
+    "placed_at": "2026-02-12T13:25:02.763Z",
+    "paid": true,
+    "total": "148.07",
+    "closed_at": "2026-02-12T13:25:02.763Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 144,
+  "fields": {
+    "status": 1,
+    "table": 80,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:02.818Z",
+    "paid": false,
+    "total": "174.54",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 145,
+  "fields": {
+    "status": 1,
+    "table": 87,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:02.862Z",
+    "paid": false,
+    "total": "70.44",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 146,
+  "fields": {
+    "status": 1,
+    "table": 81,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:02.894Z",
+    "paid": false,
+    "total": "130.35",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 147,
+  "fields": {
+    "status": -1,
+    "table": 79,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:02.934Z",
+    "paid": false,
+    "total": "87.74",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 148,
+  "fields": {
+    "status": 2,
+    "table": 80,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:02.978Z",
+    "paid": false,
+    "total": "91.99",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 149,
+  "fields": {
+    "status": 3,
+    "table": 84,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.008Z",
+    "paid": true,
+    "total": "76.35",
+    "closed_at": "2026-02-12T13:25:03.008Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 150,
+  "fields": {
+    "status": 2,
+    "table": 81,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.039Z",
+    "paid": false,
+    "total": "182.89",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 151,
+  "fields": {
+    "status": -1,
+    "table": 85,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.083Z",
+    "paid": false,
+    "total": "73.62",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 152,
+  "fields": {
+    "status": 2,
+    "table": 85,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.110Z",
+    "paid": false,
+    "total": "156.68",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 153,
+  "fields": {
+    "status": 2,
+    "table": 82,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.140Z",
+    "paid": false,
+    "total": "88.25",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 154,
+  "fields": {
+    "status": 1,
+    "table": 80,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.174Z",
+    "paid": false,
+    "total": "135.15",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 155,
+  "fields": {
+    "status": 2,
+    "table": 85,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.219Z",
+    "paid": false,
+    "total": "151.94",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 156,
+  "fields": {
+    "status": 3,
+    "table": 87,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.263Z",
+    "paid": true,
+    "total": "128.73",
+    "closed_at": "2026-02-12T13:25:03.263Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 157,
+  "fields": {
+    "status": 1,
+    "table": 81,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.302Z",
+    "paid": false,
+    "total": "113.76",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 158,
+  "fields": {
+    "status": 1,
+    "table": 87,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.333Z",
+    "paid": false,
+    "total": "119.17",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 159,
+  "fields": {
+    "status": -1,
+    "table": 87,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.380Z",
+    "paid": false,
+    "total": "104.18",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 160,
+  "fields": {
+    "status": -1,
+    "table": 84,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.419Z",
+    "paid": false,
+    "total": "72.35",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 161,
+  "fields": {
+    "status": 2,
+    "table": 81,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.449Z",
+    "paid": false,
+    "total": "181.78",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 162,
+  "fields": {
+    "status": 2,
+    "table": 80,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.496Z",
+    "paid": false,
+    "total": "95.37",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 163,
+  "fields": {
+    "status": -1,
+    "table": 87,
+    "establishment": 8,
+    "placed_at": "2026-02-12T13:25:03.523Z",
+    "paid": false,
+    "total": "233.04",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 164,
+  "fields": {
+    "status": 1,
+    "table": 94,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.573Z",
+    "paid": false,
+    "total": "62.89",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 165,
+  "fields": {
+    "status": 2,
+    "table": 96,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.603Z",
+    "paid": false,
+    "total": "116.58",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 166,
+  "fields": {
+    "status": 1,
+    "table": 92,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.639Z",
+    "paid": false,
+    "total": "73.47",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 167,
+  "fields": {
+    "status": -1,
+    "table": 96,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.682Z",
+    "paid": false,
+    "total": "127.69",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 168,
+  "fields": {
+    "status": 1,
+    "table": 90,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.756Z",
+    "paid": false,
+    "total": "35.67",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 169,
+  "fields": {
+    "status": 3,
+    "table": 95,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.786Z",
+    "paid": true,
+    "total": "91.75",
+    "closed_at": "2026-02-12T13:25:03.786Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 170,
+  "fields": {
+    "status": -1,
+    "table": 99,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.815Z",
+    "paid": false,
+    "total": "84.42",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 171,
+  "fields": {
+    "status": -1,
+    "table": 92,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.856Z",
+    "paid": false,
+    "total": "56.45",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 172,
+  "fields": {
+    "status": 3,
+    "table": 97,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.883Z",
+    "paid": true,
+    "total": "154.66",
+    "closed_at": "2026-02-12T13:25:03.883Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 173,
+  "fields": {
+    "status": 2,
+    "table": 90,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.928Z",
+    "paid": false,
+    "total": "118.14",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 174,
+  "fields": {
+    "status": 2,
+    "table": 88,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:03.966Z",
+    "paid": false,
+    "total": "134.75",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 175,
+  "fields": {
+    "status": 2,
+    "table": 99,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.011Z",
+    "paid": false,
+    "total": "134.39",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 176,
+  "fields": {
+    "status": 3,
+    "table": 93,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.050Z",
+    "paid": true,
+    "total": "149.37",
+    "closed_at": "2026-02-12T13:25:04.050Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 177,
+  "fields": {
+    "status": -1,
+    "table": 90,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.094Z",
+    "paid": false,
+    "total": "105.02",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 178,
+  "fields": {
+    "status": 1,
+    "table": 95,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.127Z",
+    "paid": false,
+    "total": "114.29",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 179,
+  "fields": {
+    "status": 2,
+    "table": 92,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.163Z",
+    "paid": false,
+    "total": "188.42",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 180,
+  "fields": {
+    "status": 1,
+    "table": 92,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.202Z",
+    "paid": false,
+    "total": "185.15",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 181,
+  "fields": {
+    "status": 3,
+    "table": 89,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.246Z",
+    "paid": true,
+    "total": "158.39",
+    "closed_at": "2026-02-12T13:25:04.246Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 182,
+  "fields": {
+    "status": 3,
+    "table": 88,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.291Z",
+    "paid": true,
+    "total": "99.53",
+    "closed_at": "2026-02-12T13:25:04.291Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 183,
+  "fields": {
+    "status": 1,
+    "table": 96,
+    "establishment": 9,
+    "placed_at": "2026-02-12T13:25:04.336Z",
+    "paid": false,
+    "total": "70.86",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 184,
+  "fields": {
+    "status": -1,
+    "table": 111,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.364Z",
+    "paid": false,
+    "total": "94.90",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 185,
+  "fields": {
+    "status": 2,
+    "table": 110,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.399Z",
+    "paid": false,
+    "total": "123.88",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 186,
+  "fields": {
+    "status": 1,
+    "table": 101,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.444Z",
+    "paid": false,
+    "total": "39.40",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 187,
+  "fields": {
+    "status": 2,
+    "table": 110,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.478Z",
+    "paid": false,
+    "total": "123.73",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 188,
+  "fields": {
+    "status": 2,
+    "table": 105,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.526Z",
+    "paid": false,
+    "total": "141.29",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 189,
+  "fields": {
+    "status": 2,
+    "table": 107,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.579Z",
+    "paid": false,
+    "total": "43.79",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 190,
+  "fields": {
+    "status": 2,
+    "table": 105,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.607Z",
+    "paid": false,
+    "total": "56.24",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 191,
+  "fields": {
+    "status": 1,
+    "table": 106,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.639Z",
+    "paid": false,
+    "total": "66.72",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 192,
+  "fields": {
+    "status": -1,
+    "table": 109,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.679Z",
+    "paid": false,
+    "total": "142.51",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 193,
+  "fields": {
+    "status": 1,
+    "table": 102,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.718Z",
+    "paid": false,
+    "total": "166.93",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 194,
+  "fields": {
+    "status": 2,
+    "table": 102,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.764Z",
+    "paid": false,
+    "total": "180.55",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 195,
+  "fields": {
+    "status": 2,
+    "table": 101,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.817Z",
+    "paid": false,
+    "total": "36.63",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 196,
+  "fields": {
+    "status": 1,
+    "table": 108,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.844Z",
+    "paid": false,
+    "total": "69.15",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 197,
+  "fields": {
+    "status": 1,
+    "table": 105,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.878Z",
+    "paid": false,
+    "total": "90.70",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 198,
+  "fields": {
+    "status": -1,
+    "table": 107,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.902Z",
+    "paid": false,
+    "total": "45.58",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 199,
+  "fields": {
+    "status": -1,
+    "table": 109,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.927Z",
+    "paid": false,
+    "total": "39.94",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 200,
+  "fields": {
+    "status": 1,
+    "table": 101,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.955Z",
+    "paid": false,
+    "total": "76.46",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 201,
+  "fields": {
+    "status": -1,
+    "table": 101,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:04.987Z",
+    "paid": false,
+    "total": "69.44",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 202,
+  "fields": {
+    "status": 1,
+    "table": 109,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:05.019Z",
+    "paid": false,
+    "total": "148.05",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 203,
+  "fields": {
+    "status": 3,
+    "table": 105,
+    "establishment": 10,
+    "placed_at": "2026-02-12T13:25:05.066Z",
+    "paid": true,
+    "total": "49.69",
+    "closed_at": "2026-02-12T13:25:05.066Z"
+  }
+}
+]

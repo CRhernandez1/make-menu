@@ -1,0 +1,662 @@
+[
+{
+  "model": "establishments.manage",
+  "pk": 13,
+  "fields": {
+    "establishment": 1,
+    "member": 14,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 14,
+  "fields": {
+    "establishment": 1,
+    "member": 15,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 15,
+  "fields": {
+    "establishment": 1,
+    "member": 16,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 16,
+  "fields": {
+    "establishment": 1,
+    "member": 17,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 17,
+  "fields": {
+    "establishment": 1,
+    "member": 18,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 18,
+  "fields": {
+    "establishment": 1,
+    "member": 19,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 19,
+  "fields": {
+    "establishment": 2,
+    "member": 20,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 20,
+  "fields": {
+    "establishment": 2,
+    "member": 21,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 21,
+  "fields": {
+    "establishment": 2,
+    "member": 22,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 22,
+  "fields": {
+    "establishment": 2,
+    "member": 23,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 23,
+  "fields": {
+    "establishment": 2,
+    "member": 24,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 24,
+  "fields": {
+    "establishment": 2,
+    "member": 25,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 25,
+  "fields": {
+    "establishment": 3,
+    "member": 26,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 26,
+  "fields": {
+    "establishment": 3,
+    "member": 27,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 27,
+  "fields": {
+    "establishment": 3,
+    "member": 28,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 28,
+  "fields": {
+    "establishment": 3,
+    "member": 29,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 29,
+  "fields": {
+    "establishment": 3,
+    "member": 30,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 30,
+  "fields": {
+    "establishment": 3,
+    "member": 31,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 31,
+  "fields": {
+    "establishment": 4,
+    "member": 32,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 32,
+  "fields": {
+    "establishment": 4,
+    "member": 33,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 33,
+  "fields": {
+    "establishment": 4,
+    "member": 34,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 34,
+  "fields": {
+    "establishment": 4,
+    "member": 35,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 35,
+  "fields": {
+    "establishment": 4,
+    "member": 36,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 36,
+  "fields": {
+    "establishment": 4,
+    "member": 37,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 37,
+  "fields": {
+    "establishment": 5,
+    "member": 38,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 38,
+  "fields": {
+    "establishment": 5,
+    "member": 39,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 39,
+  "fields": {
+    "establishment": 5,
+    "member": 40,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 40,
+  "fields": {
+    "establishment": 5,
+    "member": 41,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 41,
+  "fields": {
+    "establishment": 5,
+    "member": 42,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 42,
+  "fields": {
+    "establishment": 5,
+    "member": 43,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 43,
+  "fields": {
+    "establishment": 6,
+    "member": 44,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 44,
+  "fields": {
+    "establishment": 6,
+    "member": 45,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 45,
+  "fields": {
+    "establishment": 6,
+    "member": 46,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 46,
+  "fields": {
+    "establishment": 6,
+    "member": 47,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 47,
+  "fields": {
+    "establishment": 6,
+    "member": 48,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 48,
+  "fields": {
+    "establishment": 6,
+    "member": 49,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 49,
+  "fields": {
+    "establishment": 7,
+    "member": 50,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 50,
+  "fields": {
+    "establishment": 7,
+    "member": 51,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 51,
+  "fields": {
+    "establishment": 7,
+    "member": 52,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 52,
+  "fields": {
+    "establishment": 7,
+    "member": 53,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 53,
+  "fields": {
+    "establishment": 7,
+    "member": 54,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 54,
+  "fields": {
+    "establishment": 7,
+    "member": 55,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 55,
+  "fields": {
+    "establishment": 8,
+    "member": 56,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 56,
+  "fields": {
+    "establishment": 8,
+    "member": 57,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 57,
+  "fields": {
+    "establishment": 8,
+    "member": 58,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 58,
+  "fields": {
+    "establishment": 8,
+    "member": 59,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 59,
+  "fields": {
+    "establishment": 8,
+    "member": 60,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 60,
+  "fields": {
+    "establishment": 8,
+    "member": 61,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 61,
+  "fields": {
+    "establishment": 9,
+    "member": 62,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 62,
+  "fields": {
+    "establishment": 9,
+    "member": 63,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 63,
+  "fields": {
+    "establishment": 9,
+    "member": 64,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 64,
+  "fields": {
+    "establishment": 9,
+    "member": 65,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 65,
+  "fields": {
+    "establishment": 9,
+    "member": 66,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 66,
+  "fields": {
+    "establishment": 9,
+    "member": 67,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 67,
+  "fields": {
+    "establishment": 10,
+    "member": 68,
+    "role": "manager",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 68,
+  "fields": {
+    "establishment": 10,
+    "member": 69,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 69,
+  "fields": {
+    "establishment": 10,
+    "member": 70,
+    "role": "kitchen",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 70,
+  "fields": {
+    "establishment": 10,
+    "member": 71,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 71,
+  "fields": {
+    "establishment": 10,
+    "member": 72,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 72,
+  "fields": {
+    "establishment": 10,
+    "member": 73,
+    "role": "waiter",
+    "joined_at": "2026-02-12",
+    "end_date": null
+  }
+}
+]

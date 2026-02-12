@@ -1,0 +1,6569 @@
+[
+{
+  "model": "products.component",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "ingredient": 5,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "ingredient": 18,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "ingredient": 1,
+    "quantity": "88.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "ingredient": 8,
+    "quantity": "78.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "ingredient": 1,
+    "quantity": "58.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "ingredient": 2,
+    "quantity": "119.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "ingredient": 6,
+    "quantity": "89.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "ingredient": 2,
+    "quantity": "123.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "ingredient": 6,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "ingredient": 3,
+    "quantity": "88.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "ingredient": 8,
+    "quantity": "50.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 12,
+  "fields": {
+    "product": 4,
+    "ingredient": 14,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 13,
+  "fields": {
+    "product": 5,
+    "ingredient": 2,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 14,
+  "fields": {
+    "product": 5,
+    "ingredient": 19,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 15,
+  "fields": {
+    "product": 5,
+    "ingredient": 10,
+    "quantity": "67.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 16,
+  "fields": {
+    "product": 5,
+    "ingredient": 4,
+    "quantity": "131.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 17,
+  "fields": {
+    "product": 5,
+    "ingredient": 7,
+    "quantity": "106.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 18,
+  "fields": {
+    "product": 6,
+    "ingredient": 11,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 19,
+  "fields": {
+    "product": 6,
+    "ingredient": 21,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 20,
+  "fields": {
+    "product": 7,
+    "ingredient": 1,
+    "quantity": "79.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 21,
+  "fields": {
+    "product": 7,
+    "ingredient": 11,
+    "quantity": "96.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 22,
+  "fields": {
+    "product": 7,
+    "ingredient": 4,
+    "quantity": "94.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 23,
+  "fields": {
+    "product": 7,
+    "ingredient": 17,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 24,
+  "fields": {
+    "product": 7,
+    "ingredient": 10,
+    "quantity": "98.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 25,
+  "fields": {
+    "product": 8,
+    "ingredient": 21,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 26,
+  "fields": {
+    "product": 8,
+    "ingredient": 8,
+    "quantity": "139.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 27,
+  "fields": {
+    "product": 8,
+    "ingredient": 20,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 28,
+  "fields": {
+    "product": 8,
+    "ingredient": 13,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 29,
+  "fields": {
+    "product": 9,
+    "ingredient": 20,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 30,
+  "fields": {
+    "product": 9,
+    "ingredient": 8,
+    "quantity": "119.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 31,
+  "fields": {
+    "product": 9,
+    "ingredient": 17,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 32,
+  "fields": {
+    "product": 9,
+    "ingredient": 10,
+    "quantity": "59.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 33,
+  "fields": {
+    "product": 10,
+    "ingredient": 2,
+    "quantity": "64.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 34,
+  "fields": {
+    "product": 10,
+    "ingredient": 10,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 35,
+  "fields": {
+    "product": 11,
+    "ingredient": 11,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 36,
+  "fields": {
+    "product": 11,
+    "ingredient": 10,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 37,
+  "fields": {
+    "product": 11,
+    "ingredient": 13,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 38,
+  "fields": {
+    "product": 12,
+    "ingredient": 10,
+    "quantity": "115.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 39,
+  "fields": {
+    "product": 12,
+    "ingredient": 21,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 40,
+  "fields": {
+    "product": 12,
+    "ingredient": 17,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 41,
+  "fields": {
+    "product": 13,
+    "ingredient": 19,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 42,
+  "fields": {
+    "product": 13,
+    "ingredient": 20,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 43,
+  "fields": {
+    "product": 13,
+    "ingredient": 13,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 44,
+  "fields": {
+    "product": 13,
+    "ingredient": 7,
+    "quantity": "74.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 45,
+  "fields": {
+    "product": 13,
+    "ingredient": 17,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 46,
+  "fields": {
+    "product": 14,
+    "ingredient": 12,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 47,
+  "fields": {
+    "product": 14,
+    "ingredient": 13,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 48,
+  "fields": {
+    "product": 14,
+    "ingredient": 1,
+    "quantity": "87.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 49,
+  "fields": {
+    "product": 14,
+    "ingredient": 8,
+    "quantity": "85.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 50,
+  "fields": {
+    "product": 15,
+    "ingredient": 21,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 51,
+  "fields": {
+    "product": 15,
+    "ingredient": 5,
+    "quantity": "140.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 52,
+  "fields": {
+    "product": 15,
+    "ingredient": 1,
+    "quantity": "91.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 53,
+  "fields": {
+    "product": 15,
+    "ingredient": 6,
+    "quantity": "148.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 54,
+  "fields": {
+    "product": 16,
+    "ingredient": 16,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 55,
+  "fields": {
+    "product": 16,
+    "ingredient": 19,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 56,
+  "fields": {
+    "product": 16,
+    "ingredient": 14,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 57,
+  "fields": {
+    "product": 16,
+    "ingredient": 1,
+    "quantity": "100.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 58,
+  "fields": {
+    "product": 17,
+    "ingredient": 9,
+    "quantity": "90.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 59,
+  "fields": {
+    "product": 17,
+    "ingredient": 8,
+    "quantity": "95.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 60,
+  "fields": {
+    "product": 17,
+    "ingredient": 2,
+    "quantity": "72.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 61,
+  "fields": {
+    "product": 18,
+    "ingredient": 4,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 62,
+  "fields": {
+    "product": 18,
+    "ingredient": 14,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 63,
+  "fields": {
+    "product": 18,
+    "ingredient": 18,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 64,
+  "fields": {
+    "product": 18,
+    "ingredient": 6,
+    "quantity": "125.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 65,
+  "fields": {
+    "product": 18,
+    "ingredient": 2,
+    "quantity": "50.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 66,
+  "fields": {
+    "product": 19,
+    "ingredient": 7,
+    "quantity": "125.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 67,
+  "fields": {
+    "product": 19,
+    "ingredient": 16,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 68,
+  "fields": {
+    "product": 19,
+    "ingredient": 9,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 69,
+  "fields": {
+    "product": 19,
+    "ingredient": 19,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 70,
+  "fields": {
+    "product": 20,
+    "ingredient": 19,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 71,
+  "fields": {
+    "product": 20,
+    "ingredient": 1,
+    "quantity": "60.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 72,
+  "fields": {
+    "product": 20,
+    "ingredient": 18,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 73,
+  "fields": {
+    "product": 20,
+    "ingredient": 11,
+    "quantity": "127.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 74,
+  "fields": {
+    "product": 20,
+    "ingredient": 13,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 75,
+  "fields": {
+    "product": 21,
+    "ingredient": 16,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 76,
+  "fields": {
+    "product": 21,
+    "ingredient": 15,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 77,
+  "fields": {
+    "product": 21,
+    "ingredient": 2,
+    "quantity": "71.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 78,
+  "fields": {
+    "product": 22,
+    "ingredient": 23,
+    "quantity": "117.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 79,
+  "fields": {
+    "product": 22,
+    "ingredient": 25,
+    "quantity": "144.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 80,
+  "fields": {
+    "product": 22,
+    "ingredient": 30,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 81,
+  "fields": {
+    "product": 22,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 82,
+  "fields": {
+    "product": 23,
+    "ingredient": 36,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 83,
+  "fields": {
+    "product": 23,
+    "ingredient": 40,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 84,
+  "fields": {
+    "product": 23,
+    "ingredient": 24,
+    "quantity": "112.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 85,
+  "fields": {
+    "product": 24,
+    "ingredient": 30,
+    "quantity": "144.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 86,
+  "fields": {
+    "product": 24,
+    "ingredient": 36,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 87,
+  "fields": {
+    "product": 24,
+    "ingredient": 41,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 88,
+  "fields": {
+    "product": 24,
+    "ingredient": 38,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 89,
+  "fields": {
+    "product": 25,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 90,
+  "fields": {
+    "product": 25,
+    "ingredient": 40,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 91,
+  "fields": {
+    "product": 25,
+    "ingredient": 38,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 92,
+  "fields": {
+    "product": 26,
+    "ingredient": 36,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 93,
+  "fields": {
+    "product": 26,
+    "ingredient": 26,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 94,
+  "fields": {
+    "product": 27,
+    "ingredient": 24,
+    "quantity": "118.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 95,
+  "fields": {
+    "product": 27,
+    "ingredient": 33,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 96,
+  "fields": {
+    "product": 27,
+    "ingredient": 23,
+    "quantity": "68.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 97,
+  "fields": {
+    "product": 27,
+    "ingredient": 41,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 98,
+  "fields": {
+    "product": 28,
+    "ingredient": 24,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 99,
+  "fields": {
+    "product": 28,
+    "ingredient": 30,
+    "quantity": "70.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 100,
+  "fields": {
+    "product": 28,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 101,
+  "fields": {
+    "product": 29,
+    "ingredient": 29,
+    "quantity": "116.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 102,
+  "fields": {
+    "product": 29,
+    "ingredient": 28,
+    "quantity": "125.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 103,
+  "fields": {
+    "product": 29,
+    "ingredient": 24,
+    "quantity": "75.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 104,
+  "fields": {
+    "product": 29,
+    "ingredient": 39,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 105,
+  "fields": {
+    "product": 29,
+    "ingredient": 38,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 106,
+  "fields": {
+    "product": 30,
+    "ingredient": 29,
+    "quantity": "67.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 107,
+  "fields": {
+    "product": 30,
+    "ingredient": 42,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 108,
+  "fields": {
+    "product": 30,
+    "ingredient": 33,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 109,
+  "fields": {
+    "product": 30,
+    "ingredient": 39,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 110,
+  "fields": {
+    "product": 31,
+    "ingredient": 25,
+    "quantity": "124.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 111,
+  "fields": {
+    "product": 31,
+    "ingredient": 22,
+    "quantity": "96.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 112,
+  "fields": {
+    "product": 31,
+    "ingredient": 28,
+    "quantity": "58.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 113,
+  "fields": {
+    "product": 31,
+    "ingredient": 27,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 114,
+  "fields": {
+    "product": 31,
+    "ingredient": 33,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 115,
+  "fields": {
+    "product": 32,
+    "ingredient": 41,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 116,
+  "fields": {
+    "product": 32,
+    "ingredient": 26,
+    "quantity": "113.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 117,
+  "fields": {
+    "product": 32,
+    "ingredient": 23,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 118,
+  "fields": {
+    "product": 33,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 119,
+  "fields": {
+    "product": 33,
+    "ingredient": 26,
+    "quantity": "62.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 120,
+  "fields": {
+    "product": 34,
+    "ingredient": 39,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 121,
+  "fields": {
+    "product": 34,
+    "ingredient": 30,
+    "quantity": "94.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 122,
+  "fields": {
+    "product": 34,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 123,
+  "fields": {
+    "product": 35,
+    "ingredient": 35,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 124,
+  "fields": {
+    "product": 35,
+    "ingredient": 26,
+    "quantity": "114.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 125,
+  "fields": {
+    "product": 36,
+    "ingredient": 29,
+    "quantity": "108.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 126,
+  "fields": {
+    "product": 36,
+    "ingredient": 30,
+    "quantity": "117.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 127,
+  "fields": {
+    "product": 36,
+    "ingredient": 24,
+    "quantity": "134.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 128,
+  "fields": {
+    "product": 36,
+    "ingredient": 41,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 129,
+  "fields": {
+    "product": 36,
+    "ingredient": 26,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 130,
+  "fields": {
+    "product": 37,
+    "ingredient": 42,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 131,
+  "fields": {
+    "product": 37,
+    "ingredient": 23,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 132,
+  "fields": {
+    "product": 37,
+    "ingredient": 26,
+    "quantity": "82.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 133,
+  "fields": {
+    "product": 37,
+    "ingredient": 37,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 134,
+  "fields": {
+    "product": 37,
+    "ingredient": 31,
+    "quantity": "86.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 135,
+  "fields": {
+    "product": 38,
+    "ingredient": 33,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 136,
+  "fields": {
+    "product": 38,
+    "ingredient": 32,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 137,
+  "fields": {
+    "product": 38,
+    "ingredient": 40,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 138,
+  "fields": {
+    "product": 38,
+    "ingredient": 24,
+    "quantity": "122.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 139,
+  "fields": {
+    "product": 39,
+    "ingredient": 25,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 140,
+  "fields": {
+    "product": 39,
+    "ingredient": 36,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 141,
+  "fields": {
+    "product": 39,
+    "ingredient": 26,
+    "quantity": "127.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 142,
+  "fields": {
+    "product": 39,
+    "ingredient": 29,
+    "quantity": "52.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 143,
+  "fields": {
+    "product": 40,
+    "ingredient": 26,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 144,
+  "fields": {
+    "product": 40,
+    "ingredient": 41,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 145,
+  "fields": {
+    "product": 40,
+    "ingredient": 31,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 146,
+  "fields": {
+    "product": 40,
+    "ingredient": 24,
+    "quantity": "128.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 147,
+  "fields": {
+    "product": 40,
+    "ingredient": 27,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 148,
+  "fields": {
+    "product": 41,
+    "ingredient": 59,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 149,
+  "fields": {
+    "product": 41,
+    "ingredient": 50,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 150,
+  "fields": {
+    "product": 42,
+    "ingredient": 47,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 151,
+  "fields": {
+    "product": 42,
+    "ingredient": 45,
+    "quantity": "98.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 152,
+  "fields": {
+    "product": 43,
+    "ingredient": 48,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 153,
+  "fields": {
+    "product": 43,
+    "ingredient": 50,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 154,
+  "fields": {
+    "product": 43,
+    "ingredient": 58,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 155,
+  "fields": {
+    "product": 43,
+    "ingredient": 56,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 156,
+  "fields": {
+    "product": 44,
+    "ingredient": 58,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 157,
+  "fields": {
+    "product": 44,
+    "ingredient": 56,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 158,
+  "fields": {
+    "product": 44,
+    "ingredient": 51,
+    "quantity": "102.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 159,
+  "fields": {
+    "product": 44,
+    "ingredient": 62,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 160,
+  "fields": {
+    "product": 44,
+    "ingredient": 45,
+    "quantity": "147.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 161,
+  "fields": {
+    "product": 45,
+    "ingredient": 50,
+    "quantity": "75.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 162,
+  "fields": {
+    "product": 45,
+    "ingredient": 43,
+    "quantity": "60.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 163,
+  "fields": {
+    "product": 46,
+    "ingredient": 43,
+    "quantity": "77.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 164,
+  "fields": {
+    "product": 46,
+    "ingredient": 46,
+    "quantity": "106.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 165,
+  "fields": {
+    "product": 47,
+    "ingredient": 49,
+    "quantity": "51.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 166,
+  "fields": {
+    "product": 47,
+    "ingredient": 53,
+    "quantity": "64.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 167,
+  "fields": {
+    "product": 47,
+    "ingredient": 43,
+    "quantity": "107.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 168,
+  "fields": {
+    "product": 47,
+    "ingredient": 46,
+    "quantity": "115.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 169,
+  "fields": {
+    "product": 47,
+    "ingredient": 45,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 170,
+  "fields": {
+    "product": 48,
+    "ingredient": 53,
+    "quantity": "80.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 171,
+  "fields": {
+    "product": 48,
+    "ingredient": 52,
+    "quantity": "74.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 172,
+  "fields": {
+    "product": 48,
+    "ingredient": 54,
+    "quantity": "68.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 173,
+  "fields": {
+    "product": 48,
+    "ingredient": 60,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 174,
+  "fields": {
+    "product": 49,
+    "ingredient": 62,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 175,
+  "fields": {
+    "product": 49,
+    "ingredient": 55,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 176,
+  "fields": {
+    "product": 49,
+    "ingredient": 53,
+    "quantity": "147.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 177,
+  "fields": {
+    "product": 49,
+    "ingredient": 45,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 178,
+  "fields": {
+    "product": 49,
+    "ingredient": 47,
+    "quantity": "107.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 179,
+  "fields": {
+    "product": 50,
+    "ingredient": 58,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 180,
+  "fields": {
+    "product": 50,
+    "ingredient": 43,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 181,
+  "fields": {
+    "product": 50,
+    "ingredient": 57,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 182,
+  "fields": {
+    "product": 51,
+    "ingredient": 51,
+    "quantity": "63.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 183,
+  "fields": {
+    "product": 51,
+    "ingredient": 47,
+    "quantity": "122.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 184,
+  "fields": {
+    "product": 51,
+    "ingredient": 56,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 185,
+  "fields": {
+    "product": 51,
+    "ingredient": 63,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 186,
+  "fields": {
+    "product": 51,
+    "ingredient": 48,
+    "quantity": "123.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 187,
+  "fields": {
+    "product": 52,
+    "ingredient": 62,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 188,
+  "fields": {
+    "product": 52,
+    "ingredient": 63,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 189,
+  "fields": {
+    "product": 52,
+    "ingredient": 55,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 190,
+  "fields": {
+    "product": 52,
+    "ingredient": 54,
+    "quantity": "113.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 191,
+  "fields": {
+    "product": 53,
+    "ingredient": 45,
+    "quantity": "81.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 192,
+  "fields": {
+    "product": 53,
+    "ingredient": 55,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 193,
+  "fields": {
+    "product": 53,
+    "ingredient": 43,
+    "quantity": "120.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 194,
+  "fields": {
+    "product": 53,
+    "ingredient": 58,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 195,
+  "fields": {
+    "product": 54,
+    "ingredient": 56,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 196,
+  "fields": {
+    "product": 54,
+    "ingredient": 57,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 197,
+  "fields": {
+    "product": 54,
+    "ingredient": 51,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 198,
+  "fields": {
+    "product": 55,
+    "ingredient": 55,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 199,
+  "fields": {
+    "product": 55,
+    "ingredient": 61,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 200,
+  "fields": {
+    "product": 55,
+    "ingredient": 53,
+    "quantity": "113.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 201,
+  "fields": {
+    "product": 55,
+    "ingredient": 63,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 202,
+  "fields": {
+    "product": 56,
+    "ingredient": 45,
+    "quantity": "107.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 203,
+  "fields": {
+    "product": 56,
+    "ingredient": 51,
+    "quantity": "148.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 204,
+  "fields": {
+    "product": 56,
+    "ingredient": 46,
+    "quantity": "78.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 205,
+  "fields": {
+    "product": 56,
+    "ingredient": 53,
+    "quantity": "140.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 206,
+  "fields": {
+    "product": 57,
+    "ingredient": 62,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 207,
+  "fields": {
+    "product": 57,
+    "ingredient": 44,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 208,
+  "fields": {
+    "product": 58,
+    "ingredient": 69,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 209,
+  "fields": {
+    "product": 58,
+    "ingredient": 79,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 210,
+  "fields": {
+    "product": 58,
+    "ingredient": 66,
+    "quantity": "109.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 211,
+  "fields": {
+    "product": 58,
+    "ingredient": 78,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 212,
+  "fields": {
+    "product": 58,
+    "ingredient": 68,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 213,
+  "fields": {
+    "product": 59,
+    "ingredient": 66,
+    "quantity": "57.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 214,
+  "fields": {
+    "product": 59,
+    "ingredient": 67,
+    "quantity": "128.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 215,
+  "fields": {
+    "product": 59,
+    "ingredient": 70,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 216,
+  "fields": {
+    "product": 59,
+    "ingredient": 64,
+    "quantity": "88.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 217,
+  "fields": {
+    "product": 59,
+    "ingredient": 78,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 218,
+  "fields": {
+    "product": 60,
+    "ingredient": 66,
+    "quantity": "67.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 219,
+  "fields": {
+    "product": 60,
+    "ingredient": 71,
+    "quantity": "94.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 220,
+  "fields": {
+    "product": 61,
+    "ingredient": 79,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 221,
+  "fields": {
+    "product": 61,
+    "ingredient": 75,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 222,
+  "fields": {
+    "product": 61,
+    "ingredient": 65,
+    "quantity": "119.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 223,
+  "fields": {
+    "product": 62,
+    "ingredient": 65,
+    "quantity": "70.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 224,
+  "fields": {
+    "product": 62,
+    "ingredient": 76,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 225,
+  "fields": {
+    "product": 62,
+    "ingredient": 71,
+    "quantity": "116.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 226,
+  "fields": {
+    "product": 63,
+    "ingredient": 66,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 227,
+  "fields": {
+    "product": 63,
+    "ingredient": 77,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 228,
+  "fields": {
+    "product": 63,
+    "ingredient": 68,
+    "quantity": "91.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 229,
+  "fields": {
+    "product": 63,
+    "ingredient": 80,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 230,
+  "fields": {
+    "product": 64,
+    "ingredient": 76,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 231,
+  "fields": {
+    "product": 64,
+    "ingredient": 81,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 232,
+  "fields": {
+    "product": 64,
+    "ingredient": 70,
+    "quantity": "97.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 233,
+  "fields": {
+    "product": 65,
+    "ingredient": 76,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 234,
+  "fields": {
+    "product": 65,
+    "ingredient": 68,
+    "quantity": "94.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 235,
+  "fields": {
+    "product": 65,
+    "ingredient": 82,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 236,
+  "fields": {
+    "product": 66,
+    "ingredient": 82,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 237,
+  "fields": {
+    "product": 66,
+    "ingredient": 74,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 238,
+  "fields": {
+    "product": 66,
+    "ingredient": 67,
+    "quantity": "78.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 239,
+  "fields": {
+    "product": 66,
+    "ingredient": 77,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 240,
+  "fields": {
+    "product": 67,
+    "ingredient": 82,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 241,
+  "fields": {
+    "product": 67,
+    "ingredient": 71,
+    "quantity": "69.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 242,
+  "fields": {
+    "product": 67,
+    "ingredient": 74,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 243,
+  "fields": {
+    "product": 67,
+    "ingredient": 81,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 244,
+  "fields": {
+    "product": 67,
+    "ingredient": 67,
+    "quantity": "114.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 245,
+  "fields": {
+    "product": 68,
+    "ingredient": 71,
+    "quantity": "54.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 246,
+  "fields": {
+    "product": 68,
+    "ingredient": 70,
+    "quantity": "139.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 247,
+  "fields": {
+    "product": 68,
+    "ingredient": 74,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 248,
+  "fields": {
+    "product": 68,
+    "ingredient": 75,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 249,
+  "fields": {
+    "product": 68,
+    "ingredient": 68,
+    "quantity": "118.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 250,
+  "fields": {
+    "product": 69,
+    "ingredient": 80,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 251,
+  "fields": {
+    "product": 69,
+    "ingredient": 73,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 252,
+  "fields": {
+    "product": 70,
+    "ingredient": 74,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 253,
+  "fields": {
+    "product": 70,
+    "ingredient": 77,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 254,
+  "fields": {
+    "product": 70,
+    "ingredient": 78,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 255,
+  "fields": {
+    "product": 70,
+    "ingredient": 79,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 256,
+  "fields": {
+    "product": 70,
+    "ingredient": 66,
+    "quantity": "148.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 257,
+  "fields": {
+    "product": 71,
+    "ingredient": 67,
+    "quantity": "95.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 258,
+  "fields": {
+    "product": 71,
+    "ingredient": 81,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 259,
+  "fields": {
+    "product": 71,
+    "ingredient": 78,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 260,
+  "fields": {
+    "product": 72,
+    "ingredient": 66,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 261,
+  "fields": {
+    "product": 72,
+    "ingredient": 79,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 262,
+  "fields": {
+    "product": 72,
+    "ingredient": 73,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 263,
+  "fields": {
+    "product": 73,
+    "ingredient": 68,
+    "quantity": "69.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 264,
+  "fields": {
+    "product": 73,
+    "ingredient": 74,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 265,
+  "fields": {
+    "product": 73,
+    "ingredient": 69,
+    "quantity": "96.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 266,
+  "fields": {
+    "product": 73,
+    "ingredient": 75,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 267,
+  "fields": {
+    "product": 73,
+    "ingredient": 70,
+    "quantity": "114.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 268,
+  "fields": {
+    "product": 74,
+    "ingredient": 77,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 269,
+  "fields": {
+    "product": 74,
+    "ingredient": 64,
+    "quantity": "107.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 270,
+  "fields": {
+    "product": 74,
+    "ingredient": 67,
+    "quantity": "122.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 271,
+  "fields": {
+    "product": 74,
+    "ingredient": 80,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 272,
+  "fields": {
+    "product": 74,
+    "ingredient": 71,
+    "quantity": "58.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 273,
+  "fields": {
+    "product": 75,
+    "ingredient": 97,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 274,
+  "fields": {
+    "product": 75,
+    "ingredient": 93,
+    "quantity": "71.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 275,
+  "fields": {
+    "product": 76,
+    "ingredient": 104,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 276,
+  "fields": {
+    "product": 76,
+    "ingredient": 84,
+    "quantity": "57.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 277,
+  "fields": {
+    "product": 77,
+    "ingredient": 100,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 278,
+  "fields": {
+    "product": 77,
+    "ingredient": 92,
+    "quantity": "149.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 279,
+  "fields": {
+    "product": 77,
+    "ingredient": 88,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 280,
+  "fields": {
+    "product": 77,
+    "ingredient": 96,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 281,
+  "fields": {
+    "product": 77,
+    "ingredient": 89,
+    "quantity": "59.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 282,
+  "fields": {
+    "product": 78,
+    "ingredient": 95,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 283,
+  "fields": {
+    "product": 78,
+    "ingredient": 88,
+    "quantity": "148.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 284,
+  "fields": {
+    "product": 78,
+    "ingredient": 97,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 285,
+  "fields": {
+    "product": 79,
+    "ingredient": 97,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 286,
+  "fields": {
+    "product": 79,
+    "ingredient": 104,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 287,
+  "fields": {
+    "product": 79,
+    "ingredient": 100,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 288,
+  "fields": {
+    "product": 79,
+    "ingredient": 93,
+    "quantity": "59.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 289,
+  "fields": {
+    "product": 79,
+    "ingredient": 98,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 290,
+  "fields": {
+    "product": 80,
+    "ingredient": 101,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 291,
+  "fields": {
+    "product": 80,
+    "ingredient": 85,
+    "quantity": "101.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 292,
+  "fields": {
+    "product": 80,
+    "ingredient": 93,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 293,
+  "fields": {
+    "product": 80,
+    "ingredient": 84,
+    "quantity": "94.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 294,
+  "fields": {
+    "product": 81,
+    "ingredient": 99,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 295,
+  "fields": {
+    "product": 81,
+    "ingredient": 93,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 296,
+  "fields": {
+    "product": 82,
+    "ingredient": 94,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 297,
+  "fields": {
+    "product": 82,
+    "ingredient": 90,
+    "quantity": "110.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 298,
+  "fields": {
+    "product": 82,
+    "ingredient": 87,
+    "quantity": "133.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 299,
+  "fields": {
+    "product": 82,
+    "ingredient": 100,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 300,
+  "fields": {
+    "product": 83,
+    "ingredient": 104,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 301,
+  "fields": {
+    "product": 83,
+    "ingredient": 96,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 302,
+  "fields": {
+    "product": 83,
+    "ingredient": 84,
+    "quantity": "125.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 303,
+  "fields": {
+    "product": 83,
+    "ingredient": 85,
+    "quantity": "112.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 304,
+  "fields": {
+    "product": 83,
+    "ingredient": 94,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 305,
+  "fields": {
+    "product": 84,
+    "ingredient": 104,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 306,
+  "fields": {
+    "product": 84,
+    "ingredient": 94,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 307,
+  "fields": {
+    "product": 84,
+    "ingredient": 101,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 308,
+  "fields": {
+    "product": 84,
+    "ingredient": 96,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 309,
+  "fields": {
+    "product": 85,
+    "ingredient": 83,
+    "quantity": "57.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 310,
+  "fields": {
+    "product": 85,
+    "ingredient": 102,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 311,
+  "fields": {
+    "product": 85,
+    "ingredient": 96,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 312,
+  "fields": {
+    "product": 86,
+    "ingredient": 100,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 313,
+  "fields": {
+    "product": 86,
+    "ingredient": 84,
+    "quantity": "113.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 314,
+  "fields": {
+    "product": 86,
+    "ingredient": 91,
+    "quantity": "70.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 315,
+  "fields": {
+    "product": 87,
+    "ingredient": 84,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 316,
+  "fields": {
+    "product": 87,
+    "ingredient": 85,
+    "quantity": "56.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 317,
+  "fields": {
+    "product": 87,
+    "ingredient": 86,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 318,
+  "fields": {
+    "product": 88,
+    "ingredient": 100,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 319,
+  "fields": {
+    "product": 88,
+    "ingredient": 89,
+    "quantity": "99.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 320,
+  "fields": {
+    "product": 88,
+    "ingredient": 92,
+    "quantity": "144.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 321,
+  "fields": {
+    "product": 89,
+    "ingredient": 86,
+    "quantity": "52.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 322,
+  "fields": {
+    "product": 89,
+    "ingredient": 95,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 323,
+  "fields": {
+    "product": 89,
+    "ingredient": 96,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 324,
+  "fields": {
+    "product": 89,
+    "ingredient": 83,
+    "quantity": "99.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 325,
+  "fields": {
+    "product": 90,
+    "ingredient": 124,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 326,
+  "fields": {
+    "product": 90,
+    "ingredient": 112,
+    "quantity": "122.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 327,
+  "fields": {
+    "product": 90,
+    "ingredient": 117,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 328,
+  "fields": {
+    "product": 90,
+    "ingredient": 108,
+    "quantity": "72.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 329,
+  "fields": {
+    "product": 90,
+    "ingredient": 121,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 330,
+  "fields": {
+    "product": 91,
+    "ingredient": 117,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 331,
+  "fields": {
+    "product": 91,
+    "ingredient": 112,
+    "quantity": "117.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 332,
+  "fields": {
+    "product": 91,
+    "ingredient": 105,
+    "quantity": "131.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 333,
+  "fields": {
+    "product": 92,
+    "ingredient": 111,
+    "quantity": "93.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 334,
+  "fields": {
+    "product": 92,
+    "ingredient": 113,
+    "quantity": "119.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 335,
+  "fields": {
+    "product": 92,
+    "ingredient": 105,
+    "quantity": "66.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 336,
+  "fields": {
+    "product": 93,
+    "ingredient": 117,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 337,
+  "fields": {
+    "product": 93,
+    "ingredient": 118,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 338,
+  "fields": {
+    "product": 93,
+    "ingredient": 124,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 339,
+  "fields": {
+    "product": 93,
+    "ingredient": 111,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 340,
+  "fields": {
+    "product": 94,
+    "ingredient": 120,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 341,
+  "fields": {
+    "product": 94,
+    "ingredient": 106,
+    "quantity": "112.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 342,
+  "fields": {
+    "product": 94,
+    "ingredient": 107,
+    "quantity": "106.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 343,
+  "fields": {
+    "product": 95,
+    "ingredient": 121,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 344,
+  "fields": {
+    "product": 95,
+    "ingredient": 115,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 345,
+  "fields": {
+    "product": 95,
+    "ingredient": 122,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 346,
+  "fields": {
+    "product": 96,
+    "ingredient": 112,
+    "quantity": "108.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 347,
+  "fields": {
+    "product": 96,
+    "ingredient": 107,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 348,
+  "fields": {
+    "product": 96,
+    "ingredient": 123,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 349,
+  "fields": {
+    "product": 96,
+    "ingredient": 121,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 350,
+  "fields": {
+    "product": 97,
+    "ingredient": 112,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 351,
+  "fields": {
+    "product": 97,
+    "ingredient": 120,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 352,
+  "fields": {
+    "product": 97,
+    "ingredient": 106,
+    "quantity": "85.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 353,
+  "fields": {
+    "product": 98,
+    "ingredient": 119,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 354,
+  "fields": {
+    "product": 98,
+    "ingredient": 121,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 355,
+  "fields": {
+    "product": 98,
+    "ingredient": 115,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 356,
+  "fields": {
+    "product": 99,
+    "ingredient": 108,
+    "quantity": "97.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 357,
+  "fields": {
+    "product": 99,
+    "ingredient": 105,
+    "quantity": "147.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 358,
+  "fields": {
+    "product": 100,
+    "ingredient": 123,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 359,
+  "fields": {
+    "product": 100,
+    "ingredient": 121,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 360,
+  "fields": {
+    "product": 101,
+    "ingredient": 110,
+    "quantity": "83.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 361,
+  "fields": {
+    "product": 101,
+    "ingredient": 120,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 362,
+  "fields": {
+    "product": 102,
+    "ingredient": 105,
+    "quantity": "135.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 363,
+  "fields": {
+    "product": 102,
+    "ingredient": 109,
+    "quantity": "73.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 364,
+  "fields": {
+    "product": 102,
+    "ingredient": 117,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 365,
+  "fields": {
+    "product": 102,
+    "ingredient": 124,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 366,
+  "fields": {
+    "product": 102,
+    "ingredient": 120,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 367,
+  "fields": {
+    "product": 103,
+    "ingredient": 108,
+    "quantity": "136.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 368,
+  "fields": {
+    "product": 103,
+    "ingredient": 113,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 369,
+  "fields": {
+    "product": 104,
+    "ingredient": 123,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 370,
+  "fields": {
+    "product": 104,
+    "ingredient": 110,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 371,
+  "fields": {
+    "product": 104,
+    "ingredient": 113,
+    "quantity": "93.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 372,
+  "fields": {
+    "product": 104,
+    "ingredient": 124,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 373,
+  "fields": {
+    "product": 104,
+    "ingredient": 106,
+    "quantity": "77.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 374,
+  "fields": {
+    "product": 105,
+    "ingredient": 116,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 375,
+  "fields": {
+    "product": 105,
+    "ingredient": 107,
+    "quantity": "149.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 376,
+  "fields": {
+    "product": 105,
+    "ingredient": 124,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 377,
+  "fields": {
+    "product": 105,
+    "ingredient": 122,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 378,
+  "fields": {
+    "product": 105,
+    "ingredient": 109,
+    "quantity": "117.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 379,
+  "fields": {
+    "product": 106,
+    "ingredient": 111,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 380,
+  "fields": {
+    "product": 106,
+    "ingredient": 120,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 381,
+  "fields": {
+    "product": 106,
+    "ingredient": 115,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 382,
+  "fields": {
+    "product": 107,
+    "ingredient": 114,
+    "quantity": "110.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 383,
+  "fields": {
+    "product": 107,
+    "ingredient": 122,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 384,
+  "fields": {
+    "product": 107,
+    "ingredient": 123,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 385,
+  "fields": {
+    "product": 107,
+    "ingredient": 106,
+    "quantity": "66.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 386,
+  "fields": {
+    "product": 107,
+    "ingredient": 118,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 387,
+  "fields": {
+    "product": 108,
+    "ingredient": 115,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 388,
+  "fields": {
+    "product": 108,
+    "ingredient": 107,
+    "quantity": "60.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 389,
+  "fields": {
+    "product": 109,
+    "ingredient": 137,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 390,
+  "fields": {
+    "product": 109,
+    "ingredient": 129,
+    "quantity": "97.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 391,
+  "fields": {
+    "product": 109,
+    "ingredient": 134,
+    "quantity": "65.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 392,
+  "fields": {
+    "product": 110,
+    "ingredient": 141,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 393,
+  "fields": {
+    "product": 110,
+    "ingredient": 126,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 394,
+  "fields": {
+    "product": 110,
+    "ingredient": 137,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 395,
+  "fields": {
+    "product": 110,
+    "ingredient": 128,
+    "quantity": "81.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 396,
+  "fields": {
+    "product": 110,
+    "ingredient": 134,
+    "quantity": "147.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 397,
+  "fields": {
+    "product": 111,
+    "ingredient": 143,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 398,
+  "fields": {
+    "product": 111,
+    "ingredient": 125,
+    "quantity": "85.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 399,
+  "fields": {
+    "product": 111,
+    "ingredient": 129,
+    "quantity": "102.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 400,
+  "fields": {
+    "product": 111,
+    "ingredient": 128,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 401,
+  "fields": {
+    "product": 111,
+    "ingredient": 145,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 402,
+  "fields": {
+    "product": 112,
+    "ingredient": 130,
+    "quantity": "93.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 403,
+  "fields": {
+    "product": 112,
+    "ingredient": 141,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 404,
+  "fields": {
+    "product": 113,
+    "ingredient": 144,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 405,
+  "fields": {
+    "product": 113,
+    "ingredient": 132,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 406,
+  "fields": {
+    "product": 113,
+    "ingredient": 127,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 407,
+  "fields": {
+    "product": 114,
+    "ingredient": 127,
+    "quantity": "93.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 408,
+  "fields": {
+    "product": 114,
+    "ingredient": 132,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 409,
+  "fields": {
+    "product": 114,
+    "ingredient": 139,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 410,
+  "fields": {
+    "product": 115,
+    "ingredient": 128,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 411,
+  "fields": {
+    "product": 115,
+    "ingredient": 142,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 412,
+  "fields": {
+    "product": 115,
+    "ingredient": 144,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 413,
+  "fields": {
+    "product": 115,
+    "ingredient": 131,
+    "quantity": "61.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 414,
+  "fields": {
+    "product": 115,
+    "ingredient": 140,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 415,
+  "fields": {
+    "product": 116,
+    "ingredient": 131,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 416,
+  "fields": {
+    "product": 116,
+    "ingredient": 130,
+    "quantity": "90.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 417,
+  "fields": {
+    "product": 116,
+    "ingredient": 143,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 418,
+  "fields": {
+    "product": 117,
+    "ingredient": 139,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 419,
+  "fields": {
+    "product": 117,
+    "ingredient": 129,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 420,
+  "fields": {
+    "product": 118,
+    "ingredient": 131,
+    "quantity": "83.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 421,
+  "fields": {
+    "product": 118,
+    "ingredient": 143,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 422,
+  "fields": {
+    "product": 118,
+    "ingredient": 137,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 423,
+  "fields": {
+    "product": 119,
+    "ingredient": 129,
+    "quantity": "88.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 424,
+  "fields": {
+    "product": 119,
+    "ingredient": 130,
+    "quantity": "132.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 425,
+  "fields": {
+    "product": 119,
+    "ingredient": 137,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 426,
+  "fields": {
+    "product": 119,
+    "ingredient": 142,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 427,
+  "fields": {
+    "product": 119,
+    "ingredient": 126,
+    "quantity": "109.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 428,
+  "fields": {
+    "product": 120,
+    "ingredient": 127,
+    "quantity": "102.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 429,
+  "fields": {
+    "product": 120,
+    "ingredient": 129,
+    "quantity": "109.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 430,
+  "fields": {
+    "product": 120,
+    "ingredient": 141,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 431,
+  "fields": {
+    "product": 120,
+    "ingredient": 134,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 432,
+  "fields": {
+    "product": 120,
+    "ingredient": 125,
+    "quantity": "138.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 433,
+  "fields": {
+    "product": 121,
+    "ingredient": 126,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 434,
+  "fields": {
+    "product": 121,
+    "ingredient": 135,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 435,
+  "fields": {
+    "product": 122,
+    "ingredient": 127,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 436,
+  "fields": {
+    "product": 122,
+    "ingredient": 138,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 437,
+  "fields": {
+    "product": 122,
+    "ingredient": 133,
+    "quantity": "60.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 438,
+  "fields": {
+    "product": 122,
+    "ingredient": 140,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 439,
+  "fields": {
+    "product": 123,
+    "ingredient": 131,
+    "quantity": "132.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 440,
+  "fields": {
+    "product": 123,
+    "ingredient": 127,
+    "quantity": "58.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 441,
+  "fields": {
+    "product": 123,
+    "ingredient": 126,
+    "quantity": "70.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 442,
+  "fields": {
+    "product": 123,
+    "ingredient": 139,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 443,
+  "fields": {
+    "product": 124,
+    "ingredient": 146,
+    "quantity": "87.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 444,
+  "fields": {
+    "product": 124,
+    "ingredient": 155,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 445,
+  "fields": {
+    "product": 124,
+    "ingredient": 150,
+    "quantity": "136.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 446,
+  "fields": {
+    "product": 124,
+    "ingredient": 151,
+    "quantity": "100.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 447,
+  "fields": {
+    "product": 125,
+    "ingredient": 148,
+    "quantity": "129.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 448,
+  "fields": {
+    "product": 125,
+    "ingredient": 156,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 449,
+  "fields": {
+    "product": 126,
+    "ingredient": 147,
+    "quantity": "70.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 450,
+  "fields": {
+    "product": 126,
+    "ingredient": 157,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 451,
+  "fields": {
+    "product": 126,
+    "ingredient": 149,
+    "quantity": "124.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 452,
+  "fields": {
+    "product": 127,
+    "ingredient": 156,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 453,
+  "fields": {
+    "product": 127,
+    "ingredient": 149,
+    "quantity": "145.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 454,
+  "fields": {
+    "product": 127,
+    "ingredient": 147,
+    "quantity": "83.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 455,
+  "fields": {
+    "product": 127,
+    "ingredient": 148,
+    "quantity": "134.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 456,
+  "fields": {
+    "product": 127,
+    "ingredient": 163,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 457,
+  "fields": {
+    "product": 128,
+    "ingredient": 161,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 458,
+  "fields": {
+    "product": 128,
+    "ingredient": 147,
+    "quantity": "50.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 459,
+  "fields": {
+    "product": 128,
+    "ingredient": 154,
+    "quantity": "60.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 460,
+  "fields": {
+    "product": 129,
+    "ingredient": 155,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 461,
+  "fields": {
+    "product": 129,
+    "ingredient": 159,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 462,
+  "fields": {
+    "product": 129,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 463,
+  "fields": {
+    "product": 129,
+    "ingredient": 151,
+    "quantity": "143.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 464,
+  "fields": {
+    "product": 130,
+    "ingredient": 161,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 465,
+  "fields": {
+    "product": 130,
+    "ingredient": 159,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 466,
+  "fields": {
+    "product": 131,
+    "ingredient": 157,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 467,
+  "fields": {
+    "product": 131,
+    "ingredient": 159,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 468,
+  "fields": {
+    "product": 132,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 469,
+  "fields": {
+    "product": 132,
+    "ingredient": 150,
+    "quantity": "91.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 470,
+  "fields": {
+    "product": 132,
+    "ingredient": 161,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 471,
+  "fields": {
+    "product": 132,
+    "ingredient": 147,
+    "quantity": "93.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 472,
+  "fields": {
+    "product": 133,
+    "ingredient": 148,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 473,
+  "fields": {
+    "product": 133,
+    "ingredient": 157,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 474,
+  "fields": {
+    "product": 133,
+    "ingredient": 162,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 475,
+  "fields": {
+    "product": 133,
+    "ingredient": 146,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 476,
+  "fields": {
+    "product": 134,
+    "ingredient": 163,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 477,
+  "fields": {
+    "product": 134,
+    "ingredient": 152,
+    "quantity": "111.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 478,
+  "fields": {
+    "product": 134,
+    "ingredient": 146,
+    "quantity": "130.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 479,
+  "fields": {
+    "product": 134,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 480,
+  "fields": {
+    "product": 134,
+    "ingredient": 159,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 481,
+  "fields": {
+    "product": 135,
+    "ingredient": 151,
+    "quantity": "68.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 482,
+  "fields": {
+    "product": 135,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 483,
+  "fields": {
+    "product": 135,
+    "ingredient": 155,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 484,
+  "fields": {
+    "product": 135,
+    "ingredient": 162,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 485,
+  "fields": {
+    "product": 135,
+    "ingredient": 152,
+    "quantity": "51.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 486,
+  "fields": {
+    "product": 136,
+    "ingredient": 156,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 487,
+  "fields": {
+    "product": 136,
+    "ingredient": 155,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 488,
+  "fields": {
+    "product": 136,
+    "ingredient": 163,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 489,
+  "fields": {
+    "product": 136,
+    "ingredient": 157,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 490,
+  "fields": {
+    "product": 137,
+    "ingredient": 148,
+    "quantity": "116.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 491,
+  "fields": {
+    "product": 137,
+    "ingredient": 147,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 492,
+  "fields": {
+    "product": 138,
+    "ingredient": 152,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 493,
+  "fields": {
+    "product": 138,
+    "ingredient": 147,
+    "quantity": "95.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 494,
+  "fields": {
+    "product": 138,
+    "ingredient": 163,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 495,
+  "fields": {
+    "product": 138,
+    "ingredient": 158,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 496,
+  "fields": {
+    "product": 138,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 497,
+  "fields": {
+    "product": 139,
+    "ingredient": 160,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 498,
+  "fields": {
+    "product": 139,
+    "ingredient": 146,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 499,
+  "fields": {
+    "product": 139,
+    "ingredient": 163,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 500,
+  "fields": {
+    "product": 140,
+    "ingredient": 169,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 501,
+  "fields": {
+    "product": 140,
+    "ingredient": 166,
+    "quantity": "123.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 502,
+  "fields": {
+    "product": 140,
+    "ingredient": 178,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 503,
+  "fields": {
+    "product": 140,
+    "ingredient": 172,
+    "quantity": "85.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 504,
+  "fields": {
+    "product": 141,
+    "ingredient": 165,
+    "quantity": "59.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 505,
+  "fields": {
+    "product": 141,
+    "ingredient": 186,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 506,
+  "fields": {
+    "product": 141,
+    "ingredient": 164,
+    "quantity": "99.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 507,
+  "fields": {
+    "product": 142,
+    "ingredient": 172,
+    "quantity": "56.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 508,
+  "fields": {
+    "product": 142,
+    "ingredient": 168,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 509,
+  "fields": {
+    "product": 143,
+    "ingredient": 172,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 510,
+  "fields": {
+    "product": 143,
+    "ingredient": 179,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 511,
+  "fields": {
+    "product": 143,
+    "ingredient": 186,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 512,
+  "fields": {
+    "product": 143,
+    "ingredient": 177,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 513,
+  "fields": {
+    "product": 143,
+    "ingredient": 184,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 514,
+  "fields": {
+    "product": 144,
+    "ingredient": 170,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 515,
+  "fields": {
+    "product": 144,
+    "ingredient": 177,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 516,
+  "fields": {
+    "product": 145,
+    "ingredient": 176,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 517,
+  "fields": {
+    "product": 145,
+    "ingredient": 182,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 518,
+  "fields": {
+    "product": 145,
+    "ingredient": 169,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 519,
+  "fields": {
+    "product": 146,
+    "ingredient": 187,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 520,
+  "fields": {
+    "product": 146,
+    "ingredient": 181,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 521,
+  "fields": {
+    "product": 147,
+    "ingredient": 176,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 522,
+  "fields": {
+    "product": 147,
+    "ingredient": 184,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 523,
+  "fields": {
+    "product": 147,
+    "ingredient": 180,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 524,
+  "fields": {
+    "product": 147,
+    "ingredient": 165,
+    "quantity": "104.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 525,
+  "fields": {
+    "product": 148,
+    "ingredient": 167,
+    "quantity": "53.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 526,
+  "fields": {
+    "product": 148,
+    "ingredient": 169,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 527,
+  "fields": {
+    "product": 148,
+    "ingredient": 166,
+    "quantity": "84.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 528,
+  "fields": {
+    "product": 149,
+    "ingredient": 180,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 529,
+  "fields": {
+    "product": 149,
+    "ingredient": 169,
+    "quantity": "55.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 530,
+  "fields": {
+    "product": 149,
+    "ingredient": 175,
+    "quantity": "128.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 531,
+  "fields": {
+    "product": 150,
+    "ingredient": 168,
+    "quantity": "83.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 532,
+  "fields": {
+    "product": 150,
+    "ingredient": 172,
+    "quantity": "114.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 533,
+  "fields": {
+    "product": 150,
+    "ingredient": 165,
+    "quantity": "108.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 534,
+  "fields": {
+    "product": 150,
+    "ingredient": 174,
+    "quantity": "97.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 535,
+  "fields": {
+    "product": 150,
+    "ingredient": 170,
+    "quantity": "76.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 536,
+  "fields": {
+    "product": 151,
+    "ingredient": 182,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 537,
+  "fields": {
+    "product": 151,
+    "ingredient": 171,
+    "quantity": "147.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 538,
+  "fields": {
+    "product": 151,
+    "ingredient": 169,
+    "quantity": "83.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 539,
+  "fields": {
+    "product": 152,
+    "ingredient": 166,
+    "quantity": "65.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 540,
+  "fields": {
+    "product": 152,
+    "ingredient": 174,
+    "quantity": "78.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 541,
+  "fields": {
+    "product": 152,
+    "ingredient": 168,
+    "quantity": "105.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 542,
+  "fields": {
+    "product": 152,
+    "ingredient": 186,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 543,
+  "fields": {
+    "product": 153,
+    "ingredient": 164,
+    "quantity": "130.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 544,
+  "fields": {
+    "product": 153,
+    "ingredient": 172,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 545,
+  "fields": {
+    "product": 153,
+    "ingredient": 178,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 546,
+  "fields": {
+    "product": 153,
+    "ingredient": 173,
+    "quantity": "58.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 547,
+  "fields": {
+    "product": 154,
+    "ingredient": 177,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 548,
+  "fields": {
+    "product": 154,
+    "ingredient": 173,
+    "quantity": "102.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 549,
+  "fields": {
+    "product": 155,
+    "ingredient": 184,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 550,
+  "fields": {
+    "product": 155,
+    "ingredient": 165,
+    "quantity": "126.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 551,
+  "fields": {
+    "product": 156,
+    "ingredient": 200,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 552,
+  "fields": {
+    "product": 156,
+    "ingredient": 206,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 553,
+  "fields": {
+    "product": 157,
+    "ingredient": 201,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 554,
+  "fields": {
+    "product": 157,
+    "ingredient": 203,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 555,
+  "fields": {
+    "product": 157,
+    "ingredient": 193,
+    "quantity": "101.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 556,
+  "fields": {
+    "product": 157,
+    "ingredient": 199,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 557,
+  "fields": {
+    "product": 158,
+    "ingredient": 192,
+    "quantity": "133.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 558,
+  "fields": {
+    "product": 158,
+    "ingredient": 188,
+    "quantity": "146.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 559,
+  "fields": {
+    "product": 159,
+    "ingredient": 198,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 560,
+  "fields": {
+    "product": 159,
+    "ingredient": 207,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 561,
+  "fields": {
+    "product": 160,
+    "ingredient": 194,
+    "quantity": "66.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 562,
+  "fields": {
+    "product": 160,
+    "ingredient": 193,
+    "quantity": "91.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 563,
+  "fields": {
+    "product": 160,
+    "ingredient": 191,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 564,
+  "fields": {
+    "product": 160,
+    "ingredient": 202,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 565,
+  "fields": {
+    "product": 160,
+    "ingredient": 198,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 566,
+  "fields": {
+    "product": 161,
+    "ingredient": 205,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 567,
+  "fields": {
+    "product": 161,
+    "ingredient": 206,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 568,
+  "fields": {
+    "product": 161,
+    "ingredient": 207,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 569,
+  "fields": {
+    "product": 161,
+    "ingredient": 193,
+    "quantity": "95.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 570,
+  "fields": {
+    "product": 162,
+    "ingredient": 203,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 571,
+  "fields": {
+    "product": 162,
+    "ingredient": 208,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 572,
+  "fields": {
+    "product": 162,
+    "ingredient": 204,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 573,
+  "fields": {
+    "product": 163,
+    "ingredient": 191,
+    "quantity": "52.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 574,
+  "fields": {
+    "product": 163,
+    "ingredient": 208,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 575,
+  "fields": {
+    "product": 164,
+    "ingredient": 190,
+    "quantity": "120.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 576,
+  "fields": {
+    "product": 164,
+    "ingredient": 205,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 577,
+  "fields": {
+    "product": 164,
+    "ingredient": 195,
+    "quantity": "62.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 578,
+  "fields": {
+    "product": 164,
+    "ingredient": 201,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 579,
+  "fields": {
+    "product": 165,
+    "ingredient": 196,
+    "quantity": "97.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 580,
+  "fields": {
+    "product": 165,
+    "ingredient": 189,
+    "quantity": "56.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 581,
+  "fields": {
+    "product": 166,
+    "ingredient": 190,
+    "quantity": "54.00",
+    "unity": "gr",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 582,
+  "fields": {
+    "product": 166,
+    "ingredient": 192,
+    "quantity": "78.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 583,
+  "fields": {
+    "product": 166,
+    "ingredient": 201,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 584,
+  "fields": {
+    "product": 167,
+    "ingredient": 195,
+    "quantity": "115.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 585,
+  "fields": {
+    "product": 167,
+    "ingredient": 200,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 586,
+  "fields": {
+    "product": 167,
+    "ingredient": 199,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 587,
+  "fields": {
+    "product": 167,
+    "ingredient": 204,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 588,
+  "fields": {
+    "product": 167,
+    "ingredient": 194,
+    "quantity": "150.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 589,
+  "fields": {
+    "product": 168,
+    "ingredient": 196,
+    "quantity": "66.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 590,
+  "fields": {
+    "product": 168,
+    "ingredient": 199,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 591,
+  "fields": {
+    "product": 168,
+    "ingredient": 194,
+    "quantity": "80.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 592,
+  "fields": {
+    "product": 168,
+    "ingredient": 204,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 593,
+  "fields": {
+    "product": 169,
+    "ingredient": 195,
+    "quantity": "137.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 594,
+  "fields": {
+    "product": 169,
+    "ingredient": 200,
+    "quantity": "20.00",
+    "unity": "ml",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 595,
+  "fields": {
+    "product": 170,
+    "ingredient": 194,
+    "quantity": "123.00",
+    "unity": "gr",
+    "removable": true
+  }
+},
+{
+  "model": "products.component",
+  "pk": 596,
+  "fields": {
+    "product": 170,
+    "ingredient": 203,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+},
+{
+  "model": "products.component",
+  "pk": 597,
+  "fields": {
+    "product": 170,
+    "ingredient": 202,
+    "quantity": "1.00",
+    "unity": "ea",
+    "removable": false
+  }
+}
+]
