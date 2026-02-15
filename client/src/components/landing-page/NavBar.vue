@@ -11,11 +11,14 @@
         <a href="#">Quiénes somos</a>
       </nav>
     </div>
-    <a href="#" class="block p-2.5 background bg-emerald-400 rounded-xl">Empezar &rarr;</a>
+    <RouterLink to="/login" class="block p-2.5 background bg-emerald-400 rounded-xl"
+      >Empezar &rarr;</RouterLink
+    >
   </header>
 </template>
 <script setup lang="ts">
 import CompanyLogo from './CompanyLogo.vue';
+import { RouterLink } from 'vue-router';
 </script>
 <style scoped>
 .nav-bar {
