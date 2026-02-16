@@ -32,10 +32,36 @@
       </a>
 
     </div>
+
+    <button
+      v-if="auth.isLoggedIn"
+      @click="auth.logout()"
+      class="block p-2.5 bg-red-400 text-white rounded-xl"
+    >
+      Cerrar sesión
+    </button>
+    <RouterLink
+      v-else
+      to="/login"
+      class="block p-2.5 bg-emerald-400 rounded-xl"
+    >
+      Empezar &rarr;
+    </RouterLink>
   </header>
 </template>
 
 <script setup lang="ts">
+import CompanyLogo from './CompanyLogo.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const auth = useAuthStore()
+</script>
+
+<style scoped>
+.nav-bar {
+  background-color: #fff;
+}
+</style>
 import { ref, onMounted, onUnmounted } from 'vue';
 import CompanyLogo from './CompanyLogo.vue';
 
