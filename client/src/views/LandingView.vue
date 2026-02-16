@@ -1,11 +1,17 @@
 <template>
   <div class="landing-page">
     <NavBar />
-    <MainContent />
+    <HeroSection />
+    <FeaturesGrid />
+    <HowItWorks />
+    <SiteFooter />
   </div>
 </template>
 <script setup lang="ts">
-import MainContent from '@/components/landing-page/MainContent.vue';
+import HeroSection from '@/components/landing-page/HeroSection.vue';
 import NavBar from '../components/landing-page/NavBar.vue';
+import FeaturesGrid from '@/components/landing-page/FeaturesGrid.vue';
+import HowItWorks from '@/components/landing-page/HowItWorks.vue';
+import SiteFooter from '@/components/landing-page/SiteFooter.vue';
 </script>
 <style scoped></style>
