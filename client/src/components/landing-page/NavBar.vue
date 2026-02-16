@@ -1,3 +1,33 @@
+<script setup lang="ts">
+  import { ref, onMounted, onUnmounted } from 'vue';
+  import { RouterLink } from 'vue-router'; 
+  import CompanyLogo from './CompanyLogo.vue';
+  import { useAuthStore } from '@/stores/auth';
+
+  const auth = useAuthStore();
+  const isHidden = ref(false);
+  const lastScrollY = ref(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    // Lógica para ocultar el navbar al bajar y mostrar al subir
+    if (currentScrollY > lastScrollY.value && currentScrollY > 100) {
+      isHidden.value = true;
+    } else {
+      isHidden.value = false;
+    }
+    lastScrollY.value = currentScrollY;
+  };
+
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
+</script>
+
 <template>
   <header 
     class="fixed top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 transition-transform duration-300 h-[10vh]"
@@ -24,66 +54,32 @@
         </a>
       </nav>
 
-      <a 
-        href="#" 
-        class="px-5 py-2.5 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-400/20 flex items-center gap-2"
-      >
-        Empezar <span>&rarr;</span>
-      </a>
+      <div class="flex items-center gap-4">
+        
+        <button
+          v-if="auth.isLoggedIn"
+          @click="auth.logout()"
+          class="px-5 py-2.5 bg-red-400 text-white font-semibold rounded-xl hover:bg-red-500 transition-all shadow-lg shadow-red-400/20"
+        >
+          Cerrar sesión
+        </button>
+
+        <RouterLink
+          v-else
+          to="/login"
+          class="px-5 py-2.5 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-400/20 flex items-center gap-2"
+        >
+          Empezar <span>&rarr;</span>
+        </RouterLink>
+
+      </div>
 
     </div>
-
-    <button
-      v-if="auth.isLoggedIn"
-      @click="auth.logout()"
-      class="block p-2.5 bg-red-400 text-white rounded-xl"
-    >
-      Cerrar sesión
-    </button>
-    <RouterLink
-      v-else
-      to="/login"
-      class="block p-2.5 bg-emerald-400 rounded-xl"
-    >
-      Empezar &rarr;
-    </RouterLink>
   </header>
 </template>
-
-<script setup lang="ts">
-import CompanyLogo from './CompanyLogo.vue'
-import { useAuthStore } from '@/stores/auth'
-
-const auth = useAuthStore()
-</script>
 
 <style scoped>
 .nav-bar {
   background-color: #fff;
 }
 </style>
-import { ref, onMounted, onUnmounted } from 'vue';
-import CompanyLogo from './CompanyLogo.vue';
-
-const isHidden = ref(false);
-const lastScrollY = ref(0);
-
-const handleScroll = () => {
-  const currentScrollY = window.scrollY;
-  // Ajustamos el umbral a 100px para que no baile tanto al inicio
-  if (currentScrollY > lastScrollY.value && currentScrollY > 100) {
-    isHidden.value = true;
-  } else {
-    isHidden.value = false;
-  }
-  lastScrollY.value = currentScrollY;
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
-</script>
