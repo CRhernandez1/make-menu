@@ -13,4 +13,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  // 👇 Aquí está la configuración de seguridad para el servidor
+  server: {
+    allowedHosts: [
+      'craft-grad-refined-developed.trycloudflare.com'
+    ]
+  }
 })
