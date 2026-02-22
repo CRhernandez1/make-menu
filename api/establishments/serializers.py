@@ -23,6 +23,7 @@ class TableSerializer(BaseSerializer):
         return {
             'id': instance.pk,
             'establishment': EstablishmentSerializer(instance.establishment).serialize(),
+            'number': instance.number,
             'max_guests': instance.max_guests,
             'active': instance.active,
         }

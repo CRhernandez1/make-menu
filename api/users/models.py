@@ -11,9 +11,6 @@ class Member(models.Model):
     phone = models.CharField(max_length=16, blank=True)
     avatar = models.ImageField(upload_to='avatar', default='avatar/noavatar.png')
 
-    def __str__(self):
-        return self.user.username
-
 
 class Token(models.Model):
     key = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
