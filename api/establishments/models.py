@@ -18,9 +18,13 @@ class Establishment(models.Model):
 
 
 class Table(models.Model):
+    class Meta:
+        unique_together = ('establishment', 'number')
+
     establishment = models.ForeignKey(
         'establishments.Establishment', related_name='tables', on_delete=models.CASCADE
     )
+    number = models.PositiveSmallIntegerField()
     max_guests = models.PositiveSmallIntegerField()
     active = models.BooleanField(default=True)
 
