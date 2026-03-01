@@ -1,3 +1,4 @@
+import json
 from http import HTTPStatus
 
 from django.http import JsonResponse
@@ -10,6 +11,33 @@ def require_http_methods(*methods):
                 return JsonResponse(
                     {'error': 'Method not allowed'}, status=HTTPStatus.METHOD_NOT_ALLOWED
                 )
+            return view(request, *args, **kwargs)
+
+        return wrapper
+
+    return my_decorator
+
+
+def parse_json_to_python(*expected_fields):
+    def my_decorator(view):
+        def wrapper(request, *args, **kwargs):
+            try:
+                payload = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({'error': 'Invalid JSON body'}, status=HTTPStatus.BAD_REQUEST)
+
+            missing = [
+                field
+                for field in expected_fields
+                if field not in payload or payload[field] is None or payload[field] == ''
+            ]
+            if missing:
+                return JsonResponse(
+                    {'error': f'Missing required fields: {", ".join(missing)}'},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
+
+            request.payload = payload
             return view(request, *args, **kwargs)
 
         return wrapper
