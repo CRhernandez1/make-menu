@@ -1,0 +1,76 @@
+# ============================================================================
+# Zensical configuration for MakeMenu project
+# ============================================================================
+
+[project]
+
+site_name = "MakeMenu"
+site_description = "Documentación del API (Django) y Cliente (Vue) de MakeMenu."
+site_author = "MakeMenu Team"
+
+#site_url = "https://www.example.com/"
+
+copyright = """
+Copyright &copy; 2026 MakeMenu
+"""
+
+docs_dir = "content"
+
+nav = [
+  { "Inicio" = "index.md" },
+  { "API" = [
+    { "Introducción" = "api/index.md" },
+    { "Instalación" = "api/instalacion.md" },
+    { "Autenticación" = "api/autenticacion.md" },
+    { "Modelos" = "api/modelos.md" },
+  ]},
+  { "Cliente" = [
+    { "Introducción" = "cliente/index.md" },
+    { "Instalación" = "cliente/instalacion.md" },
+    { "Componentes" = "cliente/componentes.md" },
+    { "Stores" = "cliente/stores.md" },
+    { "Rutas" = "cliente/rutas.md" },
+  ]},
+]
+
+#extra_css = ["stylesheets/extra.css"]
+#extra_javascript = ["javascripts/extra.js"]
+
+# ----------------------------------------------------------------------------
+# Tema
+# ----------------------------------------------------------------------------
+[project.theme]
+
+#variant = "classic"
+language = "es"
+
+features = [
+    "announce.dismiss",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    "navigation.footer",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.path",
+    "navigation.sections",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Cambiar a modo oscuro"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Cambiar a modo claro"
+
+[project.markdown]
+mermaid = true
