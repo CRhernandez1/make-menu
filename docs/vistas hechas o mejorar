@@ -1,0 +1,31 @@
+establishment-list:
+listado de establecimientos
+/establishments
+
+tables-list
+listado de tablas
+/establishments/establishment_cif/tables/
+
+add-table
+añadir una mesa
+/establishments/establishment_cif/tables/add
+
+
+table-detail
+detalle de una mesa
+/establishments/establishment_cif/tables/table_num
+
+edit-table
+añadir una mesa
+/establishments/establishment_cif/tables/table_num/edit/
+
+delete-table
+borrar mesa
+/establishments/establishment_cif/tables/table_num/delete/
+
+change-table-status
+cambiar estado de una mesa
+/establishments/establishment_cif/tables/table_num/change/
+
+
+

@@ -1,0 +1,38 @@
+- crear establecimiento  # establishments list que salga asociado a un usuario en concreto no a todos
+- listar establecimientos del usuario
+- detalle del establecimiento
+- borrar establecimiento
+- editar establecimiento
+
+
+- listar pedidos
+- crear pedidos
+- detalle del pedido
+- editar pedido
+- descartar pedido
+- cambiar estado pedido
+
+
+- listar productos
+- crear producto
+- borrar producto
+- editar producto
+- detalle del producto
+
+
+- listar ingredientes
+- crear ingredientes
+- editar ingredientes
+- borrar ingredientes
+
+- listar categorías
+- crear categorías
+- editar categorías
+- borrar categorías
+
+
+- listar alergenos
+- crear alergenos
+- editar alergenos
+- borrar alergenos
+
