@@ -26,14 +26,12 @@ def parse_json_to_python(*expected_fields):
             except json.JSONDecodeError:
                 return JsonResponse({'error': 'Invalid JSON body'}, status=HTTPStatus.BAD_REQUEST)
 
-            missing = [
-                field
-                for field in expected_fields
-                if field not in payload or payload[field] is None or payload[field] == ''
-            ]
-            if missing:
+            try:
+                for field in expected_fields:
+                    payload[field]
+            except KeyError:
                 return JsonResponse(
-                    {'error': f'Missing required fields: {", ".join(missing)}'},
+                    {'error': 'Missing required fields'},
                     status=HTTPStatus.BAD_REQUEST,
                 )
 
