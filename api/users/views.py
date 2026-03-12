@@ -1,19 +1,18 @@
-import json
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from shared.decorators import require_http_methods
+from shared.decorators import parse_json_to_python, require_http_methods
 
 from .models import Member, Token
 
 
 @csrf_exempt
 @require_http_methods('POST')
+@parse_json_to_python('username', 'password')
 def auth(request):
-    payload = json.loads(request.body)
+    payload = request.payload
 
     username = payload['username']
     password = payload['password']
@@ -27,8 +26,9 @@ def auth(request):
 
 @csrf_exempt
 @require_http_methods('POST')
+@parse_json_to_python('username', 'password', 'first_name', 'last_name', 'email', 'phone')
 def register(request):
-    payload = json.loads(request.body)
+    payload = request.payload
 
     username = payload['username']
     password = payload['password']
