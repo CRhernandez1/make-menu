@@ -4,8 +4,10 @@ from django.views.decorators.csrf import csrf_exempt
 from establishments.models import Establishment
 from shared.decorators import get_instance_or_404, parse_json_to_python, require_http_methods
 
-from .models import Category, Product
-from .serializers import ProductSerializer
+from .models import Category, Ingredient, Product
+from .serializers import IngredientSerializer, ProductSerializer
+
+# Ingredient, Allergen
 
 
 @get_instance_or_404(Establishment, 'cif', 'Establishment')
@@ -93,3 +95,89 @@ def edit_product(request, establishment_cif, product_id):
 
     product.save()
     return JsonResponse({'message': 'Product updated!'}, status=200)
+
+
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def ingredients_list(request, establishment_cif):
+    establishment = request.instance
+    ingredients = establishment.ingredients.all()
+    return IngredientSerializer(ingredients).json_response()
+
+
+@require_http_methods('GET')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def ingredient_detail(request, establishment_cif, ingredient_id):
+    establishment = request.instance
+    try:
+        ingredient = establishment.ingredients.get(id=ingredient_id)
+    except Ingredient.DoesNotExist:
+        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+    return IngredientSerializer(ingredient).json_response()
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@parse_json_to_python('name', 'ingredient_type')
+def add_ingredient(request, establishment_cif):
+    establishment = request.instance
+    payload = request.payload
+
+    ingredient = Ingredient.objects.create(
+        establishment=establishment,
+        name=payload['name'],
+        ingredient_type=payload['ingredient_type'],
+        description=payload.get('description', ''),
+        available=payload.get('available', True),
+    )
+
+    # ManyToMany se asigna después de crear
+    if 'allergens' in payload:
+        ingredient.allergens.set(payload['allergens'])
+
+    return JsonResponse({'id': ingredient.pk}, status=201)
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def delete_ingredient(request, establishment_cif, ingredient_id):
+    establishment = request.instance
+
+    try:
+        ingredient = establishment.ingredients.get(pk=ingredient_id)
+    except Ingredient.DoesNotExist:
+        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+
+    ingredient.delete()
+    return JsonResponse({'message': 'Ingredient delete succesfully'}, status=204)
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@parse_json_to_python()
+def edit_ingredient(request, establishment_cif, ingredient_id):
+    establishment = request.instance
+    payload = request.payload
+    try:
+        ingredient = establishment.ingredients.get(pk=ingredient_id)
+    except Ingredient.DoesNotExist:
+        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+
+    ### por si no se actualizan todos los campos desde el frontend, ejemplo actualizan nombre pero no descripcion.
+
+    if 'ingredient_type' in payload:
+        ingredient.ingredient_type = payload['ingredient_type']
+
+    if 'name' in payload:
+        ingredient.name = payload['name']
+
+    if 'description' in payload:
+        ingredient.description = payload['description']
+
+    if 'allergens' in payload:
+        ingredient.allergens.set(payload['allergens'])
+
+    ingredient.save()
+    return JsonResponse({'message': 'Ingredient updated!'}, status=200)
