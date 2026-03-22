@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -28,4 +28,5 @@ urlpatterns = [
         views.change_table_status,
         name='change-table-status',
     ),
+    path('<str:establishment_cif>/products/', include('products.urls')),
 ]
