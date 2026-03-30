@@ -4,8 +4,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import JsonResponse
-
 from shared.decorators import parse_json_to_python, require_http_methods
+
+from users.decorators import auth_required
 from users.models import Token
 
 
@@ -43,18 +44,7 @@ def register(request):
 
 
 @require_http_methods('POST')
+@auth_required
 def logout(request):
-    auth_header = request.headers.get('Authorization')
-
-    if auth_header and auth_header.startswith('Bearer '):
-        token_key = auth_header.split(' ')[1]
-
-        try:
-            token = Token.objects.get(key=token_key)
-            token.delete()
-            return JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
-        except Token.DoesNotExist:
-            return JsonResponse(
-                {'error': 'Token not found or already deleted'}, status=HTTPStatus.UNAUTHORIZED
-            )
-    return JsonResponse({'error': 'Invalid or missing token'}, status=HTTPStatus.UNAUTHORIZED)
+    request.user.token.delete()
+    return JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
