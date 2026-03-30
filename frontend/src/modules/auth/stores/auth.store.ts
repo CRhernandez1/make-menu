@@ -1,38 +1,46 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useLocalStorage } from '@vueuse/core'
+// ❌ Borramos el import de useLocalStorage
 import { loginAction } from '../actions/login.action'
 import { logoutAction } from '../actions/logout.action'
+import { checkAuthAction } from '../actions/checkAuth.action'
 import { AuthStatus } from '../interfaces'
 
 export const useAuthStore = defineStore('auth', () => {
   // 1. STATE (Estado)
-  const authStatus = ref<AuthStatus>(AuthStatus.Unauthenticated)
+  const authStatus = ref<AuthStatus>(AuthStatus.Checking)
 
-  // VueUse enlaza esta variable automáticamente con el localStorage del navegador
-  const token = ref(useLocalStorage('token', ''))
+  // ✅ NATIVO: Al arrancar, leemos de permanente o temporal (lo que encuentre primero)
+  const token = ref<string>(localStorage.getItem('token') || sessionStorage.getItem('token') || '')
 
   // 2. GETTERS (Propiedades Computadas)
   const isChecking = computed(() => authStatus.value === AuthStatus.Checking)
   const isAuthenticated = computed(() => authStatus.value === AuthStatus.Authenticated)
 
   // 3. ACTIONS (Métodos)
-
-  const login = async (username: string, password: string) => {
-    // Ponemos la app en estado de carga
+  const login = async (username: string, password: string, rememberMe: boolean = false) => {
     authStatus.value = AuthStatus.Checking
 
     try {
       const loginResponse = await loginAction(username, password)
 
       if (!loginResponse.ok) {
-        // Si fallan las credenciales, aseguramos que todo quede limpio
         await logout()
         return { ok: false, message: loginResponse.message }
       }
 
-      // Si Django da el OK, guardamos la llave y abrimos la puerta
-      token.value = loginResponse.token // VueUse lo guarda en el disco duro automáticamente
+      // 1. Guardamos en la variable reactiva
+      token.value = loginResponse.token
+
+      // 2. ✅ NATIVO: Decidimos en qué "caja fuerte" lo guardamos
+      if (rememberMe) {
+        localStorage.setItem('token', loginResponse.token) // Permanente
+        sessionStorage.removeItem('token') // Por si había basura
+      } else {
+        sessionStorage.setItem('token', loginResponse.token) // Temporal
+        localStorage.removeItem('token') // Por si había basura
+      }
+
       authStatus.value = AuthStatus.Authenticated
 
       return { ok: true, message: '' }
@@ -43,29 +51,48 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const logout = async () => {
-    // 1. Si tenemos token, le decimos a Django que lo destruya en su base de datos.
-    // (No hace falta pasarle el token a la acción porque el Interceptor de Axios ya se lo inyecta).
     if (token.value) {
       await logoutAction()
     }
 
-    // 2. Borramos la memoria local (VueUse lo elimina de localStorage al asignarle '')
+    // ✅ NATIVO: Limpiamos absolutamente todo
     token.value = ''
+    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
+
     authStatus.value = AuthStatus.Unauthenticated
   }
 
-  // 4. RETORNO (Lo que exponemos a los componentes)
+  const checkAuthStatus = async () => {
+    // 1. Si no hay token en ninguna de las dos cajas físicas, cerramos.
+    if (!token.value) {
+      await logout()
+      return false
+    }
+
+    try {
+      const response = await checkAuthAction()
+
+      if (!response.ok) {
+        await logout()
+        return false
+      }
+
+      authStatus.value = AuthStatus.Authenticated
+      return true
+    } catch (error) {
+      await logout()
+      return false
+    }
+  }
+
   return {
-    // State
     token,
     authStatus,
-
-    // Getters
     isChecking,
     isAuthenticated,
-
-    // Actions
     login,
     logout,
+    checkAuthStatus,
   }
 })

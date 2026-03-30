@@ -10,6 +10,8 @@ from shared.decorators import parse_json_to_python, require_http_methods
 from users.decorators import auth_required
 from users.models import Token
 
+from .serializers import MemberSerializer
+
 
 @csrf_exempt
 @require_http_methods('POST')
@@ -52,3 +54,9 @@ def register(request):
 def logout(request):
     request.user.token.delete()
     return JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
+
+
+@require_http_methods('GET')
+@auth_required
+def profile(request):
+    return MemberSerializer(request.user.member, request=request).json_response()

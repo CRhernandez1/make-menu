@@ -98,7 +98,7 @@ const onLogin = async () => {
     return usernameInputRef.value?.focus() // Pone el cursor en el input del usuario
   }
 
-  if (myForm.password.length < 6) {
+  if (myForm.password.length < 3) {
     return passwordInputRef.value?.focus() // Pone el cursor en el input de la contraseña
   }
 
@@ -109,8 +109,8 @@ const onLogin = async () => {
     localStorage.removeItem('saved_username')
   }
 
-  // 3. Llamada al Store de Pinia
-  const result = await authStore.login(myForm.username, myForm.password)
+  // 3. Llamada al Store de Pinia (AÑADIENDO EL myForm.rememberMe)
+  const result = await authStore.login(myForm.username, myForm.password, myForm.rememberMe)
 
   // 4. Manejo del resultado
   if (result.ok) {
@@ -118,7 +118,7 @@ const onLogin = async () => {
     return
   }
 
-  // 5. Si falla, mostramos el error usando Toastification
+  // 5. Si falla, mostramos el error
   console.error(result.message || 'Usuario/Contraseña no son correctos')
 }
 
