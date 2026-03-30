@@ -4,12 +4,14 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import JsonResponse
-from shared.decorators import parse_json_to_python, require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 
+from shared.decorators import parse_json_to_python, require_http_methods
 from users.decorators import auth_required
 from users.models import Token
 
 
+@csrf_exempt
 @require_http_methods('POST')
 @parse_json_to_python('username', 'password')
 def login(request):
@@ -22,6 +24,7 @@ def login(request):
     return JsonResponse({'error': 'Invalid credentials'}, status=HTTPStatus.UNAUTHORIZED)
 
 
+@csrf_exempt
 @require_http_methods('POST')
 @parse_json_to_python('username', 'password', 'email', 'first_name', 'last_name')
 def register(request):
@@ -43,6 +46,7 @@ def register(request):
         return JsonResponse({'error': 'Username already exists'}, status=HTTPStatus.CONFLICT)
 
 
+@csrf_exempt
 @require_http_methods('POST')
 @auth_required
 def logout(request):
