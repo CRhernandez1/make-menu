@@ -1,0 +1,30 @@
+import re
+from http import HTTPStatus
+
+from django.http import JsonResponse
+
+from .models import Token
+
+
+def auth_required(func):
+    # Bearer Token como UUID
+    BEARER_TOKEN_REGEX = (
+        r'Bearer (?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'
+    )
+
+    def wrapper(request, *args, **kwargs):
+        bearer_token = request.headers.get('Authorization', '')
+        if not (m := re.fullmatch(BEARER_TOKEN_REGEX, bearer_token)):
+            return JsonResponse(
+                {'error': 'Invalid authentication token'}, status=HTTPStatus.BAD_REQUEST
+            )
+        try:
+            token = Token.objects.get(key=m['token'])
+        except Token.DoesNotExist:
+            return JsonResponse(
+                {'error': 'Unregistered authentication token'}, status=HTTPStatus.UNAUTHORIZED
+            )
+        request.user = token.user
+        return func(request, *args, **kwargs)
+
+    return wrapper
