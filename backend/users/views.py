@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from establishments.models import Invitation, Manage
 from shared.decorators import parse_json_to_python, require_http_methods
 from users.decorators import auth_required
 from users.models import Token
@@ -28,9 +29,20 @@ def login(request):
 
 @csrf_exempt
 @require_http_methods('POST')
-@parse_json_to_python('username', 'password', 'email', 'first_name', 'last_name')
+# Añadimos 'invitation_id' a los campos esperados
+@parse_json_to_python('username', 'password', 'email', 'first_name', 'last_name', 'invitation_id')
 def register(request):
     try:
+        # 1. Validar la invitación ANTES de crear el usuario
+        invitation_id = request.payload.get('invitation_id')
+        try:
+            invitation = Invitation.objects.get(id=invitation_id, is_used=False)
+        except Invitation.DoesNotExist:
+            return JsonResponse(
+                {'error': 'Invitación inválida o ya usada'}, status=HTTPStatus.BAD_REQUEST
+            )
+
+        # 2. Crear el usuario (esto ya lo tenías)
         user = User.objects.create_user(
             username=request.payload['username'],
             password=request.payload['password'],
@@ -42,10 +54,22 @@ def register(request):
         if 'phone' in request.payload:
             user.member.phone = request.payload['phone']
             user.member.save()
-        return JsonResponse({'message': 'User registered successfully'}, status=HTTPStatus.CREATED)
+
+        # 3. LA CLAVE: Crear el rol en el restaurante de la invitación
+        Manage.objects.create(
+            establishment=invitation.establishment, member=user, role=invitation.role
+        )
+
+        # 4. Quemar la invitación para que no se use dos veces
+        invitation.is_used = True
+        invitation.save()
+
+        return JsonResponse(
+            {'message': 'Registro completado y vinculado al restaurante'}, status=HTTPStatus.CREATED
+        )
 
     except IntegrityError:
-        return JsonResponse({'error': 'Username already exists'}, status=HTTPStatus.CONFLICT)
+        return JsonResponse({'error': 'El nombre de usuario ya existe'}, status=HTTPStatus.CONFLICT)
 
 
 @csrf_exempt

@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.db import models
 
@@ -51,3 +53,19 @@ class Manage(models.Model):
 
     def __str__(self):
         return f'{self.member.first_name}: {self.role}'
+
+
+class Invitation(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    establishment = models.ForeignKey(
+        'establishments.Establishment',
+        related_name='invitations',
+        on_delete=models.CASCADE,
+    )
+    role = models.CharField(max_length=20, choices=Manage.Role.choices, default=Manage.Role.WAITER)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Invitación a {self.establishment} como {self.role} ({"Usada" if self.is_used else "Pendiente"})'
