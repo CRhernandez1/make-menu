@@ -3,6 +3,13 @@
     <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
       <h1 class="text-3xl font-bold text-center text-green-400 mb-8">Iniciar Sesión</h1>
 
+      <div
+        v-if="errorMessage"
+        class="mb-4 p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-sm text-center"
+      >
+        {{ errorMessage }}
+      </div>
+
       <form @submit.prevent="onLogin">
         <div class="mb-5">
           <label for="username" class="block text-sm font-medium text-gray-300 mb-1">Usuario</label>
@@ -84,6 +91,9 @@ const router = useRouter()
 const usernameInputRef = ref<HTMLInputElement | null>(null)
 const passwordInputRef = ref<HTMLInputElement | null>(null)
 
+// 🚦 NUEVO: Estado para el mensaje de error
+const errorMessage = ref('')
+
 // Estado reactivo del formulario
 const myForm = reactive({
   username: '',
@@ -93,13 +103,15 @@ const myForm = reactive({
 
 // Función que se ejecuta al enviar el formulario
 const onLogin = async () => {
+  errorMessage.value = '' // Limpiamos el error previo
+
   // 1. Validación de campos vacíos
   if (myForm.username === '') {
-    return usernameInputRef.value?.focus() // Pone el cursor en el input del usuario
+    return usernameInputRef.value?.focus()
   }
 
   if (myForm.password.length < 3) {
-    return passwordInputRef.value?.focus() // Pone el cursor en el input de la contraseña
+    return passwordInputRef.value?.focus()
   }
 
   // 2. Lógica de "Recordar usuario"
@@ -109,17 +121,31 @@ const onLogin = async () => {
     localStorage.removeItem('saved_username')
   }
 
-  // 3. Llamada al Store de Pinia (AÑADIENDO EL myForm.rememberMe)
+  // 3. Llamada al Store de Pinia
   const result = await authStore.login(myForm.username, myForm.password, myForm.rememberMe)
 
-  // 4. Manejo del resultado
+  // 4. Manejo del resultado con REDIRECCIÓN POR ROL
   if (result.ok) {
-    router.push({ name: 'home' }) // Si todo va bien, vamos a la página principal
+    switch (result.role) {
+      case 'manager':
+        router.push({ name: 'manager' }) // Cambia el nombre si tu ruta se llama distinto
+        break
+      case 'waiter':
+        router.push({ name: 'waiter' })
+        break
+      case 'kitchen':
+        router.push({ name: 'kitchen' })
+        break
+      default:
+        // Si por algún motivo tiene un rol raro o nulo, lo mandamos al home
+        router.push({ name: 'home' }) 
+    }
     return
   }
 
-  // 5. Si falla, mostramos el error
-  console.error(result.message || 'Usuario/Contraseña no son correctos')
+  // 5. Si falla, mostramos el error en pantalla
+  errorMessage.value = result.message || 'Usuario/Contraseña no son correctos'
+  console.error(errorMessage.value)
 }
 
 // Se ejecuta automáticamente al cargar el componente
