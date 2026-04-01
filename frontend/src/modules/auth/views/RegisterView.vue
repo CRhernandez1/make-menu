@@ -2,15 +2,19 @@
 import { reactive, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { registerUser } from '../actions/register.action'
+import { makeMenuApi } from '@/api/makeMenu' // Importa tu instancia de Axios
 
 const route = useRoute()
 const router = useRouter()
 
-// Estados para mostrar mensajes al usuario en pantalla
+// Estados de control
 const isLoading = ref(false)
-const errorMessage = ref('')
+const isValidating = ref(true) // Para mostrar un loader mientras validamos el QR
+const invitationError = ref('') // Error específico de la invitación
+const errorMessage = ref('') // Error del formulario de registro
+const establishmentInfo = ref({ name: '', role: '' })
 
-// 1. LA LIBRETA: Aquí se guardan los datos mientras el usuario teclea
+// 1. LA LIBRETA
 const form = reactive({
   username: '',
   password: '',
@@ -18,34 +22,48 @@ const form = reactive({
   first_name: '',
   last_name: '',
   phone: '',
-  invite_token: '', // Guardaremos el código del QR aquí de forma invisible
+  invitation_id: '',
 })
 
-// 2. LA CAPTURA DEL QR: Cuando la página carga, miramos la URL
-onMounted(() => {
-  const tokenFromUrl = route.query.invite as string
-  if (tokenFromUrl) {
-    // Si hay token en la URL (?invite=123), lo guardamos en la libreta
-    form.invite_token = tokenFromUrl
-  } else {
-    // Seguridad: Si alguien entra a /register sin QR, lo echamos al login
+// 2. VALIDACIÓN INICIAL AL CARGAR
+onMounted(async () => {
+  const tokenFromUrl = route.query.code as string
+
+  if (!tokenFromUrl) {
     router.push({ name: 'login' })
+    return
+  }
+
+  form.invitation_id = tokenFromUrl
+
+  try {
+    // Llamamos a tu nuevo endpoint de validación
+    // Nota: Ajusta la URL si tu prefijo de API es distinto
+    const { data } = await makeMenuApi.get(`/establishments/invite/validate/${tokenFromUrl}/`)
+
+    // Si llegamos aquí, el código es válido
+    establishmentInfo.value = {
+      name: data.establishment_name,
+      role: data.role,
+    }
+    isValidating.value = false
+  } catch (error: any) {
+    // Si el código ya se usó (400) o no existe (404)
+    invitationError.value = error.response?.data?.error || 'Invitación no válida.'
+    isValidating.value = false
   }
 })
 
-// 3. EL ENVÍO: Se ejecuta cuando el usuario pulsa el botón verde
+// 3. EL ENVÍO
 const handleSubmit = async () => {
   isLoading.value = true
   errorMessage.value = ''
 
-  // Llamamos a la función del Paso 2 y le pasamos la libreta entera
   const result = await registerUser(form)
 
   if (result.ok) {
-    // ¡Éxito! Django lo ha guardado. Lo mandamos a que inicie sesión.
     router.push({ name: 'login' })
   } else {
-    // Fallo (ej: el username ya existe). Mostramos el error en pantalla.
     errorMessage.value = result.error
   }
 
@@ -56,84 +74,105 @@ const handleSubmit = async () => {
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-900 px-4">
     <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
-      <h2 class="text-3xl font-bold text-center text-green-400 mb-8">Registro de Equipo</h2>
+      <h2 class="text-3xl font-bold text-center text-green-400 mb-2">Registro de Equipo</h2>
+      <p v-if="establishmentInfo.name" class="text-center text-gray-400 mb-8 italic">
+        Uniéndote a: <span class="text-white font-semibold">{{ establishmentInfo.name }}</span>
+      </p>
 
-      <div
-        v-if="errorMessage"
-        class="mb-4 p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-sm text-center"
-      >
-        {{ errorMessage }}
+      <div v-if="isValidating" class="py-10 text-center">
+        <div
+          class="animate-spin inline-block w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full mb-4"
+        ></div>
+        <p class="text-gray-400">Comprobando invitación...</p>
       </div>
 
-      <form @submit.prevent="handleSubmit" class="space-y-5">
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Usuario *</label>
-          <input
-            v-model="form.username"
-            type="text"
-            required
-            class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-          />
+      <div v-else-if="invitationError" class="py-6 text-center">
+        <div class="bg-red-900/30 border border-red-500 p-4 rounded-lg mb-6">
+          <p class="text-red-200">{{ invitationError }}</p>
         </div>
-
-        <div class="flex gap-4">
-          <div class="w-1/2">
-            <label class="block text-sm font-medium text-gray-300 mb-1">Nombre *</label>
-            <input
-              v-model="form.first_name"
-              type="text"
-              required
-              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-            />
-          </div>
-          <div class="w-1/2">
-            <label class="block text-sm font-medium text-gray-300 mb-1">Apellidos *</label>
-            <input
-              v-model="form.last_name"
-              type="text"
-              required
-              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Email *</label>
-          <input
-            v-model="form.email"
-            type="email"
-            required
-            class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Contraseña *</label>
-          <input
-            v-model="form.password"
-            type="password"
-            required
-            class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Teléfono (Opcional)</label>
-          <input
-            v-model="form.phone"
-            type="tel"
-            class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
-          />
-        </div>
-
-        <button
-          type="submit"
-          :disabled="isLoading"
-          class="w-full mt-6 bg-green-500 hover:bg-green-400 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
-        >
-          {{ isLoading ? 'Creando cuenta...' : 'Registrarse' }}
+        <button @click="router.push({ name: 'login' })" class="text-green-400 hover:underline">
+          Volver al inicio
         </button>
-      </form>
+      </div>
+
+      <div v-else>
+        <div
+          v-if="errorMessage"
+          class="mb-4 p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-sm text-center"
+        >
+          {{ errorMessage }}
+        </div>
+
+        <form @submit.prevent="handleSubmit" class="space-y-5">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Usuario *</label>
+            <input
+              v-model="form.username"
+              type="text"
+              required
+              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+            />
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-1/2">
+              <label class="block text-sm font-medium text-gray-300 mb-1">Nombre *</label>
+              <input
+                v-model="form.first_name"
+                type="text"
+                required
+                class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block text-sm font-medium text-gray-300 mb-1">Apellidos *</label>
+              <input
+                v-model="form.last_name"
+                type="text"
+                required
+                class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Email *</label>
+            <input
+              v-model="form.email"
+              type="email"
+              required
+              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Contraseña *</label>
+            <input
+              v-model="form.password"
+              type="password"
+              required
+              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Teléfono (Opcional)</label>
+            <input
+              v-model="form.phone"
+              type="tel"
+              class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            :disabled="isLoading"
+            class="w-full mt-6 bg-green-500 hover:bg-green-400 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {{ isLoading ? 'Creando cuenta...' : 'Registrarse como ' + establishmentInfo.role }}
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

@@ -69,3 +69,6 @@ class Invitation(models.Model):
 
     def __str__(self):
         return f'Invitación a {self.establishment} como {self.role} ({"Usada" if self.is_used else "Pendiente"})'
+
+    def is_valid(self):
+        return not self.is_used

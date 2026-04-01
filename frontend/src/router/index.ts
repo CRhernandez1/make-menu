@@ -32,6 +32,32 @@ const router = createRouter({
           path: '/register',
           name: 'register',
           component: () => import('@/modules/auth/views/RegisterView.vue'),
+          beforeEnter: (to) => {
+            const code = to.query.code as string
+
+            // Esta fórmula matemática comprueba que el formato sea 8-4-4-4-12 caracteres hexadecimales
+            const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+            // Si no hay código o no pasa la prueba del formato UUID, lo echamos
+            if (!code || !uuidRegex.test(code)) {
+              console.warn('Intento de acceso con enlace inválido o corrupto.')
+              return { name: 'login' }
+            }
+
+            return true // Formato correcto, le dejamos ver la pantalla
+          },
+        },
+      ],
+    },
+    {
+      path: '/manager',
+      name: 'manager',
+      component: () => import('@/modules/manager/layouts/ManagerLayout.vue'),
+      children: [
+        {
+          path: 'invite',
+          name: 'manager-invite',
+          component: () => import('@/modules/manager/views/StaffInviteView.vue'),
         },
       ],
     },

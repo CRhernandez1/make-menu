@@ -1,7 +1,9 @@
 import json
 from http import HTTPStatus
 
+from django.core.exceptions import ValidationError
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from shared.decorators import require_http_methods
 from users.decorators import auth_required
@@ -9,6 +11,7 @@ from users.decorators import auth_required
 from .models import Invitation, Manage
 
 
+@csrf_exempt
 @require_http_methods('POST')
 @auth_required
 def generate_invitation(request):
@@ -53,4 +56,32 @@ def generate_invitation(request):
         return JsonResponse(
             {'error': f'Error interno del servidor: {str(e)}'},
             status=HTTPStatus.INTERNAL_SERVER_ERROR,
+        )
+
+
+@require_http_methods('GET')
+def validate_invitation(request, invitation_id):
+    try:
+        invitation = Invitation.objects.get(id=invitation_id)
+
+        # Usamos tu nueva función del modelo 🎯
+        if not invitation.is_valid():
+            return JsonResponse(
+                {'valid': False, 'error': 'Esta invitación ya ha sido utilizada o ha caducado.'},
+                status=400,
+            )
+
+        # Si es válida, le damos info útil para que el registro sea "personalizado"
+        return JsonResponse(
+            {
+                'valid': True,
+                'establishment_name': invitation.establishment.name,
+                'role': invitation.role,
+            },
+            status=200,
+        )
+
+    except (Invitation.DoesNotExist, ValidationError):
+        return JsonResponse(
+            {'valid': False, 'error': 'El código de invitación no existe.'}, status=404
         )
