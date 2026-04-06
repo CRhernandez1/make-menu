@@ -119,6 +119,17 @@ const navItems = [
             <line x1="23" y1="11" x2="17" y2="11"></line>
            </svg>`,
   },
+  {
+    id: 'productos',
+    routeName: 'products',
+    label: 'Productos',
+    icon: `<svg class='w-5 h-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+            <path d='M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2'/>
+            <path d='M7 2v20'/>
+            <path d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1'/>
+            <path d='M21 22v-7'/>
+          </svg>`
+  }
   // NOTA: Cuando crees las vistas en el futuro para pedidos, carta, etc.,
   // las añades aquí apuntando a su routeName correspondiente en el router.ts
 ]
