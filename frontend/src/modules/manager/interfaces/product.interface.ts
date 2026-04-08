@@ -12,3 +12,11 @@ export interface Product {
   product_image: string | null
   category: Category
 }
+
+export interface Ingredient {
+  id: number
+  name: string
+  description: string
+  ingredient_type: string
+  available: boolean
+}

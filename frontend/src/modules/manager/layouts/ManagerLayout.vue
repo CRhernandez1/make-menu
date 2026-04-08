@@ -129,6 +129,25 @@ const navItems = [
             <path d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1'/>
             <path d='M21 22v-7'/>
           </svg>`
+  },
+  {
+    id: 'ingredientes',
+    routeName: 'ingredients',
+    label: 'Ingredients',
+    icon: `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11h16c0 5.5-3.1 9-8 9s-8-3.5-8-9z"/>
+            <path d="M3 11h18"/>
+            <path d="M12 11V5"/>
+            <path d="M10 7c0-1.1.9-2 2-2s2 .9 2 2"/>
+            <path d="M11 5c-.5-1.5-2-2-2-2s.5 1.5 1 2"/>
+            <path d="M13 5c.5-1.5 2-2 2-2s-.5 1.5-1 2"/>
+            <path d="M12 5c0-1.5 0-2.5 0-2.5"/>
+            <path d="M8 11V7"/>
+            <path d="M6.5 8.5c.3-1.2 1.5-2 1.5-2s.2 1.3-.5 2.5"/>
+            <path d="M16 11V7"/>
+            <path d="M17.5 8.5c-.3-1.2-1.5-2-1.5-2s-.2 1.3.5 2.5"/>
+          </svg>`
   }
   // NOTA: Cuando crees las vistas en el futuro para pedidos, carta, etc.,
   // las añades aquí apuntando a su routeName correspondiente en el router.ts
