@@ -1,0 +1,501 @@
+[
+  {
+    "model": "products.allergen",
+    "pk": 1,
+    "fields": {
+      "name": "Gluten"
+    }
+  },
+  {
+    "model": "products.allergen",
+    "pk": 2,
+    "fields": {
+      "name": "Lactosa"
+    }
+  },
+  {
+    "model": "products.allergen",
+    "pk": 3,
+    "fields": {
+      "name": "Frutos secos"
+    }
+  },
+  {
+    "model": "products.allergen",
+    "pk": 4,
+    "fields": {
+      "name": "Mariscos"
+    }
+  },
+  {
+    "model": "products.allergen",
+    "pk": 5,
+    "fields": {
+      "name": "Huevo"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "establishment": 1,
+      "name": "Entrantes"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "establishment": 1,
+      "name": "Carnes"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "establishment": 1,
+      "name": "Postres"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "establishment": 1,
+      "name": "Bebidas"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "establishment": 2,
+      "name": "Pizzas"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+      "establishment": 2,
+      "name": "Pastas"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 7,
+    "fields": {
+      "establishment": 2,
+      "name": "Bebidas"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "establishment": 1,
+      "category": 1,
+      "name": "Papas arrugadas con mojo",
+      "description": "Papas arrugadas canarias con mojo rojo y verde.",
+      "price": "6.50",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "establishment": 1,
+      "category": 1,
+      "name": "Queso asado con mojo",
+      "description": "Queso tierno a la plancha con mojo verde.",
+      "price": "7.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "establishment": 1,
+      "category": 2,
+      "name": "Carne fiesta",
+      "description": "Carne de cerdo adobada al estilo canario.",
+      "price": "9.50",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "establishment": 1,
+      "category": 2,
+      "name": "Chuletas de cochino",
+      "description": "Chuletas de cerdo a la brasa con papas fritas.",
+      "price": "11.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "establishment": 1,
+      "category": 3,
+      "name": "Bienmesabe",
+      "description": "Postre tradicional canario de almendras.",
+      "price": "5.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "establishment": 1,
+      "category": 4,
+      "name": "Cerveza Dorada",
+      "description": "Cerveza local canaria 33cl.",
+      "price": "2.50",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "establishment": 1,
+      "category": 4,
+      "name": "Agua mineral",
+      "description": "Botella de agua mineral 50cl.",
+      "price": "1.50",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "establishment": 2,
+      "category": 5,
+      "name": "Pizza Margherita",
+      "description": "Tomate, mozzarella y albahaca fresca.",
+      "price": "9.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "establishment": 2,
+      "category": 5,
+      "name": "Pizza Diavola",
+      "description": "Tomate, mozzarella, salami picante y guindilla.",
+      "price": "10.50",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "establishment": 2,
+      "category": 6,
+      "name": "Spaghetti Carbonara",
+      "description": "Spaghetti con huevo, guanciale, pecorino y pimienta negra.",
+      "price": "10.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "establishment": 2,
+      "category": 7,
+      "name": "Coca-Cola",
+      "description": "Lata de Coca-Cola 33cl.",
+      "price": "2.00",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 1,
+    "fields": {
+      "establishment": 1,
+      "allergens": [],
+      "ingredient_type": "vegetables",
+      "name": "Papas",
+      "description": "Papas canarias pequeñas.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 2,
+    "fields": {
+      "establishment": 1,
+      "allergens": [2],
+      "ingredient_type": "dairy",
+      "name": "Queso tierno",
+      "description": "Queso de cabra canario.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 3,
+    "fields": {
+      "establishment": 1,
+      "allergens": [],
+      "ingredient_type": "sauces",
+      "name": "Mojo rojo",
+      "description": "Salsa picante canaria.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 4,
+    "fields": {
+      "establishment": 1,
+      "allergens": [],
+      "ingredient_type": "sauces",
+      "name": "Mojo verde",
+      "description": "Salsa de cilantro canaria.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 5,
+    "fields": {
+      "establishment": 1,
+      "allergens": [],
+      "ingredient_type": "meat",
+      "name": "Cerdo adobado",
+      "description": "Carne de cerdo con adobo canario.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 6,
+    "fields": {
+      "establishment": 1,
+      "allergens": [3],
+      "ingredient_type": "other",
+      "name": "Almendras",
+      "description": "Almendras molidas para bienmesabe.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 7,
+    "fields": {
+      "establishment": 1,
+      "allergens": [],
+      "ingredient_type": "drinks",
+      "name": "Cerveza Dorada",
+      "description": "Cerveza canaria.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 8,
+    "fields": {
+      "establishment": 2,
+      "allergens": [1],
+      "ingredient_type": "bakery",
+      "name": "Masa de pizza",
+      "description": "Masa de harina de trigo fermentada.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 9,
+    "fields": {
+      "establishment": 2,
+      "allergens": [2],
+      "ingredient_type": "dairy",
+      "name": "Mozzarella",
+      "description": "Mozzarella fresca de bufala.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 10,
+    "fields": {
+      "establishment": 2,
+      "allergens": [],
+      "ingredient_type": "vegetables",
+      "name": "Tomate",
+      "description": "Salsa de tomate San Marzano.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 11,
+    "fields": {
+      "establishment": 2,
+      "allergens": [5],
+      "ingredient_type": "other",
+      "name": "Huevo",
+      "description": "Huevo fresco para carbonara.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.ingredient",
+    "pk": 12,
+    "fields": {
+      "establishment": 2,
+      "allergens": [],
+      "ingredient_type": "meat",
+      "name": "Guanciale",
+      "description": "Carrillera de cerdo curada italiana.",
+      "available": true
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "ingredient": 1,
+      "quantity": "500.00",
+      "unity": "gr",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "ingredient": 3,
+      "quantity": "50.00",
+      "unity": "ml",
+      "removable": true
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "ingredient": 4,
+      "quantity": "50.00",
+      "unity": "ml",
+      "removable": true
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 4,
+    "fields": {
+      "product": 2,
+      "ingredient": 2,
+      "quantity": "200.00",
+      "unity": "gr",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 5,
+    "fields": {
+      "product": 2,
+      "ingredient": 4,
+      "quantity": "50.00",
+      "unity": "ml",
+      "removable": true
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 6,
+    "fields": {
+      "product": 3,
+      "ingredient": 5,
+      "quantity": "300.00",
+      "unity": "gr",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 7,
+    "fields": {
+      "product": 5,
+      "ingredient": 6,
+      "quantity": "150.00",
+      "unity": "gr",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 8,
+    "fields": {
+      "product": 8,
+      "ingredient": 8,
+      "quantity": "1.00",
+      "unity": "ea",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 9,
+    "fields": {
+      "product": 8,
+      "ingredient": 9,
+      "quantity": "150.00",
+      "unity": "gr",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 10,
+    "fields": {
+      "product": 8,
+      "ingredient": 10,
+      "quantity": "100.00",
+      "unity": "ml",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 11,
+    "fields": {
+      "product": 10,
+      "ingredient": 11,
+      "quantity": "2.00",
+      "unity": "ea",
+      "removable": false
+    }
+  },
+  {
+    "model": "products.component",
+    "pk": 12,
+    "fields": {
+      "product": 10,
+      "ingredient": 12,
+      "quantity": "100.00",
+      "unity": "gr",
+      "removable": false
+    }
+  }
+]

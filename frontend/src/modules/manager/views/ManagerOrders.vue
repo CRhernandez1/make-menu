@@ -168,7 +168,7 @@ const timeFilters = [
 const fetchMyEstablishments = async () => {
   try {
     // Asume que tendrás un endpoint en Django que devuelva los establecimientos de este usuario
-    const { data } = await makeMenuApi.get('/manager/establishments/')
+    const { data } = await makeMenuApi.get('establishments/my-establishments/')
     myEstablishments.value = data
   } catch (error) {
     console.error("Error cargando los locales:", error)
