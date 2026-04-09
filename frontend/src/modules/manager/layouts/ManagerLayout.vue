@@ -108,6 +108,13 @@ const navItems = [
            </svg>`,
   },
   {
+    id: 'pedidos',
+    routeName: 'manager-orders', // Nombre que usaremos en el router.ts
+    label: 'Pedidos',
+    badge: null,
+    icon: `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`,
+  },
+  {
     id: 'invite',
     routeName: 'manager-invite', // Enlaza a tu vista del QR
     label: 'Invitar Equipo',
