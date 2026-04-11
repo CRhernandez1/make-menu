@@ -5,13 +5,17 @@ import {
   deleteProductAction,
   addProductAction,
   editProductAction,
+  uploadProductImageAction,
   getCategoriesAction,
   getIngredientsAction,
   addIngredientAction,
   editIngredientAction,
   deleteIngredientAction,
+  addCategoryAction,
+  deleteCategoryAction,
+  getAllergensAction,
 } from '../actions/getProducts.action'
-import type { Product, Category, Ingredient } from '../interfaces/product.interface'
+import type { Product, Category, Ingredient, Allergen } from '../interfaces/product.interface'
 
 export const useProductsStore = defineStore('products', () => {
   const isLoading = ref(false)
@@ -28,12 +32,13 @@ export const useProductsStore = defineStore('products', () => {
     }
   }
 
-  const addProduct = async (cif: string, payload: FormData) => {
-    await addProductAction(cif, payload)
+  const addProduct = async (cif: string, payload: object): Promise<number> => {
+    const id = await addProductAction(cif, payload)
     await fetchProducts(cif)
+    return id
   }
 
-  const editProduct = async (cif: string, productId: number, payload: FormData) => {
+  const editProduct = async (cif: string, productId: number, payload: object) => {
     await editProductAction(cif, productId, payload)
     await fetchProducts(cif)
   }
@@ -43,14 +48,29 @@ export const useProductsStore = defineStore('products', () => {
     products.value = products.value.filter(p => p.id !== productId)
   }
 
-  // Categories 
+  const uploadProductImage = async (cif: string, productId: number, image: File) => {
+    await uploadProductImageAction(cif, productId, image)
+    await fetchProducts(cif)
+  }
+
+  // ── Categories ────────────────────────────────────────
   const categories = ref<Category[]>([])
 
   const fetchCategories = async (cif: string) => {
     categories.value = await getCategoriesAction(cif)
   }
 
-  // Ingredients 
+  const addCategory = async (cif: string, name: string) => {
+    await addCategoryAction(cif, name)
+    await fetchCategories(cif)
+  }
+
+  const deleteCategory = async (cif: string, categoryId: number) => {
+    await deleteCategoryAction(cif, categoryId)
+    categories.value = categories.value.filter(c => c.id !== categoryId)
+  }
+
+  // ── Ingredients ───────────────────────────────────────
   const ingredients = ref<Ingredient[]>([])
 
   const fetchIngredients = async (cif: string) => {
@@ -77,10 +97,18 @@ export const useProductsStore = defineStore('products', () => {
     ingredients.value = ingredients.value.filter(i => i.id !== ingredientId)
   }
 
+  // ── Allergens ─────────────────────────────────────────
+  const allergens = ref<Allergen[]>([])
+
+  const fetchAllergens = async () => {
+    allergens.value = await getAllergensAction()
+  }
+
   return {
     isLoading,
-    products, fetchProducts, addProduct, editProduct, deleteProduct,
-    categories, fetchCategories,
+    products, fetchProducts, addProduct, editProduct, deleteProduct, uploadProductImage,
+    categories, fetchCategories, addCategory, deleteCategory,
     ingredients, fetchIngredients, addIngredient, editIngredient, deleteIngredient,
+    allergens, fetchAllergens,
   }
 })

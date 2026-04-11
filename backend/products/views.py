@@ -1,10 +1,16 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 from establishments.models import Establishment
 from shared.decorators import get_instance_or_404, parse_json_to_python, require_http_methods
 
-from .models import Category, Ingredient, Product
-from .serializers import CategorySerializer, IngredientSerializer, ProductSerializer
+from .models import Allergen, Category, Component, Ingredient, Product
+from .serializers import (
+    AllergenSerializer,
+    CategorySerializer,
+    IngredientSerializer,
+    ProductSerializer,
+)
 
 # Ingredient, Allergen
 
@@ -187,3 +193,127 @@ def categories_list(request, establishment_cif):
     establishment = request.instance
     categories = establishment.categories.all()
     return CategorySerializer(categories).json_response()
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@parse_json_to_python('name')
+def add_category(request, establishment_cif):
+    establishment = request.instance
+    payload = request.payload
+
+    category = Category.objects.create(establishment=establishment, name=payload['name'])
+
+    return JsonResponse({'id': category.pk}, status=201)
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def delete_category(request, establishment_cif, category_id):
+    establishment = request.instance
+
+    try:
+        category = establishment.categories.get(pk=category_id)
+    except Category.DoesNotExist:
+        return JsonResponse({'message': 'Category not found!'}, status=404)
+
+    category.delete()
+    return JsonResponse({'message': 'Category delete succesfully'}, status=204)
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@parse_json_to_python()
+def edit_category(request, establishment_cif, category_id):
+    establishment = request.instance
+    payload = request.payload
+    try:
+        category = establishment.categories.get(pk=category_id)
+    except Category.DoesNotExist:
+        return JsonResponse({'message': 'Category not found!'}, status=404)
+
+    if 'name' in payload:
+        category.name = payload['name']
+
+    category.save()
+    return JsonResponse({'message': 'Category updated!'}, status=200)
+
+
+@require_http_methods('GET')
+def allergens_list(request):
+    allergens = Allergen.objects.all()
+    return AllergenSerializer(allergens).json_response()
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def upload_product_image(request, establishment_cif, product_id):
+    establishment = request.instance
+    try:
+        product = establishment.products.get(pk=product_id)
+    except Product.DoesNotExist:
+        return JsonResponse({'error': 'Product not found'}, status=404)
+
+    image = request.FILES.get('product_image')
+    if not image:
+        return JsonResponse({'error': 'No image provided'}, status=400)
+
+    product.product_image = image
+    product.save()
+    return JsonResponse({'product_image': product.product_image.url}, status=200)
+
+
+@require_http_methods('GET')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def components_list(request, establishment_cif, product_id):
+    establishment = request.instance
+    product = establishment.products.get(pk=product_id)
+    components = product.components.select_related('ingredient').all()
+    return JsonResponse(
+        [
+            {
+                'id': c.id,
+                'ingredient': c.ingredient.id,
+                'ingredient_name': c.ingredient.name,
+                'quantity': str(c.quantity),
+                'unity': c.unity,
+                'removable': c.removable,
+            }
+            for c in components
+        ],
+        safe=False,
+    )
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@parse_json_to_python('ingredient', 'quantity', 'unity')
+def add_component(request, establishment_cif, product_id):
+    establishment = request.instance
+    payload = request.payload
+    product = establishment.products.get(pk=product_id)
+    ingredient = establishment.ingredients.get(pk=payload['ingredient'])
+    component = Component.objects.create(
+        product=product,
+        ingredient=ingredient,
+        quantity=payload['quantity'],
+        unity=payload['unity'],
+        removable=payload.get('removable', False),
+    )
+    return JsonResponse({'id': component.pk}, status=201)
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+def delete_component(request, establishment_cif, product_id, component_id):
+    establishment = request.instance
+    product = establishment.products.get(pk=product_id)
+    component = product.components.get(pk=component_id)
+    component.delete()
+    return JsonResponse({'message': 'Component deleted'}, status=200)
