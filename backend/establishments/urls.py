@@ -9,4 +9,5 @@ urlpatterns = [
         views.validate_invitation,
         name='validate-invitation',
     ),
+    path('my-establishments/', views.my_establishments, name='my-establishments'),
 ]
