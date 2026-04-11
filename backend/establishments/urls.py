@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -9,5 +9,6 @@ urlpatterns = [
         views.validate_invitation,
         name='validate-invitation',
     ),
+    path('<str:establishment_cif>/products/', include('products.urls')),
     path('my-establishments/', views.my_establishments, name='my-establishments'),
 ]

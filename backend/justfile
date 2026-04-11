@@ -85,11 +85,6 @@ alias dbsh:=dbshell
 dbshell:
     uv run manage.py dbshell
 
-# Launch a database command (enclosed with '')
-[group('shell')]
-dbcmd command:
-    uv run manage.py dbshell -- '{{ command }}'
-
 # Setup new project
 [group('config')]
 setup: && migrate create-su set-tz set-media
@@ -194,7 +189,11 @@ poedit app locale="es":
 rq:
     uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker 
 
-# Load fixture data (test data)
-[group('data')]
+# load establishments data
 load-mmdata:
     uv run manage.py loaddata fixtures/*.json
+
+# clean tables
+clean-data:
+    uv run manage.py flush
+    just create-su

@@ -90,6 +90,16 @@ const router = createRouter({
           name: 'manager-invite',
           component: () => import('@/modules/manager/views/StaffInviteView.vue'),
         },
+        {
+          path: 'products',
+          name: 'products',
+          component: () => import('@/modules/manager/views/Products.vue')
+        },
+        {
+          path: 'ingredients',
+          name: 'ingredients',
+          component: () => import('@/modules/manager/views/Ingredients.vue')
+        }
       ],
     },
 
