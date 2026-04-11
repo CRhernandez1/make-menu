@@ -10,4 +10,5 @@ urlpatterns = [
         name='validate-invitation',
     ),
     path('<str:establishment_cif>/products/', include('products.urls')),
+    path('my-establishments/', views.my_establishments, name='my-establishments'),
 ]

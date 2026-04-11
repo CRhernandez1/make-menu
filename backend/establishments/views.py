@@ -4,11 +4,28 @@ from http import HTTPStatus
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 from shared.decorators import require_http_methods
 from users.decorators import auth_required
 
 from .models import Invitation, Manage
+
+
+@require_http_methods('GET')
+@auth_required
+def my_establishments(request):
+    manages = Manage.objects.filter(
+        member=request.user, role=Manage.Role.MANAGER, end_date__isnull=True
+    ).select_related('establishment')
+    return JsonResponse(
+        [
+            {
+                'id': m.establishment.id,
+                'name': m.establishment.name,
+            }
+            for m in manages
+        ],
+        safe=False,
+    )
 
 
 @csrf_exempt

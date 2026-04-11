@@ -79,7 +79,12 @@ const router = createRouter({
           path: '', 
           name: 'manager', 
           component: () => import('@/modules/manager/views/ManagerHome.vue'),
-        },
+        },{
+      path: 'orders',
+      name: 'manager-orders',
+      component: () => import('@/modules/manager/views/ManagerOrders.vue'),
+    },
+        
         {
           path: 'invite',
           name: 'manager-invite',
