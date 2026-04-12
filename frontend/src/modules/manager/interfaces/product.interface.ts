@@ -13,10 +13,17 @@ export interface Product {
   category: Category
 }
 
+export interface Allergen {
+  id: number
+  name: string
+  icon: string | null
+}
+
 export interface Ingredient {
   id: number
   name: string
   description: string
   ingredient_type: string
   available: boolean
+  allergens: Allergen[]
 }

@@ -3,195 +3,304 @@
 
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-700">Productos</h2>
-      <button
-        @click="openModal()"
-        class="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-md shadow-emerald-400/20"
-      >
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-        </svg>
-        Añadir producto
-      </button>
-    </div>
-
-    <div v-if="productsStore.isLoading" class="text-center py-12 text-gray-400">
-      Cargando productos...
-    </div>
-
-    <div v-else-if="productsStore.products.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-      <div
-        v-for="product in productsStore.products"
-        :key="product.id"
-        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
-      >
-        <img
-          v-if="product.product_image"
-          :src="product.product_image"
-          :alt="product.name"
-          class="w-full h-40 object-cover"
-        />
-        <div v-else class="w-full h-40 bg-gray-100 flex items-center justify-center text-gray-300">
-          <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d='M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2'/>
-            <path d='M7 2v20'/>
-            <path d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1'/>
-            <path d='M21 22v-7'/>
+      <div class="flex items-center gap-3">
+        <select
+          v-model="activeCif"
+          @change="onEstablishmentChange"
+          class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg p-2 outline-none cursor-pointer focus:ring-2 focus:ring-emerald-300"
+        >
+          <option v-for="est in myEstablishments" :key="est.cif" :value="est.cif">
+            {{ est.name }}
+          </option>
+        </select>
+        <button
+          @click="openModal()"
+          :disabled="!activeCif"
+          class="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-md shadow-emerald-400/20 disabled:opacity-50"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
-        </div>
-
-        <div class="p-4 space-y-2">
-          <div class="flex items-start justify-between gap-2">
-            <div>
-              <h3 class="font-semibold text-gray-800">{{ product.name }}</h3>
-              <span class="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">
-                {{ product.category.name }}
-              </span>
-            </div>
-            <span class="text-emerald-600 font-bold text-lg whitespace-nowrap">{{ product.price }}€</span>
-          </div>
-
-          <p class="text-sm text-gray-500 line-clamp-2">{{ product.description }}</p>
-
-          <div class="flex items-center justify-between pt-1">
-            <span
-              class="text-xs font-semibold px-2 py-1 rounded-full"
-              :class="product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'"
-            >
-              {{ product.available ? 'Disponible' : 'No disponible' }}
-            </span>
-
-            <div class="flex gap-2">
-              <button
-                @click="openModal(product)"
-                class="p-2 text-gray-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-lg transition-colors"
-              >
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button
-                @click="handleDelete(product.id)"
-                class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-              >
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                  <path d="M10 11v6M14 11v6"/>
-                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+          Añadir producto
+        </button>
       </div>
     </div>
 
-    <div v-else class="text-center py-16 text-gray-400">
-      <p class="text-lg font-medium">No hay productos aún</p>
-      <p class="text-sm">Añade tu primer producto con el botón de arriba</p>
+    <!-- Sin establecimientos -->
+    <div v-if="!myEstablishments.length && !isLoadingEstablishments" class="text-center py-16 text-gray-400">
+      <p class="text-lg font-medium">No gestionas ningún establecimiento</p>
     </div>
 
-    <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-        <h3 class="text-lg font-bold text-gray-700">
-          {{ editingProduct ? 'Editar producto' : 'Nuevo producto' }}
-        </h3>
+    <template v-else-if="activeCif">
 
-        <div class="space-y-3">
-          <input
-            v-model="form.name"
-            placeholder="Nombre"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          />
-
-          <textarea
-            v-model="form.description"
-            placeholder="Descripción"
-            rows="3"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
-          />
-
-          <input
-            v-model="form.price"
-            type="number"
-            step="0.01"
-            placeholder="Precio"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          />
-
-          <select
-            v-model="form.category_id"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          >
-            <option disabled :value="null">Selecciona una categoría</option>
-            <option
-              v-for="cat in productsStore.categories"
-              :key="cat.id"
-              :value="cat.id"
-            >
-              {{ cat.name }}
-            </option>
-          </select>
-
-          <!-- Imagen -->
-          <div class="space-y-2">
-            <label class="text-sm text-gray-500">Imagen del producto</label>
+      <!-- Categorías -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-semibold text-gray-700">Categorías</h3>
+          <div class="flex items-center gap-2">
             <input
-              type="file"
-              accept="image/*"
-              @change="onImageChange"
-              class="w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-emerald-50 file:text-emerald-700 file:font-semibold hover:file:bg-emerald-100"
+              v-model="newCategory"
+              placeholder="Nueva categoría..."
+              class="px-3 py-1.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              @keyup.enter="handleAddCategory"
             />
-            <img
-              v-if="imagePreview"
-              :src="imagePreview"
-              class="w-full h-32 object-cover rounded-xl border border-gray-100"
-            />
+            <button
+              @click="handleAddCategory"
+              class="px-3 py-1.5 bg-emerald-400 text-white text-sm font-semibold rounded-xl hover:bg-emerald-500 transition-colors"
+            >
+              Añadir
+            </button>
           </div>
-
-          <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-            <input v-model="form.available" type="checkbox" class="accent-emerald-500" />
-            Disponible
-          </label>
         </div>
-
-        <div class="flex gap-3 pt-2">
-          <button
-            @click="closeModal"
-            class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50"
+        <div class="flex flex-wrap gap-2">
+          <span
+            v-for="cat in productsStore.categories"
+            :key="cat.id"
+            class="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full"
           >
-            Cancelar
-          </button>
-          <button
-            @click="handleSave"
-            class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
-          >
-            {{ editingProduct ? 'Guardar cambios' : 'Añadir' }}
-          </button>
+            {{ cat.name }}
+            <button
+              @click="handleDeleteCategory(cat.id)"
+              class="text-emerald-400 hover:text-red-500 transition-colors font-bold leading-none"
+            >×</button>
+          </span>
+          <span v-if="!productsStore.categories.length" class="text-xs text-gray-400">
+            No hay categorías aún
+          </span>
         </div>
       </div>
-    </div>
+
+      <!-- Loading -->
+      <div v-if="productsStore.isLoading" class="text-center py-12 text-gray-400">
+        Cargando productos...
+      </div>
+
+      <!-- Grid de productos -->
+      <div v-else-if="productsStore.products.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div
+          v-for="product in productsStore.products"
+          :key="product.id"
+          class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+        >
+          <img
+            v-if="product.product_image"
+            :src="product.product_image"
+            :alt="product.name"
+            class="w-full h-40 object-cover"
+          />
+          <div v-else class="w-full h-40 bg-gray-100 flex items-center justify-center text-gray-300">
+            <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d='M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2'/>
+              <path d='M7 2v20'/>
+              <path d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1'/>
+              <path d='M21 22v-7'/>
+            </svg>
+          </div>
+
+          <div class="p-4 space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h3 class="font-semibold text-gray-800">{{ product.name }}</h3>
+                <span class="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">
+                  {{ product.category.name }}
+                </span>
+              </div>
+              <span class="text-emerald-600 font-bold text-lg whitespace-nowrap">{{ product.price }}€</span>
+            </div>
+
+            <p class="text-sm text-gray-500 line-clamp-2">{{ product.description }}</p>
+
+            <div class="flex items-center justify-between pt-1">
+              <span
+                class="text-xs font-semibold px-2 py-1 rounded-full"
+                :class="product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'"
+              >
+                {{ product.available ? 'Disponible' : 'No disponible' }}
+              </span>
+
+              <div class="flex gap-2">
+                <button
+                  @click="$router.push(`/manager/products/${product.id}?cif=${activeCif}`)"
+                  class="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
+                  title="Ver ingredientes"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                    <rect x="9" y="3" width="6" height="4" rx="1"/>
+                    <path d="M9 12h6M9 16h4"/>
+                  </svg>
+                </button>
+                <button
+                  @click="openModal(product)"
+                  class="p-2 text-gray-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-lg transition-colors"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button
+                  @click="handleDelete(product.id)"
+                  class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sin productos -->
+      <div v-else class="text-center py-16 text-gray-400">
+        <p class="text-lg font-medium">No hay productos aún</p>
+        <p class="text-sm">Añade tu primer producto con el botón de arriba</p>
+      </div>
+
+    </template>
+
+    <!-- Modal -->
+    <Teleport to="body">
+      <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+          <h3 class="text-lg font-bold text-gray-700">
+            {{ editingProduct ? 'Editar producto' : 'Nuevo producto' }}
+          </h3>
+
+          <div class="space-y-3">
+            <input
+              v-model="form.name"
+              placeholder="Nombre"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            />
+
+            <textarea
+              v-model="form.description"
+              placeholder="Descripción"
+              rows="3"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
+            />
+
+            <input
+              v-model="form.price"
+              type="number"
+              step="0.01"
+              placeholder="Precio"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            />
+
+            <select
+              v-model="form.category_id"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            >
+              <option disabled :value="null">Selecciona una categoría</option>
+              <option v-for="cat in productsStore.categories" :key="cat.id" :value="cat.id">
+                {{ cat.name }}
+              </option>
+            </select>
+
+            <div class="space-y-2">
+              <label class="text-sm text-gray-500">Imagen del producto</label>
+              <input
+                type="file"
+                accept="image/*"
+                @change="onImageChange"
+                class="w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-emerald-50 file:text-emerald-700 file:font-semibold hover:file:bg-emerald-100"
+              />
+              <img
+                v-if="imagePreview"
+                :src="imagePreview"
+                class="w-full h-32 object-cover rounded-xl border border-gray-100"
+              />
+            </div>
+
+            <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+              <input v-model="form.available" type="checkbox" class="accent-emerald-500" />
+              Disponible
+            </label>
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button
+              @click="closeModal"
+              class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50"
+            >
+              Cancelar
+            </button>
+            <button
+              @click="handleSave"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
+            >
+              {{ editingProduct ? 'Guardar cambios' : 'Añadir' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
 
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { makeMenuApi } from '@/api/makeMenu'
 import { useProductsStore } from '../stores/products.store'
-import { useAuthStore } from '@/modules/auth/stores/auth.store'
 import type { Product } from '../interfaces/product.interface'
 
 const productsStore = useProductsStore()
-const authStore = useAuthStore()
-const cif = authStore.user?.establishment_cif as string
+
+// Establecimientos
+const myEstablishments = ref<any[]>([])
+const activeCif = ref('')
+const isLoadingEstablishments = ref(true)
+
+const fetchMyEstablishments = async () => {
+  isLoadingEstablishments.value = true
+  try {
+    const { data } = await makeMenuApi.get('establishments/my-establishments/')
+    myEstablishments.value = data
+    if (data.length > 0) {
+      activeCif.value = data[0].cif
+      await productsStore.fetchProducts(activeCif.value)
+      await productsStore.fetchCategories(activeCif.value)
+    }
+  } catch (error) {
+    console.error('Error cargando establecimientos:', error)
+  } finally {
+    isLoadingEstablishments.value = false
+  }
+}
+
+const onEstablishmentChange = async () => {
+  await productsStore.fetchProducts(activeCif.value)
+  await productsStore.fetchCategories(activeCif.value)
+}
 
 onMounted(() => {
-  productsStore.fetchProducts(cif)
-  productsStore.fetchCategories(cif)
+  fetchMyEstablishments()
 })
 
-// Modal
+// Categorías
+const newCategory = ref('')
+
+const handleAddCategory = async () => {
+  if (!newCategory.value.trim()) return
+  await productsStore.addCategory(activeCif.value, newCategory.value.trim())
+  newCategory.value = ''
+}
+
+const handleDeleteCategory = async (categoryId: number) => {
+  if (confirm('¿Eliminar esta categoría? Los productos asociados perderán su categoría.')) {
+    await productsStore.deleteCategory(activeCif.value, categoryId)
+  }
+}
+
+// Modal producto
 const showModal = ref(false)
 const editingProduct = ref<Product | null>(null)
 const imageFile = ref<File | null>(null)
@@ -244,17 +353,25 @@ const handleSave = async () => {
     category: form.value.category_id,
   }
 
+  let productId: number
+
   if (editingProduct.value) {
-    await productsStore.editProduct(cif, editingProduct.value.id, payload)
+    await productsStore.editProduct(activeCif.value, editingProduct.value.id, payload)
+    productId = editingProduct.value.id
   } else {
-    await productsStore.addProduct(cif, payload)
+    productId = await productsStore.addProduct(activeCif.value, payload)
   }
+
+  if (imageFile.value) {
+    await productsStore.uploadProductImage(activeCif.value, productId, imageFile.value)
+  }
+
   closeModal()
 }
 
 const handleDelete = async (productId: number) => {
   if (confirm('¿Seguro que quieres eliminar este producto?')) {
-    await productsStore.deleteProduct(cif, productId)
+    await productsStore.deleteProduct(activeCif.value, productId)
   }
 }
 </script>

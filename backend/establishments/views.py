@@ -4,6 +4,7 @@ from http import HTTPStatus
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 from shared.decorators import require_http_methods
 from users.decorators import auth_required
 
@@ -21,6 +22,7 @@ def my_establishments(request):
             {
                 'id': m.establishment.id,
                 'name': m.establishment.name,
+                'cif': m.establishment.cif,
             }
             for m in manages
         ],

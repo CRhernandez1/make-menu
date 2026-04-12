@@ -4,15 +4,27 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-700">Ingredientes</h2>
-      <button
-        @click="openModal()"
-        class="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-md shadow-emerald-400/20"
-      >
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-        </svg>
-        Añadir ingrediente
-      </button>
+      <div class="flex items-center gap-3">
+        <select
+          v-model="activeCif"
+          @change="onEstablishmentChange"
+          class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg p-2 outline-none cursor-pointer focus:ring-2 focus:ring-emerald-300"
+        >
+          <option v-for="est in myEstablishments" :key="est.cif" :value="est.cif">
+            {{ est.name }}
+          </option>
+        </select>
+        <button
+          @click="openModal()"
+          :disabled="!activeCif"
+          class="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-md shadow-emerald-400/20 disabled:opacity-50"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Añadir ingrediente
+        </button>
+      </div>
     </div>
 
     <!-- Loading -->
@@ -31,7 +43,7 @@
           <div class="space-y-1">
             <h3 class="font-semibold text-gray-800">{{ ingredient.name }}</h3>
             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full capitalize">
-              {{ ingredient.ingredient_type }}
+              {{ ingredientTypes.find(t => t.value === ingredient.ingredient_type)?.label ?? ingredient.ingredient_type }}
             </span>
           </div>
           <span
@@ -46,6 +58,18 @@
           {{ ingredient.description }}
         </p>
         <p v-else class="text-sm text-gray-300 italic">Sin descripción</p>
+
+        <!-- Alérgenos -->
+        <div v-if="ingredient.allergens?.length" class="flex flex-wrap gap-1">
+          <span
+            v-for="allergen in ingredient.allergens"
+            :key="allergen.id"
+            class="text-xs bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-medium"
+          >
+            {{ allergen.name }}
+          </span>
+        </div>
+        <p v-else class="text-xs text-gray-300 italic">Sin alérgenos</p>
 
         <div class="flex justify-end gap-2 pt-1">
           <button
@@ -79,71 +103,114 @@
     </div>
 
     <!-- Modal -->
-    <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-        <h3 class="text-lg font-bold text-gray-700">
-          {{ editingIngredient ? 'Editar ingrediente' : 'Nuevo ingrediente' }}
-        </h3>
+    <Teleport to="body">
+      <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+          <h3 class="text-lg font-bold text-gray-700">
+            {{ editingIngredient ? 'Editar ingrediente' : 'Nuevo ingrediente' }}
+          </h3>
 
-        <div class="space-y-3">
-          <input
-            v-model="form.name"
-            placeholder="Nombre"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          />
+          <div class="space-y-3">
+            <input
+              v-model="form.name"
+              placeholder="Nombre"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            />
 
-          <textarea
-            v-model="form.description"
-            placeholder="Descripción (opcional)"
-            rows="3"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
-          />
+            <textarea
+              v-model="form.description"
+              placeholder="Descripción (opcional)"
+              rows="3"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
+            />
 
-          <select
-            v-model="form.ingredient_type"
-            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          >
-            <option disabled value="">Selecciona un tipo</option>
-            <option v-for="type in ingredientTypes" :key="type.value" :value="type.value">
-              {{ type.label }}
-            </option>
-          </select>
+            <select
+              v-model="form.ingredient_type"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            >
+              <option disabled value="">Selecciona un tipo</option>
+              <option v-for="type in ingredientTypes" :key="type.value" :value="type.value">
+                {{ type.label }}
+              </option>
+            </select>
 
-          <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-            <input v-model="form.available" type="checkbox" class="accent-emerald-500" />
-            Disponible
-          </label>
-        </div>
+            <!-- Alérgenos -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-600">Alérgenos</label>
+              <div class="flex flex-wrap gap-2 p-3 border border-gray-200 rounded-xl min-h-[48px]">
+                <button
+                  v-for="allergen in productsStore.allergens"
+                  :key="allergen.id"
+                  type="button"
+                  @click="toggleAllergen(allergen.id)"
+                  class="text-xs px-3 py-1 rounded-full border font-medium transition-colors"
+                  :class="form.allergens.includes(allergen.id)
+                    ? 'bg-amber-400 text-white border-amber-400'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-amber-300 hover:text-amber-600'"
+                >
+                  {{ allergen.name }}
+                </button>
+                <span v-if="!productsStore.allergens.length" class="text-xs text-gray-300">
+                  Cargando alérgenos...
+                </span>
+              </div>
+            </div>
 
-        <div class="flex gap-3 pt-2">
-          <button
-            @click="closeModal"
-            class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50"
-          >
-            Cancelar
-          </button>
-          <button
-            @click="handleSave"
-            class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
-          >
-            {{ editingIngredient ? 'Guardar cambios' : 'Añadir' }}
-          </button>
+            <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+              <input v-model="form.available" type="checkbox" class="accent-emerald-500" />
+              Disponible
+            </label>
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button
+              @click="closeModal"
+              class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50"
+            >
+              Cancelar
+            </button>
+            <button
+              @click="handleSave"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
+            >
+              {{ editingIngredient ? 'Guardar cambios' : 'Añadir' }}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
 
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { makeMenuApi } from '@/api/makeMenu'
 import { useProductsStore } from '../stores/products.store'
-import { useAuthStore } from '@/modules/auth/stores/auth.store'
 import type { Ingredient } from '../interfaces/product.interface'
 
 const productsStore = useProductsStore()
-const authStore = useAuthStore()
-const cif = authStore.user?.establishment_cif as string
+
+// Establecimientos
+const myEstablishments = ref<any[]>([])
+const activeCif = ref('')
+
+const fetchMyEstablishments = async () => {
+  try {
+    const { data } = await makeMenuApi.get('establishments/my-establishments/')
+    myEstablishments.value = data
+    if (data.length > 0) {
+      activeCif.value = data[0].cif
+      await productsStore.fetchIngredients(activeCif.value)
+    }
+  } catch (error) {
+    console.error('Error cargando establecimientos:', error)
+  }
+}
+
+const onEstablishmentChange = async () => {
+  await productsStore.fetchIngredients(activeCif.value)
+}
 
 const ingredientTypes = [
   { value: 'meat', label: 'Carne' },
@@ -156,8 +223,12 @@ const ingredientTypes = [
   { value: 'other', label: 'Otros' },
 ]
 
-onMounted(() => productsStore.fetchIngredients(cif))
+onMounted(async () => {
+  await fetchMyEstablishments()
+  await productsStore.fetchAllergens()
+})
 
+// Modal
 const showModal = ref(false)
 const editingIngredient = ref<Ingredient | null>(null)
 
@@ -166,7 +237,17 @@ const form = ref({
   description: '',
   ingredient_type: '',
   available: true,
+  allergens: [] as number[],
 })
+
+const toggleAllergen = (id: number) => {
+  const idx = form.value.allergens.indexOf(id)
+  if (idx === -1) {
+    form.value.allergens.push(id)
+  } else {
+    form.value.allergens.splice(idx, 1)
+  }
+}
 
 const openModal = (ingredient?: Ingredient) => {
   editingIngredient.value = ingredient || null
@@ -176,8 +257,9 @@ const openModal = (ingredient?: Ingredient) => {
         description: ingredient.description,
         ingredient_type: ingredient.ingredient_type,
         available: ingredient.available,
+        allergens: ingredient.allergens?.map(a => a.id) ?? [],
       }
-    : { name: '', description: '', ingredient_type: '', available: true }
+    : { name: '', description: '', ingredient_type: '', available: true, allergens: [] }
   showModal.value = true
 }
 
@@ -187,17 +269,25 @@ const closeModal = () => {
 }
 
 const handleSave = async () => {
+  const payload = {
+    name: form.value.name,
+    description: form.value.description,
+    ingredient_type: form.value.ingredient_type,
+    available: form.value.available,
+    allergens: form.value.allergens,
+  }
+
   if (editingIngredient.value) {
-    await productsStore.editIngredient(cif, editingIngredient.value.id, form.value)
+    await productsStore.editIngredient(activeCif.value, editingIngredient.value.id, payload)
   } else {
-    await productsStore.addIngredient(cif, form.value)
+    await productsStore.addIngredient(activeCif.value, payload)
   }
   closeModal()
 }
 
 const handleDelete = async (ingredientId: number) => {
   if (confirm('¿Seguro que quieres eliminar este ingrediente?')) {
-    await productsStore.deleteIngredient(cif, ingredientId)
+    await productsStore.deleteIngredient(activeCif.value, ingredientId)
   }
 }
 </script>
