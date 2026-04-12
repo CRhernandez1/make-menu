@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from establishments.models import Invitation, Manage
-from shared.decorators import parse_json_to_python, require_http_methods
+from shared.decorators import parse_json, require_http_methods
 from users.decorators import auth_required
 from users.models import Token
 
@@ -17,10 +17,13 @@ from .serializers import MemberSerializer
 
 @csrf_exempt
 @require_http_methods('POST')
-@parse_json_to_python('username', 'password')
+@parse_json
 def login(request):
-    username = request.payload['username']
-    password = request.payload['password']
+    username = request.payload.get('username')
+    password = request.payload.get('password')
+
+    if not username or not password:
+        return JsonResponse({'error': 'Username and password are required.'}, status=HTTPStatus.BAD_REQUEST)
 
     if user := authenticate(username=username, password=password):
         token, created = Token.objects.get_or_create(user=user)
@@ -30,11 +33,15 @@ def login(request):
 
 @csrf_exempt
 @require_http_methods('POST')
-@parse_json_to_python('username', 'password', 'email', 'first_name', 'last_name', 'invitation_id')
+@parse_json
 def register(request):
+    required = ['username', 'password', 'email', 'first_name', 'last_name', 'invitation_id']
+    missing = [f for f in required if not request.payload.get(f)]
+    if missing:
+        return JsonResponse({'error': f'Missing required fields: {", ".join(missing)}'}, status=HTTPStatus.BAD_REQUEST)
+
     try:
-        # 1. Validar la invitación ANTES de crear el usuario
-        invitation_id = request.payload.get('invitation_id')
+        invitation_id = request.payload['invitation_id']
         try:
             invitation = Invitation.objects.get(id=invitation_id, is_used=False)
         except (Invitation.DoesNotExist, ValidationError):
@@ -42,7 +49,6 @@ def register(request):
                 {'error': 'Invitación inválida o ya usada'}, status=HTTPStatus.BAD_REQUEST
             )
 
-        # 2. Crear el usuario (esto ya lo tenías)
         user = User.objects.create_user(
             username=request.payload['username'],
             password=request.payload['password'],
@@ -55,19 +61,16 @@ def register(request):
             user.member.phone = request.payload['phone']
             user.member.save()
 
-        # 3. LA CLAVE: Crear el rol en el restaurante de la invitación
         Manage.objects.create(
             establishment=invitation.establishment, member=user, role=invitation.role
         )
 
-        # 4. Quemar la invitación para que no se use dos veces
         invitation.is_used = True
         invitation.save()
 
         return JsonResponse(
             {'message': 'Registro completado y vinculado al restaurante'}, status=HTTPStatus.CREATED
         )
-
     except IntegrityError:
         return JsonResponse({'error': 'El nombre de usuario ya existe'}, status=HTTPStatus.CONFLICT)
 

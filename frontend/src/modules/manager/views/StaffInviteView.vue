@@ -57,6 +57,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import QrcodeVue from 'qrcode.vue' // Importamos la librería
 import { makeMenuApi } from '@/api/makeMenu'
 

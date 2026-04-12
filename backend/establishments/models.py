@@ -1,23 +1,28 @@
+import re
 import uuid
-
 from django.conf import settings
 from django.db import models
+from django.core.validators import RegexValidator, MinLengthValidator
+from django.core.exceptions import ValidationError
 
+def validate_cif(value):
+    if not re.match(r'^[A-Z]\d{8}$', value.upper()):
+        raise ValidationError('CIF must be a letter followed by 8 digits.')
 
 class Establishment(models.Model):
-    name = models.CharField()
-    legal_name = models.CharField()
-    cif = models.CharField(max_length=9, unique=True)
+    cif = models.CharField(max_length=9, unique=True, validators=[validate_cif])
+    name = models.CharField(max_length=100, validators=[MinLengthValidator(2)])
+    legal_name = models.CharField(max_length=150)
     description = models.TextField(blank=True)
-    zip_code = models.CharField(max_length=10)
-    city = models.CharField()
+    zip_code = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{4,10}$', 'Invalid zip code.')])
+    city = models.CharField(max_length=100)
     address = models.TextField()
-    phone = models.CharField(max_length=16)
+    phone = models.CharField(max_length=16, blank=True, validators=[RegexValidator(r'^\+?\d{7,15}$', 'Invalid phone number.')])
     opened = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
-
+    
 
 class Table(models.Model):
     class Meta:

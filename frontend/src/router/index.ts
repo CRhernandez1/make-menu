@@ -70,23 +70,39 @@ const router = createRouter({
     },
 
     // --- 👔 ZONA MANAGER ---
+    // --- 👔 ZONA MANAGER ---
+{
+  path: '/manager',
+  component: () => import('@/modules/manager/layouts/ManagerLayout.vue'),
+  beforeEnter: requireRoleGuard('manager'),
+  children: [
     {
-      path: '/manager',
-      component: () => import('@/modules/manager/layouts/ManagerLayout.vue'),
-      beforeEnter: requireRoleGuard('manager'), // 👈 Usamos nuestra fábrica
-      children: [
-        {
-          path: '', 
-          name: 'manager', 
-          component: () => import('@/modules/manager/views/ManagerHome.vue'),
-        },
-        {
-          path: 'invite',
-          name: 'manager-invite',
-          component: () => import('@/modules/manager/views/StaffInviteView.vue'),
-        },
-      ],
+      path: '',
+      name: 'manager',
+      redirect: { name: 'establishments' },
     },
+    {
+      path: 'establishments',
+      name: 'establishments',
+      component: () => import('@/modules/manager/views/EstablishmentsView.vue'),
+    },
+    {
+      path: 'establishments/:cif/tables',
+      name: 'tables',
+      component: () => import('@/modules/manager/views/TablesView.vue'),
+    },
+    {
+      path: 'establishments/:cif/staff',
+      name: 'staff',
+      component: () => import('@/modules/manager/views/StaffView.vue'),
+    },
+    {
+      path: 'invite',
+      name: 'manager-invite',
+      component: () => import('@/modules/manager/views/StaffInviteView.vue'),
+    },
+  ],
+},
 
     // --- 👨‍🍳 ZONA KITCHEN ---
     {
