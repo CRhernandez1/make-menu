@@ -157,12 +157,12 @@
             >
               Cancelar
             </button>
-            <button
+            <div
               @click="handleAddComponent"
-              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500 cursor-pointer text-center"
             >
               Añadir
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -182,10 +182,10 @@ const route = useRoute()
 const productsStore = useProductsStore()
 
 const productId = Number(route.params.productId)
+const activeCif = ref(route.query.cif as string)
 const product = ref<Product | null>(null)
 const components = ref<any[]>([])
 const isLoading = ref(true)
-const activeCif = ref('')
 
 const unities = [
   { value: 'ea', label: 'Unidad' },
@@ -206,9 +206,7 @@ const availableIngredients = computed(() =>
 const fetchData = async () => {
   isLoading.value = true
   try {
-    const { data: establishments } = await makeMenuApi.get('establishments/my-establishments/')
-    if (!establishments.length) return
-    activeCif.value = establishments[0].cif
+    if (!activeCif.value) return
 
     const { data: prod } = await makeMenuApi.get(
       `/establishments/${activeCif.value}/products/${productId}/`
@@ -230,7 +228,6 @@ const fetchData = async () => {
 
 onMounted(fetchData)
 
-// ── Modal ─────────────────────────────────────────────
 const showModal = ref(false)
 
 const form = ref({
@@ -251,7 +248,8 @@ const closeModal = () => {
 
 const handleAddComponent = async () => {
   if (!form.value.ingredient || !form.value.unity) return
-
+  console.log('ingredient:', form.value.ingredient)
+  console.log('unity:', form.value.unity)
   await makeMenuApi.post(
     `/establishments/${activeCif.value}/products/${productId}/components/add/`,
     {

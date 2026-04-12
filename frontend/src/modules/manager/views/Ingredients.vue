@@ -191,7 +191,7 @@ import type { Ingredient } from '../interfaces/product.interface'
 
 const productsStore = useProductsStore()
 
-// ── Establecimientos ──────────────────────────────────
+// Establecimientos
 const myEstablishments = ref<any[]>([])
 const activeCif = ref('')
 
@@ -228,7 +228,7 @@ onMounted(async () => {
   await productsStore.fetchAllergens()
 })
 
-// ── Modal ─────────────────────────────────────────────
+// Modal
 const showModal = ref(false)
 const editingIngredient = ref<Ingredient | null>(null)
 

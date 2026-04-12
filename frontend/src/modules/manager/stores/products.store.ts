@@ -20,7 +20,7 @@ import type { Product, Category, Ingredient, Allergen } from '../interfaces/prod
 export const useProductsStore = defineStore('products', () => {
   const isLoading = ref(false)
 
-  // ── Products ──────────────────────────────────────────
+  // Products
   const products = ref<Product[]>([])
 
   const fetchProducts = async (cif: string) => {
@@ -53,7 +53,7 @@ export const useProductsStore = defineStore('products', () => {
     await fetchProducts(cif)
   }
 
-  // ── Categories ────────────────────────────────────────
+  // Categories
   const categories = ref<Category[]>([])
 
   const fetchCategories = async (cif: string) => {
@@ -70,7 +70,7 @@ export const useProductsStore = defineStore('products', () => {
     categories.value = categories.value.filter(c => c.id !== categoryId)
   }
 
-  // ── Ingredients ───────────────────────────────────────
+  // Ingredients
   const ingredients = ref<Ingredient[]>([])
 
   const fetchIngredients = async (cif: string) => {
@@ -97,7 +97,7 @@ export const useProductsStore = defineStore('products', () => {
     ingredients.value = ingredients.value.filter(i => i.id !== ingredientId)
   }
 
-  // ── Allergens ─────────────────────────────────────────
+  // Allergens
   const allergens = ref<Allergen[]>([])
 
   const fetchAllergens = async () => {

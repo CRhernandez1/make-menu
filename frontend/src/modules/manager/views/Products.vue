@@ -1,7 +1,6 @@
 <template>
   <div class="space-y-6">
 
-    <!-- Header -->
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-700">Productos</h2>
       <div class="flex items-center gap-3">
@@ -121,7 +120,7 @@
 
               <div class="flex gap-2">
                 <button
-                  @click="$router.push(`/manager/products/${product.id}`)"
+                  @click="$router.push(`/manager/products/${product.id}?cif=${activeCif}`)"
                   class="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
                   title="Ver ingredientes"
                 >
@@ -255,7 +254,7 @@ import type { Product } from '../interfaces/product.interface'
 
 const productsStore = useProductsStore()
 
-// ── Establecimientos ──────────────────────────────────
+// Establecimientos
 const myEstablishments = ref<any[]>([])
 const activeCif = ref('')
 const isLoadingEstablishments = ref(true)
@@ -286,7 +285,7 @@ onMounted(() => {
   fetchMyEstablishments()
 })
 
-// ── Categorías ────────────────────────────────────────
+// Categorías
 const newCategory = ref('')
 
 const handleAddCategory = async () => {
@@ -301,7 +300,7 @@ const handleDeleteCategory = async (categoryId: number) => {
   }
 }
 
-// ── Modal producto ────────────────────────────────────
+// Modal producto
 const showModal = ref(false)
 const editingProduct = ref<Product | null>(null)
 const imageFile = ref<File | null>(null)

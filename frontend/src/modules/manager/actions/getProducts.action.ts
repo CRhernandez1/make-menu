@@ -1,7 +1,7 @@
 import { makeMenuApi } from '@/api/makeMenu'
 import type { Product, Category, Ingredient, Allergen } from '../interfaces/product.interface'
 
-// ── Products ──────────────────────────────────────────
+// Products
 export const getProductsAction = async (cif: string): Promise<Product[]> => {
   const { data } = await makeMenuApi.get(`/establishments/${cif}/products/`)
   return data
@@ -28,7 +28,7 @@ export const uploadProductImageAction = async (cif: string, productId: number, i
   })
 }
 
-// ── Categories ────────────────────────────────────────
+// Categories
 export const getCategoriesAction = async (cif: string): Promise<Category[]> => {
   const { data } = await makeMenuApi.get(`/establishments/${cif}/products/categories/`)
   return data
@@ -42,7 +42,7 @@ export const deleteCategoryAction = async (cif: string, categoryId: number): Pro
   await makeMenuApi.post(`/establishments/${cif}/products/categories/${categoryId}/delete/`)
 }
 
-// ── Ingredients ───────────────────────────────────────
+// Ingredients
 export const getIngredientsAction = async (cif: string): Promise<Ingredient[]> => {
   const { data } = await makeMenuApi.get(`/establishments/${cif}/products/ingredients/`)
   return data
@@ -60,7 +60,7 @@ export const deleteIngredientAction = async (cif: string, ingredientId: number):
   await makeMenuApi.post(`/establishments/${cif}/products/ingredients/${ingredientId}/delete`)
 }
 
-// ── Allergens ─────────────────────────────────────────
+// Allergens
 export const getAllergensAction = async (): Promise<Allergen[]> => {
   const { data } = await makeMenuApi.get('/allergens/')
   return data

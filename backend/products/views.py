@@ -12,8 +12,6 @@ from .serializers import (
     ProductSerializer,
 )
 
-# Ingredient, Allergen
-
 
 @get_instance_or_404(Establishment, 'cif', 'Establishment')
 def products_list(request, establishment_cif):
@@ -67,6 +65,7 @@ def delete_product(request, establishment_cif, product_id):
     except Product.DoesNotExist:
         return JsonResponse({'message': 'Product not found!'}, status=404)
 
+    product.components.all().delete()
     product.delete()
     return JsonResponse({'message': 'Product delete succesfully'}, status=204)
 
