@@ -1,7 +1,6 @@
 <template>
   <div class="space-y-6">
 
-    <!-- Header -->
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-700">Ingredientes</h2>
       <div class="flex items-center gap-3">
@@ -27,12 +26,10 @@
       </div>
     </div>
 
-    <!-- Loading -->
     <div v-if="productsStore.isLoading" class="text-center py-12 text-gray-400">
       Cargando ingredientes...
     </div>
 
-    <!-- Lista -->
     <div v-else-if="productsStore.ingredients.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       <div
         v-for="ingredient in productsStore.ingredients"
@@ -59,7 +56,6 @@
         </p>
         <p v-else class="text-sm text-gray-300 italic">Sin descripción</p>
 
-        <!-- Alérgenos -->
         <div v-if="ingredient.allergens?.length" class="flex flex-wrap gap-1">
           <span
             v-for="allergen in ingredient.allergens"
@@ -82,7 +78,7 @@
             </svg>
           </button>
           <button
-            @click="handleDelete(ingredient.id)"
+            @click="openDeleteModal(ingredient)"
             class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
           >
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -96,13 +92,12 @@
       </div>
     </div>
 
-    <!-- Vacío -->
     <div v-else class="text-center py-16 text-gray-400">
       <p class="text-lg font-medium">No hay ingredientes aún</p>
       <p class="text-sm">Añade tu primer ingrediente con el botón de arriba</p>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal crear/editar -->
     <Teleport to="body">
       <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
@@ -111,11 +106,13 @@
           </h3>
 
           <div class="space-y-3">
-            <input
-              v-model="form.name"
-              placeholder="Nombre"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            />
+            <FormField :error="formErrors.errors.name">
+              <input
+                v-model="form.name"
+                placeholder="Nombre"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              />
+            </FormField>
 
             <textarea
               v-model="form.description"
@@ -124,17 +121,18 @@
               class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
             />
 
-            <select
-              v-model="form.ingredient_type"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            >
-              <option disabled value="">Selecciona un tipo</option>
-              <option v-for="type in ingredientTypes" :key="type.value" :value="type.value">
-                {{ type.label }}
-              </option>
-            </select>
+            <FormField :error="formErrors.errors.ingredient_type">
+              <select
+                v-model="form.ingredient_type"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              >
+                <option disabled value="">Selecciona un tipo</option>
+                <option v-for="type in ingredientTypes" :key="type.value" :value="type.value">
+                  {{ type.label }}
+                </option>
+              </select>
+            </FormField>
 
-            <!-- Alérgenos -->
             <div class="space-y-2">
               <label class="text-sm font-medium text-gray-600">Alérgenos</label>
               <div class="flex flex-wrap gap-2 p-3 border border-gray-200 rounded-xl min-h-[48px]">
@@ -171,7 +169,8 @@
             </button>
             <button
               @click="handleSave"
-              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
+              :disabled="formSubmitting"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {{ editingIngredient ? 'Guardar cambios' : 'Añadir' }}
             </button>
@@ -180,6 +179,17 @@
       </div>
     </Teleport>
 
+    <!-- Modal eliminar -->
+    <ConfirmModal
+      :visible="showDeleteModal"
+      title="Eliminar ingrediente"
+      :message="`¿Eliminar &quot;${ingredientToDelete?.name}&quot;? Esta acción no se puede deshacer.`"
+      confirm-text="Eliminar"
+      :submitting="deleteSubmitting"
+      @confirm="handleDelete"
+      @cancel="closeDeleteModal"
+    />
+
   </div>
 </template>
 
@@ -187,24 +197,29 @@
 import { onMounted, ref } from 'vue'
 import { makeMenuApi } from '@/api/makeMenu'
 import { useProductsStore } from '../stores/products.store'
+import { useToast } from '@/composables/useToast'
+import { useFormErrors } from '@/composables/useFormErrors'
+import FormField from '@/components/FormField.vue'
+import ConfirmModal from '../components/ConfirmModal.vue'
 import type { Ingredient } from '../interfaces/product.interface'
 
 const productsStore = useProductsStore()
+const toast = useToast()
+const formErrors = useFormErrors()
 
-// Establecimientos
 const myEstablishments = ref<any[]>([])
 const activeCif = ref('')
 
 const fetchMyEstablishments = async () => {
   try {
-    const { data } = await makeMenuApi.get('establishments/my-establishments/')
+    const { data } = await makeMenuApi.get('/establishments/')
     myEstablishments.value = data
     if (data.length > 0) {
       activeCif.value = data[0].cif
       await productsStore.fetchIngredients(activeCif.value)
     }
-  } catch (error) {
-    console.error('Error cargando establecimientos:', error)
+  } catch {
+    toast.error('Error cargando establecimientos.')
   }
 }
 
@@ -228,9 +243,10 @@ onMounted(async () => {
   await productsStore.fetchAllergens()
 })
 
-// Modal
+// Modal crear/editar
 const showModal = ref(false)
 const editingIngredient = ref<Ingredient | null>(null)
+const formSubmitting = ref(false)
 
 const form = ref({
   name: '',
@@ -242,15 +258,13 @@ const form = ref({
 
 const toggleAllergen = (id: number) => {
   const idx = form.value.allergens.indexOf(id)
-  if (idx === -1) {
-    form.value.allergens.push(id)
-  } else {
-    form.value.allergens.splice(idx, 1)
-  }
+  if (idx === -1) form.value.allergens.push(id)
+  else form.value.allergens.splice(idx, 1)
 }
 
 const openModal = (ingredient?: Ingredient) => {
   editingIngredient.value = ingredient || null
+  formErrors.clear()
   form.value = ingredient
     ? {
         name: ingredient.name,
@@ -266,9 +280,18 @@ const openModal = (ingredient?: Ingredient) => {
 const closeModal = () => {
   showModal.value = false
   editingIngredient.value = null
+  formErrors.clear()
 }
 
 const handleSave = async () => {
+  const valid = formErrors.validate({
+    name: [{ value: form.value.name.trim(), message: 'El nombre es obligatorio.' }],
+    ingredient_type: [{ value: form.value.ingredient_type, message: 'Selecciona un tipo.' }],
+  })
+  if (!valid) return
+
+  formSubmitting.value = true
+
   const payload = {
     name: form.value.name,
     description: form.value.description,
@@ -277,17 +300,50 @@ const handleSave = async () => {
     allergens: form.value.allergens,
   }
 
-  if (editingIngredient.value) {
-    await productsStore.editIngredient(activeCif.value, editingIngredient.value.id, payload)
-  } else {
-    await productsStore.addIngredient(activeCif.value, payload)
+  try {
+    if (editingIngredient.value) {
+      await productsStore.editIngredient(activeCif.value, editingIngredient.value.id, payload)
+      toast.success('Ingrediente actualizado.')
+    } else {
+      await productsStore.addIngredient(activeCif.value, payload)
+      toast.success('Ingrediente creado.')
+    }
+    closeModal()
+  } catch (err: any) {
+    if (err.response?.data?.errors) {
+      formErrors.setFromBackend(err.response.data.errors)
+    } else {
+      toast.error(err.response?.data?.error || 'Error al guardar el ingrediente.')
+    }
+  } finally {
+    formSubmitting.value = false
   }
-  closeModal()
 }
 
-const handleDelete = async (ingredientId: number) => {
-  if (confirm('¿Seguro que quieres eliminar este ingrediente?')) {
-    await productsStore.deleteIngredient(activeCif.value, ingredientId)
+// Modal eliminar
+const showDeleteModal = ref(false)
+const ingredientToDelete = ref<Ingredient | null>(null)
+const deleteSubmitting = ref(false)
+
+const openDeleteModal = (ingredient: Ingredient) => {
+  ingredientToDelete.value = ingredient
+  showDeleteModal.value = true
+}
+const closeDeleteModal = () => {
+  showDeleteModal.value = false
+  ingredientToDelete.value = null
+}
+const handleDelete = async () => {
+  if (!ingredientToDelete.value) return
+  deleteSubmitting.value = true
+  try {
+    await productsStore.deleteIngredient(activeCif.value, ingredientToDelete.value.id)
+    toast.success('Ingrediente eliminado.')
+    closeDeleteModal()
+  } catch {
+    toast.error('Error al eliminar. Puede estar asignado a un producto.')
+  } finally {
+    deleteSubmitting.value = false
   }
 }
 </script>

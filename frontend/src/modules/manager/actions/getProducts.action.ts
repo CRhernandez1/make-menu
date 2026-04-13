@@ -53,11 +53,11 @@ export const addIngredientAction = async (cif: string, payload: object): Promise
 }
 
 export const editIngredientAction = async (cif: string, ingredientId: number, payload: object): Promise<void> => {
-  await makeMenuApi.post(`/establishments/${cif}/products/ingredients/${ingredientId}/edit`, payload)
+  await makeMenuApi.post(`/establishments/${cif}/products/ingredients/${ingredientId}/edit/`, payload)
 }
 
 export const deleteIngredientAction = async (cif: string, ingredientId: number): Promise<void> => {
-  await makeMenuApi.post(`/establishments/${cif}/products/ingredients/${ingredientId}/delete`)
+  await makeMenuApi.post(`/establishments/${cif}/products/ingredients/${ingredientId}/delete/`)
 }
 
 // Allergens

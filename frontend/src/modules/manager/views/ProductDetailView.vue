@@ -88,7 +88,7 @@
               </td>
               <td class="px-6 py-4 text-right">
                 <button
-                  @click="handleDeleteComponent(component.id)"
+                  @click="openDeleteModal(component)"
                   class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                 >
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -110,38 +110,44 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal añadir -->
     <Teleport to="body">
       <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4">
           <h3 class="text-lg font-bold text-gray-700">Añadir ingrediente</h3>
 
           <div class="space-y-3">
-            <select
-              v-model="form.ingredient"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            >
-              <option disabled :value="null">Selecciona un ingrediente</option>
-              <option v-for="ing in availableIngredients" :key="ing.id" :value="ing.id">
-                {{ ing.name }}
-              </option>
-            </select>
+            <FormField :error="formErrors.errors.ingredient">
+              <select
+                v-model="form.ingredient"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              >
+                <option disabled :value="null">Selecciona un ingrediente</option>
+                <option v-for="ing in availableIngredients" :key="ing.id" :value="ing.id">
+                  {{ ing.name }}
+                </option>
+              </select>
+            </FormField>
 
             <div class="flex gap-3">
-              <input
-                v-model="form.quantity"
-                type="number"
-                step="0.01"
-                placeholder="Cantidad"
-                class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-              />
-              <select
-                v-model="form.unity"
-                class="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-              >
-                <option disabled value="">Unidad</option>
-                <option v-for="u in unities" :key="u.value" :value="u.value">{{ u.label }}</option>
-              </select>
+              <FormField :error="formErrors.errors.quantity" class="flex-1">
+                <input
+                  v-model="form.quantity"
+                  type="number"
+                  step="0.01"
+                  placeholder="Cantidad"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                />
+              </FormField>
+              <FormField :error="formErrors.errors.unity" class="flex-1">
+                <select
+                  v-model="form.unity"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                >
+                  <option disabled value="">Selecciona unidad</option>
+                  <option v-for="u in unities" :key="u.value" :value="u.value">{{ u.label }}</option>
+                </select>
+              </FormField>
             </div>
 
             <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
@@ -157,16 +163,28 @@
             >
               Cancelar
             </button>
-            <div
+            <button
               @click="handleAddComponent"
-              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500 cursor-pointer text-center"
+              :disabled="formSubmitting"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Añadir
-            </div>
+            </button>
           </div>
         </div>
       </div>
     </Teleport>
+
+    <!-- Modal confirmar eliminación -->
+    <ConfirmModal
+      :visible="showDeleteModal"
+      title="Eliminar ingrediente"
+      :message="`¿Eliminar &quot;${componentToDelete?.ingredient_name}&quot; de este producto?`"
+      confirm-text="Eliminar"
+      :submitting="deleteSubmitting"
+      @confirm="handleDeleteComponent"
+      @cancel="closeDeleteModal"
+    />
 
   </div>
 </template>
@@ -176,10 +194,16 @@ import { onMounted, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { makeMenuApi } from '@/api/makeMenu'
 import { useProductsStore } from '../stores/products.store'
+import { useToast } from '@/composables/useToast'
+import { useFormErrors } from '@/composables/useFormErrors'
+import FormField from '@/components/FormField.vue'
+import ConfirmModal from '../components/ConfirmModal.vue'
 import type { Product } from '../interfaces/product.interface'
 
 const route = useRoute()
 const productsStore = useProductsStore()
+const toast = useToast()
+const formErrors = useFormErrors()
 
 const productId = Number(route.params.productId)
 const activeCif = ref(route.query.cif as string)
@@ -208,19 +232,15 @@ const fetchData = async () => {
   try {
     if (!activeCif.value) return
 
-    const { data: prod } = await makeMenuApi.get(
-      `/establishments/${activeCif.value}/products/${productId}/`
-    )
+    const { data: prod } = await makeMenuApi.get(`/establishments/${activeCif.value}/products/${productId}/`)
     product.value = prod
 
-    const { data: comps } = await makeMenuApi.get(
-      `/establishments/${activeCif.value}/products/${productId}/components/`
-    )
+    const { data: comps } = await makeMenuApi.get(`/establishments/${activeCif.value}/products/${productId}/components/`)
     components.value = comps
 
     await productsStore.fetchIngredients(activeCif.value)
-  } catch (error) {
-    console.error('Error cargando datos:', error)
+  } catch {
+    toast.error('Error cargando datos del producto.')
   } finally {
     isLoading.value = false
   }
@@ -228,7 +248,9 @@ const fetchData = async () => {
 
 onMounted(fetchData)
 
+// Modal añadir
 const showModal = ref(false)
+const formSubmitting = ref(false)
 
 const form = ref({
   ingredient: null as number | null,
@@ -239,39 +261,78 @@ const form = ref({
 
 const openModal = () => {
   form.value = { ingredient: null, quantity: 1, unity: '', removable: false }
+  formErrors.clear()
   showModal.value = true
 }
 
 const closeModal = () => {
   showModal.value = false
+  formErrors.clear()
 }
 
 const handleAddComponent = async () => {
-  if (!form.value.ingredient || !form.value.unity) return
-  console.log('ingredient:', form.value.ingredient)
-  console.log('unity:', form.value.unity)
-  await makeMenuApi.post(
-    `/establishments/${activeCif.value}/products/${productId}/components/add/`,
-    {
-      ingredient: form.value.ingredient,
-      quantity: form.value.quantity,
-      unity: form.value.unity,
-      removable: form.value.removable,
-    }
-  )
+  const valid = formErrors.validate({
+    ingredient: [{ value: form.value.ingredient, message: 'Selecciona un ingrediente.' }],
+    quantity: [{ value: form.value.quantity, message: 'La cantidad debe ser mayor a 0.' }],
+    unity: [{ value: form.value.unity, message: 'Selecciona una unidad.' }],
+  })
+  if (!valid) return
 
-  const { data } = await makeMenuApi.get(
-    `/establishments/${activeCif.value}/products/${productId}/components/`
-  )
-  components.value = data
-  closeModal()
+  formSubmitting.value = true
+
+  try {
+    await makeMenuApi.post(
+      `/establishments/${activeCif.value}/products/${productId}/components/add/`,
+      {
+        ingredient: form.value.ingredient,
+        quantity: form.value.quantity,
+        unity: form.value.unity,
+        removable: form.value.removable,
+      }
+    )
+
+    const { data } = await makeMenuApi.get(`/establishments/${activeCif.value}/products/${productId}/components/`)
+    components.value = data
+    toast.success('Ingrediente añadido al producto.')
+    closeModal()
+  } catch (err: any) {
+    if (err.response?.data?.errors) {
+      formErrors.setFromBackend(err.response.data.errors)
+    } else {
+      toast.error(err.response?.data?.error || 'Error al añadir el ingrediente.')
+    }
+  } finally {
+    formSubmitting.value = false
+  }
 }
 
-const handleDeleteComponent = async (componentId: number) => {
-  if (!confirm('¿Eliminar este ingrediente del producto?')) return
-  await makeMenuApi.post(
-    `/establishments/${activeCif.value}/products/${productId}/components/${componentId}/delete/`
-  )
-  components.value = components.value.filter(c => c.id !== componentId)
+// Modal eliminar
+const showDeleteModal = ref(false)
+const componentToDelete = ref<any>(null)
+const deleteSubmitting = ref(false)
+
+const openDeleteModal = (component: any) => {
+  componentToDelete.value = component
+  showDeleteModal.value = true
+}
+
+const closeDeleteModal = () => {
+  showDeleteModal.value = false
+  componentToDelete.value = null
+}
+
+const handleDeleteComponent = async () => {
+  if (!componentToDelete.value) return
+  deleteSubmitting.value = true
+  try {
+    await makeMenuApi.post(`/establishments/${activeCif.value}/products/${productId}/components/${componentToDelete.value.id}/delete/`)
+    components.value = components.value.filter(c => c.id !== componentToDelete.value.id)
+    toast.success('Ingrediente eliminado del producto.')
+    closeDeleteModal()
+  } catch {
+    toast.error('Error al eliminar el ingrediente.')
+  } finally {
+    deleteSubmitting.value = false
+  }
 }
 </script>

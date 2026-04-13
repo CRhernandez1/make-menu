@@ -26,14 +26,12 @@
       </div>
     </div>
 
-    <!-- Sin establecimientos -->
     <div v-if="!myEstablishments.length && !isLoadingEstablishments" class="text-center py-16 text-gray-400">
       <p class="text-lg font-medium">No gestionas ningún establecimiento</p>
     </div>
 
     <template v-else-if="activeCif">
 
-      <!-- Categorías -->
       <div class="bg-white border border-gray-200 rounded-2xl p-4">
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-semibold text-gray-700">Categorías</h3>
@@ -60,7 +58,7 @@
           >
             {{ cat.name }}
             <button
-              @click="handleDeleteCategory(cat.id)"
+              @click="openDeleteCategoryModal(cat.id)"
               class="text-emerald-400 hover:text-red-500 transition-colors font-bold leading-none"
             >×</button>
           </span>
@@ -70,12 +68,10 @@
         </div>
       </div>
 
-      <!-- Loading -->
       <div v-if="productsStore.isLoading" class="text-center py-12 text-gray-400">
         Cargando productos...
       </div>
 
-      <!-- Grid de productos -->
       <div v-else-if="productsStore.products.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <div
           v-for="product in productsStore.products"
@@ -140,7 +136,7 @@
                   </svg>
                 </button>
                 <button
-                  @click="handleDelete(product.id)"
+                  @click="openDeleteModal(product)"
                   class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                 >
                   <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -156,7 +152,6 @@
         </div>
       </div>
 
-      <!-- Sin productos -->
       <div v-else class="text-center py-16 text-gray-400">
         <p class="text-lg font-medium">No hay productos aún</p>
         <p class="text-sm">Añade tu primer producto con el botón de arriba</p>
@@ -164,7 +159,7 @@
 
     </template>
 
-    <!-- Modal -->
+    <!-- Modal crear/editar -->
     <Teleport to="body">
       <div v-if="showModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 max-h-[90vh] overflow-y-auto">
@@ -173,11 +168,13 @@
           </h3>
 
           <div class="space-y-3">
-            <input
-              v-model="form.name"
-              placeholder="Nombre"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            />
+            <FormField :error="formErrors.errors.name">
+              <input
+                v-model="form.name"
+                placeholder="Nombre"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              />
+            </FormField>
 
             <textarea
               v-model="form.description"
@@ -186,23 +183,27 @@
               class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 resize-none"
             />
 
-            <input
-              v-model="form.price"
-              type="number"
-              step="0.01"
-              placeholder="Precio"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            />
+            <FormField :error="formErrors.errors.price">
+              <input
+                v-model="form.price"
+                type="number"
+                step="0.01"
+                placeholder="Precio"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              />
+            </FormField>
 
-            <select
-              v-model="form.category_id"
-              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            >
-              <option disabled :value="null">Selecciona una categoría</option>
-              <option v-for="cat in productsStore.categories" :key="cat.id" :value="cat.id">
-                {{ cat.name }}
-              </option>
-            </select>
+            <FormField :error="formErrors.errors.category_id">
+              <select
+                v-model="form.category_id"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              >
+                <option disabled :value="null">Selecciona una categoría</option>
+                <option v-for="cat in productsStore.categories" :key="cat.id" :value="cat.id">
+                  {{ cat.name }}
+                </option>
+              </select>
+            </FormField>
 
             <div class="space-y-2">
               <label class="text-sm text-gray-500">Imagen del producto</label>
@@ -234,7 +235,8 @@
             </button>
             <button
               @click="handleSave"
-              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500"
+              :disabled="formSubmitting"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-emerald-400 text-white text-sm font-semibold hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {{ editingProduct ? 'Guardar cambios' : 'Añadir' }}
             </button>
@@ -243,18 +245,44 @@
       </div>
     </Teleport>
 
+    <!-- Modal eliminar producto -->
+    <ConfirmModal
+      :visible="showDeleteModal"
+      title="Eliminar producto"
+      :message="`¿Eliminar &quot;${productToDelete?.name}&quot;? Esta acción no se puede deshacer.`"
+      confirm-text="Eliminar"
+      :submitting="deleteSubmitting"
+      @confirm="handleDelete"
+      @cancel="closeDeleteModal"
+    />
+
+    <!-- Modal eliminar categoría -->
+    <ConfirmModal
+      :visible="showDeleteCategoryModal"
+      title="Eliminar categoría"
+      message="¿Eliminar esta categoría? Los productos asociados perderán su categoría."
+      confirm-text="Eliminar"
+      @confirm="handleDeleteCategory"
+      @cancel="closeDeleteCategoryModal"
+    />
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { makeMenuApi } from '@/api/makeMenu'
 import { useProductsStore } from '../stores/products.store'
+import { useToast } from '@/composables/useToast'
+import { useFormErrors } from '@/composables/useFormErrors'
 import type { Product } from '../interfaces/product.interface'
+import { makeMenuApi } from '@/api/makeMenu'
+import FormField from '@/components/FormField.vue'
+import ConfirmModal from '../components/ConfirmModal.vue'
 
 const productsStore = useProductsStore()
+const toast = useToast()
+const formErrors = useFormErrors()
 
-// Establecimientos
 const myEstablishments = ref<any[]>([])
 const activeCif = ref('')
 const isLoadingEstablishments = ref(true)
@@ -262,15 +290,15 @@ const isLoadingEstablishments = ref(true)
 const fetchMyEstablishments = async () => {
   isLoadingEstablishments.value = true
   try {
-    const { data } = await makeMenuApi.get('establishments/my-establishments/')
+    const { data } = await makeMenuApi.get('/establishments/')
     myEstablishments.value = data
     if (data.length > 0) {
       activeCif.value = data[0].cif
       await productsStore.fetchProducts(activeCif.value)
       await productsStore.fetchCategories(activeCif.value)
     }
-  } catch (error) {
-    console.error('Error cargando establecimientos:', error)
+  } catch {
+    toast.error('Error cargando establecimientos.')
   } finally {
     isLoadingEstablishments.value = false
   }
@@ -281,30 +309,54 @@ const onEstablishmentChange = async () => {
   await productsStore.fetchCategories(activeCif.value)
 }
 
-onMounted(() => {
-  fetchMyEstablishments()
-})
+onMounted(() => { fetchMyEstablishments() })
 
 // Categorías
 const newCategory = ref('')
 
 const handleAddCategory = async () => {
-  if (!newCategory.value.trim()) return
-  await productsStore.addCategory(activeCif.value, newCategory.value.trim())
-  newCategory.value = ''
-}
-
-const handleDeleteCategory = async (categoryId: number) => {
-  if (confirm('¿Eliminar esta categoría? Los productos asociados perderán su categoría.')) {
-    await productsStore.deleteCategory(activeCif.value, categoryId)
+  if (!newCategory.value.trim()) {
+    toast.warning('Escribe un nombre para la categoría.')
+    return
+  }
+  try {
+    await productsStore.addCategory(activeCif.value, newCategory.value.trim())
+    toast.success('Categoría creada.')
+    newCategory.value = ''
+  } catch {
+    toast.error('Error al crear la categoría.')
   }
 }
 
-// Modal producto
+// Modal eliminar categoría
+const showDeleteCategoryModal = ref(false)
+const categoryToDelete = ref<number | null>(null)
+
+const openDeleteCategoryModal = (id: number) => {
+  categoryToDelete.value = id
+  showDeleteCategoryModal.value = true
+}
+const closeDeleteCategoryModal = () => {
+  showDeleteCategoryModal.value = false
+  categoryToDelete.value = null
+}
+const handleDeleteCategory = async () => {
+  if (!categoryToDelete.value) return
+  try {
+    await productsStore.deleteCategory(activeCif.value, categoryToDelete.value)
+    toast.success('Categoría eliminada.')
+    closeDeleteCategoryModal()
+  } catch {
+    toast.error('No se pudo eliminar. Puede tener productos asociados.')
+  }
+}
+
+// Modal crear/editar producto
 const showModal = ref(false)
 const editingProduct = ref<Product | null>(null)
 const imageFile = ref<File | null>(null)
 const imagePreview = ref<string | null>(null)
+const formSubmitting = ref(false)
 
 const form = ref({
   name: '',
@@ -325,6 +377,7 @@ const openModal = (product?: Product) => {
   editingProduct.value = product || null
   imageFile.value = null
   imagePreview.value = product?.product_image || null
+  formErrors.clear()
   form.value = product
     ? {
         name: product.name,
@@ -342,9 +395,19 @@ const closeModal = () => {
   editingProduct.value = null
   imageFile.value = null
   imagePreview.value = null
+  formErrors.clear()
 }
 
 const handleSave = async () => {
+  const valid = formErrors.validate({
+    name: [{ value: form.value.name.trim(), message: 'El nombre es obligatorio.' }],
+    price: [{ value: form.value.price, message: 'El precio debe ser mayor a 0.' }],
+    category_id: [{ value: form.value.category_id, message: 'Selecciona una categoría.' }],
+  })
+  if (!valid) return
+
+  formSubmitting.value = true
+
   const payload = {
     name: form.value.name,
     description: form.value.description,
@@ -353,25 +416,58 @@ const handleSave = async () => {
     category: form.value.category_id,
   }
 
-  let productId: number
+  try {
+    let productId: number
 
-  if (editingProduct.value) {
-    await productsStore.editProduct(activeCif.value, editingProduct.value.id, payload)
-    productId = editingProduct.value.id
-  } else {
-    productId = await productsStore.addProduct(activeCif.value, payload)
+    if (editingProduct.value) {
+      await productsStore.editProduct(activeCif.value, editingProduct.value.id, payload)
+      productId = editingProduct.value.id
+      toast.success('Producto actualizado.')
+    } else {
+      productId = await productsStore.addProduct(activeCif.value, payload)
+      toast.success('Producto creado.')
+    }
+
+    if (imageFile.value) {
+      await productsStore.uploadProductImage(activeCif.value, productId, imageFile.value)
+    }
+
+    closeModal()
+  } catch (err: any) {
+    if (err.response?.data?.errors) {
+      formErrors.setFromBackend(err.response.data.errors)
+    } else {
+      toast.error(err.response?.data?.error || 'Error al guardar el producto.')
+    }
+  } finally {
+    formSubmitting.value = false
   }
-
-  if (imageFile.value) {
-    await productsStore.uploadProductImage(activeCif.value, productId, imageFile.value)
-  }
-
-  closeModal()
 }
 
-const handleDelete = async (productId: number) => {
-  if (confirm('¿Seguro que quieres eliminar este producto?')) {
-    await productsStore.deleteProduct(activeCif.value, productId)
+// Modal eliminar producto
+const showDeleteModal = ref(false)
+const productToDelete = ref<Product | null>(null)
+const deleteSubmitting = ref(false)
+
+const openDeleteModal = (product: Product) => {
+  productToDelete.value = product
+  showDeleteModal.value = true
+}
+const closeDeleteModal = () => {
+  showDeleteModal.value = false
+  productToDelete.value = null
+}
+const handleDelete = async () => {
+  if (!productToDelete.value) return
+  deleteSubmitting.value = true
+  try {
+    await productsStore.deleteProduct(activeCif.value, productToDelete.value.id)
+    toast.success('Producto eliminado.')
+    closeDeleteModal()
+  } catch {
+    toast.error('Error al eliminar el producto.')
+  } finally {
+    deleteSubmitting.value = false
   }
 }
 </script>
