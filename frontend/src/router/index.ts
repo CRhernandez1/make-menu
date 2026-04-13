@@ -3,10 +3,8 @@ import LandingLayout from '@/modules/landing/layouts/LandingLayout.vue'
 import HomeView from '@/modules/landing/views/HomeView.vue'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
-// 🛡️ FÁBRICA DE GUARDS: Reutilizamos esta lógica para los 3 roles
 const requireRoleGuard = (expectedRole: string) => {
   return async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    // Importación dinámica para evitar problemas de carga inicial con Pinia
     const { useAuthStore } = await import('@/modules/auth/stores/auth.store')
     const authStore = useAuthStore()
 
@@ -19,7 +17,7 @@ const requireRoleGuard = (expectedRole: string) => {
       return { name: 'login' }
     }
 
-    return true // Pase VIP concedido
+    return true
   }
 }
 
@@ -39,7 +37,7 @@ const router = createRouter({
         },
       ],
     },
-    
+
     // --- ZONA DE AUTENTICACIÓN ---
     {
       path: '/auth',
@@ -73,38 +71,53 @@ const router = createRouter({
     {
       path: '/manager',
       component: () => import('@/modules/manager/layouts/ManagerLayout.vue'),
-      beforeEnter: requireRoleGuard('manager'), // 👈 Usamos nuestra fábrica
+      beforeEnter: requireRoleGuard('manager'),
       children: [
         {
-          path: '', 
-          name: 'manager', 
-          component: () => import('@/modules/manager/views/ManagerHome.vue'),
-        },{
-      path: 'orders',
-      name: 'manager-orders',
-      component: () => import('@/modules/manager/views/ManagerOrders.vue'),
-    },
-        
+          path: '',
+          name: 'manager',
+          redirect: { name: 'establishments' },
+        },
+        {
+          path: 'establishments',
+          name: 'establishments',
+          component: () => import('@/modules/manager/views/EstablishmentsView.vue'),
+        },
+        {
+          path: 'establishments/:cif/tables',
+          name: 'tables',
+          component: () => import('@/modules/manager/views/TablesView.vue'),
+        },
+        {
+          path: 'establishments/:cif/staff',
+          name: 'staff',
+          component: () => import('@/modules/manager/views/StaffView.vue'),
+        },
         {
           path: 'invite',
           name: 'manager-invite',
           component: () => import('@/modules/manager/views/StaffInviteView.vue'),
         },
         {
+          path: 'orders',
+          name: 'manager-orders',
+          component: () => import('@/modules/manager/views/ManagerOrders.vue'),
+        },
+        {
           path: 'products',
           name: 'products',
-          component: () => import('@/modules/manager/views/Products.vue')
+          component: () => import('@/modules/manager/views/Products.vue'),
         },
         {
           path: 'products/:productId',
           name: 'product-detail',
-          component: () => import('@/modules/manager/views/ProductDetailView.vue')
+          component: () => import('@/modules/manager/views/ProductDetailView.vue'),
         },
         {
           path: 'ingredients',
           name: 'ingredients',
-          component: () => import('@/modules/manager/views/Ingredients.vue')
-        }
+          component: () => import('@/modules/manager/views/Ingredients.vue'),
+        },
       ],
     },
 
@@ -112,11 +125,11 @@ const router = createRouter({
     {
       path: '/kitchen',
       component: () => import('@/modules/kitchen/layouts/KitchenLayout.vue'),
-      beforeEnter: requireRoleGuard('kitchen'), // 👈 Usamos nuestra fábrica
+      beforeEnter: requireRoleGuard('kitchen'),
       children: [
         {
-          path: '', 
-          name: 'kitchen', 
+          path: '',
+          name: 'kitchen',
           component: () => import('@/modules/kitchen/views/KitchenHome.vue'),
         },
       ],
@@ -126,11 +139,11 @@ const router = createRouter({
     {
       path: '/waiter',
       component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
-      beforeEnter: requireRoleGuard('waiter'), // 👈 Usamos nuestra fábrica
+      beforeEnter: requireRoleGuard('waiter'),
       children: [
         {
-          path: '', 
-          name: 'waiter', 
+          path: '',
+          name: 'waiter',
           component: () => import('@/modules/waiter/views/WaiterHome.vue'),
         },
       ],

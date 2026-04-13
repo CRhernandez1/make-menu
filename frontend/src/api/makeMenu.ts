@@ -5,12 +5,10 @@ const makeMenuApi = axios.create({
 })
 
 makeMenuApi.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token') || sessionStorage.getItem('token') // arreglo para iniciar sesion
-
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
-
   return config
 })
 
