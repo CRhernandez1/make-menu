@@ -118,6 +118,11 @@ const router = createRouter({
           name: 'ingredients',
           component: () => import('@/modules/manager/views/Ingredients.vue'),
         },
+        {
+          path: 'menu',
+          name: 'menu',
+          component: () => import('@/modules/manager/views/MenuView.vue'),
+        },
       ],
     },
 

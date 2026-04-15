@@ -28,6 +28,11 @@ export const uploadProductImageAction = async (cif: string, productId: number, i
   })
 }
 
+export const toggleProductAvailableAction = async (cif: string, productId: number): Promise<Product> => {
+  const { data } = await makeMenuApi.post(`/establishments/${cif}/products/${productId}/toggle/`)
+  return data
+}
+
 // Categories
 export const getCategoriesAction = async (cif: string): Promise<Category[]> => {
   const { data } = await makeMenuApi.get(`/establishments/${cif}/products/categories/`)
