@@ -1,3 +1,3 @@
 <template>
-    <h2>Esta es la vista de los camareros</h2>
+    <h2>Redirigiendo a pedidos...</h2>
 </template>

@@ -144,7 +144,12 @@ const router = createRouter({
         {
           path: '',
           name: 'waiter',
-          component: () => import('@/modules/waiter/views/WaiterHome.vue'),
+          redirect: { name: 'waiter-orders' },
+        },
+        {
+          path: 'orders',
+          name: 'waiter-orders',
+          component: () => import('@/modules/waiter/views/WaiterOrders.vue'),
         },
       ],
     },
