@@ -1,14 +1,22 @@
 import { makeMenuApi } from '@/api/makeMenu'
+import type { UserProfile } from '../interfaces/auth.response'
 
-export const checkAuthAction = async () => {
+interface CheckAuthSuccess {
+  ok: true
+  user: UserProfile
+}
+
+interface CheckAuthFailure {
+  ok: false
+}
+
+export const checkAuthAction = async (): Promise<CheckAuthSuccess | CheckAuthFailure> => {
   try {
-    // Aquí llamamos a un endpoint de tu Django que te devuelva los datos del perfil
-    // Nota: Necesitarás tener este endpoint creado en Django.
-    // Si no lo tienes aún, puedes usar uno de prueba o crearlo luego.
-    const { data } = await makeMenuApi.get('/auth/profile/')
+    const { data } = await makeMenuApi.get<UserProfile>('/auth/profile/')
     return { ok: true, user: data }
-  } catch (error) {
-    // Si Django devuelve 401 (token expirado o inválido)
+  } catch {
+    // Cookie ausente, expirada o inválida → el backend devuelve 401
     return { ok: false }
   }
 }
+
