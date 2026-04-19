@@ -122,10 +122,20 @@ const router = createRouter({
           path: 'menu',
           name: 'menu',
           component: () => import('@/modules/manager/views/MenuView.vue'),
-        },
+        }
       ],
     },
-
+    {
+      path: '/menu/:cif',
+      component: () => import('@/modules/menu/layouts/MenuLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'public-menu',
+          component: () => import('@/modules/menu/views/Menu2View.vue'),
+        }
+      ]
+    },
     // --- 👨‍🍳 ZONA KITCHEN ---
     {
       path: '/kitchen',

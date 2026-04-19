@@ -10,4 +10,5 @@ urlpatterns = [
         views.get_order_details,
         name='manager-order-details',
     ),
+    path('public/<str:establishment_cif>/', views.create_public_order, name='public-order-create'),
 ]
