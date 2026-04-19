@@ -1,27 +1,28 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-// ❌ Borramos el import de useLocalStorage
 import { loginAction } from '../actions/login.action'
 import { logoutAction } from '../actions/logout.action'
 import { checkAuthAction } from '../actions/checkAuth.action'
 import { AuthStatus } from '../interfaces'
 
 export const useAuthStore = defineStore('auth', () => {
-  // 1. STATE (Estado)
+  // 1. STATE
   const authStatus = ref<AuthStatus>(AuthStatus.Checking)
-
-  // ✅ NATIVO: Al arrancar, leemos de permanente o temporal (lo que encuentre primero)
   const token = ref<string>(localStorage.getItem('token') || sessionStorage.getItem('token') || '')
+  
+  // Guardamos el usuario (y su rol)
+  const user = ref<any>(null) 
 
-  // 2. GETTERS (Propiedades Computadas)
+  // 2. GETTERS
   const isChecking = computed(() => authStatus.value === AuthStatus.Checking)
   const isAuthenticated = computed(() => authStatus.value === AuthStatus.Authenticated)
 
-  // 3. ACTIONS (Métodos)
+  // 3. ACTIONS
   const login = async (username: string, password: string, rememberMe: boolean = false) => {
     authStatus.value = AuthStatus.Checking
 
     try {
+      // 1. Hacemos login normal
       const loginResponse = await loginAction(username, password)
 
       if (!loginResponse.ok) {
@@ -29,21 +30,28 @@ export const useAuthStore = defineStore('auth', () => {
         return { ok: false, message: loginResponse.message }
       }
 
-      // 1. Guardamos en la variable reactiva
+      // 2. Guardamos el token
       token.value = loginResponse.token
 
-      // 2. ✅ NATIVO: Decidimos en qué "caja fuerte" lo guardamos
       if (rememberMe) {
-        localStorage.setItem('token', loginResponse.token) // Permanente
-        sessionStorage.removeItem('token') // Por si había basura
+        localStorage.setItem('token', loginResponse.token)
+        sessionStorage.removeItem('token')
       } else {
-        sessionStorage.setItem('token', loginResponse.token) // Temporal
-        localStorage.removeItem('token') // Por si había basura
+        sessionStorage.setItem('token', loginResponse.token)
+        localStorage.removeItem('token')
       }
 
-      authStatus.value = AuthStatus.Authenticated
+      // 3. Pedimos el perfil del usuario para saber su ROL
+      const isAuthValid = await checkAuthStatus()
+      
+      if (isAuthValid && user.value) {
+        // Todo perfecto: devolvemos ok y el rol
+        return { ok: true, message: '', role: user.value.role } 
+      } else {
+        await logout()
+        return { ok: false, message: 'No se pudo obtener el perfil del usuario' }
+      }
 
-      return { ok: true, message: '' }
     } catch (error) {
       await logout()
       return { ok: false, message: 'Error inesperado al iniciar sesión' }
@@ -55,8 +63,8 @@ export const useAuthStore = defineStore('auth', () => {
       await logoutAction()
     }
 
-    // ✅ NATIVO: Limpiamos absolutamente todo
     token.value = ''
+    user.value = null // Limpiamos la libreta
     localStorage.removeItem('token')
     sessionStorage.removeItem('token')
 
@@ -64,13 +72,13 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const checkAuthStatus = async () => {
-    // 1. Si no hay token en ninguna de las dos cajas físicas, cerramos.
     if (!token.value) {
       await logout()
       return false
     }
 
     try {
+      // Usamos la acción del paso 1
       const response = await checkAuthAction()
 
       if (!response.ok) {
@@ -78,6 +86,8 @@ export const useAuthStore = defineStore('auth', () => {
         return false
       }
 
+      // Guardamos al usuario en memoria
+      user.value = response.user 
       authStatus.value = AuthStatus.Authenticated
       return true
     } catch (error) {
@@ -88,6 +98,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   return {
     token,
+    user,
     authStatus,
     isChecking,
     isAuthenticated,

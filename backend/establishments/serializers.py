@@ -1,6 +1,5 @@
-from users.serializers import MemberSerializer
-
 from shared.serializers import BaseSerializer
+from users.serializers import UserSerializer
 
 
 class EstablishmentSerializer(BaseSerializer):
@@ -24,6 +23,7 @@ class TableSerializer(BaseSerializer):
         return {
             'id': instance.pk,
             'establishment': EstablishmentSerializer(instance.establishment).serialize(),
+            'number': instance.number,
             'max_guests': instance.max_guests,
             'active': instance.active,
         }
@@ -33,9 +33,8 @@ class ManageSerializer(BaseSerializer):
     def serialize_instance(self, instance) -> dict:
         return {
             'id': instance.pk,
-            'establishment': EstablishmentSerializer(instance.establishment).serialize(),
-            'member': MemberSerializer(instance.member, request=self.request).serialize(),
-            'role': instance.get_role_display(),
-            'joined_at': instance.joined_at.isoformat(),
-            'end_date': instance.end_date.isoformat() if instance.end_date else None,
+            'member': UserSerializer(instance.member).serialize(),
+            'role': instance.role,
+            'joined_at': str(instance.joined_at),
+            'end_date': str(instance.end_date) if instance.end_date else None,
         }

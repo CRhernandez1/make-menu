@@ -1,0 +1,168 @@
+[
+  {
+    "model": "establishments.establishment",
+    "pk": 1,
+    "fields": {
+      "name": "La Tasca del Puerto",
+      "legal_name": "Tasca del Puerto S.L.",
+      "cif": "B12345678",
+      "description": "Restaurante de cocina tradicional canaria con vistas al puerto.",
+      "zip_code": "38001",
+      "city": "Santa Cruz de Tenerife",
+      "address": "Calle del Puerto 12, Santa Cruz de Tenerife",
+      "phone": "+34922100200",
+      "opened": true
+    }
+  },
+  {
+    "model": "establishments.establishment",
+    "pk": 2,
+    "fields": {
+      "name": "Pizzer\u00eda Da Mario",
+      "legal_name": "Da Mario Restauraci\u00f3n S.L.",
+      "cif": "B87654321",
+      "description": "Aut\u00e9ntica pizzer\u00eda italiana artesanal.",
+      "zip_code": "38002",
+      "city": "Santa Cruz de Tenerife",
+      "address": "Avenida de Anaga 45, Santa Cruz de Tenerife",
+      "phone": "+34922300400",
+      "opened": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 1,
+    "fields": {
+      "establishment": 1,
+      "number": 1,
+      "max_guests": 4,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 2,
+    "fields": {
+      "establishment": 1,
+      "number": 2,
+      "max_guests": 6,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 3,
+    "fields": {
+      "establishment": 1,
+      "number": 3,
+      "max_guests": 2,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 4,
+    "fields": {
+      "establishment": 1,
+      "number": 4,
+      "max_guests": 8,
+      "active": false
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 5,
+    "fields": {
+      "establishment": 2,
+      "number": 1,
+      "max_guests": 4,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 6,
+    "fields": {
+      "establishment": 2,
+      "number": 2,
+      "max_guests": 4,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.table",
+    "pk": 7,
+    "fields": {
+      "establishment": 2,
+      "number": 3,
+      "max_guests": 6,
+      "active": true
+    }
+  },
+  {
+    "model": "establishments.manage",
+    "pk": 1,
+    "fields": {
+      "establishment": 1,
+      "member": 2,
+      "role": "manager",
+      "end_date": null,
+      "joined_at": "2026-04-09"
+    }
+  },
+  {
+    "model": "establishments.manage",
+    "pk": 2,
+    "fields": {
+      "establishment": 1,
+      "member": 3,
+      "role": "waiter",
+      "end_date": null,
+      "joined_at": "2026-04-09"
+    }
+  },
+  {
+    "model": "establishments.manage",
+    "pk": 3,
+    "fields": {
+      "establishment": 1,
+      "member": 4,
+      "role": "kitchen",
+      "end_date": null,
+      "joined_at": "2026-04-09"
+    }
+  },
+  {
+    "model": "establishments.manage",
+    "pk": 4,
+    "fields": {
+      "establishment": 2,
+      "member": 2,
+      "role": "manager",
+      "end_date": null,
+      "joined_at": "2026-04-09"
+    }
+  },
+  {
+    "model": "establishments.invitation",
+    "pk": "11111111-1111-1111-1111-111111111111",
+    "fields": {
+      "establishment": 1,
+      "role": "waiter",
+      "created_by": 2,
+      "is_used": false,
+      "created_at": "2026-04-09T11:01:00.446754Z"
+    }
+  },
+  {
+    "model": "establishments.invitation",
+    "pk": "22222222-2222-2222-2222-222222222222",
+    "fields": {
+      "establishment": 2,
+      "role": "kitchen",
+      "created_by": 2,
+      "is_used": true,
+      "created_at": "2026-04-09T11:01:00.446754Z"
+    }
+  }
+]

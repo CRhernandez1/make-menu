@@ -26,7 +26,7 @@ class IngredientSerializer(BaseSerializer):
             'allergens': AllergenSerializer(
                 instance.allergens.all(), request=self.request
             ).serialize(),
-            'ingredient_type': instance.get_ingredient_type_display(),
+            'ingredient_type': instance.ingredient_type,
             'name': instance.name,
             'description': instance.description,
             'available': instance.available,
@@ -41,7 +41,7 @@ class ComponentSerializer(BaseSerializer):
             'product': ProductSerializer(instance.product, request=self.request).serialize(),
             'ingredient': IngredientSerializer(instance.ingredient).serialize(),
             'quantity': float(instance.quantity),
-            'unity': instance.get_unity_display(),
+            'unity': instance.unity,
             'removable': instance.removable,
         }
 
