@@ -2,19 +2,17 @@
 import { reactive, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { registerUser } from '../actions/register.action'
-import { makeMenuApi } from '@/api/makeMenu' // Importa tu instancia de Axios
+import { makeMenuApi } from '@/api/makeMenu'
 
 const route = useRoute()
 const router = useRouter()
 
-// Estados de control
 const isLoading = ref(false)
-const isValidating = ref(true) // Para mostrar un loader mientras validamos el QR
-const invitationError = ref('') // Error específico de la invitación
-const errorMessage = ref('') // Error del formulario de registro
+const isValidating = ref(true)
+const invitationError = ref('')
+const errorMessage = ref('')
 const establishmentInfo = ref({ name: '', role: '' })
 
-// 1. LA LIBRETA
 const form = reactive({
   username: '',
   password: '',
@@ -25,36 +23,29 @@ const form = reactive({
   invitation_id: '',
 })
 
-// 2. VALIDACIÓN INICIAL AL CARGAR
 onMounted(async () => {
-  const tokenFromUrl = route.query.code as string
+  const invitationCode = route.query.code as string
 
-  if (!tokenFromUrl) {
+  if (!invitationCode) {
     router.push({ name: 'login' })
     return
   }
 
-  form.invitation_id = tokenFromUrl
+  form.invitation_id = invitationCode
 
   try {
-    // Llamamos a tu nuevo endpoint de validación
-    // Nota: Ajusta la URL si tu prefijo de API es distinto
-    const { data } = await makeMenuApi.get(`/establishments/invite/validate/${tokenFromUrl}/`)
-
-    // Si llegamos aquí, el código es válido
+    const { data } = await makeMenuApi.get(`/establishments/invite/validate/${invitationCode}/`)
     establishmentInfo.value = {
       name: data.establishment_name,
       role: data.role,
     }
-    isValidating.value = false
   } catch (error: any) {
-    // Si el código ya se usó (400) o no existe (404)
     invitationError.value = error.response?.data?.error || 'Invitación no válida.'
+  } finally {
     isValidating.value = false
   }
 })
 
-// 3. EL ENVÍO
 const handleSubmit = async () => {
   isLoading.value = true
   errorMessage.value = ''

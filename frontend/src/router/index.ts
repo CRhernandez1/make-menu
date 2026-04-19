@@ -178,4 +178,24 @@ const router = createRouter({
   ],
 })
 
+// Guard global: protección centralizada de autenticación
+const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing']
+
+router.beforeEach(async (to) => {
+  if (PUBLIC_ROUTES.includes(to.name as string)) return true
+
+  const { useAuthStore } = await import('@/modules/auth/stores/auth.store')
+  const authStore = useAuthStore()
+
+  if (authStore.isChecking) {
+    await authStore.checkAuthStatus()
+  }
+
+  if (!authStore.isAuthenticated) {
+    return { name: 'login' }
+  }
+
+  return true
+})
+
 export default router

@@ -14,7 +14,7 @@
         <div class="mb-5">
           <label for="username" class="block text-sm font-medium text-gray-300 mb-1">Usuario</label>
           <input
-            v-model="myForm.username"
+            v-model="form.username"
             ref="usernameInputRef"
             type="text"
             id="username"
@@ -29,7 +29,7 @@
             >Contraseña</label
           >
           <input
-            v-model="myForm.password"
+            v-model="form.password"
             ref="passwordInputRef"
             type="password"
             id="password"
@@ -41,7 +41,7 @@
 
         <div class="mb-6 flex items-center">
           <input
-            v-model="myForm.rememberMe"
+            v-model="form.rememberMe"
             type="checkbox"
             id="remember"
             name="remember"
@@ -80,80 +80,53 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, watchEffect } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.store'
 
 const authStore = useAuthStore()
 const router = useRouter()
 
-// Referencias directas a los elementos HTML del DOM
 const usernameInputRef = ref<HTMLInputElement | null>(null)
 const passwordInputRef = ref<HTMLInputElement | null>(null)
-
-// 🚦 NUEVO: Estado para el mensaje de error
 const errorMessage = ref('')
 
-// Estado reactivo del formulario
-const myForm = reactive({
+const form = reactive({
   username: '',
   password: '',
   rememberMe: false,
 })
 
-// Función que se ejecuta al enviar el formulario
+// Precarga el username guardado si el usuario marcó "Recordar"
+onMounted(() => {
+  const savedUsername = localStorage.getItem('saved_username')
+  if (savedUsername) {
+    form.username = savedUsername
+    form.rememberMe = true
+  }
+})
+
 const onLogin = async () => {
-  errorMessage.value = '' // Limpiamos el error previo
+  errorMessage.value = ''
 
-  // 1. Validación de campos vacíos
-  if (myForm.username === '') {
-    return usernameInputRef.value?.focus()
-  }
+  if (!form.username) return usernameInputRef.value?.focus()
+  if (form.password.length < 3) return passwordInputRef.value?.focus()
 
-  if (myForm.password.length < 3) {
-    return passwordInputRef.value?.focus()
-  }
+  // Guarda solo el nombre de usuario para autocompletar (no el token)
+  localStorage[form.rememberMe ? 'setItem' : 'removeItem']('saved_username', form.username)
 
-  // 2. Lógica de "Recordar usuario"
-  if (myForm.rememberMe) {
-    localStorage.setItem('saved_username', myForm.username)
-  } else {
-    localStorage.removeItem('saved_username')
-  }
+  const result = await authStore.login(form.username, form.password, form.rememberMe)
 
-  // 3. Llamada al Store de Pinia
-  const result = await authStore.login(myForm.username, myForm.password, myForm.rememberMe)
-
-  // 4. Manejo del resultado con REDIRECCIÓN POR ROL
   if (result.ok) {
-    switch (result.role) {
-      case 'manager':
-        router.push({ name: 'manager' }) // Cambia el nombre si tu ruta se llama distinto
-        break
-      case 'waiter':
-        router.push({ name: 'waiter' })
-        break
-      case 'kitchen':
-        router.push({ name: 'kitchen' })
-        break
-      default:
-        // Si por algún motivo tiene un rol raro o nulo, lo mandamos al home
-        router.push({ name: 'home' }) 
+    const roleRoutes: Record<string, string> = {
+      manager: 'manager',
+      waiter: 'waiter',
+      kitchen: 'kitchen',
     }
+    router.push({ name: roleRoutes[result.role ?? ''] ?? 'home' })
     return
   }
 
-  // 5. Si falla, mostramos el error en pantalla
   errorMessage.value = result.message || 'Usuario/Contraseña no son correctos'
-  console.error(errorMessage.value)
 }
-
-// Se ejecuta automáticamente al cargar el componente
-watchEffect(() => {
-  const savedUsername = localStorage.getItem('saved_username')
-  if (savedUsername) {
-    myForm.username = savedUsername
-    myForm.rememberMe = true
-  }
-})
 </script>
