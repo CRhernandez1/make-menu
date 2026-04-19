@@ -2,15 +2,18 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from establishments.models import Establishment, Manage
-from shared.decorators import get_instance_or_404, require_http_methods, require_role, parse_json
+from shared.decorators import get_instance_or_404, parse_json, require_http_methods, require_role
 from users.decorators import auth_required
 
-from .models import Allergen, Category, Component, Ingredient, Product
 from .forms import (
-    ProductCreateForm, ProductUpdateForm,
-    IngredientCreateForm, IngredientUpdateForm,
-    CategoryForm, ComponentCreateForm,
+    CategoryForm,
+    ComponentCreateForm,
+    IngredientCreateForm,
+    IngredientUpdateForm,
+    ProductCreateForm,
+    ProductUpdateForm,
 )
+from .models import Allergen, Category, Component, Ingredient, Product
 from .serializers import (
     AllergenSerializer,
     CategorySerializer,
@@ -18,10 +21,10 @@ from .serializers import (
     ProductSerializer,
 )
 
-
 # ──────────────────────────────────────────────
 # Products
 # ──────────────────────────────────────────────
+
 
 @require_http_methods('GET')
 @auth_required
@@ -117,9 +120,26 @@ def upload_product_image(request, establishment_cif, product_id):
     return JsonResponse({'product_image': product.product_image.url}, status=200)
 
 
+@csrf_exempt
+@require_http_methods('POST')
+@auth_required
+@get_instance_or_404(Establishment, 'cif', 'Establishment')
+@require_role(Manage.Role.MANAGER)
+def toggle_product_available(request, establishment_cif, product_id):
+    try:
+        product = request.instance.products.get(pk=product_id)
+    except Product.DoesNotExist:
+        return JsonResponse({'error': 'Producto no encontrado'}, status=404)
+
+    product.available = not product.available
+    product.save()
+    return ProductSerializer(product).json_response()
+
+
 # ──────────────────────────────────────────────
 # Ingredients
 # ──────────────────────────────────────────────
+
 
 @require_http_methods('GET')
 @auth_required
@@ -206,6 +226,7 @@ def delete_ingredient(request, establishment_cif, ingredient_id):
 # Categories
 # ──────────────────────────────────────────────
 
+
 @require_http_methods('GET')
 @auth_required
 @get_instance_or_404(Establishment, 'cif', 'Establishment')
@@ -271,6 +292,7 @@ def delete_category(request, establishment_cif, category_id):
 # Allergens
 # ──────────────────────────────────────────────
 
+
 @require_http_methods('GET')
 def allergens_list(request):
     allergens = Allergen.objects.all()
@@ -280,6 +302,7 @@ def allergens_list(request):
 # ──────────────────────────────────────────────
 # Components
 # ──────────────────────────────────────────────
+
 
 @require_http_methods('GET')
 @auth_required
