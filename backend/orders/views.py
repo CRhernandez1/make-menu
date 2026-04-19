@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 
 from establishments.models import Establishment, Table
 from products.models import Product
@@ -24,7 +23,7 @@ def _get_est_ids_by_role(user, role):
     )
 
 
-@require_http_methods(['GET'])
+@require_http_methods('GET')
 @auth_required
 def list_manager_orders(request) -> JsonResponse:
     """Extrae y filtra los pedidos del manager en base a tiempo y local específico."""
@@ -49,7 +48,7 @@ def list_manager_orders(request) -> JsonResponse:
     return OrderSerializer(orders_sorted, request=request).json_response()
 
 
-@require_http_methods(['GET'])
+@require_http_methods('GET')
 @auth_required
 def get_order_details(request, order_id: int) -> JsonResponse:
     """Devuelve los detalles (los platos y notas) asociados a un ticket de pedido específico."""
@@ -60,7 +59,7 @@ def get_order_details(request, order_id: int) -> JsonResponse:
     return OrderDetailSerializer(order_details, request=request).json_response()
 
 
-@require_http_methods(['GET'])
+@require_http_methods('GET')
 @auth_required
 def list_waiter_orders(request) -> JsonResponse:
     """Extrae y filtra los pedidos del camarero en base a tiempo y local específico."""
@@ -85,7 +84,8 @@ def list_waiter_orders(request) -> JsonResponse:
     return OrderSerializer(orders_sorted, request=request).json_response()
 
 
-@require_http_methods(['GET'])
+@csrf_exempt
+@require_http_methods('GET')
 @auth_required
 def get_waiter_order_details(request, order_id: int) -> JsonResponse:
     """Devuelve los detalles asociados a un ticket de pedido para un camarero."""
