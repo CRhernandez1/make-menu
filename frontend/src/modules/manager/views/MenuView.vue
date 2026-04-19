@@ -96,18 +96,32 @@
         <p class="text-lg font-medium">No hay productos aún</p>
         <p class="text-sm">Añade productos desde la sección Productos</p>
       </div>
-
+      
+      <!-- Sección QR -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col items-center gap-4">
+        <h3 class="text-sm font-semibold text-gray-700 self-start">Acceso para clientes</h3>
+        <canvas ref="qrCanvas" class="rounded-xl"></canvas>
+  
+        <div class="w-full flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+          <span class="text-xs text-gray-500 flex-1 truncate">{{ menuUrl }}</span>
+          <button @click="copyLink" class="text-xs font-semibold text-emerald-600 hover:text-emerald-700 whitespace-nowrap">
+            {{ copied ? '¡Copiado!' : 'Copiar' }}
+          </button>
+        </div>
+      </div>
     </template>
 
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { makeMenuApi } from '@/api/makeMenu'
 import { getProductsAction, toggleProductAvailableAction } from '../actions/getProducts.action'
 import { useToast } from '@/composables/useToast'
 import type { Product } from '../interfaces/product.interface'
+import QRCode from 'qrcode'
+import { nextTick } from 'vue'
 
 const toast = useToast()
 
@@ -117,6 +131,28 @@ const isLoadingEstablishments = ref(true)
 const products = ref<Product[]>([])
 const isLoading = ref(false)
 
+const qrCanvas = ref<HTMLCanvasElement | null>(null)
+const copied = ref(false)
+
+const menuUrl = computed(() => `${window.location.origin}/menu/${activeCif.value}`)
+
+const generateQR = async () => {
+  if (!qrCanvas.value || !activeCif.value) return
+  await QRCode.toCanvas(qrCanvas.value, menuUrl.value, {
+    width: 200,
+    margin: 2,
+    color: { dark: '#1f2937', light: '#ffffff' },
+  })
+}
+
+const copyLink = async () => {
+  await navigator.clipboard.writeText(menuUrl.value)
+  copied.value = true
+  setTimeout(() => copied.value = false, 2000)
+}
+
+watch(activeCif, () => generateQR(), { immediate: false })
+
 const fetchMyEstablishments = async () => {
   isLoadingEstablishments.value = true
   try {
@@ -124,6 +160,8 @@ const fetchMyEstablishments = async () => {
     myEstablishments.value = data
     if (data.length > 0) {
       activeCif.value = data[0].cif
+      await nextTick()
+      generateQR()
       await fetchProducts()
     }
   } catch {
