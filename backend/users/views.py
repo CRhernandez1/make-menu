@@ -6,9 +6,9 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 from establishments.models import Invitation, Manage
 from shared.decorators import parse_json, require_http_methods
-
 from users.decorators import auth_required
 from users.models import Token
 

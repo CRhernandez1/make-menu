@@ -32,7 +32,7 @@ from .serializers import (
 @require_role()
 def products_list(request, establishment_cif):
     products = request.instance.products.all()
-    return ProductSerializer(products).json_response()
+    return ProductSerializer(products, request=request).json_response()
 
 
 @require_http_methods('GET')
@@ -44,7 +44,7 @@ def product_detail(request, establishment_cif, product_id):
         product = request.instance.products.get(id=product_id)
     except Product.DoesNotExist:
         return JsonResponse({'message': 'Product not found!'}, status=404)
-    return ProductSerializer(product).json_response()
+    return ProductSerializer(product, request=request).json_response()
 
 
 @csrf_exempt
@@ -117,7 +117,9 @@ def upload_product_image(request, establishment_cif, product_id):
 
     product.product_image = image
     product.save()
-    return JsonResponse({'product_image': product.product_image.url}, status=200)
+    return JsonResponse(
+        {'product_image': request.build_absolute_uri(product.product_image.url)}, status=200
+    )
 
 
 @csrf_exempt
@@ -133,7 +135,7 @@ def toggle_product_available(request, establishment_cif, product_id):
 
     product.available = not product.available
     product.save()
-    return ProductSerializer(product).json_response()
+    return ProductSerializer(product, request=request).json_response()
 
 
 # ──────────────────────────────────────────────
