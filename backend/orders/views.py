@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 
 from establishments.models import Establishment, Table
 from products.models import Product
@@ -85,6 +84,7 @@ def list_waiter_orders(request) -> JsonResponse:
     return OrderSerializer(orders_sorted, request=request).json_response()
 
 
+@csrf_exempt
 @require_http_methods('GET')
 @auth_required
 def get_waiter_order_details(request, order_id: int) -> JsonResponse:

@@ -25,4 +25,4 @@ def public_products(request, establishment_cif):
         return JsonResponse({'error': 'Establecimiento no encontrado'}, status=404)
 
     products = establishment.products.filter(available=True)
-    return ProductSerializer(products).json_response()
+    return ProductSerializer(products, request=request).json_response()

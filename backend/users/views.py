@@ -23,12 +23,33 @@ def login(request):
     password = request.payload.get('password')
 
     if not username or not password:
-        return JsonResponse({'error': 'Username and password are required.'}, status=HTTPStatus.BAD_REQUEST)
+        return JsonResponse(
+            {'error': 'Username and password are required.'}, status=HTTPStatus.BAD_REQUEST
+        )
 
-    if user := authenticate(username=username, password=password):
-        token, created = Token.objects.get_or_create(user=user)
-        return JsonResponse({'token': str(token.key)}, status=HTTPStatus.OK)
-    return JsonResponse({'error': 'Invalid credentials'}, status=HTTPStatus.UNAUTHORIZED)
+    user = authenticate(username=username, password=password)
+    if not user:
+        return JsonResponse({'error': 'Invalid credentials'}, status=HTTPStatus.UNAUTHORIZED)
+
+    token, created = Token.objects.get_or_create(user=user)
+    long_lived = request.payload.get('remember_me', False)
+    token.refresh(long_lived=long_lived)
+
+    # Respuesta con perfil completo (login + profile en una sola petición)
+    profile_data = MemberSerializer(user.member, request=request).serialize()
+    response = JsonResponse(profile_data)
+
+    # Cookie HttpOnly — el frontend no puede leerla (protección XSS)
+    max_age = 30 * 24 * 3600 if long_lived else None  # 30 días o cookie de sesión
+    response.set_cookie(
+        'auth_token',
+        str(token.key),
+        httponly=True,
+        samesite='Lax',
+        secure=False,  # Cambiar a True en producción con HTTPS
+        max_age=max_age,
+    )
+    return response
 
 
 @csrf_exempt
@@ -38,7 +59,10 @@ def register(request):
     required = ['username', 'password', 'email', 'first_name', 'last_name', 'invitation_id']
     missing = [f for f in required if not request.payload.get(f)]
     if missing:
-        return JsonResponse({'error': f'Missing required fields: {", ".join(missing)}'}, status=HTTPStatus.BAD_REQUEST)
+        return JsonResponse(
+            {'error': f'Missing required fields: {", ".join(missing)}'},
+            status=HTTPStatus.BAD_REQUEST,
+        )
 
     try:
         invitation_id = request.payload['invitation_id']
@@ -80,7 +104,9 @@ def register(request):
 @auth_required
 def logout(request):
     request.user.token.delete()
-    return JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
+    response = JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
+    response.delete_cookie('auth_token')
+    return response
 
 
 @require_http_methods('GET')

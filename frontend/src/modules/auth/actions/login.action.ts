@@ -1,6 +1,6 @@
 import { makeMenuApi } from '@/api/makeMenu'
 import { isAxiosError } from 'axios'
-import type { AuthResponse } from '../interfaces'
+import type { UserProfile } from '../interfaces/auth.response'
 
 interface LoginError {
   ok: false
@@ -9,22 +9,24 @@ interface LoginError {
 
 interface LoginSuccess {
   ok: true
-  token: string
+  user: UserProfile
 }
 
 export const loginAction = async (
   username: string,
   password: string,
+  rememberMe: boolean,
 ): Promise<LoginError | LoginSuccess> => {
   try {
-    const { data } = await makeMenuApi.post<AuthResponse>('/auth/login/', {
+    const { data } = await makeMenuApi.post<UserProfile>('/auth/login/', {
       username,
       password,
+      remember_me: rememberMe,
     })
 
     return {
       ok: true,
-      token: data.token,
+      user: data,
     }
   } catch (error) {
     if (isAxiosError(error) && error.response?.status === 401) {
@@ -33,8 +35,8 @@ export const loginAction = async (
         message: 'Usuario o contraseña incorrectos',
       }
     }
-    // Si el servidor explota (Error 500) o no hay internet
     console.error(error)
     throw new Error('No se pudo realizar la petición. Inténtalo más tarde.')
   }
 }
+

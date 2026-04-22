@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # MEDIA URLS
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS
@@ -138,4 +138,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:8000',
     'http://127.0.0.1:5173',
+    'http://127.0.0.1:8000',
 ]
+
+CORS_ALLOW_CREDENTIALS = True
