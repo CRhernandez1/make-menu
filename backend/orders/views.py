@@ -394,3 +394,122 @@ def kitchen_toggle_item(request, item_id):
         'order_done': all_ready,
     })
 
+
+# ──────────────────────────────────────────────
+# Kitchen: Pedidos activos y acciones
+# ──────────────────────────────────────────────
+
+@require_http_methods('GET')
+@auth_required
+def kitchen_active_orders(request):
+    est_ids = _get_est_ids_by_role(request.user, 'kitchen')
+    if not est_ids:
+        return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
+
+    establishment = Establishment.objects.get(pk=est_ids[0])
+
+    orders = Order.objects.filter(
+        establishment=establishment,
+        status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
+    ).select_related('table').prefetch_related('details__product').order_by('placed_at')
+
+    orders_data = []
+    for order in orders:
+        items = order.details.all()
+        ready_count = items.filter(ready=True).count()
+        total_count = items.count()
+
+        orders_data.append({
+            'id': order.id,
+            'status': order.status,
+            'status_display': order.get_status_display(),
+            'table_number': order.table.number,
+            'placed_at': order.placed_at.isoformat(),
+            'total': f'{order.total:.2f}',
+            'ready_count': ready_count,
+            'total_count': total_count,
+            'items': [
+                {
+                    'id': d.id,
+                    'product_name': d.product.name,
+                    'quantity': d.quantity,
+                    'notes': d.notes,
+                    'ready': d.ready,
+                }
+                for d in items
+            ],
+        })
+
+    return JsonResponse({
+        'establishment': establishment.name,
+        'orders': orders_data,
+    })
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@auth_required
+def kitchen_advance_order(request, order_id):
+    est_ids = _get_est_ids_by_role(request.user, 'kitchen')
+    if not est_ids:
+        return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
+
+    try:
+        order = Order.objects.get(id=order_id, establishment_id__in=est_ids)
+    except Order.DoesNotExist:
+        return JsonResponse({'error': 'Pedido no encontrado.'}, status=404)
+
+    if order.status == Order.Status.INITIATED:
+        order.status = Order.Status.IN_PROGRESS
+    elif order.status == Order.Status.IN_PROGRESS:
+        order.status = Order.Status.DONE
+        order.closed_at = timezone.now()
+    else:
+        return JsonResponse({'error': 'Este pedido no se puede avanzar.'}, status=400)
+
+    order.save()
+    return JsonResponse({
+        'message': f'Pedido actualizado a "{order.get_status_display()}".',
+        'status': order.status,
+        'status_display': order.get_status_display(),
+    })
+
+
+@csrf_exempt
+@require_http_methods('POST')
+@auth_required
+def kitchen_toggle_item(request, item_id):
+    est_ids = _get_est_ids_by_role(request.user, 'kitchen')
+    if not est_ids:
+        return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
+
+    try:
+        item = OrderDetail.objects.select_related('order').get(
+            id=item_id,
+            order__establishment_id__in=est_ids,
+            order__status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
+        )
+    except OrderDetail.DoesNotExist:
+        return JsonResponse({'error': 'Plato no encontrado.'}, status=404)
+
+    item.ready = not item.ready
+    item.save()
+
+    order = item.order
+
+    if order.status == Order.Status.INITIATED:
+        order.status = Order.Status.IN_PROGRESS
+        order.save()
+
+    all_ready = not order.details.filter(ready=False).exists()
+    if all_ready:
+        order.status = Order.Status.DONE
+        order.closed_at = timezone.now()
+        order.save()
+
+    return JsonResponse({
+        'message': f'{"Listo" if item.ready else "Pendiente"}: {item.product.name}',
+        'item_ready': item.ready,
+        'order_status': order.status,
+        'order_done': all_ready,
+    })
