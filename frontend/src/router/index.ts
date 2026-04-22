@@ -136,38 +136,24 @@ const router = createRouter({
         }
       ]
     },
-    // --- 👨‍🍳 ZONA KITCHEN ---
-    {
-      path: '/kitchen',
-      component: () => import('@/modules/kitchen/layouts/KitchenLayout.vue'),
-      beforeEnter: requireRoleGuard('kitchen'),
-      children: [
-        {
-          path: '',
-          name: 'kitchen',
-          component: () => import('@/modules/kitchen/views/KitchenHome.vue'),
-        },
-      ],
-    },
-
     // --- 🏃‍♂️ ZONA WAITER ---
     {
-      path: '/waiter',
-      component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
-      beforeEnter: requireRoleGuard('waiter'),
-      children: [
-        {
-          path: '',
-          name: 'waiter',
-          redirect: { name: 'waiter-orders' },
-        },
-        {
-          path: 'orders',
-          name: 'waiter-orders',
-          component: () => import('@/modules/waiter/views/WaiterOrders.vue'),
-        },
-      ],
+  path: '/waiter',
+  component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
+  beforeEnter: requireRoleGuard('waiter'),
+  children: [
+    {
+      path: '',
+      name: 'waiter',
+      component: () => import('@/modules/waiter/views/WaiterHome.vue'),
     },
+    {
+      path: 'orders',
+      name: 'waiter-orders',
+      component: () => import('@/modules/waiter/views/WaiterOrders.vue'),
+    },
+  ],
+},
 
     // --- 404 NOT FOUND ---
     {
