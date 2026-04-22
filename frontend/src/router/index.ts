@@ -136,6 +136,20 @@ const router = createRouter({
         }
       ]
     },
+    // --- 👨‍🍳 ZONA KITCHEN ---
+    {
+      path: '/kitchen',
+      component: () => import('@/modules/kitchen/layouts/KitchenLayout.vue'),
+      beforeEnter: requireRoleGuard('kitchen'),
+      children: [
+        {
+          path: '',
+          name: 'kitchen',
+          component: () => import('@/modules/kitchen/views/KitchenHome.vue'),
+        },
+      ],
+    },
+
     // --- 🏃‍♂️ ZONA WAITER ---
     {
   path: '/waiter',
