@@ -30,6 +30,7 @@ class OrderDetail(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     notes = models.TextField(blank=True)
     quantity = models.PositiveSmallIntegerField(default=1)
+    ready = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.quantity}x {self.product.name}'
