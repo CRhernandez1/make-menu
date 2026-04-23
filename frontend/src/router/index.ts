@@ -138,22 +138,36 @@ const router = createRouter({
     },
     // --- 🏃‍♂️ ZONA WAITER ---
     {
-  path: '/waiter',
-  component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
-  beforeEnter: requireRoleGuard('waiter'),
-  children: [
-    {
-      path: '',
-      name: 'waiter',
-      component: () => import('@/modules/waiter/views/WaiterHome.vue'),
+      path: '/waiter',
+      component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
+      beforeEnter: requireRoleGuard('waiter'),
+      children: [
+        {
+          path: '',
+          name: 'waiter',
+          component: () => import('@/modules/waiter/views/WaiterHome.vue'),
+        },
+        {
+          path: 'orders',
+          name: 'waiter-orders',
+          component: () => import('@/modules/waiter/views/WaiterOrders.vue'),
+        },
+      ],
     },
+
+    // --- 🍳 ZONA KITCHEN ---
     {
-      path: 'orders',
-      name: 'waiter-orders',
-      component: () => import('@/modules/waiter/views/WaiterOrders.vue'),
+      path: '/kitchen',
+      component: () => import('@/modules/kitchen/layouts/KitchenLayout.vue'),
+      beforeEnter: requireRoleGuard('kitchen'),
+      children: [
+        {
+          path: '',
+          name: 'kitchen',
+          component: () => import('@/modules/kitchen/views/KitchenHome.vue'),
+        },
+      ],
     },
-  ],
-},
 
     // --- 404 NOT FOUND ---
     {
@@ -165,7 +179,7 @@ const router = createRouter({
 })
 
 // Guard global: protección centralizada de autenticación
-const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing']
+const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing', 'public-menu']
 
 router.beforeEach(async (to) => {
   if (PUBLIC_ROUTES.includes(to.name as string)) return true
