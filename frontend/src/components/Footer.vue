@@ -1,17 +1,11 @@
 <template>
-  <footer class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="flex items-center justify-center w-6 h-6 bg-emerald-400 rounded-md">
-          <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </div>
-        <span class="text-xs font-bold text-gray-700 tracking-tight">Mi Restaurante</span>
+  <footer class="border-t border-border-green-light py-10 px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <svg viewBox="0 0 452 263" width="20" style="opacity:0.15" xmlns="http://www.w3.org/2000/svg"><path d="M 444,244 L 430,216 L 380,128 L 374,127 L 369,130 L 335,161 L 333,160 L 281,15 L 277,8 L 272,10 L 188,159 L 170,188 L 151,194 L 139,193 L 207,92 L 215,74 L 214,69 L 208,69 L 194,79 L 11,229 L 8,235 L 12,240 L 138,240 L 139,242 L 134,250 L 136,255 L 197,255 L 209,253 L 220,249 L 228,242 L 245,211 L 268,153 L 297,241 L 309,242 L 318,238 L 339,218 L 361,193 L 365,199 L 378,231 L 386,243 L 405,248 L 440,248 Z" fill="#1A5C2E"/></svg>
+        <span class="text-xs text-text-ghost">MakeMenu · {{ new Date().getFullYear() }}</span>
       </div>
-      <p class="text-xs text-gray-400 font-medium">© 2026 · Todos los derechos reservados</p>
-
+      <span class="text-xs text-text-ghost font-display">Hecho en Tenerife</span>
     </div>
   </footer>
 </template>

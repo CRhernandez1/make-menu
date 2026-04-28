@@ -1,118 +1,100 @@
 <template>
   <div class="space-y-6">
 
-    <!-- 🔔 Toast de nuevo pedido -->
-    <Transition name="toast">
-      <div
-        v-if="newOrderToast"
-        class="fixed top-6 right-6 z-[60] bg-emerald-500 text-white px-6 py-4 rounded-xl shadow-2xl shadow-emerald-500/30 flex items-center gap-3 animate-bounce-in cursor-pointer"
-        @click="newOrderToast = null"
-      >
-        <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-        </svg>
+    <!-- Toast nuevo pedido -->
+    <Transition name="toast-right">
+      <div v-if="newOrderToast"
+        class="fixed top-6 right-6 z-[60] bg-green-forest text-cream px-6 py-4 rounded-2xl shadow-[0_20px_50px_rgba(26,92,46,0.3)] flex items-center gap-3 cursor-pointer"
+        style="animation:fade-up 0.4s cubic-bezier(0.25,1,0.5,1)"
+        @click="newOrderToast = null">
+        <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
         <div>
-          <p class="font-black text-sm">¡Nuevo pedido!</p>
-          <p class="text-emerald-100 text-xs font-medium">{{ newOrderToast }}</p>
+          <p class="font-bold text-sm">¡Nuevo pedido!</p>
+          <p class="text-cream/70 text-xs font-medium">{{ newOrderToast }}</p>
         </div>
       </div>
     </Transition>
 
-    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+    <!-- Header -->
+    <div class="card-mm p-5 !cursor-default !transform-none flex flex-col md:flex-row gap-4 items-center justify-between">
       <div class="flex items-center gap-3">
-        <h2 class="text-xl font-bold text-gray-700">Pedidos Activos</h2>
-        <span class="relative flex h-3 w-3" title="Actualizando en tiempo real">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+        <h2 class="font-display text-xl font-bold text-green-forest tracking-tight">Pedidos activos</h2>
+        <span class="relative flex h-2.5 w-2.5" title="Actualizando en tiempo real">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-bright opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-forest"></span>
         </span>
       </div>
-      
-      <div class="flex flex-wrap items-center gap-4">
-        
-        <select 
-          v-model="activeEstablishment" 
-          @change="fetchOrders"
-          class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2 outline-none cursor-pointer"
-        >
+
+      <div class="flex flex-wrap items-center gap-3">
+        <select v-model="activeEstablishment" @change="fetchOrders" class="input-mm !w-auto !h-10 pr-10 cursor-pointer text-[13px]">
           <option value="all">Todos mis locales</option>
-          <option 
-            v-for="est in myEstablishments" 
-            :key="est.id" 
-            :value="est.id"
-          >
-            {{ est.name }}
-          </option>
+          <option v-for="est in myEstablishments" :key="est.id" :value="est.id">{{ est.name }}</option>
         </select>
 
-        <div class="flex bg-gray-100 p-1 rounded-lg">
-          <button 
-            v-for="filter in timeFilters" 
-            :key="filter.value"
+        <div class="inline-flex bg-cream border border-border-green rounded-[12px] p-1 gap-0.5">
+          <button v-for="filter in timeFilters" :key="filter.value"
             @click="activeTimeFilter = filter.value; fetchOrders()"
-            class="px-4 py-1.5 text-sm font-medium rounded-md transition-colors"
-            :class="activeTimeFilter === filter.value ? 'bg-white text-emerald-600 shadow-sm font-bold' : 'text-gray-500 hover:text-gray-700'"
-          >
+            class="px-3.5 py-1.5 text-[12px] font-semibold rounded-[8px] transition-all duration-200 cursor-pointer border-none"
+            :class="activeTimeFilter === filter.value
+              ? 'bg-green-forest text-cream shadow-[0_2px_8px_rgba(26,92,46,0.15)]'
+              : 'text-text-muted hover:text-green-forest hover:bg-green-soft'">
             {{ filter.label }}
           </button>
         </div>
-
       </div>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-      
-      <div v-if="isLoading" class="p-12 text-center">
-        <div class="animate-spin inline-block w-8 h-8 border-4 border-emerald-400 border-t-transparent rounded-full mb-4"></div>
-        <p class="text-gray-500 font-medium">Buscando pedidos...</p>
+    <!-- Table -->
+    <div class="bg-white rounded-[var(--radius-card)] border border-border-green-light shadow-sm overflow-hidden">
+
+      <div v-if="isLoading" class="p-16 text-center">
+        <div class="w-10 h-10 border-[3px] border-green-soft border-t-green-forest rounded-full animate-spin mx-auto mb-4"></div>
+        <p class="text-sm text-text-muted font-medium">Buscando pedidos...</p>
       </div>
-      
-      <div v-else-if="orders.length === 0" class="p-12 text-center text-gray-400">
-        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-        <p class="text-lg">No hay pedidos para esta selección.</p>
+
+      <div v-else-if="orders.length === 0" class="p-16 text-center">
+        <div class="w-16 h-16 rounded-full bg-green-soft flex items-center justify-center mx-auto mb-4" style="animation:float 6s ease-in-out infinite">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a5c2e" stroke-width="1.5" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        </div>
+        <h3 class="font-display text-base font-bold text-ink mb-1">Sin pedidos</h3>
+        <p class="text-sm text-text-muted">No hay pedidos para esta selección.</p>
       </div>
 
       <div v-else class="overflow-x-auto">
-        <table class="w-full text-sm text-left">
-          <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-xs font-bold tracking-wider">
-            <tr>
-              <th class="px-6 py-4">ID</th>
-              <th v-if="activeEstablishment === 'all'" class="px-6 py-4">Local</th>
-              <th class="px-6 py-4">Fecha</th>
-              <th class="px-6 py-4">Mesa</th>
-              <th class="px-6 py-4">Estado</th>
-              <th class="px-6 py-4 text-right">Total</th>
-              <th class="px-6 py-4 text-center">Acción</th>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border-green-light bg-cream">
+              <th class="text-left px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">ID</th>
+              <th v-if="activeEstablishment === 'all'" class="text-left px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Local</th>
+              <th class="text-left px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Fecha</th>
+              <th class="text-left px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Mesa</th>
+              <th class="text-left px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Estado</th>
+              <th class="text-right px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Total</th>
+              <th class="text-center px-6 py-3.5 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em]">Acción</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
-            <tr 
-              v-for="order in orders" 
-              :key="order.id" 
-              class="transition-colors"
-              :class="newOrderIds.has(order.id) ? 'bg-emerald-50 animate-pulse-once' : 'hover:bg-gray-50'"
-            >
-              <td class="px-6 py-4 font-bold text-gray-900">
-                <span v-if="newOrderIds.has(order.id)" class="inline-block w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+          <tbody>
+            <tr v-for="order in orders" :key="order.id"
+              class="border-b border-border-green-light last:border-b-0 transition-colors"
+              :class="newOrderIds.has(order.id) ? 'bg-green-soft animate-pulse-once' : 'hover:bg-green-soft-2'">
+              <td class="px-6 py-4 font-bold text-ink font-display">
+                <span v-if="newOrderIds.has(order.id)" class="inline-block w-2 h-2 bg-green-forest rounded-full mr-2" style="animation:pulse-dot 2s infinite"></span>
                 #{{ order.id }}
               </td>
-              <td v-if="activeEstablishment === 'all'" class="px-6 py-4 text-gray-600 font-medium">
-                {{ order.establishment_name || 'Desconocido' }}
-              </td>
-              <td class="px-6 py-4 text-gray-500">{{ formatDate(order.placed_at) }}</td>
-              <td class="px-6 py-4 text-gray-700 font-semibold">{{ order.table_number || 'Barra' }}</td>
+              <td v-if="activeEstablishment === 'all'" class="px-6 py-4 text-text-sec font-medium">{{ order.establishment_name || 'Desconocido' }}</td>
+              <td class="px-6 py-4 text-text-sec">{{ formatDate(order.placed_at) }}</td>
+              <td class="px-6 py-4 text-ink font-semibold font-display">{{ order.table_number || 'Barra' }}</td>
               <td class="px-6 py-4">
-                <span class="px-3 py-1 rounded-full text-xs font-bold shadow-sm" :class="getStatusClass(order.status)">
+                <span class="badge-mm" :class="getStatusClass(order.status)">
+                  <span class="w-1.5 h-1.5 rounded-full" :class="getStatusDot(order.status)"></span>
                   {{ order.status_display || 'Desconocido' }}
                 </span>
               </td>
-              <td class="px-6 py-4 font-bold text-gray-800 text-right">{{ order.total }}€</td>
+              <td class="px-6 py-4 font-bold text-ink text-right font-display">{{ order.total }}€</td>
               <td class="px-6 py-4 text-center">
-                <button 
-                  @click="openOrderDetails(order)"
-                  class="text-emerald-600 hover:text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100 px-4 py-2 rounded-lg transition-colors border border-emerald-200"
-                >
-                  Ticket
-                </button>
+                <button @click="openOrderDetails(order)" class="btn-mm btn-ghost text-[12px] px-4 py-1.5 !text-green-forest">Ticket</button>
               </td>
             </tr>
           </tbody>
@@ -120,54 +102,46 @@
       </div>
     </div>
 
-    <div v-if="selectedOrder" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[90vh] border border-gray-100">
-        
-        <div class="p-6 border-b border-gray-100 flex justify-between items-start bg-gray-50">
-          <div>
-            <h3 class="text-xl font-black text-gray-800">Pedido #{{ selectedOrder.id }}</h3>
-            <p class="text-sm text-gray-500 mt-1 font-medium">Mesa {{ selectedOrder.table_number }} • {{ formatDate(selectedOrder.placed_at) }}</p>
-          </div>
-          <button @click="selectedOrder = null" class="text-gray-400 hover:text-red-500 transition-colors bg-white p-1 rounded-full shadow-sm">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
-        </div>
-
-        <div class="p-6 overflow-y-auto flex-1 bg-white">
-          
-          <div v-if="isLoadingTicket" class="py-12 text-center">
-             <div class="animate-spin inline-block w-8 h-8 border-4 border-emerald-400 border-t-transparent rounded-full mb-4"></div>
-             <p class="text-gray-500 font-medium">Cargando ticket...</p>
-          </div>
-
-          <ul v-else class="divide-y divide-dashed divide-gray-200">
-            <li v-for="item in selectedOrder.details" :key="item.id" class="py-4 flex justify-between items-start">
-              <div class="pr-4">
-                <p class="font-bold text-gray-800 text-lg">
-                  <span class="text-emerald-500 mr-2">{{ item.quantity }}x</span>{{ item.product_name }}
-                </p>
-                <p v-if="item.notes" class="text-sm text-amber-600 bg-amber-50 p-2 rounded mt-2 border border-amber-100">
-                  <span class="font-bold">Nota:</span> {{ item.notes }}
-                </p>
+    <!-- Ticket Modal -->
+    <Teleport to="body">
+      <Transition name="modal">
+        <div v-if="selectedOrder" class="fixed inset-0 bg-ink/50 backdrop-blur-[4px] flex items-center justify-center z-50 p-4" @click.self="selectedOrder = null">
+          <div class="bg-white rounded-[28px] shadow-[0_40px_100px_rgba(26,92,46,0.12)] w-full max-w-md overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="px-7 pt-7 pb-4 border-b border-border-green-light flex justify-between items-start">
+              <div>
+                <h3 class="font-display text-xl font-bold text-ink tracking-tight">Pedido #{{ selectedOrder.id }}</h3>
+                <p class="text-[13px] text-text-muted mt-1">Mesa {{ selectedOrder.table_number }} · {{ formatDate(selectedOrder.placed_at) }}</p>
               </div>
-              <p class="font-bold text-gray-600 whitespace-nowrap">{{ item.price }}€</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="p-6 bg-gray-50 border-t border-gray-100 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
-          <div class="flex justify-between items-center mb-6">
-            <span class="text-gray-500 font-bold uppercase tracking-wider text-sm">Total</span>
-            <span class="text-3xl font-black text-emerald-500">{{ selectedOrder.total }}€</span>
+              <button @click="selectedOrder = null" class="bg-transparent border-none text-text-ghost cursor-pointer p-2 -mr-2 rounded-[10px] flex hover:bg-green-soft hover:text-text-sec transition-all">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="px-7 py-5 overflow-y-auto flex-1">
+              <div v-if="isLoadingTicket" class="py-12 text-center">
+                <div class="w-8 h-8 border-[3px] border-green-soft border-t-green-forest rounded-full animate-spin mx-auto mb-3"></div>
+                <p class="text-sm text-text-muted">Cargando ticket...</p>
+              </div>
+              <div v-else class="space-y-1">
+                <div v-for="item in selectedOrder.details" :key="item.id" class="flex justify-between items-start py-3.5 border-b border-dashed border-border-green-light last:border-b-0">
+                  <div class="pr-4">
+                    <p class="font-bold text-ink"><span class="text-green-forest font-display mr-1.5">{{ item.quantity }}x</span>{{ item.product_name }}</p>
+                    <p v-if="item.notes" class="text-[12px] text-warning font-semibold bg-warning-soft px-3 py-1.5 rounded-xl mt-2 border border-[rgba(196,138,26,0.15)]">{{ item.notes }}</p>
+                  </div>
+                  <p class="font-bold text-text-sec font-display whitespace-nowrap">{{ item.price }}€</p>
+                </div>
+              </div>
+            </div>
+            <div class="px-7 py-6 bg-cream border-t border-border-green-light">
+              <div class="flex justify-between items-center mb-5">
+                <span class="text-[11px] text-text-muted font-bold uppercase tracking-[0.1em]">Total</span>
+                <span class="font-display text-3xl font-bold text-green-forest tracking-tight">{{ selectedOrder.total }}€</span>
+              </div>
+              <button @click="selectedOrder = null" class="btn-mm bg-ink text-cream w-full h-[48px] text-[14px] hover:bg-[#2a2a28]" style="box-shadow:0 4px 20px rgba(26,26,24,0.2)">Cerrar ticket</button>
+            </div>
           </div>
-          <button @click="selectedOrder = null" class="w-full bg-gray-800 text-white font-bold py-3.5 rounded-xl hover:bg-gray-900 transition-colors shadow-lg shadow-gray-200">
-            Cerrar Ticket
-          </button>
         </div>
-
-      </div>
-    </div>
-
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -175,20 +149,16 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { makeMenuApi } from '@/api/makeMenu'
 
-const POLLING_INTERVAL = 10_000 // 10 segundos
+const POLLING_INTERVAL = 10_000
 
-// --- ESTADOS ---
 const orders = ref<any[]>([])
 const myEstablishments = ref<any[]>([])
 const isLoading = ref(true)
-
 const selectedOrder = ref<any | null>(null)
 const isLoadingTicket = ref(false)
-
 const activeTimeFilter = ref('1')
 const activeEstablishment = ref('all')
 
-// Polling y notificaciones
 let pollingTimer: ReturnType<typeof setInterval> | null = null
 const knownOrderIds = ref<Set<number>>(new Set())
 const newOrderIds = ref<Set<number>>(new Set())
@@ -196,54 +166,29 @@ const newOrderToast = ref<string | null>(null)
 let toastTimer: ReturnType<typeof setTimeout> | null = null
 
 const timeFilters = [
-  { label: '24 Horas', value: '1' },
-  { label: '3 Días', value: '3' },
-  { label: '7 Días', value: '7' },
-  { label: 'Todos', value: 'all' },
+  { label: '24h', value: '1' }, { label: '3 días', value: '3' },
+  { label: '7 días', value: '7' }, { label: 'Todos', value: 'all' },
 ]
 
-// --- SONIDO DE NOTIFICACIÓN ---
 const playNotificationSound = () => {
   try {
     const ctx = new AudioContext()
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-
-    osc.frequency.value = 880
-    osc.type = 'sine'
-    gain.gain.setValueAtTime(0.3, ctx.currentTime)
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5)
-
-    osc.start(ctx.currentTime)
-    osc.stop(ctx.currentTime + 0.5)
-
-    // Segundo tono más agudo
-    const osc2 = ctx.createOscillator()
-    const gain2 = ctx.createGain()
-    osc2.connect(gain2)
-    gain2.connect(ctx.destination)
-    osc2.frequency.value = 1100
-    osc2.type = 'sine'
-    gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15)
-    gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6)
-    osc2.start(ctx.currentTime + 0.15)
-    osc2.stop(ctx.currentTime + 0.6)
-  } catch {
-    // Audio no disponible, ignorar
-  }
+    const osc = ctx.createOscillator(); const gain = ctx.createGain()
+    osc.connect(gain); gain.connect(ctx.destination)
+    osc.frequency.value = 880; osc.type = 'sine'
+    gain.gain.setValueAtTime(0.3, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5)
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.5)
+    const osc2 = ctx.createOscillator(); const gain2 = ctx.createGain()
+    osc2.connect(gain2); gain2.connect(ctx.destination)
+    osc2.frequency.value = 1100; osc2.type = 'sine'
+    gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15); gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6)
+    osc2.start(ctx.currentTime + 0.15); osc2.stop(ctx.currentTime + 0.6)
+  } catch { /* Audio no disponible */ }
 }
 
-// --- LÓGICA DE API ---
-
 const fetchMyEstablishments = async () => {
-  try {
-    const { data } = await makeMenuApi.get('establishments/')
-    myEstablishments.value = data
-  } catch (error) {
-    console.error("Error cargando los locales:", error)
-  }
+  try { const { data } = await makeMenuApi.get('establishments/'); myEstablishments.value = data }
+  catch (e) { console.error("Error cargando locales:", e) }
 }
 
 const fetchOrders = async () => {
@@ -252,158 +197,72 @@ const fetchOrders = async () => {
     const params: any = {}
     if (activeTimeFilter.value !== 'all') params.days = activeTimeFilter.value
     if (activeEstablishment.value !== 'all') params.establishment_id = activeEstablishment.value
-
     const { data } = await makeMenuApi.get('orders/waiter-orders/', { params })
     orders.value = data
-
-    // Inicializar IDs conocidos en la primera carga
-    knownOrderIds.value = new Set(data.map((o: any) => o.id))
-    newOrderIds.value = new Set()
-  } catch (error) {
-    console.error("Error al cargar la lista de pedidos:", error)
-  } finally {
-    isLoading.value = false
-  }
+    knownOrderIds.value = new Set(data.map((o: any) => o.id)); newOrderIds.value = new Set()
+  } catch (e) { console.error("Error cargando pedidos:", e) }
+  finally { isLoading.value = false }
 }
 
-/** Polling silencioso: no muestra el spinner, solo compara IDs */
 const pollOrders = async () => {
   try {
     const params: any = {}
     if (activeTimeFilter.value !== 'all') params.days = activeTimeFilter.value
     if (activeEstablishment.value !== 'all') params.establishment_id = activeEstablishment.value
-
     const { data } = await makeMenuApi.get('orders/waiter-orders/', { params })
-    
-    // Detectar pedidos nuevos
     const incomingIds = new Set(data.map((o: any) => o.id))
     const freshIds: number[] = []
-
-    for (const id of incomingIds) {
-      if (!knownOrderIds.value.has(id)) {
-        freshIds.push(id)
-      }
-    }
-
+    for (const id of incomingIds) { if (!knownOrderIds.value.has(id)) freshIds.push(id) }
     if (freshIds.length > 0) {
-      // Actualizar la lista y marcar los nuevos
-      orders.value = data
-      newOrderIds.value = new Set(freshIds)
-      knownOrderIds.value = incomingIds
-
-      // Mostrar toast
+      orders.value = data; newOrderIds.value = new Set(freshIds); knownOrderIds.value = incomingIds
       const newOrders = data.filter((o: any) => freshIds.includes(o.id))
-      const toastText = newOrders
-        .map((o: any) => `#${o.id} — Mesa ${o.table_number || 'Barra'}`)
-        .join(', ')
-      showToast(toastText)
+      showToast(newOrders.map((o: any) => `#${o.id} — Mesa ${o.table_number || 'Barra'}`).join(', '))
       playNotificationSound()
-
-      // Quitar highlight después de 8 segundos
-      setTimeout(() => {
-        newOrderIds.value = new Set()
-      }, 8000)
-    } else {
-      // Actualizar datos silenciosamente (por si cambió algún estado)
-      orders.value = data
-      knownOrderIds.value = incomingIds
-    }
-  } catch (error) {
-    console.error("Error en polling:", error)
-  }
+      setTimeout(() => { newOrderIds.value = new Set() }, 8000)
+    } else { orders.value = data; knownOrderIds.value = incomingIds }
+  } catch (e) { console.error("Error polling:", e) }
 }
 
 const showToast = (message: string) => {
   if (toastTimer) clearTimeout(toastTimer)
   newOrderToast.value = message
-  toastTimer = setTimeout(() => {
-    newOrderToast.value = null
-  }, 5000)
-}
-
-const startPolling = () => {
-  stopPolling()
-  pollingTimer = setInterval(pollOrders, POLLING_INTERVAL)
-}
-
-const stopPolling = () => {
-  if (pollingTimer) {
-    clearInterval(pollingTimer)
-    pollingTimer = null
-  }
+  toastTimer = setTimeout(() => { newOrderToast.value = null }, 5000)
 }
 
 const openOrderDetails = async (order: any) => {
-  selectedOrder.value = { ...order, details: [] }
-  isLoadingTicket.value = true
-  
-  try {
-    const { data } = await makeMenuApi.get(`orders/waiter-orders/${order.id}/details/`)
-    selectedOrder.value.details = data
-  } catch (error) {
-    console.error("Error cargando los platos del ticket:", error)
-  } finally {
-    isLoadingTicket.value = false
-  }
+  selectedOrder.value = { ...order, details: [] }; isLoadingTicket.value = true
+  try { const { data } = await makeMenuApi.get(`orders/waiter-orders/${order.id}/details/`); selectedOrder.value.details = data }
+  catch (e) { console.error("Error cargando ticket:", e) }
+  finally { isLoadingTicket.value = false }
 }
-
-// --- UTILIDADES ---
 
 const formatDate = (dateString: string) => {
   if (!dateString) return ''
-  const date = new Date(dateString)
-  return new Intl.DateTimeFormat('es-ES', { 
-    day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' 
-  }).format(date)
+  return new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString))
 }
 
 const getStatusClass = (status: number) => {
-  switch(status) {
-    case -1: return 'bg-red-100 text-red-700 border border-red-200'
-    case 1: return 'bg-amber-100 text-amber-700 border border-amber-200'
-    case 2: return 'bg-blue-100 text-blue-700 border border-blue-200'
-    case 3: return 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-    default: return 'bg-gray-100 text-gray-700 border border-gray-200'
-  }
+  switch (status) { case -1: return 'bg-danger-soft text-danger'; case 1: return 'bg-warning-soft text-warning'; case 2: return 'bg-info-soft text-info'; case 3: return 'bg-green-soft text-green-forest'; default: return 'bg-cream-dark text-text-muted' }
+}
+const getStatusDot = (status: number) => {
+  switch (status) { case -1: return 'bg-danger'; case 1: return 'bg-warning'; case 2: return 'bg-info'; case 3: return 'bg-green-bright'; default: return 'bg-text-ghost' }
 }
 
-// --- CICLO DE VIDA ---
-onMounted(async () => {
-  fetchMyEstablishments()
-  await fetchOrders()
-  startPolling()
-})
-
-onUnmounted(() => {
-  stopPolling()
-  if (toastTimer) clearTimeout(toastTimer)
-})
+onMounted(async () => { fetchMyEstablishments(); await fetchOrders(); pollingTimer = setInterval(pollOrders, POLLING_INTERVAL) })
+onUnmounted(() => { if (pollingTimer) clearInterval(pollingTimer); if (toastTimer) clearTimeout(toastTimer) })
 </script>
 
 <style scoped>
-/* Animación de entrada del toast */
-.toast-enter-active {
-  animation: slide-in-right 0.4s ease-out;
-}
-.toast-leave-active {
-  animation: slide-out-right 0.3s ease-in;
-}
-
-@keyframes slide-in-right {
-  from { transform: translateX(120%); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
-}
-@keyframes slide-out-right {
-  from { transform: translateX(0); opacity: 1; }
-  to   { transform: translateX(120%); opacity: 0; }
-}
-
-/* Pulso suave para filas nuevas */
-@keyframes pulse-once {
-  0%, 100% { background-color: rgb(236 253 245); }
-  50%      { background-color: rgb(209 250 229); }
-}
-.animate-pulse-once {
-  animation: pulse-once 1.5s ease-in-out 3;
-}
+.toast-right-enter-active { animation: slide-in-right 0.4s cubic-bezier(0.25,1,0.5,1); }
+.toast-right-leave-active { animation: slide-out-right 0.3s ease-in; }
+@keyframes slide-in-right { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slide-out-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(120%); opacity: 0; } }
+@keyframes pulse-once { 0%, 100% { background-color: rgba(26,92,46,0.08); } 50% { background-color: rgba(26,92,46,0.14); } }
+.animate-pulse-once { animation: pulse-once 1.5s ease-in-out 3; }
+.modal-enter-active,.modal-leave-active { transition: opacity 0.25s ease; }
+.modal-enter-active > div,.modal-leave-active > div { transition: transform 0.3s cubic-bezier(0.25,1,0.5,1), opacity 0.25s ease; }
+.modal-enter-from { opacity: 0; }
+.modal-enter-from > div { transform: translateY(16px) scale(0.96); opacity: 0; }
+.modal-leave-to { opacity: 0; }
+.modal-leave-to > div { transform: translateY(-8px) scale(0.97); opacity: 0; }
 </style>
