@@ -1,10 +1,10 @@
 <template>
-  <div class="space-y-1">
-    <label v-if="label" class="block text-sm font-semibold text-gray-700">{{ label }}</label>
+  <div class="space-y-1.5">
+    <label v-if="label" class="block text-[13px] font-semibold text-text-main">{{ label }}</label>
     <slot />
     <Transition name="error">
-      <p v-if="error" class="text-xs text-red-500 flex items-center gap-1">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p v-if="error" class="text-xs text-danger font-medium flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         {{ error }}
       </p>
     </Transition>

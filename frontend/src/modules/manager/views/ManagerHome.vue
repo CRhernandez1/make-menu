@@ -1,3 +1,9 @@
 <template>
-    <h2>Esta es la vista del manager</h2>
+  <div class="flex flex-col items-center justify-center py-20">
+    <div class="w-20 h-20 rounded-full bg-green-soft flex items-center justify-center mb-6" style="animation:float 6s ease-in-out infinite">
+      <svg viewBox="0 0 452 263" width="40" xmlns="http://www.w3.org/2000/svg"><path d="M 444,244 L 430,216 L 380,128 L 374,127 L 369,130 L 335,161 L 333,160 L 281,15 L 277,8 L 272,10 L 188,159 L 170,188 L 151,194 L 139,193 L 207,92 L 215,74 L 214,69 L 208,69 L 194,79 L 11,229 L 8,235 L 12,240 L 138,240 L 139,242 L 134,250 L 136,255 L 197,255 L 209,253 L 220,249 L 228,242 L 245,211 L 268,153 L 297,241 L 309,242 L 318,238 L 339,218 L 361,193 L 365,199 L 378,231 L 386,243 L 405,248 L 440,248 Z" fill="#1A5C2E"/></svg>
+    </div>
+    <h2 class="font-display text-2xl font-bold text-green-forest tracking-tight mb-2">Bienvenido a MakeMenu</h2>
+    <p class="text-sm text-text-muted max-w-sm text-center">Selecciona una opción del menú lateral para gestionar tus establecimientos, productos y equipo.</p>
+  </div>
 </template>

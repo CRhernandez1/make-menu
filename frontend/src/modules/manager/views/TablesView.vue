@@ -1,214 +1,130 @@
 <template>
-  <div class="px-8 py-8 lg:px-12 lg:py-10">
+  <div>
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm mb-6">
-      <router-link to="/"
-        class="text-gray-400 no-underline font-medium hover:text-emerald-600 transition-colors">Establishments</router-link>
-      <svg class="text-gray-300" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round">
-        <polyline points="9 18 15 12 9 6" />
-      </svg>
-      <span class="text-[#1a1a2e] font-semibold">Tables</span>
+      <router-link :to="{ name: 'manager' }" class="text-text-muted no-underline font-medium hover:text-green-forest transition-colors">Establecimientos</router-link>
+      <svg class="text-text-ghost" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="text-ink font-semibold">Mesas</span>
     </nav>
 
     <!-- Header -->
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 gap-4">
       <div>
-        <h1 class="text-2xl font-extrabold text-[#1a1a2e] tracking-tight">Table Management</h1>
-        <p class="text-[15px] text-gray-400 mt-1">{{ tables.length }} tables configured for this establishment.</p>
+        <h1 class="font-display text-2xl font-bold text-green-forest tracking-tight">Gestión de mesas</h1>
+        <p class="text-sm text-text-muted mt-1">{{ tables.length }} mesas configuradas en este establecimiento.</p>
       </div>
-      <button @click="openCreateModal"
-        class="self-start inline-flex items-center gap-2 py-2.5 px-5 rounded-xl text-sm font-semibold bg-emerald-500 text-white border-none cursor-pointer transition-all duration-200 hover:bg-emerald-600 hover:shadow-[0_4px_20px_rgba(16,185,129,0.3)] active:scale-[0.98] shrink-0">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round">
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
-        Add Table
+      <button @click="openCreateModal" class="btn-mm btn-primary self-start text-[13px] px-5 py-2.5">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nueva mesa
       </button>
     </div>
 
     <!-- Toolbar -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
-      <!-- Tabs -->
-      <div class="inline-flex bg-white border border-gray-100 rounded-xl p-1 gap-1 shadow-sm">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <div class="inline-flex bg-white border border-border-green rounded-[14px] p-1 gap-1">
         <button v-for="tab in tabs" :key="tab.value" @click="filter = tab.value"
-          class="flex items-center gap-2 py-2 px-4 rounded-lg border-none text-sm font-medium cursor-pointer transition-all duration-150"
+          class="flex items-center gap-2 py-2 px-4 rounded-[10px] border-none text-[13px] font-semibold cursor-pointer transition-all duration-200"
           :class="filter === tab.value
-            ? 'bg-[#1a1a2e] text-white shadow-sm'
-            : 'bg-transparent text-gray-400 hover:text-gray-600'">
+            ? 'bg-green-forest text-cream shadow-[0_2px_10px_rgba(26,92,46,0.15)]'
+            : 'bg-transparent text-text-muted hover:text-green-forest hover:bg-green-soft'">
           {{ tab.label }}
           <span class="text-[11px] font-bold min-w-[20px] text-center py-0.5 px-1.5 rounded-md"
-            :class="filter === tab.value ? 'bg-white/15 text-white/80' : 'bg-gray-100 text-gray-400'">{{ tab.count
-            }}</span>
+            :class="filter === tab.value ? 'bg-white/15 text-cream/80' : 'bg-green-soft text-text-muted'">{{ tab.count }}</span>
         </button>
       </div>
-
-      <!-- Search + Sort -->
       <div class="flex items-center gap-3">
-        <div
-          class="flex items-center gap-2 bg-white border border-gray-100 rounded-xl px-4 h-10 shadow-sm focus-within:border-emerald-300 focus-within:ring-2 focus-within:ring-emerald-500/10 transition-all">
-          <svg class="text-gray-300 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input v-model="searchQuery" type="text" placeholder="Search tables..."
-            class="border-none outline-none bg-transparent text-sm text-[#1a1a2e] w-40 placeholder:text-gray-300" />
+        <div class="flex items-center gap-2.5 bg-white border border-border-green rounded-[var(--radius-input)] px-4 h-11 focus-within:border-green-medium focus-within:shadow-[0_0_0_4px_rgba(26,92,46,0.06)] transition-all">
+          <svg class="text-text-ghost shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input v-model="searchQuery" type="text" placeholder="Buscar mesas..." class="border-none outline-none bg-transparent text-sm text-ink w-40 placeholder:text-text-ghost font-sans" />
         </div>
-        <select v-model="sortBy"
-          class="h-10 px-4 rounded-xl border border-gray-100 bg-white text-sm font-medium text-gray-600 cursor-pointer shadow-sm">
-          <option value="number">Sort by Number</option>
-          <option value="guests">Sort by Guests</option>
-          <option value="status">Sort by Status</option>
+        <select v-model="sortBy" class="h-11 px-4 rounded-[var(--radius-input)] border border-border-green bg-white text-sm font-medium text-text-sec cursor-pointer focus:border-green-medium focus:shadow-[0_0_0_4px_rgba(26,92,46,0.06)] outline-none transition-all font-sans">
+          <option value="number">Por número</option>
+          <option value="guests">Por capacidad</option>
+          <option value="status">Por estado</option>
         </select>
       </div>
     </div>
 
     <!-- Error -->
-    <div v-if="tableStore.error"
-      class="flex items-center gap-3 p-4 rounded-xl text-sm mb-5 bg-red-50 text-red-600 border border-red-100">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="15" y1="9" x2="9" y2="15" />
-        <line x1="9" y1="9" x2="15" y2="15" />
-      </svg>
+    <div v-if="tableStore.error" class="alert-mm bg-danger-soft border-[1.5px] border-[rgba(185,60,60,0.15)] text-danger mb-5">
+      <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
       <span class="flex-1">{{ tableStore.error }}</span>
-      <button @click="tableStore.clearError"
-        class="text-red-300 hover:text-red-500 text-xl leading-none bg-transparent border-none cursor-pointer">&times;</button>
+      <button @click="tableStore.clearError" class="text-danger/40 hover:text-danger/80 text-xl leading-none bg-transparent border-none cursor-pointer">&times;</button>
     </div>
 
     <!-- Toast -->
     <Transition name="toast">
-      <div v-if="toast" class="flex items-center gap-3 p-4 rounded-xl text-sm mb-5 border"
-        :class="toast.type === 'success' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-600 border-red-100'">
-        <svg v-if="toast.type === 'success'" width="18" height="18" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-          <polyline points="22 4 12 14.01 9 11.01" />
-        </svg>
-        <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="15" y1="9" x2="9" y2="15" />
-          <line x1="9" y1="9" x2="15" y2="15" />
-        </svg>
+      <div v-if="toast" class="alert-mm mb-5 border-[1.5px]"
+        :class="toast.type === 'success' ? 'bg-green-soft border-border-green text-green-forest' : 'bg-danger-soft border-[rgba(185,60,60,0.15)] text-danger'">
+        <svg v-if="toast.type === 'success'" class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg v-else class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
         <span class="flex-1">{{ toast.message }}</span>
-        <button @click="toast = null"
-          class="text-current opacity-40 hover:opacity-80 text-xl leading-none bg-transparent border-none cursor-pointer">&times;</button>
+        <button @click="toast = null" class="text-current opacity-40 hover:opacity-80 text-xl leading-none bg-transparent border-none cursor-pointer">&times;</button>
       </div>
     </Transition>
 
     <!-- Loading -->
-    <div v-if="tableStore.loading"
-      class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 animate-pulse space-y-6">
+    <div v-if="tableStore.loading" class="bg-white rounded-[var(--radius-card)] border border-border-green-light p-8 space-y-6">
       <div v-for="n in 5" :key="n" class="flex items-center gap-8">
-        <div class="w-10 h-10 rounded-xl bg-gray-100 shrink-0"></div>
-        <div class="h-4 w-28 rounded-lg bg-gray-100"></div>
-        <div class="h-4 w-20 rounded-lg bg-gray-100"></div>
-        <div class="h-6 w-16 rounded-full bg-gray-100"></div>
-        <div class="h-4 w-24 rounded-lg bg-gray-100 ml-auto"></div>
+        <div class="w-10 h-10 rounded-2xl skeleton-mm shrink-0"></div>
+        <div class="h-4 w-28 rounded-xl skeleton-mm"></div>
+        <div class="h-4 w-20 rounded-xl skeleton-mm"></div>
+        <div class="h-6 w-16 rounded-full skeleton-mm"></div>
+        <div class="h-4 w-24 rounded-xl skeleton-mm ml-auto"></div>
       </div>
     </div>
 
-    <!-- Table card -->
-    <div v-else-if="paginatedTables.length > 0"
-      class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <!-- Table -->
+    <div v-else-if="paginatedTables.length > 0" class="bg-white rounded-[var(--radius-card)] border border-border-green-light shadow-sm overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full min-w-[700px]">
           <thead>
-            <tr class="border-b border-gray-100">
-              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-gray-400 uppercase tracking-[0.08em] w-[35%]">
-                Table</th>
-              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-gray-400 uppercase tracking-[0.08em] w-[20%]">
-                Capacity</th>
-              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-gray-400 uppercase tracking-[0.08em] w-[20%]">
-                Status</th>
-              <th
-                class="text-right py-3.5 px-6 text-[11px] font-bold text-gray-400 uppercase tracking-[0.08em] w-[25%]">
-                Actions</th>
+            <tr class="border-b border-border-green-light">
+              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em] w-[35%]">Mesa</th>
+              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em] w-[20%]">Capacidad</th>
+              <th class="text-left py-3.5 px-6 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em] w-[20%]">Estado</th>
+              <th class="text-right py-3.5 px-6 text-[11px] font-bold text-text-muted uppercase tracking-[0.1em] w-[25%]">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="table in paginatedTables" :key="table.id"
-              class="border-b border-gray-50 last:border-b-0 hover:bg-[#f8f9fb] transition-colors">
-              <!-- Table info -->
+            <tr v-for="table in paginatedTables" :key="table.id" class="border-b border-border-green-light last:border-b-0 hover:bg-green-soft-2 transition-colors">
               <td class="py-4 px-6">
                 <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 rounded-xl bg-[#f5f6f8] border border-gray-100 flex items-center justify-center text-gray-400 shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                      stroke-linecap="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <line x1="3" y1="9" x2="21" y2="9" />
-                      <line x1="9" y1="21" x2="9" y2="9" />
-                    </svg>
+                  <div class="w-10 h-10 rounded-2xl bg-cream border border-border-green flex items-center justify-center text-text-muted shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                   </div>
                   <div>
-                    <span class="block text-sm font-semibold text-[#1a1a2e]">Table {{ String(table.number).padStart(2,
-                      '0') }}</span>
-                    <span class="block text-xs text-gray-400 mt-0.5 tabular-nums font-mono">#TB-{{
-                      String(table.id).padStart(3, '0') }}</span>
+                    <span class="block text-sm font-bold text-ink">Mesa {{ String(table.number).padStart(2, '0') }}</span>
+                    <span class="block text-xs text-text-muted mt-0.5 font-display">#TB-{{ String(table.id).padStart(3, '0') }}</span>
                   </div>
                 </div>
               </td>
-
-              <!-- Guests -->
               <td class="py-4 px-6">
-                <div class="flex items-center gap-2 text-sm text-gray-500">
-                  <svg class="text-gray-300" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                  <span class="font-medium">{{ table.max_guests }}</span> guests
+                <div class="flex items-center gap-2 text-sm text-text-sec">
+                  <svg class="text-text-ghost" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  <span class="font-medium font-display">{{ table.max_guests }}</span> personas
                 </div>
               </td>
-
-              <!-- Status -->
               <td class="py-4 px-6">
-                <span class="inline-flex items-center gap-2 text-xs font-semibold py-1.5 px-3 rounded-full" :class="table.active
-                  ? 'bg-emerald-50 text-emerald-600'
-                  : 'bg-gray-50 text-gray-400'">
-                  <span class="w-2 h-2 rounded-full" :class="table.active
-                    ? 'bg-emerald-500 shadow-[0_0_0_2px_rgba(16,185,129,0.2)]'
-                    : 'bg-gray-300'"></span>
-                  {{ table.active ? 'Active' : 'Inactive' }}
+                <span class="badge-mm" :class="table.active ? 'bg-green-soft text-green-forest' : 'bg-cream-dark text-text-muted'">
+                  <span class="w-1.5 h-1.5 rounded-full" :class="table.active ? 'bg-green-bright' : 'bg-text-ghost'"></span>
+                  {{ table.active ? 'Activa' : 'Inactiva' }}
                 </span>
               </td>
-
-              <!-- Actions -->
               <td class="py-4 px-6">
                 <div class="flex gap-1.5 justify-end">
-                  <button :title="table.active ? 'Deactivate' : 'Activate'" @click="handleToggle(table.number)"
-                    class="w-9 h-9 rounded-lg bg-transparent border border-transparent text-gray-400 cursor-pointer flex items-center justify-center transition-all duration-150 hover:bg-blue-50 hover:text-blue-500 hover:border-blue-100">
-                    <svg v-if="table.active" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                      <rect x="6" y="4" width="4" height="16" />
-                      <rect x="14" y="4" width="4" height="16" />
-                    </svg>
-                    <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <polygon points="5,3 19,12 5,21" />
-                    </svg>
+                  <button :title="table.active ? 'Desactivar' : 'Activar'" @click="handleToggle(table.number)"
+                    class="w-9 h-9 rounded-[10px] bg-transparent border border-transparent text-text-muted cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-info-soft hover:text-info hover:border-[rgba(37,99,235,0.15)]">
+                    <svg v-if="table.active" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                    <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
                   </button>
-                  <button title="Edit" @click="openEditModal(table)"
-                    class="w-9 h-9 rounded-lg bg-transparent border border-transparent text-gray-400 cursor-pointer flex items-center justify-center transition-all duration-150 hover:bg-amber-50 hover:text-amber-500 hover:border-amber-100">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                    </svg>
+                  <button title="Editar" @click="openEditModal(table)"
+                    class="w-9 h-9 rounded-[10px] bg-transparent border border-transparent text-text-muted cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-warning-soft hover:text-warning hover:border-[rgba(196,138,26,0.15)]">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                   </button>
-                  <button title="Delete" @click="openDeleteModal(table)"
-                    class="w-9 h-9 rounded-lg bg-transparent border border-transparent text-gray-400 cursor-pointer flex items-center justify-center transition-all duration-150 hover:bg-red-50 hover:text-red-500 hover:border-red-100">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="3 6 5 6 21 6" />
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                    </svg>
+                  <button title="Eliminar" @click="openDeleteModal(table)"
+                    class="w-9 h-9 rounded-[10px] bg-transparent border border-transparent text-text-muted cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-danger-soft hover:text-danger hover:border-[rgba(185,60,60,0.15)]">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                   </button>
                 </div>
               </td>
@@ -218,65 +134,49 @@
       </div>
 
       <!-- Pagination -->
-      <div v-if="totalPages > 1" class="flex items-center justify-between py-4 px-6 border-t border-gray-100">
-        <span class="text-sm text-gray-400">
-          Showing <span class="font-semibold text-gray-600">{{ paginationStart }}–{{ paginationEnd }}</span> of <span
-            class="font-semibold text-gray-600">{{ sortedTables.length }}</span>
+      <div v-if="totalPages > 1" class="flex items-center justify-between py-4 px-6 border-t border-border-green-light">
+        <span class="text-sm text-text-muted">
+          Mostrando <span class="font-semibold text-text-sec">{{ paginationStart }}–{{ paginationEnd }}</span> de <span class="font-semibold text-text-sec">{{ sortedTables.length }}</span>
         </span>
         <div class="flex gap-1.5">
           <button :disabled="currentPage === 1" @click="currentPage--"
-            class="w-9 h-9 rounded-lg border border-gray-200 bg-white text-gray-500 flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-emerald-300 hover:text-emerald-600 transition-all">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
+            class="w-9 h-9 rounded-[10px] border border-border-green bg-white text-text-muted flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-green-medium hover:text-green-forest transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <button v-for="page in totalPages" :key="page" @click="currentPage = page"
-            class="w-9 h-9 rounded-lg border text-sm font-semibold flex items-center justify-center cursor-pointer transition-all"
+            class="w-9 h-9 rounded-[10px] border text-sm font-bold flex items-center justify-center cursor-pointer transition-all font-display"
             :class="currentPage === page
-              ? 'bg-[#1a1a2e] border-[#1a1a2e] text-white'
-              : 'border-gray-200 bg-white text-gray-500 hover:border-emerald-300 hover:text-emerald-600'">{{ page
-              }}</button>
+              ? 'bg-green-forest border-green-forest text-cream'
+              : 'border-border-green bg-white text-text-muted hover:border-green-medium hover:text-green-forest'">{{ page }}</button>
           <button :disabled="currentPage === totalPages" @click="currentPage++"
-            class="w-9 h-9 rounded-lg border border-gray-200 bg-white text-gray-500 flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-emerald-300 hover:text-emerald-600 transition-all">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
+            class="w-9 h-9 rounded-[10px] border border-border-green bg-white text-text-muted flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-green-medium hover:text-green-forest transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
       </div>
     </div>
 
     <!-- Empty -->
-    <div v-else class="text-center py-24 bg-white border border-dashed border-gray-200 rounded-2xl">
-      <div class="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mx-auto mb-5">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4c9d4" stroke-width="1.5"
-          stroke-linecap="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <line x1="3" y1="9" x2="21" y2="9" />
-          <line x1="9" y1="21" x2="9" y2="9" />
-        </svg>
+    <div v-else class="text-center py-24 bg-white border-2 border-dashed border-border-green rounded-[var(--radius-card)]">
+      <div class="w-20 h-20 rounded-full bg-green-soft flex items-center justify-center mx-auto mb-5" style="animation:float 6s ease-in-out infinite">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a5c2e" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
       </div>
-      <h3 class="text-base font-bold text-[#1a1a2e] mb-1">No tables found</h3>
-      <p v-if="filter === 'all' && !searchQuery" class="text-sm text-gray-400 mb-5">Add your first table to get started.
-      </p>
-      <p v-else class="text-sm text-gray-400 mb-5">Try changing your filters or search query.</p>
-      <button v-if="filter === 'all' && !searchQuery" @click="openCreateModal"
-        class="inline-flex items-center gap-2 py-2.5 px-5 rounded-xl text-sm font-semibold bg-emerald-500 text-white border-none cursor-pointer hover:bg-emerald-600 transition-colors">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
-        Add Table
+      <h3 class="font-display text-lg font-bold text-ink mb-2">
+        {{ filter === 'all' && !searchQuery ? 'Aún sin mesas' : 'Sin resultados' }}
+      </h3>
+      <p v-if="filter === 'all' && !searchQuery" class="text-sm text-text-muted mb-6 max-w-xs mx-auto">Añade la primera mesa para empezar a gestionar tu local.</p>
+      <p v-else class="text-sm text-text-muted mb-6">Prueba cambiando los filtros o el término de búsqueda.</p>
+      <button v-if="filter === 'all' && !searchQuery" @click="openCreateModal" class="btn-mm btn-primary text-[13px]">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Añadir mesa
       </button>
     </div>
 
     <!-- Modals -->
-    <TableModal :visible="showTableModal" :table="selectedTable" :error="formError" :submitting="formSubmitting"
-      @close="closeTableModal" @submit="handleSubmitTable" @clear-error="formError = null" />
-    <ConfirmModal :visible="showDeleteModal" title="Delete table"
-      :message="`This will permanently remove Table ${String(tableToDelete?.number).padStart(2, '0')}. This action cannot be undone.`"
-      confirm-text="Delete" :error="deleteError" :submitting="deleteSubmitting" @confirm="handleDelete"
-      @cancel="closeDeleteModal" />
+    <TableModal :visible="showTableModal" :table="selectedTable" :error="formError" :submitting="formSubmitting" @close="closeTableModal" @submit="handleSubmitTable" @clear-error="formError = null" />
+    <ConfirmModal :visible="showDeleteModal" title="¿Eliminar mesa?"
+      :message="`Se eliminará permanentemente la Mesa ${String(tableToDelete?.number).padStart(2, '0')}. No se puede deshacer.`"
+      confirm-text="Eliminar" :error="deleteError" :submitting="deleteSubmitting" @confirm="handleDelete" @cancel="closeDeleteModal" />
   </div>
 </template>
 
@@ -303,9 +203,9 @@ const activeTables = computed(() => tables.value.filter(t => t.active).length)
 const inactiveTables = computed(() => tables.value.filter(t => !t.active).length)
 
 const tabs = computed(() => [
-  { label: 'All', value: 'all' as const, count: tables.value.length },
-  { label: 'Active', value: 'active' as const, count: activeTables.value },
-  { label: 'Inactive', value: 'inactive' as const, count: inactiveTables.value }
+  { label: 'Todas', value: 'all' as const, count: tables.value.length },
+  { label: 'Activas', value: 'active' as const, count: activeTables.value },
+  { label: 'Inactivas', value: 'inactive' as const, count: inactiveTables.value }
 ])
 
 const filteredTables = computed(() => {
@@ -363,8 +263,8 @@ const handleSubmitTable = async (number: number, maxGuests: number) => {
     ? await tableStore.updateTable(cif.value, selectedTable.value.number, { max_guests: maxGuests })
     : await tableStore.createTable(cif.value, { number, max_guests: maxGuests })
   formSubmitting.value = false
-  if (result.ok) { closeTableModal(); showToast('success', result.message ?? 'Done.') }
-  else { formError.value = result.error ?? 'An error occurred.' }
+  if (result.ok) { closeTableModal(); showToast('success', result.message ?? 'Hecho.') }
+  else { formError.value = result.error ?? 'Ha ocurrido un error.' }
 }
 
 const showDeleteModal = ref(false)
@@ -379,30 +279,20 @@ const handleDelete = async () => {
   deleteSubmitting.value = true; deleteError.value = null
   const result = await tableStore.deleteTable(cif.value, tableToDelete.value.number)
   deleteSubmitting.value = false
-  if (result.ok) { closeDeleteModal(); showToast('success', result.message ?? 'Deleted.') }
-  else { deleteError.value = result.error ?? 'An error occurred.' }
+  if (result.ok) { closeDeleteModal(); showToast('success', result.message ?? 'Eliminada.') }
+  else { deleteError.value = result.error ?? 'Ha ocurrido un error.' }
 }
 
 const handleToggle = async (num: number) => {
   const result = await tableStore.toggleTable(cif.value, num)
-  showToast(result.ok ? 'success' : 'error', (result.ok ? result.message : result.error) ?? 'Done.')
+  showToast(result.ok ? 'success' : 'error', (result.ok ? result.message : result.error) ?? 'Hecho.')
 }
 
 onMounted(() => { tableStore.fetchTables(cif.value) })
 </script>
 
 <style scoped>
-.toast-enter-active {
-  transition: all 0.25s ease;
-}
-
-.toast-leave-active {
-  transition: all 0.2s ease;
-}
-
-.toast-enter-from,
-.toast-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
+.toast-enter-active { transition: all 0.25s ease; }
+.toast-leave-active { transition: all 0.2s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(-8px); }
 </style>

@@ -1,80 +1,94 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
-      <h1 class="text-3xl font-bold text-center text-green-400 mb-8">Iniciar Sesión</h1>
+  <div class="min-h-screen flex items-center justify-center bg-cream px-4 py-12 relative overflow-hidden">
+    <!-- Blobs decorativos -->
+    <div class="absolute w-[350px] h-[350px] top-[-120px] right-[-100px] pointer-events-none bg-green-soft-2" style="animation:blob-morph 8s ease-in-out infinite"></div>
+    <div class="absolute w-[280px] h-[280px] bottom-[-100px] left-[-80px] pointer-events-none bg-green-soft-2" style="animation:blob-morph 8s ease-in-out infinite;animation-delay:-4s"></div>
 
-      <div
-        v-if="errorMessage"
-        class="mb-4 p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-sm text-center"
-      >
-        {{ errorMessage }}
+    <div class="max-w-[400px] w-full relative z-10" style="animation:fade-up 0.6s cubic-bezier(0.25,1,0.5,1)">
+      <!-- Logo -->
+      <div class="text-center mb-9">
+        <svg viewBox="0 0 452 263" class="w-14 mx-auto mb-4" style="animation:float 5s ease-in-out infinite" xmlns="http://www.w3.org/2000/svg"><path d="M 444,244 L 430,216 L 380,128 L 374,127 L 369,130 L 335,161 L 333,160 L 281,15 L 277,8 L 272,10 L 188,159 L 170,188 L 151,194 L 139,193 L 207,92 L 215,74 L 214,69 L 208,69 L 194,79 L 11,229 L 8,235 L 12,240 L 138,240 L 139,242 L 134,250 L 136,255 L 197,255 L 209,253 L 220,249 L 228,242 L 245,211 L 268,153 L 297,241 L 309,242 L 318,238 L 339,218 L 361,193 L 365,199 L 378,231 L 386,243 L 405,248 L 440,248 Z" fill="#1A5C2E"/></svg>
+        <h1 class="font-display text-[26px] font-bold text-green-forest tracking-tight">Iniciar sesión</h1>
+        <p class="text-sm text-text-sec mt-1">Accede a tu cuenta de MakeMenu</p>
       </div>
 
-      <form @submit.prevent="onLogin">
-        <div class="mb-5">
-          <label for="username" class="block text-sm font-medium text-gray-300 mb-1">Usuario</label>
-          <input
-            v-model="form.username"
-            ref="usernameInputRef"
-            type="text"
-            id="username"
-            name="username"
-            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors"
-            autocomplete="off"
-          />
-        </div>
-
-        <div class="mb-5">
-          <label for="password" class="block text-sm font-medium text-gray-300 mb-1"
-            >Contraseña</label
-          >
-          <input
-            v-model="form.password"
-            ref="passwordInputRef"
-            type="password"
-            id="password"
-            name="password"
-            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors"
-            autocomplete="off"
-          />
-        </div>
-
-        <div class="mb-6 flex items-center">
-          <input
-            v-model="form.rememberMe"
-            type="checkbox"
-            id="remember"
-            name="remember"
-            class="w-4 h-4 text-green-500 bg-gray-900 border-gray-700 rounded focus:ring-green-400 focus:ring-offset-gray-800"
-          />
-          <label for="remember" class="text-sm text-gray-400 ml-2 cursor-pointer"
-            >Recordar usuario</label
-          >
-        </div>
-
-        <div class="mb-6 text-sm text-right">
-          <a href="#" class="text-green-400 hover:text-green-300 transition-colors"
-            >¿Olvidaste la contraseña?</a
-          >
-        </div>
-
-        <button
-          type="submit"
-          class="w-full bg-green-500 hover:bg-green-400 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors"
+      <!-- Card -->
+      <div class="bg-white border border-border-green rounded-[24px] p-8 shadow-md">
+        <!-- Error -->
+        <div
+          v-if="errorMessage"
+          class="mb-5 p-4 bg-danger-soft border-[1.5px] border-[rgba(185,60,60,0.15)] rounded-2xl text-danger text-sm flex items-center gap-3"
+          style="animation:fade-up 0.3s ease"
         >
-          Ingresar
-        </button>
-      </form>
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          {{ errorMessage }}
+        </div>
 
-      <div class="mt-6 text-sm text-center text-gray-400">
+        <form @submit.prevent="onLogin">
+          <!-- Usuario -->
+          <div class="mb-5">
+            <label for="username" class="block text-[13px] font-semibold text-text-main mb-1.5">Usuario</label>
+            <input
+              v-model="form.username"
+              ref="usernameInputRef"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="tu.usuario"
+              class="input-mm"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- Contraseña -->
+          <div class="mb-5">
+            <label for="password" class="block text-[13px] font-semibold text-text-main mb-1.5">Contraseña</label>
+            <input
+              v-model="form.password"
+              ref="passwordInputRef"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              class="input-mm"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- Recordar + olvidaste -->
+          <div class="flex items-center justify-between mb-6">
+            <label for="remember" class="flex items-center gap-2.5 cursor-pointer group">
+              <div
+                class="w-[22px] h-[22px] rounded-[7px] border-2 flex items-center justify-center transition-all"
+                :class="form.rememberMe
+                  ? 'bg-green-forest border-green-forest scale-105'
+                  : 'border-[rgba(26,92,46,0.2)] group-hover:border-[rgba(26,92,46,0.3)]'"
+              >
+                <svg v-if="form.rememberMe" class="w-3 h-3 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <input v-model="form.rememberMe" type="checkbox" id="remember" class="sr-only" />
+              <span class="text-[13px] text-text-sec">Recordar</span>
+            </label>
+            <a href="#" class="text-[13px] text-green-medium font-medium hover:text-green-forest transition-colors">¿Olvidaste?</a>
+          </div>
+
+          <!-- Botón -->
+          <button
+            type="submit"
+            class="btn-mm btn-primary w-full h-[50px] text-[15px]"
+          >
+            Ingresar →
+          </button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <p class="text-center mt-6 text-sm text-text-sec">
         ¿No tienes cuenta?
-        <RouterLink
-          :to="{ name: 'register' }"
-          class="text-green-400 hover:text-green-300 transition-colors"
-        >
-          Crear cuenta aquí
+        <RouterLink :to="{ name: 'register' }" class="text-green-medium font-semibold hover:text-green-forest transition-colors">
+          Crear cuenta
         </RouterLink>
-      </div>
+      </p>
     </div>
   </div>
 </template>
@@ -97,7 +111,6 @@ const form = reactive({
   rememberMe: false,
 })
 
-// Precarga el username guardado si el usuario marcó "Recordar"
 onMounted(() => {
   const savedUsername = localStorage.getItem('saved_username')
   if (savedUsername) {
@@ -112,7 +125,6 @@ const onLogin = async () => {
   if (!form.username) return usernameInputRef.value?.focus()
   if (form.password.length < 3) return passwordInputRef.value?.focus()
 
-  // Guarda solo el nombre de usuario para autocompletar (no el token)
   localStorage[form.rememberMe ? 'setItem' : 'removeItem']('saved_username', form.username)
 
   const result = await authStore.login(form.username, form.password, form.rememberMe)

@@ -280,18 +280,18 @@ def generate_invitation(request):
         except json.JSONDecodeError:
             role_requested = Manage.Role.WAITER
 
-        # 2. SEGURIDAD VITAL: Verificar que el usuario que hace la petición es MANAGER
-        # Buscamos si el request.user tiene una entrada en Manage con el rol MANAGER
-        try:
-            manager_link = Manage.objects.get(member=request.user, role=Manage.Role.MANAGER)
-            establishment = manager_link.establishment
-        except Manage.DoesNotExist:
+        # 2. SEGURIDAD: Verificar que el usuario es MANAGER en al menos un establecimiento
+        manager_link = Manage.objects.filter(
+            member=request.user, role=Manage.Role.MANAGER
+        ).select_related('establishment').first()
+
+        if not manager_link:
             return JsonResponse(
-                {
-                    'error': 'Acceso denegado. No tienes permisos de Manager en ningún establecimiento.'
-                },
+                {'error': 'Acceso denegado. No tienes permisos de Manager en ningún establecimiento.'},
                 status=HTTPStatus.FORBIDDEN,
             )
+
+        establishment = manager_link.establishment
 
         # 3. Fabricar la invitación secreta en la base de datos
         invitation = Invitation.objects.create(
