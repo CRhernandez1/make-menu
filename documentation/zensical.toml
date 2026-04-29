@@ -10,25 +10,25 @@ nav = [
   { "Make Menu" = [
     { "Overview" = "make-menu/index.md" },
     { "Plan de Marketing" = "make-menu/marketing.md" },
-    {"Normativa" = "make-menu/normativa.md"},
-    {"Impacto ambiental" = "make-menu/impacto-ambiental.md"},
-    {"Creadores" = "make-menu/creadores.md"}
+    { "Normativa" = "make-menu/normativa.md" },
+    { "Impacto ambiental" = "make-menu/impacto-ambiental.md" },
+    { "Creadores" = "make-menu/creadores.md" },
   ]},
   { "Guía de usuario" = [
     { "Overview" = "user-guide/index.md" },
-    { "Funcionalidades" = "user-guide/features.md" }
+    { "Funcionalidades" = "user-guide/features.md" },
   ]},
   { "Documentación técnica" = [
     { "Overview" = "technical/index.md" },
     { "Backend" = "technical/backend.md" },
     { "Frontend" = "technical/frontend.md" },
     { "Despliegue" = "technical/deploy.md" },
-
   ]},
 ]
 
 [project.theme]
 language = "es"
+logo = "assets/logo.svg"
 features = [
     "announce.dismiss",
     "content.code.annotate",
@@ -51,6 +51,10 @@ features = [
 [project.theme.icon]
 logo = "lucide/book-marked"
 
+[project.theme.font]
+text = "Sora"
+code = "Space Grotesk"
+
 [[project.theme.palette]]
 scheme = "default"
 toggle.icon = "lucide/sun"
@@ -60,7 +64,3 @@ toggle.name = "Switch to dark mode"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
-
-[project.theme.font]
-text = "Sora"
-code = "Space Grotesk"
