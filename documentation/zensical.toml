@@ -7,7 +7,8 @@ copyright = """
 Copyright &copy; 2026 The authors
 """
 nav = [
-  { "Make Menu" = [
+  {"MakeMenu" = [{"Overview" = "index.md"}]},
+  { "¿Qué es MakeMenu?" = [
     { "Overview" = "make-menu/index.md" },
     { "Plan de Marketing" = "make-menu/marketing.md" },
     { "Normativa" = "make-menu/normativa.md" },
@@ -64,3 +65,5 @@ toggle.name = "Switch to dark mode"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
+
+copyright = "Copyright &copy; 2026 MakeMenu S.L. — Todos los derechos reservados."
