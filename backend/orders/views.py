@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-
 from establishments.models import Establishment, Table
 from products.models import Product
 from shared.decorators import parse_json, require_http_methods
@@ -156,9 +155,12 @@ def create_public_order(request, establishment_cif):
         )
 
     return JsonResponse({'ok': True, 'order_id': order.pk}, status=201)
+
+
 # ──────────────────────────────────────────────
 # Waiter: Mesas y acciones
 # ──────────────────────────────────────────────
+
 
 @require_http_methods('GET')
 @auth_required
@@ -173,11 +175,15 @@ def waiter_tables(request):
 
     tables_data = []
     for table in tables:
-        active_order = Order.objects.filter(
-            table=table,
-            establishment=establishment,
-            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE]
-        ).exclude(paid=True).first()
+        active_order = (
+            Order.objects.filter(
+                table=table,
+                establishment=establishment,
+                status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE],
+            )
+            .exclude(paid=True)
+            .first()
+        )
 
         status = 'free'
         order_info = None
@@ -199,17 +205,21 @@ def waiter_tables(request):
                 'placed_at': active_order.placed_at.isoformat(),
             }
 
-        tables_data.append({
-            'number': table.number,
-            'max_guests': table.max_guests,
-            'status': status,
-            'order': order_info,
-        })
+        tables_data.append(
+            {
+                'number': table.number,
+                'max_guests': table.max_guests,
+                'status': status,
+                'order': order_info,
+            }
+        )
 
-    return JsonResponse({
-        'establishment': establishment.name,
-        'tables': tables_data,
-    })
+    return JsonResponse(
+        {
+            'establishment': establishment.name,
+            'tables': tables_data,
+        }
+    )
 
 
 @require_http_methods('GET')
@@ -227,38 +237,44 @@ def waiter_table_order(request, table_num):
     except Table.DoesNotExist:
         return JsonResponse({'error': 'Mesa no encontrada.'}, status=404)
 
-    active_order = Order.objects.filter(
-        table=table,
-        establishment=establishment,
-        status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE]
-    ).exclude(paid=True).first()
+    active_order = (
+        Order.objects.filter(
+            table=table,
+            establishment=establishment,
+            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE],
+        )
+        .exclude(paid=True)
+        .first()
+    )
 
     if not active_order:
         return JsonResponse({'order': None})
 
     details = active_order.details.select_related('product').all()
 
-    return JsonResponse({
-        'order': {
-            'id': active_order.id,
-            'status': active_order.status,
-            'status_display': active_order.get_status_display(),
-            'table_number': table.number,
-            'placed_at': active_order.placed_at.isoformat(),
-            'total': f'{active_order.total:.2f}',
-            'paid': active_order.paid,
-            'items': [
-                {
-                    'id': d.id,
-                    'product_name': d.product.name,
-                    'price': f'{d.price:.2f}',
-                    'quantity': d.quantity,
-                    'notes': d.notes,
-                }
-                for d in details
-            ],
+    return JsonResponse(
+        {
+            'order': {
+                'id': active_order.id,
+                'status': active_order.status,
+                'status_display': active_order.get_status_display(),
+                'table_number': table.number,
+                'placed_at': active_order.placed_at.isoformat(),
+                'total': f'{active_order.total:.2f}',
+                'paid': active_order.paid,
+                'items': [
+                    {
+                        'id': d.id,
+                        'product_name': d.product.name,
+                        'price': f'{d.price:.2f}',
+                        'quantity': d.quantity,
+                        'notes': d.notes,
+                    }
+                    for d in details
+                ],
+            }
         }
-    })
+    )
 
 
 @csrf_exempt
@@ -284,11 +300,13 @@ def waiter_advance_order(request, order_id):
         return JsonResponse({'error': 'Este pedido no se puede avanzar.'}, status=400)
 
     order.save()
-    return JsonResponse({
-        'message': f'Pedido actualizado a "{order.get_status_display()}".',
-        'status': order.status,
-        'status_display': order.get_status_display(),
-    })
+    return JsonResponse(
+        {
+            'message': f'Pedido actualizado a "{order.get_status_display()}".',
+            'status': order.status,
+            'status_display': order.get_status_display(),
+        }
+    )
 
 
 @csrf_exempt
@@ -304,7 +322,7 @@ def waiter_cancel_order(request, order_id):
         order = Order.objects.get(
             id=order_id,
             establishment_id__in=est_ids,
-            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
+            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS],
         )
     except Order.DoesNotExist:
         return JsonResponse({'error': 'Pedido no encontrado o ya cerrado.'}, status=404)
@@ -331,11 +349,15 @@ def waiter_close_table(request, table_num):
     except Table.DoesNotExist:
         return JsonResponse({'error': 'Mesa no encontrada.'}, status=404)
 
-    active_order = Order.objects.filter(
-        table=table,
-        establishment=establishment,
-        status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE]
-    ).exclude(paid=True).first()
+    active_order = (
+        Order.objects.filter(
+            table=table,
+            establishment=establishment,
+            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS, Order.Status.DONE],
+        )
+        .exclude(paid=True)
+        .first()
+    )
 
     if not active_order:
         return JsonResponse({'error': 'No hay pedido activo en esta mesa.'}, status=400)
@@ -345,10 +367,12 @@ def waiter_close_table(request, table_num):
     active_order.closed_at = timezone.now()
     active_order.save()
 
-    return JsonResponse({
-        'message': f'Mesa {table.number} cerrada. Total: {active_order.total:.2f}€',
-        'total': f'{active_order.total:.2f}',
-    })
+    return JsonResponse(
+        {
+            'message': f'Mesa {table.number} cerrada. Total: {active_order.total:.2f}€',
+            'total': f'{active_order.total:.2f}',
+        }
+    )
 
 
 @csrf_exempt
@@ -364,7 +388,7 @@ def kitchen_toggle_item(request, item_id):
         item = OrderDetail.objects.select_related('order').get(
             id=item_id,
             order__establishment_id__in=est_ids,
-            order__status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
+            order__status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS],
         )
     except OrderDetail.DoesNotExist:
         return JsonResponse({'error': 'Plato no encontrado.'}, status=404)
@@ -387,17 +411,20 @@ def kitchen_toggle_item(request, item_id):
         order.closed_at = timezone.now()
         order.save()
 
-    return JsonResponse({
-        'message': f'{"Listo" if item.ready else "Pendiente"}: {item.product.name}',
-        'item_ready': item.ready,
-        'order_status': order.status,
-        'order_done': all_ready,
-    })
+    return JsonResponse(
+        {
+            'message': f'{"Listo" if item.ready else "Pendiente"}: {item.product.name}',
+            'item_ready': item.ready,
+            'order_status': order.status,
+            'order_done': all_ready,
+        }
+    )
 
 
 # ──────────────────────────────────────────────
 # Kitchen: Pedidos activos y acciones
 # ──────────────────────────────────────────────
+
 
 @require_http_methods('GET')
 @auth_required
@@ -408,10 +435,15 @@ def kitchen_active_orders(request):
 
     establishment = Establishment.objects.get(pk=est_ids[0])
 
-    orders = Order.objects.filter(
-        establishment=establishment,
-        status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
-    ).select_related('table').prefetch_related('details__product').order_by('placed_at')
+    orders = (
+        Order.objects.filter(
+            establishment=establishment,
+            status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS],
+        )
+        .select_related('table')
+        .prefetch_related('details__product')
+        .order_by('placed_at')
+    )
 
     orders_data = []
     for order in orders:
@@ -419,31 +451,35 @@ def kitchen_active_orders(request):
         ready_count = items.filter(ready=True).count()
         total_count = items.count()
 
-        orders_data.append({
-            'id': order.id,
-            'status': order.status,
-            'status_display': order.get_status_display(),
-            'table_number': order.table.number,
-            'placed_at': order.placed_at.isoformat(),
-            'total': f'{order.total:.2f}',
-            'ready_count': ready_count,
-            'total_count': total_count,
-            'items': [
-                {
-                    'id': d.id,
-                    'product_name': d.product.name,
-                    'quantity': d.quantity,
-                    'notes': d.notes,
-                    'ready': d.ready,
-                }
-                for d in items
-            ],
-        })
+        orders_data.append(
+            {
+                'id': order.id,
+                'status': order.status,
+                'status_display': order.get_status_display(),
+                'table_number': order.table.number,
+                'placed_at': order.placed_at.isoformat(),
+                'total': f'{order.total:.2f}',
+                'ready_count': ready_count,
+                'total_count': total_count,
+                'items': [
+                    {
+                        'id': d.id,
+                        'product_name': d.product.name,
+                        'quantity': d.quantity,
+                        'notes': d.notes,
+                        'ready': d.ready,
+                    }
+                    for d in items
+                ],
+            }
+        )
 
-    return JsonResponse({
-        'establishment': establishment.name,
-        'orders': orders_data,
-    })
+    return JsonResponse(
+        {
+            'establishment': establishment.name,
+            'orders': orders_data,
+        }
+    )
 
 
 @csrf_exempt
@@ -468,48 +504,10 @@ def kitchen_advance_order(request, order_id):
         return JsonResponse({'error': 'Este pedido no se puede avanzar.'}, status=400)
 
     order.save()
-    return JsonResponse({
-        'message': f'Pedido actualizado a "{order.get_status_display()}".',
-        'status': order.status,
-        'status_display': order.get_status_display(),
-    })
-
-
-@csrf_exempt
-@require_http_methods('POST')
-@auth_required
-def kitchen_toggle_item(request, item_id):
-    est_ids = _get_est_ids_by_role(request.user, 'kitchen')
-    if not est_ids:
-        return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
-
-    try:
-        item = OrderDetail.objects.select_related('order').get(
-            id=item_id,
-            order__establishment_id__in=est_ids,
-            order__status__in=[Order.Status.INITIATED, Order.Status.IN_PROGRESS]
-        )
-    except OrderDetail.DoesNotExist:
-        return JsonResponse({'error': 'Plato no encontrado.'}, status=404)
-
-    item.ready = not item.ready
-    item.save()
-
-    order = item.order
-
-    if order.status == Order.Status.INITIATED:
-        order.status = Order.Status.IN_PROGRESS
-        order.save()
-
-    all_ready = not order.details.filter(ready=False).exists()
-    if all_ready:
-        order.status = Order.Status.DONE
-        order.closed_at = timezone.now()
-        order.save()
-
-    return JsonResponse({
-        'message': f'{"Listo" if item.ready else "Pendiente"}: {item.product.name}',
-        'item_ready': item.ready,
-        'order_status': order.status,
-        'order_done': all_ready,
-    })
+    return JsonResponse(
+        {
+            'message': f'Pedido actualizado a "{order.get_status_display()}".',
+            'status': order.status,
+            'status_display': order.get_status_display(),
+        }
+    )
