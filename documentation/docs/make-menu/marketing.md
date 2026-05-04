@@ -15,7 +15,7 @@ La estrategia de comunicación se centra en demostrar el valor práctico y tangi
 
 ### Fase 1. Captación directa y asistida (año 1)
 
-En la fase inicial no esperamos que los establecimientos se registren solos. El equipo de MakeMenu contacta directamente con los negocios, presenta el producto en persona y **crea la cuenta del establecimiento por ellos**.
+En la fase inicial no esperamos que los establecimientos se registren solos. El equipo de MakeMenu contacta directamente con los negocios, presenta el producto en persona y crea la cuenta del establecimiento por ellos.
 
 Esto incluye:
 
