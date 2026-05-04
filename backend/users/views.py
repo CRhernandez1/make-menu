@@ -2,13 +2,12 @@ from http import HTTPStatus
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 from establishments.models import Invitation, Manage
 from shared.decorators import parse_json, require_http_methods
+
 from users.decorators import auth_required
 from users.models import Token
 
@@ -55,6 +54,7 @@ def login(request):
 @csrf_exempt
 @require_http_methods('POST')
 @parse_json
+@transaction.atomic
 def register(request):
     required = ['username', 'password', 'email', 'first_name', 'last_name', 'invitation_id']
     missing = [f for f in required if not request.payload.get(f)]
@@ -68,7 +68,7 @@ def register(request):
         invitation_id = request.payload['invitation_id']
         try:
             invitation = Invitation.objects.get(id=invitation_id, is_used=False)
-        except (Invitation.DoesNotExist, ValidationError):
+        except (Invitation.DoesNotExist, ValueError):
             return JsonResponse(
                 {'error': 'Invitación inválida o ya usada'}, status=HTTPStatus.BAD_REQUEST
             )

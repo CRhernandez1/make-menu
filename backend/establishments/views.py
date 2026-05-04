@@ -1,22 +1,24 @@
-import json
 from http import HTTPStatus
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
-from shared.decorators import get_instance_or_404, require_http_methods, require_role, parse_json
-
+from shared.decorators import get_instance_or_404, parse_json, require_http_methods, require_role
 from users.decorators import auth_required
 
-from .models import Establishment, Table, Manage, Invitation
-from .forms import EstablishmentCreateForm, EstablishmentUpdateForm, TableCreateForm, TableUpdateForm, ManageUpdateForm
-
-from .serializers import EstablishmentSerializer, TableSerializer, ManageSerializer
-
+from .forms import (
+    EstablishmentCreateForm,
+    EstablishmentUpdateForm,
+    ManageUpdateForm,
+    TableCreateForm,
+    TableUpdateForm,
+)
+from .models import Establishment, Invitation, Manage, Table
+from .serializers import EstablishmentSerializer, ManageSerializer, TableSerializer
 
 # ──────────────────────────────────────────────
 # Establishment Views
 # ──────────────────────────────────────────────
+
 
 @csrf_exempt
 @require_http_methods('GET')
@@ -61,9 +63,7 @@ def add_establishment(request):
 
     establishment = form.save()
     Manage.objects.create(
-        establishment=establishment,
-        member=request.user,
-        role=Manage.Role.MANAGER
+        establishment=establishment, member=request.user, role=Manage.Role.MANAGER
     )
     return JsonResponse({'id': establishment.pk}, status=201)
 
@@ -93,6 +93,7 @@ def delete_establishment(request, establishment_cif):
 # ──────────────────────────────────────────────
 # Table Views
 # ──────────────────────────────────────────────
+
 
 @csrf_exempt
 @require_http_methods('GET')
@@ -130,7 +131,9 @@ def add_table(request, establishment_cif):
         return JsonResponse({'errors': form.errors}, status=400)
 
     if request.instance.tables.filter(number=form.cleaned_data['number']).exists():
-        return JsonResponse({'message': f'Table {form.cleaned_data["number"]} already exists.'}, status=409)
+        return JsonResponse(
+            {'message': f'Table {form.cleaned_data["number"]} already exists.'}, status=409
+        )
 
     table = form.save(commit=False)
     table.establishment = request.instance
@@ -155,7 +158,9 @@ def edit_table(request, establishment_cif, table_num):
         return JsonResponse({'errors': form.errors}, status=400)
 
     form.save()
-    return JsonResponse({'message': f'Table {table.number} updated to {table.max_guests} guests.'}, status=200)
+    return JsonResponse(
+        {'message': f'Table {table.number} updated to {table.max_guests} guests.'}, status=200
+    )
 
 
 @csrf_exempt
@@ -192,6 +197,7 @@ def delete_table(request, establishment_cif, table_num):
 # ──────────────────────────────────────────────
 # Staff Views
 # ──────────────────────────────────────────────
+
 
 @csrf_exempt
 @require_http_methods('GET')
@@ -271,49 +277,37 @@ def my_establishments(request):
 @csrf_exempt
 @require_http_methods('POST')
 @auth_required
+@parse_json
 def generate_invitation(request):
-    try:
-        # 1. Leer el rol que nos pide Vue (si no envían nada, por defecto es WAITER)
-        try:
-            body = json.loads(request.body)
-            role_requested = body.get('role', Manage.Role.WAITER)
-        except json.JSONDecodeError:
-            role_requested = Manage.Role.WAITER
+    role_requested = request.payload.get('role', Manage.Role.WAITER)
 
-        # 2. SEGURIDAD: Verificar que el usuario es MANAGER en al menos un establecimiento
-        manager_link = Manage.objects.filter(
-            member=request.user, role=Manage.Role.MANAGER
-        ).select_related('establishment').first()
+    manager_link = (
+        Manage.objects.filter(member=request.user, role=Manage.Role.MANAGER)
+        .select_related('establishment')
+        .first()
+    )
 
-        if not manager_link:
-            return JsonResponse(
-                {'error': 'Acceso denegado. No tienes permisos de Manager en ningún establecimiento.'},
-                status=HTTPStatus.FORBIDDEN,
-            )
-
-        establishment = manager_link.establishment
-
-        # 3. Fabricar la invitación secreta en la base de datos
-        invitation = Invitation.objects.create(
-            establishment=establishment, role=role_requested, created_by=request.user
-        )
-
-        # 4. Devolver el UUID al frontend para que dibuje el QR
+    if not manager_link:
         return JsonResponse(
-            {
-                'message': 'Pase VIP generado correctamente',
-                'invitation_id': str(invitation.id),
-                'role': invitation.role,
-                'establishment_name': establishment.name,
-            },
-            status=HTTPStatus.CREATED,
+            {'error': 'Acceso denegado. No tienes permisos de Manager en ningún establecimiento.'},
+            status=HTTPStatus.FORBIDDEN,
         )
 
-    except Exception as e:
-        return JsonResponse(
-            {'error': f'Error interno del servidor: {str(e)}'},
-            status=HTTPStatus.INTERNAL_SERVER_ERROR,
-        )
+    establishment = manager_link.establishment
+
+    invitation = Invitation.objects.create(
+        establishment=establishment, role=role_requested, created_by=request.user
+    )
+
+    return JsonResponse(
+        {
+            'message': 'Pase VIP generado correctamente',
+            'invitation_id': str(invitation.id),
+            'role': invitation.role,
+            'establishment_name': establishment.name,
+        },
+        status=HTTPStatus.CREATED,
+    )
 
 
 @require_http_methods('GET')
@@ -321,14 +315,12 @@ def validate_invitation(request, invitation_id):
     try:
         invitation = Invitation.objects.get(id=invitation_id)
 
-        # Usamos tu nueva función del modelo 🎯
         if not invitation.is_valid():
             return JsonResponse(
                 {'valid': False, 'error': 'Esta invitación ya ha sido utilizada o ha caducado.'},
                 status=400,
             )
 
-        # Si es válida, le damos info útil para que el registro sea "personalizado"
         return JsonResponse(
             {
                 'valid': True,
@@ -338,7 +330,7 @@ def validate_invitation(request, invitation_id):
             status=200,
         )
 
-    except (Invitation.DoesNotExist, ValidationError):
+    except (Invitation.DoesNotExist, ValueError):
         return JsonResponse(
             {'valid': False, 'error': 'El código de invitación no existe.'}, status=404
         )
