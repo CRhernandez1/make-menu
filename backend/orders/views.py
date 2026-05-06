@@ -33,7 +33,7 @@ def _get_primary_establishment(user, role):
     est_ids = _get_est_ids_by_role(user, role)
     if not est_ids:
         return None
-    return Establishment.objects.get(pk=est_ids[0]).first()
+    return Establishment.objects.get(pk=est_ids[0])
 
 
 def _list_orders_for_role(request, role):

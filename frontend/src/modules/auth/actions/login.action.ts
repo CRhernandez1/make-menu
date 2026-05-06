@@ -35,8 +35,16 @@ export const loginAction = async (
         message: 'Usuario o contraseña incorrectos',
       }
     }
-    console.error(error)
-    throw new Error('No se pudo realizar la petición. Inténtalo más tarde.')
+    if (isAxiosError(error) && error.response?.data?.error) {
+      return {
+        ok: false,
+        message: error.response.data.error,
+      }
+    }
+    return {
+      ok: false,
+      message: 'No se pudo conectar con el servidor. Inténtalo más tarde.',
+    }
   }
 }
 
