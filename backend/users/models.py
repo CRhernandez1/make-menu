@@ -12,7 +12,8 @@ class Member(models.Model):
     )
     phone = models.CharField(max_length=16, blank=True)
     avatar = models.ImageField(upload_to='avatar', default='avatar/noavatar.png')
-
+    manager_email_sent = models.BooleanField(default=False)
+    
     def __str__(self):
         return f'Member: {self.user.username}'
 
