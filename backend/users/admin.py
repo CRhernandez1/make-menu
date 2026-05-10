@@ -11,3 +11,4 @@ class MemberAdmin(admin.ModelAdmin):
 @admin.register(Token)
 class TokenAdmin(admin.ModelAdmin):
     pass
+
