@@ -774,3 +774,215 @@ Esta función es el punto de entrada público de tu API (por ejemplo, cuando un 
   ```
 
   ¿Qué hace? Devuelve una respuesta 201 (Creado) junto con el ID del nuevo pedido y los IDs de los productos que se omitieron por no estar disponibles.
+
+### URLs (orders/urls.py)
+
+El archivo `orders/urls.py` define las rutas para las diferentes operaciones de pedidos según el rol del usuario:
+
+- **Manager**: Rutas para listar pedidos del manager (`manager-orders/`) y ver detalles (`manager-orders/<int:order_id>/details/`).
+- **Camarero (Waiter)**:
+  - Listado de pedidos (`waiter-orders/` y detalles).
+  - Gestión de mesas (`waiter/tables/`, `waiter/tables/<int:table_num>/order/`, `waiter/tables/<int:table_num>/close/`).
+  - Gestión de estados de pedido (`waiter/orders/<int:order_id>/advance/`, `waiter/orders/<int:order_id>/cancel/`).
+- **Cocina (Kitchen)**: Rutas para ver pedidos activos (`kitchen/orders/`), avanzar estado de pedido (`kitchen/orders/<int:order_id>/advance/`) y alternar el estado de preparación de un plato (`kitchen/items/<int:item_id>/toggle/`).
+- **Público**: Ruta para que los clientes creen pedidos escaneando el QR (`public/<str:establishment_cif>/`).
+
+---
+
+## Users
+
+### Views
+
+#### Autenticación y Perfil
+
+##### login(request)
+
+Maneja la autenticación de los usuarios y devuelve un token de sesión junto con el perfil del usuario.
+
+- **Validación de Credenciales**: Utiliza `authenticate` de Django para verificar `username` y `password`.
+- **Gestión de Tokens**: Crea o recupera un `Token` para el usuario. Si se solicita `remember_me`, genera un token de larga duración.
+- **Cookie Segura**: Establece el token en una cookie `HttpOnly` para prevenir ataques XSS, con configuración `samesite='Lax'`.
+- **Respuesta Unificada**: Devuelve los datos del perfil (usando `MemberSerializer`) en la misma petición para evitar múltiples llamadas desde el frontend.
+
+##### register(request)
+
+Permite a los nuevos usuarios registrarse en la plataforma utilizando un código de invitación.
+
+- **Validación de Campos**: Verifica que todos los campos requeridos estén presentes.
+- **Validación de Invitación**: Busca la invitación por su ID y comprueba que no haya sido usada (`is_used=False`). Si es inválida, devuelve un error 400.
+- **Creación de Usuario**: Crea el usuario base (`User`) y asocia su número de teléfono al perfil `Member` si se proporciona.
+- **Asignación de Rol**: Crea una relación `Manage` para vincular al nuevo usuario con el establecimiento correspondiente y el rol definido en la invitación.
+- **Invalidación de Invitación**: Marca la invitación como usada para que no pueda ser reutilizada.
+
+##### logout(request)
+
+Cierra la sesión del usuario autenticado.
+
+- Elimina el token de la base de datos (`request.user.token.delete()`).
+- Borra la cookie `auth_token` de la respuesta, invalidando la sesión en el frontend.
+
+##### profile(request)
+
+Devuelve los datos del perfil del usuario autenticado. Utiliza el decorador `@auth_required` para garantizar la seguridad.
+
+### URLs (users/urls.py)
+
+Define los endpoints de gestión de usuarios:
+
+- `login/`: Iniciar sesión.
+- `register/`: Registrar un nuevo usuario con invitación.
+- `logout/`: Cerrar sesión.
+- `profile/`: Obtener los datos del perfil del usuario actual.
+
+---
+
+## Establishments
+
+### Views
+
+#### Gestión de Establecimientos
+
+##### establishments_list(request)
+
+Devuelve la lista de establecimientos donde el usuario autenticado tiene el rol de Manager o forma parte del equipo.
+
+##### establishment_detail, edit_establishment, add_establishment, delete_establishment
+
+Endpoints CRUD (Crear, Leer, Actualizar, Borrar) para los establecimientos.
+
+- **Seguridad**: Todos están protegidos por `@auth_required`, `@get_instance_or_404`, y `@require_role(Manage.Role.MANAGER)`, asegurando que solo los managers puedan modificar los datos.
+- **add_establishment**: Al crear un local, automáticamente asigna al usuario creador como `MANAGER` del mismo en la tabla `Manage`.
+
+##### toggle_establishment(request, establishment_cif)
+
+Permite al manager abrir o cerrar (activar/desactivar) el establecimiento para recibir pedidos públicos de forma rápida.
+
+#### Gestión de Mesas (Tables)
+
+##### tables_list, table_detail, add_table, edit_table, delete_table, change_table_status
+
+Endpoints para la administración de las mesas del restaurante.
+
+- **Validación de Duplicados en add_table**: Al crear una mesa, verifica que no exista ya otra mesa con el mismo número en el establecimiento (`filter(number=form.cleaned_data['number']).exists()`).
+- **Estado de Mesa en change_table_status**: Permite marcar una mesa como activa o inactiva (por ejemplo, si está fuera de servicio o reservada) mediante una inversión booleana (`table.active = not table.active`).
+
+#### Gestión de Personal (Staff) y Permisos
+
+##### staff_list, edit_staff, remove_staff
+
+Endpoints para visualizar y gestionar a los empleados asignados a un local.
+
+- **Protección de auto-modificación**: En `edit_staff` y `remove_staff`, verifica explícitamente que el manager no intente cambiar su propio rol o eliminarse a sí mismo (`if manage.member == request.user: return JsonResponse(...)`).
+
+#### Invitaciones (Invitations)
+
+##### generate_invitation(request)
+
+Permite a un Manager generar un código temporal (invitación) para que un nuevo empleado se registre y se una a su equipo.
+
+- **Verificación de Manager**: Confirma que el usuario que realiza la petición es realmente Manager de algún local.
+- **Creación Segura**: Crea la invitación asociada al establecimiento y rol seleccionado.
+- **Respuesta**: Devuelve un `invitation_id` (UUID) que el frontend utilizará para generar un código QR o enlace.
+
+##### validate_invitation(request, invitation_id)
+
+Valida si una invitación es correcta y aún no ha sido utilizada.
+
+- **is_valid()**: Utiliza el método del modelo para comprobar la validez.
+- **Datos de Pre-registro**: Si es válida, devuelve el nombre del establecimiento y el rol para mostrar una pantalla de registro personalizada al nuevo empleado.
+
+### URLs (establishments/urls.py)
+
+Estructura modular de endpoints para la gestión integral:
+
+- **Base**: `establishments/` (listado y creación).
+- **Invitaciones**: `invite/` y `invite/validate/<uuid>/`.
+- **CRUD del Local**: `/<cif>/`, `/<cif>/edit/`, `/<cif>/toggle/`, etc.
+- **Anidación de Productos**: Incluye las rutas de productos (`products.urls`) dentro del prefijo `/<cif>/products/`.
+- **Mesas y Staff**: Rutas específicas bajo el prefijo del CIF del local (`/<cif>/tables/...` y `/<cif>/staff/...`).
+
+---
+
+## Products
+
+### Views
+
+#### Gestión de Productos
+
+##### products_list, product_detail, add_product, edit_product, delete_product
+
+Endpoints para gestionar el catálogo de productos de un establecimiento.
+
+- **Seguridad y Ámbito**: Restringidos al local correspondiente (`establishment_cif`) y accesibles según el rol. Modificaciones (`add`, `edit`, `delete`) requieren rol de `MANAGER`.
+- **Borrado en Cascada Seguro**: En `delete_product`, elimina explícitamente los componentes (recetas) asociados al producto antes de borrar el producto en sí (`product.components.all().delete()`).
+
+##### upload_product_image(request, establishment_cif, product_id)
+
+Permite subir una imagen para un producto específico.
+
+- Extrae la imagen del objeto `request.FILES`.
+- Devuelve la URL absoluta de la imagen (`request.build_absolute_uri()`) lista para ser mostrada en el frontend.
+
+##### toggle_product_available(request, establishment_cif, product_id)
+
+Activa o desactiva la disponibilidad de un producto (por ejemplo, si se agota en cocina) con una simple inversión de estado (`product.available = not product.available`).
+
+#### Gestión de Ingredientes y Categorías
+
+##### ingredients_list, ingredient_detail, add_ingredient, edit_ingredient, delete_ingredient
+
+##### categories_list, add_category, edit_category, delete_category
+
+Endpoints CRUD para los bloques de construcción del menú.
+
+- En la creación y edición de ingredientes (`add_ingredient`, `edit_ingredient`), procesa dinámicamente la lista de alérgenos asociada utilizando `.set()` sobre la relación ManyToMany (`ingredient.allergens.set(...)`).
+
+#### Alérgenos
+
+##### allergens_list(request)
+
+Ruta pública/global para obtener la lista maestra de alérgenos disponibles en el sistema (Gluten, Lácteos, etc.).
+
+#### Componentes (Recetas de Productos)
+
+##### components_list, add_component, delete_component
+
+Gestionan la receta o composición de un producto en base a ingredientes.
+
+- **Optimización**: `components_list` utiliza `select_related('ingredient')` para obtener los datos del ingrediente (nombre) en la misma consulta, optimizando la lectura.
+- **Validación Cruzada**: En `add_component`, comprueba tanto la existencia del producto como la del ingrediente dentro del mismo establecimiento antes de vincularlos.
+
+### URLs (products/urls.py)
+
+Maneja las rutas relacionadas con el menú interno:
+
+- **Productos**: `/`, `/add/`, `/<id>/`, `/<id>/image/`, `/<id>/toggle/`, etc.
+- **Categorías**: `/categories/...`
+- **Ingredientes**: `/ingredients/...`
+- **Componentes**: Anidados bajo un producto específico (`/<id>/components/...`).
+
+---
+
+## Menu
+
+### Views
+
+Este módulo se centra en las vistas públicas que son accesibles sin necesidad de autenticación (por ejemplo, el menú digital o escaneo de QR).
+
+##### public_tables(request, establishment_cif)
+
+Devuelve la lista de mesas de un establecimiento específico que se encuentran activas (`active=True`). Si el establecimiento no existe, devuelve 404.
+
+##### public_products(request, establishment_cif)
+
+Muestra el catálogo público de productos de un establecimiento.
+
+- **Filtro de Disponibilidad**: Filtra la consulta con `available=True` asegurando que el cliente no vea productos que están temporalmente agotados.
+- **Uso del request en Serializer**: Pasa el objeto `request` al `ProductSerializer` para poder construir correctamente las URLs absolutas de las imágenes de los productos.
+
+### URLs (menu/urls.py)
+
+Rutas públicas para el menú digital:
+
+- `/<cif>/tables/`: Listado de mesas activas.
+- `/<cif>/products/`: Menú disponible para el cliente.
