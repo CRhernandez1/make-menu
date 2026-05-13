@@ -37,9 +37,12 @@
           </div>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span v-for="cat in productsStore.categories" :key="cat.id" class="badge-mm bg-green-soft text-green-forest">
+          <span v-for="cat in productsStore.categories" :key="cat.id" 
+                @click="toggleCategoryFilter(cat.id)"
+                class="badge-mm cursor-pointer transition-colors"
+                :class="selectedCategoryId === cat.id ? 'bg-green-forest text-white' : 'bg-green-soft text-green-forest hover:bg-[rgba(26,92,46,0.12)]'">
             {{ cat.name }}
-            <button @click="openDeleteCategoryModal(cat.id)" class="text-green-bright hover:text-danger transition-colors font-bold leading-none ml-1">×</button>
+            <button @click.stop="openDeleteCategoryModal(cat.id)" class="hover:text-danger transition-colors font-bold leading-none ml-1 opacity-70 hover:opacity-100">×</button>
           </span>
           <span v-if="!productsStore.categories.length" class="text-xs text-text-muted">No hay categorías aún</span>
         </div>
@@ -54,8 +57,8 @@
       </div>
 
       <!-- Grid productos -->
-      <div v-else-if="productsStore.products.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <div v-for="product in productsStore.products" :key="product.id" class="card-mm overflow-hidden !p-0">
+      <div v-else-if="filteredProducts.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div v-for="product in filteredProducts" :key="product.id" class="card-mm overflow-hidden !p-0">
           <img v-if="product.product_image" :src="product.product_image" :alt="product.name" class="w-full h-40 object-cover" />
           <div v-else class="w-full h-40 bg-cream flex items-center justify-center text-text-ghost">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1"/><path d="M21 22v-7"/></svg>
@@ -102,7 +105,9 @@
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a5c2e" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </div>
         <h3 class="font-display text-lg font-bold text-ink mb-2">No hay productos aún</h3>
-        <p class="text-sm text-text-muted mb-6">Añade tu primer producto con el botón de arriba.</p>
+        <p class="text-sm text-text-muted mb-6">
+          {{ productsStore.products.length ? 'Ningún producto coincide con esta categoría.' : 'Añade tu primer producto con el botón de arriba.' }}
+        </p>
       </div>
     </template>
 
@@ -185,7 +190,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useProductsStore } from '../stores/products.store'
 import { useToast } from '@/composables/useToast'
 import { useFormErrors } from '@/composables/useFormErrors'
@@ -219,7 +224,23 @@ const fetchMyEstablishments = async () => {
 const onEstablishmentChange = async () => {
   await productsStore.fetchProducts(activeCif.value)
   await productsStore.fetchCategories(activeCif.value)
+  selectedCategoryId.value = null
 }
+
+const selectedCategoryId = ref<number | null>(null)
+
+const toggleCategoryFilter = (id: number) => {
+  if (selectedCategoryId.value === id) {
+    selectedCategoryId.value = null
+  } else {
+    selectedCategoryId.value = id
+  }
+}
+
+const filteredProducts = computed(() => {
+  if (!selectedCategoryId.value) return productsStore.products
+  return productsStore.products.filter(p => p.category.id === selectedCategoryId.value)
+})
 
 onMounted(() => { fetchMyEstablishments() })
 
