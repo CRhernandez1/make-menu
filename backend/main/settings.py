@@ -23,12 +23,19 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#%=p%@lqe#s#8r5+v9(rz#gekkyu7luv)e=fe4r%k=pwea-xpn'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
+FORCE_SCRIPT_NAME = ''
+SECURE_PROXY_SSL_HEADER = None
+
 
 
 # Application definition
@@ -131,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # MEDIA URLS
 MEDIA_URL = '/media/'
