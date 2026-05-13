@@ -96,6 +96,14 @@ Contiene todas las herramientas administrativas del gerente. Para evitar un stor
 - Incluye lógica especializada para subida de archivos binarios como `uploadProductImage(cif, productId, image)`.
 - Realiza actualizaciones optimistas o filtrado de listas locales tras eliminar un recurso (`products.value = products.value.filter(p => p.id !== productId)`) para evitar hacer recargas completas de toda la base de datos a la red tras cada eliminación.
 
+#### `staff.store.ts` y Gestión de Invitaciones
+
+- **Gestión de Personal**: El store de staff permite listar (`fetchStaff`), editar roles (`updateRole`) y eliminar miembros del equipo (`removeMember`) para un establecimiento concreto.
+- **Invitaciones Multi-Establecimiento (`StaffInviteView.vue`)**:
+  - Implementa un flujo dinámico donde el gerente puede elegir el **rol** (Camarero o Cocina) y el **establecimiento** específico al que desea invitar.
+  - **Detección automática**: Si el manager gestiona varios locales, la interfaz habilita un selector de establecimientos.
+  - **Generación de Invitación**: La petición al backend incluye el `establishment_id` seleccionado, asegurando que el código QR y el enlace de registro vinculen al nuevo empleado al centro de trabajo correcto desde el primer momento.
+
 ### Módulo: Waiter (`modules/waiter/`)
 
 Herramienta operativa del camarero en sala.

@@ -1,3 +1,4 @@
+import json
 from http import HTTPStatus
 
 from django.http import JsonResponse
@@ -277,37 +278,54 @@ def my_establishments(request):
 @csrf_exempt
 @require_http_methods('POST')
 @auth_required
-@parse_json
 def generate_invitation(request):
-    role_requested = request.payload.get('role', Manage.Role.WAITER)
+    try:
+        try:
+            body = json.loads(request.body)
+            role_requested = body.get('role', Manage.Role.WAITER)
+            establishment_id = body.get('establishment_id')
+        except json.JSONDecodeError:
+            role_requested = Manage.Role.WAITER
+            establishment_id = None
 
-    manager_link = (
-        Manage.objects.filter(member=request.user, role=Manage.Role.MANAGER)
-        .select_related('establishment')
-        .first()
-    )
+        manager_links = Manage.objects.filter(
+            member=request.user, role=Manage.Role.MANAGER
+        ).select_related('establishment')
 
-    if not manager_link:
-        return JsonResponse(
-            {'error': 'Acceso denegado. No tienes permisos de Manager en ningún establecimiento.'},
-            status=HTTPStatus.FORBIDDEN,
+        if establishment_id:
+            manager_link = manager_links.filter(establishment_id=establishment_id).first()
+        else:
+            manager_link = manager_links.first()
+
+        if not manager_link:
+            return JsonResponse(
+                {
+                    'error': 'Acceso denegado. No tienes permisos de Manager en el establecimiento seleccionado.'
+                },
+                status=HTTPStatus.FORBIDDEN,
+            )
+
+        establishment = manager_link.establishment
+
+        invitation = Invitation.objects.create(
+            establishment=establishment, role=role_requested, created_by=request.user
         )
 
-    establishment = manager_link.establishment
+        return JsonResponse(
+            {
+                'message': 'Pase VIP generado correctamente',
+                'invitation_id': str(invitation.id),
+                'role': invitation.role,
+                'establishment_name': establishment.name,
+            },
+            status=HTTPStatus.CREATED,
+        )
 
-    invitation = Invitation.objects.create(
-        establishment=establishment, role=role_requested, created_by=request.user
-    )
-
-    return JsonResponse(
-        {
-            'message': 'Pase VIP generado correctamente',
-            'invitation_id': str(invitation.id),
-            'role': invitation.role,
-            'establishment_name': establishment.name,
-        },
-        status=HTTPStatus.CREATED,
-    )
+    except Exception as e:
+        return JsonResponse(
+            {'error': f'Error interno del servidor: {str(e)}'},
+            status=HTTPStatus.INTERNAL_SERVER_ERROR,
+        )
 
 
 @require_http_methods('GET')
