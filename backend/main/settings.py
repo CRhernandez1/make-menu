@@ -28,13 +28,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['100.99.146.15','makemenu.arkania.es', 'localhost', '127.0.0.1']
 
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
 
 FORCE_SCRIPT_NAME = ''
-SECURE_PROXY_SSL_HEADER = None
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 
 
 
@@ -146,10 +146,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:8000',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:8000',
+    'http://makemenu.arkania.es',
+    'http://100.99.146.15'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -165,3 +163,9 @@ EMAIL_HOST_USER = os.getenv("BREVO_SMTP_USER")
 EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_KEY")
 
 DEFAULT_FROM_EMAIL = "MakeMenu <samuelcruz9800@gmail.com>"
+CSRF_TRUSTED_ORIGINS = [
+    'http://makemenu.arkania.es:8080',
+    'http://makemenu.arkania.es',
+    'http://localhost',
+    'http://localhost:8080',
+]

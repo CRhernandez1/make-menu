@@ -7,7 +7,7 @@ services:
       - static_volume:/app/staticfiles
     environment:
       - DEBUG=False
-      - DJANGO_ALLOWED_HOSTS=localhost
+      - DJANGO_ALLOWED_HOSTS=makemenu.arkania.es,100.99.146.15,localhost
       - SECRET_KEY=${SECRET_KEY}
       - BREVO_SMTP_USER=${BREVO_SMTP_USER}
       - BREVO_SMTP_KEY=${BREVO_SMTP_KEY}
@@ -17,7 +17,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - backend
     volumes:
