@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # THIRD PARTY APPS
+    'django_rq',
     'corsheaders',
     # CUSTOM APPS
     'establishments.apps.EstablishmentsConfig',
@@ -165,3 +166,12 @@ EMAIL_HOST_USER = os.getenv("BREVO_SMTP_USER")
 EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_KEY")
 
 DEFAULT_FROM_EMAIL = "MakeMenu <samuelcruz9800@gmail.com>"
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "DB": 0,
+        "DEFAULT_TIMEOUT": 360,
+    }
+}
