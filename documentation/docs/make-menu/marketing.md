@@ -88,3 +88,8 @@ El canal más efectivo en la fase inicial. El equipo visita directamente los est
 - Lanzamiento 30 % de descuento los primeros 3 meses para los 10 primeros clientes
 - Referidos 1 mes gratis por cliente recomendado que contrate
 - Fidelidad descuento progresivo a partir del segundo año
+
+## Competencia y ventajas competitivas
+
+El mercado del software para hostelería en España cuenta con empresas consolidadas como Qamarero,CoverManager,Camarero10,EterSystem o Foodeo, que ofrecen soluciones integrales de TPV, reservas, carta digital, pedidos y gestión operativa para restaurantes.  
+Sin embargo, muchas de estas plataformas están orientadas a negocios con necesidades más complejas, múltiples módulos o procesos de implantación más avanzados. MakeMenu busca diferenciarse mediante una propuesta más simple, accesible y cercana para pequeños y medianos negocios hosteleros, especialmente en Canarias. La combinación de onboarding presencial, configuración asistida, precios asequibles y enfoque específico en facilidad de uso reduce significativamente la barrera tecnológica para negocios que todavía no han digitalizado su operativa. Además, el soporte cercano y la adaptación al contexto local permiten competir no solo a nivel funcional, sino también en confianza y acompañamiento al cliente.
