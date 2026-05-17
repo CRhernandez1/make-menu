@@ -1,5 +1,6 @@
 [project]
 site_name = "MakeMenu"
+site_url = "https://CRhernandez1.github.io/make-menu/"
 site_description = "Documentación del proyecto MakeMenu: plataforma de carta digital y gestión de pedidos para hostelería."
 site_author = "Cristian Reyes Hernández, Samuel Domingo Cruz Sánchez, Daniele Dettori"
 extra_css = ["stylesheets/extra.css"]
