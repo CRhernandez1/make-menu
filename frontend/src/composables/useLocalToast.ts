@@ -1,7 +1,3 @@
-/**
- * Toast local reutilizable (sin depender de un store global).
- * Extraído de WaiterHome y KitchenHome donde se duplicaba la misma lógica.
- */
 import { ref, onUnmounted } from 'vue'
 
 export interface LocalToast {

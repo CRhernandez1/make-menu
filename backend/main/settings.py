@@ -162,7 +162,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("BREVO_SMTP_USER")
 EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_KEY")
 
-DEFAULT_FROM_EMAIL = "MakeMenu <samuelcruz9800@gmail.com>"
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "MakeMenu <no-reply@makemenu.local>")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 RQ_QUEUES = {
     "default": {

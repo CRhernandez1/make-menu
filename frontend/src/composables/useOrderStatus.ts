@@ -1,8 +1,3 @@
-/**
- * Mapeo de status numérico a clases de Tailwind.
- * Extraído de ManagerOrders y WaiterOrders (eran idénticas).
- */
-
 const STATUS_CLASS_MAP: Record<number, string> = {
   [-1]: 'bg-danger-soft text-danger',
   1: 'bg-warning-soft text-warning',

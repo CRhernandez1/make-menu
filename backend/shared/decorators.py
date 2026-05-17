@@ -12,7 +12,7 @@ def require_http_methods(*methods):
         def wrapper(request, *args, **kwargs):
             if request.method not in methods:
                 return JsonResponse(
-                    {'error': 'Method not allowed'}, status=HTTPStatus.METHOD_NOT_ALLOWED
+                    {'error': 'Método no permitido.'}, status=HTTPStatus.METHOD_NOT_ALLOWED
                 )
             return func(request, *args, **kwargs)
         return wrapper
@@ -28,7 +28,7 @@ def get_instance_or_404(model, field, label):
                 request.instance = model.objects.get(**{field: field_value})
             except model.DoesNotExist:
                 return JsonResponse(
-                    {'error': f'{label} not found.'},
+                    {'error': f'{label} no encontrado.'},
                     status=HTTPStatus.NOT_FOUND,
                 )
             return view(request, *args, **kwargs)
@@ -59,6 +59,9 @@ def parse_json(view):
         try:
             request.payload = json.loads(request.body)
         except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON body'}, status=HTTPStatus.BAD_REQUEST)
+            return JsonResponse(
+                {'error': 'El cuerpo de la petición no es un JSON válido.'},
+                status=HTTPStatus.BAD_REQUEST,
+            )
         return view(request, *args, **kwargs)
     return wrapper

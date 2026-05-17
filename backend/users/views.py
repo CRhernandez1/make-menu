@@ -23,29 +23,30 @@ def login(request):
 
     if not username or not password:
         return JsonResponse(
-            {'error': 'Username and password are required.'}, status=HTTPStatus.BAD_REQUEST
+            {'error': 'El usuario y la contraseña son obligatorios.'},
+            status=HTTPStatus.BAD_REQUEST,
         )
 
     user = authenticate(username=username, password=password)
     if not user:
-        return JsonResponse({'error': 'Invalid credentials'}, status=HTTPStatus.UNAUTHORIZED)
+        return JsonResponse(
+            {'error': 'Credenciales incorrectas.'}, status=HTTPStatus.UNAUTHORIZED
+        )
 
     token, created = Token.objects.get_or_create(user=user)
     long_lived = request.payload.get('remember_me', False)
     token.refresh(long_lived=long_lived)
 
-    # Respuesta con perfil completo (login + profile en una sola petición)
     profile_data = MemberSerializer(user.member, request=request).serialize()
     response = JsonResponse(profile_data)
 
-    # Cookie HttpOnly — el frontend no puede leerla (protección XSS)
-    max_age = 30 * 24 * 3600 if long_lived else None  # 30 días o cookie de sesión
+    max_age = 30 * 24 * 3600 if long_lived else None
     response.set_cookie(
         'auth_token',
         str(token.key),
         httponly=True,
         samesite='Lax',
-        secure=False,  # Cambiar a True en producción con HTTPS
+        secure=False,
         max_age=max_age,
     )
     return response
@@ -60,7 +61,7 @@ def register(request):
     missing = [f for f in required if not request.payload.get(f)]
     if missing:
         return JsonResponse(
-            {'error': f'Missing required fields: {", ".join(missing)}'},
+            {'error': f'Faltan campos obligatorios: {", ".join(missing)}.'},
             status=HTTPStatus.BAD_REQUEST,
         )
 
@@ -70,7 +71,7 @@ def register(request):
             invitation = Invitation.objects.get(id=invitation_id, is_used=False)
         except (Invitation.DoesNotExist, ValueError):
             return JsonResponse(
-                {'error': 'Invitación inválida o ya usada'}, status=HTTPStatus.BAD_REQUEST
+                {'error': 'Invitación inválida o ya usada.'}, status=HTTPStatus.BAD_REQUEST
             )
 
         user = User.objects.create_user(
@@ -93,10 +94,13 @@ def register(request):
         invitation.save()
 
         return JsonResponse(
-            {'message': 'Registro completado y vinculado al restaurante'}, status=HTTPStatus.CREATED
+            {'message': 'Registro completado y vinculado al establecimiento.'},
+            status=HTTPStatus.CREATED,
         )
     except IntegrityError:
-        return JsonResponse({'error': 'El nombre de usuario ya existe'}, status=HTTPStatus.CONFLICT)
+        return JsonResponse(
+            {'error': 'El nombre de usuario ya existe.'}, status=HTTPStatus.CONFLICT
+        )
 
 
 @csrf_exempt
@@ -104,7 +108,7 @@ def register(request):
 @auth_required
 def logout(request):
     request.user.token.delete()
-    response = JsonResponse({'message': 'Logged out successfully'}, status=HTTPStatus.OK)
+    response = JsonResponse({'message': 'Sesión cerrada correctamente.'}, status=HTTPStatus.OK)
     response.delete_cookie('auth_token')
     return response
 

@@ -15,7 +15,6 @@ class EstablishmentFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('random_element', elements=LOCAL_NAMES)
     legal_name = factory.LazyAttribute(lambda o: f'{o.name} S.L.')
-    # 'bothify' crea una letra y 8 números (formato común de CIF)
     cif = UniqueFaker('bothify', text='?########')
     description = factory.Faker('paragraph', nb_sentences=3)
     zip_code = factory.Faker('postcode')

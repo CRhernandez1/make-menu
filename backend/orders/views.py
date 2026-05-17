@@ -14,13 +14,8 @@ from users.decorators import auth_required
 from .models import Order, OrderDetail
 from .serializers import OrderDetailSerializer, OrderSerializer
 
-# ──────────────────────────────────────────────
-# Helpers privados
-# ──────────────────────────────────────────────
-
 
 def _get_est_ids_by_role(user, role):
-    """Devuelve una lista plana con los IDs de establecimientos donde el usuario ejerce el rol indicado."""
     return list(
         user.manages.filter(role=role, end_date__isnull=True).values_list(
             'establishment_id', flat=True
@@ -29,7 +24,6 @@ def _get_est_ids_by_role(user, role):
 
 
 def _get_primary_establishment(user, role):
-    """Devuelve el establecimiento principal del usuario para un rol dado, o None."""
     est_ids = _get_est_ids_by_role(user, role)
     if not est_ids:
         return None
@@ -37,7 +31,6 @@ def _get_primary_establishment(user, role):
 
 
 def _list_orders_for_role(request, role):
-    """Listado de pedidos filtrado por rol, establecimiento y rango de tiempo."""
     allowed_est_ids = _get_est_ids_by_role(request.user, role)
     if not allowed_est_ids:
         return JsonResponse([], safe=False)
@@ -64,7 +57,6 @@ def _list_orders_for_role(request, role):
 
 
 def _get_order_details_for_role(request, order_id, role):
-    """Devuelve los detalles de un pedido verificando que pertenece a un establecimiento del rol."""
     est_ids = _get_est_ids_by_role(request.user, role)
     order = get_object_or_404(Order, pk=order_id, establishment_id__in=est_ids)
 
@@ -73,7 +65,6 @@ def _get_order_details_for_role(request, order_id, role):
 
 
 def _advance_order(request, order_id, role):
-    """Avanza el estado: INITIATED → IN_PROGRESS → DONE."""
     est_ids = _get_est_ids_by_role(request.user, role)
     if not est_ids:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -102,7 +93,6 @@ def _advance_order(request, order_id, role):
 
 
 def _get_active_order_for_table(table, establishment):
-    """Devuelve el pedido activo (no pagado) de una mesa, o None."""
     return (
         Order.objects.filter(
             table=table,
@@ -112,11 +102,6 @@ def _get_active_order_for_table(table, establishment):
         .exclude(paid=True)
         .first()
     )
-
-
-# ──────────────────────────────────────────────
-# Manager: Pedidos
-# ──────────────────────────────────────────────
 
 
 @require_http_methods('GET')
@@ -131,11 +116,6 @@ def get_order_details(request, order_id: int) -> JsonResponse:
     return _get_order_details_for_role(request, order_id, 'manager')
 
 
-# ──────────────────────────────────────────────
-# Waiter: Pedidos
-# ──────────────────────────────────────────────
-
-
 @require_http_methods('GET')
 @auth_required
 def list_waiter_orders(request) -> JsonResponse:
@@ -148,15 +128,9 @@ def get_waiter_order_details(request, order_id: int) -> JsonResponse:
     return _get_order_details_for_role(request, order_id, 'waiter')
 
 
-# ──────────────────────────────────────────────
-# Waiter: Mesas y acciones
-# ──────────────────────────────────────────────
-
-
 @require_http_methods('GET')
 @auth_required
 def waiter_tables(request):
-    """Lista las mesas del establecimiento del camarero con estado actual."""
     establishment = _get_primary_establishment(request.user, 'waiter')
     if not establishment:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -216,7 +190,6 @@ def waiter_tables(request):
 @require_http_methods('GET')
 @auth_required
 def waiter_table_order(request, table_num):
-    """Ve el pedido activo de una mesa con todos sus detalles."""
     establishment = _get_primary_establishment(request.user, 'waiter')
     if not establishment:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -275,7 +248,6 @@ def waiter_advance_order(request, order_id):
 @require_http_methods('POST')
 @auth_required
 def waiter_cancel_order(request, order_id):
-    """Cancela un pedido activo."""
     est_ids = _get_est_ids_by_role(request.user, 'waiter')
     if not est_ids:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -299,7 +271,6 @@ def waiter_cancel_order(request, order_id):
 @require_http_methods('POST')
 @auth_required
 def waiter_close_table(request, table_num):
-    """Cierra la mesa: marca el pedido como pagado."""
     establishment = _get_primary_establishment(request.user, 'waiter')
     if not establishment:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -325,11 +296,6 @@ def waiter_close_table(request, table_num):
             'total': f'{active_order.total:.2f}',
         }
     )
-
-
-# ──────────────────────────────────────────────
-# Kitchen: Pedidos activos y acciones
-# ──────────────────────────────────────────────
 
 
 @require_http_methods('GET')
@@ -397,7 +363,6 @@ def kitchen_advance_order(request, order_id):
 @require_http_methods('POST')
 @auth_required
 def kitchen_toggle_item(request, item_id):
-    """Marca o desmarca un plato individual como listo."""
     est_ids = _get_est_ids_by_role(request.user, 'kitchen')
     if not est_ids:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -440,7 +405,6 @@ def kitchen_toggle_item(request, item_id):
 @require_http_methods('POST')
 @auth_required
 def kitchen_complete_order(request, order_id):
-    """Marca TODOS los platos de un pedido como listos de una vez (batch)."""
     est_ids = _get_est_ids_by_role(request.user, 'kitchen')
     if not est_ids:
         return JsonResponse({'error': 'No estás asignado a ningún establecimiento.'}, status=403)
@@ -467,11 +431,6 @@ def kitchen_complete_order(request, order_id):
     )
 
 
-# ──────────────────────────────────────────────
-# Público: Crear pedido desde QR
-# ──────────────────────────────────────────────
-
-
 @csrf_exempt
 @require_http_methods('POST')
 @parse_json
@@ -493,7 +452,6 @@ def create_public_order(request, establishment_cif):
     except Table.DoesNotExist:
         return JsonResponse({'error': 'Mesa no encontrada'}, status=404)
 
-    # Validamos todos los productos antes de crear nada
     order_items = []
     invalid_ids = []
     total = 0

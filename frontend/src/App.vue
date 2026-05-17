@@ -5,9 +5,7 @@ import ToastContainer from '@/components/ToastContainer.vue'
 
 const authStore = useAuthStore()
 
-// onMounted se dispara una única vez en cuanto la página web se carga en el navegador
 onMounted(async () => {
-  // Aquí es donde apretamos el gatillo
   await authStore.checkAuthStatus()
 })
 </script>

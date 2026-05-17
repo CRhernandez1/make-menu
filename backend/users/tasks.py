@@ -10,6 +10,7 @@ User = get_user_model()
 def send_manager_email_task(user_id, temporary_password):
     user = User.objects.get(pk=user_id)
 
+    login_url = f"{settings.FRONTEND_URL.rstrip('/')}/login"
     subject = "Bienvenido a MakeMenu"
 
     message = f"""
@@ -23,7 +24,7 @@ Usuario: {user.username}
 Email: {user.email}
 Contraseña temporal: {temporary_password}
 
-Accede en: http://localhost:5173/login
+Accede en: {login_url}
 
 IMPORTANTE: cambia tu contraseña la primera vez que inicies sesión.
 

@@ -21,10 +21,6 @@ from .serializers import (
     ProductSerializer,
 )
 
-# ──────────────────────────────────────────────
-# Products
-# ──────────────────────────────────────────────
-
 
 @require_http_methods('GET')
 @auth_required
@@ -43,7 +39,7 @@ def product_detail(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(id=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
     return ProductSerializer(product, request=request).json_response()
 
 
@@ -74,14 +70,14 @@ def edit_product(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
 
     form = ProductUpdateForm(request.payload, instance=product)
     if not form.is_valid():
         return JsonResponse({'errors': form.errors}, status=400)
 
     form.save()
-    return JsonResponse({'message': 'Product updated!'}, status=200)
+    return JsonResponse({'message': 'Producto actualizado.'}, status=200)
 
 
 @csrf_exempt
@@ -93,11 +89,11 @@ def delete_product(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
 
     product.components.all().delete()
     product.delete()
-    return JsonResponse({'message': 'Product deleted successfully.'}, status=204)
+    return JsonResponse({'message': 'Producto eliminado correctamente.'}, status=204)
 
 
 @csrf_exempt
@@ -109,11 +105,11 @@ def upload_product_image(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'error': 'Product not found'}, status=404)
+        return JsonResponse({'error': 'Producto no encontrado.'}, status=404)
 
     image = request.FILES.get('product_image')
     if not image:
-        return JsonResponse({'error': 'No image provided'}, status=400)
+        return JsonResponse({'error': 'No se ha subido ninguna imagen.'}, status=400)
 
     product.product_image = image
     product.save()
@@ -138,11 +134,6 @@ def toggle_product_available(request, establishment_cif, product_id):
     return ProductSerializer(product, request=request).json_response()
 
 
-# ──────────────────────────────────────────────
-# Ingredients
-# ──────────────────────────────────────────────
-
-
 @require_http_methods('GET')
 @auth_required
 @get_instance_or_404(Establishment, 'cif', 'Establishment')
@@ -160,7 +151,7 @@ def ingredient_detail(request, establishment_cif, ingredient_id):
     try:
         ingredient = request.instance.ingredients.get(id=ingredient_id)
     except Ingredient.DoesNotExist:
-        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+        return JsonResponse({'message': 'Ingrediente no encontrado.'}, status=404)
     return IngredientSerializer(ingredient).json_response()
 
 
@@ -195,7 +186,7 @@ def edit_ingredient(request, establishment_cif, ingredient_id):
     try:
         ingredient = request.instance.ingredients.get(pk=ingredient_id)
     except Ingredient.DoesNotExist:
-        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+        return JsonResponse({'message': 'Ingrediente no encontrado.'}, status=404)
 
     form = IngredientUpdateForm(request.payload, instance=ingredient)
     if not form.is_valid():
@@ -206,7 +197,7 @@ def edit_ingredient(request, establishment_cif, ingredient_id):
     if 'allergens' in request.payload:
         ingredient.allergens.set(request.payload['allergens'])
 
-    return JsonResponse({'message': 'Ingredient updated!'}, status=200)
+    return JsonResponse({'message': 'Ingrediente actualizado.'}, status=200)
 
 
 @csrf_exempt
@@ -218,15 +209,10 @@ def delete_ingredient(request, establishment_cif, ingredient_id):
     try:
         ingredient = request.instance.ingredients.get(pk=ingredient_id)
     except Ingredient.DoesNotExist:
-        return JsonResponse({'message': 'Ingredient not found!'}, status=404)
+        return JsonResponse({'message': 'Ingrediente no encontrado.'}, status=404)
 
     ingredient.delete()
-    return JsonResponse({'message': 'Ingredient deleted successfully.'}, status=204)
-
-
-# ──────────────────────────────────────────────
-# Categories
-# ──────────────────────────────────────────────
+    return JsonResponse({'message': 'Ingrediente eliminado correctamente.'}, status=204)
 
 
 @require_http_methods('GET')
@@ -265,14 +251,14 @@ def edit_category(request, establishment_cif, category_id):
     try:
         category = request.instance.categories.get(pk=category_id)
     except Category.DoesNotExist:
-        return JsonResponse({'message': 'Category not found!'}, status=404)
+        return JsonResponse({'message': 'Categoría no encontrada.'}, status=404)
 
     form = CategoryForm(request.payload, instance=category)
     if not form.is_valid():
         return JsonResponse({'errors': form.errors}, status=400)
 
     form.save()
-    return JsonResponse({'message': 'Category updated!'}, status=200)
+    return JsonResponse({'message': 'Categoría actualizada.'}, status=200)
 
 
 @csrf_exempt
@@ -284,26 +270,16 @@ def delete_category(request, establishment_cif, category_id):
     try:
         category = request.instance.categories.get(pk=category_id)
     except Category.DoesNotExist:
-        return JsonResponse({'message': 'Category not found!'}, status=404)
+        return JsonResponse({'message': 'Categoría no encontrada.'}, status=404)
 
     category.delete()
-    return JsonResponse({'message': 'Category deleted successfully.'}, status=204)
-
-
-# ──────────────────────────────────────────────
-# Allergens
-# ──────────────────────────────────────────────
+    return JsonResponse({'message': 'Categoría eliminada correctamente.'}, status=204)
 
 
 @require_http_methods('GET')
 def allergens_list(request):
     allergens = Allergen.objects.all()
     return AllergenSerializer(allergens).json_response()
-
-
-# ──────────────────────────────────────────────
-# Components
-# ──────────────────────────────────────────────
 
 
 @require_http_methods('GET')
@@ -314,7 +290,7 @@ def components_list(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
 
     components = product.components.select_related('ingredient').all()
     return JsonResponse(
@@ -343,12 +319,12 @@ def add_component(request, establishment_cif, product_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
 
     try:
         ingredient = request.instance.ingredients.get(pk=request.payload['ingredient'])
     except (Ingredient.DoesNotExist, KeyError):
-        return JsonResponse({'message': 'Ingredient not found or missing!'}, status=400)
+        return JsonResponse({'message': 'Ingrediente no encontrado o no indicado.'}, status=400)
 
     form = ComponentCreateForm(request.payload)
     if not form.is_valid():
@@ -370,12 +346,12 @@ def delete_component(request, establishment_cif, product_id, component_id):
     try:
         product = request.instance.products.get(pk=product_id)
     except Product.DoesNotExist:
-        return JsonResponse({'message': 'Product not found!'}, status=404)
+        return JsonResponse({'message': 'Producto no encontrado.'}, status=404)
 
     try:
         component = product.components.get(pk=component_id)
     except Component.DoesNotExist:
-        return JsonResponse({'message': 'Component not found!'}, status=404)
+        return JsonResponse({'message': 'Componente no encontrado.'}, status=404)
 
     component.delete()
-    return JsonResponse({'message': 'Component deleted successfully.'}, status=204)
+    return JsonResponse({'message': 'Componente eliminado correctamente.'}, status=204)

@@ -16,10 +16,6 @@ from .forms import (
 from .models import Establishment, Invitation, Manage, Table
 from .serializers import EstablishmentSerializer, ManageSerializer, TableSerializer
 
-# ──────────────────────────────────────────────
-# Establishment Views
-# ──────────────────────────────────────────────
-
 
 @csrf_exempt
 @require_http_methods('GET')
@@ -50,7 +46,9 @@ def edit_establishment(request, establishment_cif):
         return JsonResponse({'errors': form.errors}, status=400)
 
     form.save()
-    return JsonResponse({'message': f'Establishment {request.instance.cif} updated!'}, status=200)
+    return JsonResponse(
+        {'message': f'Establecimiento {request.instance.cif} actualizado.'}, status=200
+    )
 
 
 @csrf_exempt
@@ -88,12 +86,7 @@ def toggle_establishment(request, establishment_cif):
 def delete_establishment(request, establishment_cif):
     request.instance.manages.all().delete()
     request.instance.delete()
-    return JsonResponse({'message': 'Establishment deleted successfully.'}, status=204)
-
-
-# ──────────────────────────────────────────────
-# Table Views
-# ──────────────────────────────────────────────
+    return JsonResponse({'message': 'Establecimiento eliminado correctamente.'}, status=204)
 
 
 @csrf_exempt
@@ -115,7 +108,7 @@ def table_detail(request, establishment_cif, table_num):
     try:
         table = request.instance.tables.get(number=table_num)
     except Table.DoesNotExist:
-        return JsonResponse({'message': 'Table not found!'}, status=404)
+        return JsonResponse({'message': 'Mesa no encontrada.'}, status=404)
 
     return TableSerializer(table).json_response()
 
@@ -133,7 +126,7 @@ def add_table(request, establishment_cif):
 
     if request.instance.tables.filter(number=form.cleaned_data['number']).exists():
         return JsonResponse(
-            {'message': f'Table {form.cleaned_data["number"]} already exists.'}, status=409
+            {'message': f'La mesa {form.cleaned_data["number"]} ya existe.'}, status=409
         )
 
     table = form.save(commit=False)
@@ -152,7 +145,7 @@ def edit_table(request, establishment_cif, table_num):
     try:
         table = request.instance.tables.get(number=table_num)
     except Table.DoesNotExist:
-        return JsonResponse({'message': 'Table not found!'}, status=404)
+        return JsonResponse({'message': 'Mesa no encontrada.'}, status=404)
 
     form = TableUpdateForm(request.payload, instance=table)
     if not form.is_valid():
@@ -160,7 +153,8 @@ def edit_table(request, establishment_cif, table_num):
 
     form.save()
     return JsonResponse(
-        {'message': f'Table {table.number} updated to {table.max_guests} guests.'}, status=200
+        {'message': f'Mesa {table.number} actualizada a {table.max_guests} comensales.'},
+        status=200,
     )
 
 
@@ -173,7 +167,7 @@ def change_table_status(request, establishment_cif, table_num):
     try:
         table = request.instance.tables.get(number=table_num)
     except Table.DoesNotExist:
-        return JsonResponse({'message': 'Table not found!'}, status=404)
+        return JsonResponse({'message': 'Mesa no encontrada.'}, status=404)
 
     table.active = not table.active
     table.save()
@@ -189,15 +183,10 @@ def delete_table(request, establishment_cif, table_num):
     try:
         table = request.instance.tables.get(number=table_num)
     except Table.DoesNotExist:
-        return JsonResponse({'message': 'Table not found!'}, status=404)
+        return JsonResponse({'message': 'Mesa no encontrada.'}, status=404)
 
     table.delete()
-    return JsonResponse({'message': 'Table deleted successfully.'}, status=204)
-
-
-# ──────────────────────────────────────────────
-# Staff Views
-# ──────────────────────────────────────────────
+    return JsonResponse({'message': 'Mesa eliminada correctamente.'}, status=204)
 
 
 @csrf_exempt
@@ -220,7 +209,7 @@ def edit_staff(request, establishment_cif, member_id):
     try:
         manage = request.instance.manages.get(member_id=member_id)
     except Manage.DoesNotExist:
-        return JsonResponse({'message': 'Member not found!'}, status=404)
+        return JsonResponse({'message': 'Miembro no encontrado.'}, status=404)
 
     if manage.member == request.user:
         return JsonResponse({'error': 'No puedes cambiar tu propio rol.'}, status=400)
@@ -230,7 +219,7 @@ def edit_staff(request, establishment_cif, member_id):
         return JsonResponse({'errors': form.errors}, status=400)
 
     form.save()
-    return JsonResponse({'message': 'Role updated successfully.'}, status=200)
+    return JsonResponse({'message': 'Rol actualizado correctamente.'}, status=200)
 
 
 @csrf_exempt
@@ -242,18 +231,13 @@ def remove_staff(request, establishment_cif, member_id):
     try:
         manage = request.instance.manages.get(member_id=member_id)
     except Manage.DoesNotExist:
-        return JsonResponse({'message': 'Member not found!'}, status=404)
+        return JsonResponse({'message': 'Miembro no encontrado.'}, status=404)
 
     if manage.member == request.user:
         return JsonResponse({'error': 'No puedes eliminarte a ti mismo.'}, status=400)
 
     manage.delete()
-    return JsonResponse({'message': 'Member removed successfully.'}, status=204)
-
-
-# ──────────────────────────────────────────────
-# Invitation Views
-# ──────────────────────────────────────────────
+    return JsonResponse({'message': 'Miembro eliminado correctamente.'}, status=204)
 
 
 @require_http_methods('GET')
@@ -313,7 +297,7 @@ def generate_invitation(request):
 
         return JsonResponse(
             {
-                'message': 'Pase VIP generado correctamente',
+                'message': 'Invitación generada correctamente.',
                 'invitation_id': str(invitation.id),
                 'role': invitation.role,
                 'establishment_name': establishment.name,
@@ -321,9 +305,9 @@ def generate_invitation(request):
             status=HTTPStatus.CREATED,
         )
 
-    except Exception as e:
+    except Exception:
         return JsonResponse(
-            {'error': f'Error interno del servidor: {str(e)}'},
+            {'error': 'Error interno del servidor.'},
             status=HTTPStatus.INTERNAL_SERVER_ERROR,
         )
 
