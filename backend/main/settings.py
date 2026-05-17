@@ -166,7 +166,7 @@ DEFAULT_FROM_EMAIL = "MakeMenu <samuelcruz9800@gmail.com>"
 
 RQ_QUEUES = {
     "default": {
-        "HOST": "localhost",
+        "HOST": os.getenv("REDIS_HOST", "localhost"),
         "PORT": 6379,
         "DB": 0,
         "DEFAULT_TIMEOUT": 360,
