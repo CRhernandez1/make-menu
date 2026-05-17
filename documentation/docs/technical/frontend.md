@@ -137,3 +137,93 @@ Tres composables centralizan lógica reutilizada entre módulos:
 | `VITE_API_URL` | URL base de la API del backend                       |
 
 Se inyectan en tiempo de build, ya que Vite las resuelve durante la compilación.
+
+## Estilos y convenciones de Tailwind
+
+El proyecto usa **Tailwind CSS v4** con la integración de Vite. No hay archivo `tailwind.config.js` la configuración se gestiona directamente en el CSS de entrada. Todos los estilos son utilidades de Tailwind inline en los componentes; no hay CSS personalizado salvo el archivo global de assets.  
+
+## Usabilidad y accesibilidad
+
+La interfaz sigue principios básicos de usabilidad y accesibilidad web. Los colores de acento cumplen con ratios de contraste suficientes para texto sobre fondos claros. Los botones y controles interactivos tienen estados `hover` y `focus` visibles, y los inputs incluyen `focus:ring` para navegación por teclado. Los estados de carga, error y vacío están cubiertos en todas las vistas para que el usuario siempre reciba feedback visual. Las etiquetas de formulario están asociadas a sus campos, y los iconos SVG decorativos no incluyen texto alternativo innecesario. En vistas críticas como el KDS de cocina y la carta pública, el diseño prioriza la legibilidad a distancia con tamaños de texto generosos y áreas de toque amplias, pensadas para uso táctil en entornos de hostelería.
+
+### Paleta de colores
+
+La interfaz gira en torno a dos rampas principales:
+
+| Rol | Clase |
+|-----|-------|
+| Acción principal, activo, acento | `bg-emerald-400`, `text-emerald-600`, `border-emerald-400` |
+| Hover de acento | `bg-emerald-500` |
+| Fondo de acento suave | `bg-emerald-50`, `bg-emerald-100` |
+| Texto sobre fondo claro | `text-gray-700`, `text-gray-800` |
+| Texto secundario / placeholder | `text-gray-400`, `text-gray-500` |
+| Fondo de página | `bg-gray-50` |
+| Superficie de tarjeta | `bg-white` |
+| Bordes | `border-gray-200`, `border-gray-100` |
+| Peligro / eliminar | `bg-red-400`, `hover:bg-red-500` |
+| Estado disponible | `bg-green-100 text-green-700` |
+| Estado no disponible | `bg-red-100 text-red-600` |
+
+### Bordes y radios
+
+Se usa `rounded-xl` como radio estándar para botones, inputs y tarjetas pequeñas, y `rounded-2xl` para tarjetas y contenedores más grandes. Los bordes son siempre `border border-gray-200` con grosor de `1px`.
+
+### Sombras
+
+Las sombras son siempre semánticas y ligeras. El patrón habitual es `shadow-md shadow-emerald-400/20` en botones primarios y `shadow-sm` en tarjetas.
+
+### Botones
+
+Tres variantes recurrentes:
+
+```html
+<!-- Primario -->
+<button class="px-4 py-2 bg-emerald-400 text-white text-sm font-semibold rounded-xl hover:bg-emerald-500 transition-colors shadow-sm shadow-emerald-400/20">
+
+<!-- Destructivo -->
+<button class="px-4 py-2 bg-red-400 text-white text-sm font-semibold rounded-xl hover:bg-red-500 transition-colors">
+
+<!-- Outline -->
+<button class="px-4 py-2 bg-white text-gray-700 text-sm font-medium rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors">
+```
+
+### Inputs y selects
+
+```html
+<input class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300">
+<select class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg p-2 outline-none cursor-pointer focus:ring-2 focus:ring-emerald-300">
+```
+
+### Tarjetas
+
+```html
+<div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4">
+```
+
+### Tipografía
+
+| Rol | Clase |
+|-----|-------|
+| Título de sección | `text-xl font-bold text-gray-700` |
+| Subtítulo | `text-sm font-semibold text-gray-700` |
+| Etiqueta de categoría | `text-xs font-semibold uppercase tracking-widest text-gray-400` |
+| Texto de cuerpo | `text-sm text-gray-500` |
+| Precio | `text-emerald-600 font-bold` |
+
+### Layout y espaciado
+
+El patrón de layout más común es `flex items-center justify-between` para cabeceras de sección, y `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4` para rejillas de tarjetas. El espaciado interno de vistas usa `space-y-6` como ritmo vertical base.
+
+### Badges y etiquetas
+
+```html
+<!-- Categoría de producto -->
+<span class="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">
+
+<!-- Badge de navegación activo -->
+<span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-white text-emerald-600">
+```
+
+### Transiciones
+
+Todas las transiciones usan `transition-colors` o `transition-all` con la duración por defecto de Tailwind (`150ms`). No se usan animaciones complejas salvo el toggle de disponibilidad en la carta, que usa `transition-transform duration-200`.
