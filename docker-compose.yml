@@ -11,8 +11,33 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - BREVO_SMTP_USER=${BREVO_SMTP_USER}
       - BREVO_SMTP_KEY=${BREVO_SMTP_KEY}
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
     expose:
       - "8000"
+
+  worker:
+    build: ./backend
+    command: uv run manage.py rqworker default
+    volumes:
+      - ./backend/media:/app/media
+      - ./backend/db.sqlite3:/app/db.sqlite3
+    environment:
+      - DEBUG=False
+      - DJANGO_ALLOWED_HOSTS=makemenu.arkania.es,100.99.146.15,localhost
+      - SECRET_KEY=${SECRET_KEY}
+      - BREVO_SMTP_USER=${BREVO_SMTP_USER}
+      - BREVO_SMTP_KEY=${BREVO_SMTP_KEY}
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+      - backend
+
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
 
   frontend:
     build: ./frontend
