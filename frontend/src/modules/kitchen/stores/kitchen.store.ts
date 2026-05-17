@@ -79,8 +79,18 @@ export const useKitchenStore = defineStore('kitchen', () => {
     }
   }
 
+  const completeOrder = async (orderId: number): Promise<ActionResult> => {
+    try {
+      const { data } = await makeMenuApi.post(`/orders/kitchen/orders/${orderId}/complete/`)
+      await fetchOrders()
+      return { ok: true, message: data.message, order_done: true }
+    } catch (err) {
+      return { ok: false, error: extractError(err, 'Error completando pedido.') }
+    }
+  }
+
   return {
     establishmentName, orders, loading, error,
-    clearError, fetchOrders, advanceOrder, toggleItem
+    clearError, fetchOrders, advanceOrder, toggleItem, completeOrder
   }
 })

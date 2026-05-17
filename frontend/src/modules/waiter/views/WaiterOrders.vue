@@ -122,7 +122,7 @@
                 <p class="text-sm text-text-muted">Cargando ticket...</p>
               </div>
               <div v-else class="space-y-1">
-                <div v-for="item in selectedOrder.details" :key="item.id" class="flex justify-between items-start py-3.5 border-b border-dashed border-border-green-light last:border-b-0">
+                <div v-for="item in ticketDetails" :key="item.id" class="flex justify-between items-start py-3.5 border-b border-dashed border-border-green-light last:border-b-0">
                   <div class="pr-4">
                     <p class="font-bold text-ink"><span class="text-green-forest font-display mr-1.5">{{ item.quantity }}x</span>{{ item.product_name }}</p>
                     <p v-if="item.notes" class="text-[12px] text-warning font-semibold bg-warning-soft px-3 py-1.5 rounded-xl mt-2 border border-[rgba(196,138,26,0.15)]">{{ item.notes }}</p>
@@ -148,79 +148,112 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { makeMenuApi } from '@/api/makeMenu'
+import { useFormatters } from '@/composables/useFormatters'
+import { useOrderStatus } from '@/composables/useOrderStatus'
+import type { OrderSummary, OrderDetailItem, EstablishmentOption, TimeFilter } from '@/interfaces/orders'
 
 const POLLING_INTERVAL = 10_000
 
-const orders = ref<any[]>([])
-const myEstablishments = ref<any[]>([])
+const { formatDate } = useFormatters()
+const { getStatusClass, getStatusDot } = useOrderStatus()
+
+const orders = ref<OrderSummary[]>([])
+const myEstablishments = ref<EstablishmentOption[]>([])
 const isLoading = ref(true)
-const selectedOrder = ref<any | null>(null)
+const selectedOrder = ref<OrderSummary | null>(null)
+const ticketDetails = ref<OrderDetailItem[]>([])
 const isLoadingTicket = ref(false)
 const activeTimeFilter = ref('1')
-const activeEstablishment = ref('all')
+const activeEstablishment = ref<string>('all')
 
 let pollingTimer: ReturnType<typeof setInterval> | null = null
 const knownOrderIds = ref<Set<number>>(new Set())
 const newOrderIds = ref<Set<number>>(new Set())
 const newOrderToast = ref<string | null>(null)
 let toastTimer: ReturnType<typeof setTimeout> | null = null
+let isPolling = false // Guard contra peticiones acumuladas
 
-const timeFilters = [
+const timeFilters: TimeFilter[] = [
   { label: '24h', value: '1' }, { label: '3 días', value: '3' },
   { label: '7 días', value: '7' }, { label: 'Todos', value: 'all' },
 ]
 
+// AudioContext reutilizable — evita crear uno nuevo por cada notificación
+let audioCtx: AudioContext | null = null
+
 const playNotificationSound = () => {
   try {
-    const ctx = new AudioContext()
-    const osc = ctx.createOscillator(); const gain = ctx.createGain()
+    if (!audioCtx) audioCtx = new AudioContext()
+    const ctx = audioCtx
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
     osc.connect(gain); gain.connect(ctx.destination)
     osc.frequency.value = 880; osc.type = 'sine'
-    gain.gain.setValueAtTime(0.3, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5)
+    gain.gain.setValueAtTime(0.3, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5)
     osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.5)
-    const osc2 = ctx.createOscillator(); const gain2 = ctx.createGain()
+
+    const osc2 = ctx.createOscillator()
+    const gain2 = ctx.createGain()
     osc2.connect(gain2); gain2.connect(ctx.destination)
     osc2.frequency.value = 1100; osc2.type = 'sine'
-    gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15); gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6)
+    gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15)
+    gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6)
     osc2.start(ctx.currentTime + 0.15); osc2.stop(ctx.currentTime + 0.6)
   } catch { /* Audio no disponible */ }
 }
 
 const fetchMyEstablishments = async () => {
-  try { const { data } = await makeMenuApi.get('establishments/'); myEstablishments.value = data }
-  catch (e) { console.error("Error cargando locales:", e) }
+  try {
+    const { data } = await makeMenuApi.get<EstablishmentOption[]>('establishments/')
+    myEstablishments.value = data
+  } catch { /* interceptor global maneja 401 */ }
 }
 
 const fetchOrders = async () => {
   isLoading.value = true
   try {
-    const params: any = {}
+    const params: Record<string, string> = {}
     if (activeTimeFilter.value !== 'all') params.days = activeTimeFilter.value
     if (activeEstablishment.value !== 'all') params.establishment_id = activeEstablishment.value
-    const { data } = await makeMenuApi.get('orders/waiter-orders/', { params })
+    const { data } = await makeMenuApi.get<OrderSummary[]>('orders/waiter-orders/', { params })
     orders.value = data
-    knownOrderIds.value = new Set(data.map((o: any) => o.id)); newOrderIds.value = new Set()
-  } catch (e) { console.error("Error cargando pedidos:", e) }
+    knownOrderIds.value = new Set(data.map(o => o.id))
+    newOrderIds.value = new Set()
+  } catch { /* interceptor global maneja 401 */ }
   finally { isLoading.value = false }
 }
 
 const pollOrders = async () => {
+  if (isPolling) return // Guard: evitar acumulación si la red es lenta
+  isPolling = true
   try {
-    const params: any = {}
+    const params: Record<string, string> = {}
     if (activeTimeFilter.value !== 'all') params.days = activeTimeFilter.value
     if (activeEstablishment.value !== 'all') params.establishment_id = activeEstablishment.value
-    const { data } = await makeMenuApi.get('orders/waiter-orders/', { params })
-    const incomingIds = new Set(data.map((o: any) => o.id))
+    const { data } = await makeMenuApi.get<OrderSummary[]>('orders/waiter-orders/', { params })
+
+    const incomingIds = new Set(data.map(o => o.id))
     const freshIds: number[] = []
-    for (const id of incomingIds) { if (!knownOrderIds.value.has(id)) freshIds.push(id) }
+    for (const id of incomingIds) {
+      if (!knownOrderIds.value.has(id)) freshIds.push(id)
+    }
+
     if (freshIds.length > 0) {
-      orders.value = data; newOrderIds.value = new Set(freshIds); knownOrderIds.value = incomingIds
-      const newOrders = data.filter((o: any) => freshIds.includes(o.id))
-      showToast(newOrders.map((o: any) => `#${o.id} — Mesa ${o.table_number || 'Barra'}`).join(', '))
+      orders.value = data
+      newOrderIds.value = new Set(freshIds)
+      knownOrderIds.value = incomingIds
+      const newOrders = data.filter(o => freshIds.includes(o.id))
+      showToast(newOrders.map(o => `#${o.id} — Mesa ${o.table_number || 'Barra'}`).join(', '))
       playNotificationSound()
       setTimeout(() => { newOrderIds.value = new Set() }, 8000)
-    } else { orders.value = data; knownOrderIds.value = incomingIds }
-  } catch (e) { console.error("Error polling:", e) }
+    } else {
+      orders.value = data
+      knownOrderIds.value = incomingIds
+    }
+  } catch { /* interceptor global maneja 401 */ }
+  finally { isPolling = false }
 }
 
 const showToast = (message: string) => {
@@ -229,27 +262,28 @@ const showToast = (message: string) => {
   toastTimer = setTimeout(() => { newOrderToast.value = null }, 5000)
 }
 
-const openOrderDetails = async (order: any) => {
-  selectedOrder.value = { ...order, details: [] }; isLoadingTicket.value = true
-  try { const { data } = await makeMenuApi.get(`orders/waiter-orders/${order.id}/details/`); selectedOrder.value.details = data }
-  catch (e) { console.error("Error cargando ticket:", e) }
+const openOrderDetails = async (order: OrderSummary) => {
+  selectedOrder.value = order
+  ticketDetails.value = []
+  isLoadingTicket.value = true
+  try {
+    const { data } = await makeMenuApi.get<OrderDetailItem[]>(`orders/waiter-orders/${order.id}/details/`)
+    ticketDetails.value = data
+  } catch { /* interceptor global maneja 401 */ }
   finally { isLoadingTicket.value = false }
 }
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return ''
-  return new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString))
-}
+onMounted(async () => {
+  fetchMyEstablishments()
+  await fetchOrders()
+  pollingTimer = setInterval(pollOrders, POLLING_INTERVAL)
+})
 
-const getStatusClass = (status: number) => {
-  switch (status) { case -1: return 'bg-danger-soft text-danger'; case 1: return 'bg-warning-soft text-warning'; case 2: return 'bg-info-soft text-info'; case 3: return 'bg-green-soft text-green-forest'; default: return 'bg-cream-dark text-text-muted' }
-}
-const getStatusDot = (status: number) => {
-  switch (status) { case -1: return 'bg-danger'; case 1: return 'bg-warning'; case 2: return 'bg-info'; case 3: return 'bg-green-bright'; default: return 'bg-text-ghost' }
-}
-
-onMounted(async () => { fetchMyEstablishments(); await fetchOrders(); pollingTimer = setInterval(pollOrders, POLLING_INTERVAL) })
-onUnmounted(() => { if (pollingTimer) clearInterval(pollingTimer); if (toastTimer) clearTimeout(toastTimer) })
+onUnmounted(() => {
+  if (pollingTimer) clearInterval(pollingTimer)
+  if (toastTimer) clearTimeout(toastTimer)
+  if (audioCtx) { audioCtx.close(); audioCtx = null }
+})
 </script>
 
 <style scoped>

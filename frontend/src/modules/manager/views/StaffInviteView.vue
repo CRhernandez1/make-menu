@@ -19,6 +19,16 @@
         </select>
       </div>
 
+      <!-- Establecimiento -->
+      <div v-if="establishments.length > 1">
+        <label class="block text-[13px] font-semibold text-text-main mb-1.5">Establecimiento</label>
+        <select v-model="selectedEstablishment" class="input-mm !w-full sm:!w-1/2 cursor-pointer">
+          <option v-for="est in establishments" :key="est.id" :value="est.id">
+            {{ est.name }}
+          </option>
+        </select>
+      </div>
+
       <!-- Botón -->
       <button
         @click="generateQR"
@@ -65,21 +75,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import QrcodeVue from 'qrcode.vue'
 import { makeMenuApi } from '@/api/makeMenu'
 
 const selectedRole = ref('waiter')
+const selectedEstablishment = ref<number | null>(null)
+const establishments = ref<any[]>([])
 const isLoading = ref(false)
 const inviteUrl = ref<string | null>(null)
 const copied = ref(false)
 
+onMounted(async () => {
+  try {
+    const res = await makeMenuApi.get('/establishments/')
+    establishments.value = res.data
+    if (establishments.value.length > 0) {
+      selectedEstablishment.value = establishments.value[0].id
+    }
+  } catch (error) {
+    console.error('Error fetching establishments', error)
+  }
+})
+
 const generateQR = async () => {
   isLoading.value = true
   try {
-    const response = await makeMenuApi.post('/establishments/invite/', {
-      role: selectedRole.value,
-    })
+    const payload: any = { role: selectedRole.value }
+    if (selectedEstablishment.value) {
+      payload.establishment_id = selectedEstablishment.value
+    }
+    const response = await makeMenuApi.post('/establishments/invite/', payload)
     const invitationId = response.data.invitation_id
     const frontendDomain = window.location.origin
     inviteUrl.value = `${frontendDomain}/register?code=${invitationId}`
