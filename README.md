@@ -23,7 +23,7 @@ MakeMenu es un software diseñado para el sector de la hostelería. Permite a ba
 ## Documentación
 
 La documentación técnica y de usuario está disponible en:
-[documentation/docs](https://github.com/CRhernandez1/make-menu/tree/main/documentation/docs)
+[documentation/docs](https://crhernandez1.github.io/make-menu/)
 
 ## Equipo
 
