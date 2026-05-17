@@ -56,11 +56,11 @@
           <div class="flex items-center gap-2.5">
             <span class="font-display text-[28px] font-bold text-cream tracking-tight">{{ String(order.table_number).padStart(2, '0') }}</span>
             <span class="text-[11px] text-[#7a7a6e]">Mesa</span>
-            <span v-if="isUrgent(order)" class="badge-mm bg-danger-soft text-danger text-[10px] px-2.5 py-0.5" style="animation:ring-pulse 2s infinite">Urgente</span>
+            <span v-if="isUrgent(order.placed_at)" class="badge-mm bg-danger-soft text-danger text-[10px] px-2.5 py-0.5" style="animation:ring-pulse 2s infinite">Urgente</span>
           </div>
           <div class="text-right">
             <span class="text-xs text-[#7a7a6e]">{{ formatTime(order.placed_at) }}</span>
-            <p class="text-xs font-semibold mt-0.5" :class="isUrgent(order) ? 'text-danger' : order.status === 1 ? 'text-warning' : 'text-info'">
+            <p class="text-xs font-semibold mt-0.5" :class="isUrgent(order.placed_at) ? 'text-danger' : order.status === 1 ? 'text-warning' : 'text-info'">
               {{ elapsedTime(order.placed_at) }}
             </p>
           </div>
@@ -70,11 +70,11 @@
         <div class="flex items-center gap-2.5">
           <div class="flex-1 h-[5px] bg-[#3d3d38] rounded-full overflow-hidden">
             <div class="h-full rounded-full transition-all duration-500"
-              :class="order.ready_count === order.total_count ? 'bg-green-bright' : isUrgent(order) ? 'bg-danger' : 'bg-info'"
+              :class="order.ready_count === order.total_count ? 'bg-green-bright' : isUrgent(order.placed_at) ? 'bg-danger' : 'bg-info'"
               :style="{ width: `${(order.ready_count / order.total_count) * 100}%` }"></div>
           </div>
           <span class="text-xs font-display font-semibold min-w-[28px] text-right"
-            :class="isUrgent(order) ? 'text-danger' : 'text-[#7a7a6e]'">{{ order.ready_count }}/{{ order.total_count }}</span>
+            :class="isUrgent(order.placed_at) ? 'text-danger' : 'text-[#7a7a6e]'">{{ order.ready_count }}/{{ order.total_count }}</span>
         </div>
 
         <!-- Items -->
@@ -102,8 +102,8 @@
           </div>
         </div>
 
-        <!-- Botón completar -->
-        <button v-if="order.ready_count < order.total_count" @click="handleCompleteAll(order)"
+        <!-- Botón completar todo (usa endpoint batch) -->
+        <button v-if="order.ready_count < order.total_count" @click="handleCompleteAll(order.id)"
           class="w-full py-2.5 rounded-full border-[1.5px] border-[rgba(26,92,46,0.15)] text-green-bright text-xs font-semibold bg-[rgba(26,92,46,0.08)] hover:bg-[rgba(26,92,46,0.15)] transition-colors cursor-pointer">
           Marcar todo como listo
         </button>
@@ -112,60 +112,52 @@
 
     <!-- Toast -->
     <Transition name="toast">
-      <div v-if="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-full text-sm shadow-lg z-50"
-        :class="toast.type === 'success' ? 'bg-green-forest text-cream' : 'bg-danger text-white'">
-        <svg v-if="toast.type === 'success'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span class="font-semibold">{{ toast.message }}</span>
+      <div v-if="localToast.toast.value" class="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-full text-sm shadow-lg z-50"
+        :class="localToast.toast.value.type === 'success' ? 'bg-green-forest text-cream' : 'bg-danger text-white'">
+        <svg v-if="localToast.toast.value.type === 'success'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="font-semibold">{{ localToast.toast.value.message }}</span>
       </div>
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useKitchenStore } from '../stores/kitchen.store'
 import { useAuthStore } from '@/modules/auth/stores/auth.store'
+import { useFormatters } from '@/composables/useFormatters'
+import { useLocalToast } from '@/composables/useLocalToast'
 import type { KitchenOrder } from '../stores/kitchen.store'
 
 const store = useKitchenStore()
 const authStore = useAuthStore()
 const router = useRouter()
-
-interface Toast { type: 'success' | 'error'; message: string }
-const toast = ref<Toast | null>(null)
-let toastTimer: ReturnType<typeof setTimeout> | null = null
-const showToast = (type: 'success' | 'error', message: string) => {
-  if (toastTimer) clearTimeout(toastTimer)
-  toast.value = { type, message }
-  toastTimer = setTimeout(() => { toast.value = null }, 3000)
-}
+const { formatTime, elapsedTime, isUrgent } = useFormatters()
+const localToast = useLocalToast(3000)
 
 const handleToggleItem = async (itemId: number) => {
   const result = await store.toggleItem(itemId)
-  if (result.ok) { if (result.order_done) showToast('success', 'Pedido completo — listo para servir') }
-  else { showToast('error', result.error!) }
+  if (result.ok) {
+    if (result.order_done) localToast.success('Pedido completo — listo para servir')
+  } else {
+    localToast.error(result.error!)
+  }
 }
 
-const handleCompleteAll = async (order: KitchenOrder) => {
-  const pendingItems = order.items.filter(i => !i.ready)
-  for (const item of pendingItems) { await store.toggleItem(item.id) }
-  showToast('success', `Mesa ${order.table_number} — pedido completo`)
+const handleCompleteAll = async (orderId: number) => {
+  const result = await store.completeOrder(orderId)
+  if (result.ok) {
+    localToast.success(result.message!)
+  } else {
+    localToast.error(result.error!)
+  }
 }
 
 const handleLogout = async () => { await authStore.logout(); router.push({ name: 'home' }) }
 
-const formatTime = (iso: string) => new Date(iso).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
-const elapsedTime = (iso: string) => {
-  const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 60000)
-  if (diff < 1) return 'ahora'
-  if (diff < 60) return `${diff} min`
-  return `${Math.floor(diff / 60)}h ${diff % 60}m`
-}
-const isUrgent = (order: KitchenOrder) => Math.floor((Date.now() - new Date(order.placed_at).getTime()) / 60000) >= 15
-
 const cardBorderClass = (order: KitchenOrder) => {
-  if (isUrgent(order)) return 'border-[rgba(185,60,60,0.5)]'
+  if (isUrgent(order.placed_at)) return 'border-[rgba(185,60,60,0.5)]'
   return order.status === 1 ? 'border-[rgba(196,138,26,0.3)]' : 'border-[rgba(37,99,235,0.3)]'
 }
 

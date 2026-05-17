@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # THIRD PARTY APPS
+    'django_rq',
     'corsheaders',
     # CUSTOM APPS
     'establishments.apps.EstablishmentsConfig',
@@ -62,7 +63,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     # CORS
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -163,6 +163,15 @@ EMAIL_HOST_USER = os.getenv("BREVO_SMTP_USER")
 EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_KEY")
 
 DEFAULT_FROM_EMAIL = "MakeMenu <samuelcruz9800@gmail.com>"
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "DB": 0,
+        "DEFAULT_TIMEOUT": 360,
+    }
+}
 CSRF_TRUSTED_ORIGINS = [
     'http://makemenu.arkania.es:8080',
     'http://makemenu.arkania.es',

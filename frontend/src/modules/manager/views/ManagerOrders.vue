@@ -111,7 +111,7 @@
               </div>
 
               <div v-else class="space-y-1">
-                <div v-for="item in selectedOrder.details" :key="item.id" class="flex justify-between items-start py-3.5 border-b border-dashed border-border-green-light last:border-b-0">
+                <div v-for="item in ticketDetails" :key="item.id" class="flex justify-between items-start py-3.5 border-b border-dashed border-border-green-light last:border-b-0">
                   <div class="pr-4">
                     <p class="font-bold text-ink">
                       <span class="text-green-forest font-display mr-1.5">{{ item.quantity }}x</span>{{ item.product_name }}
@@ -145,16 +145,23 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { makeMenuApi } from '@/api/makeMenu'
+import { useFormatters } from '@/composables/useFormatters'
+import { useOrderStatus } from '@/composables/useOrderStatus'
+import type { OrderSummary, OrderDetailItem, EstablishmentOption, TimeFilter } from '@/interfaces/orders'
 
-const orders = ref<any[]>([])
-const myEstablishments = ref<any[]>([])
+const { formatDate } = useFormatters()
+const { getStatusClass, getStatusDot } = useOrderStatus()
+
+const orders = ref<OrderSummary[]>([])
+const myEstablishments = ref<EstablishmentOption[]>([])
 const isLoading = ref(true)
-const selectedOrder = ref<any | null>(null)
+const selectedOrder = ref<OrderSummary | null>(null)
+const ticketDetails = ref<OrderDetailItem[]>([])
 const isLoadingTicket = ref(false)
 const activeTimeFilter = ref('1')
-const activeEstablishment = ref('all')
+const activeEstablishment = ref<string>('all')
 
-const timeFilters = [
+const timeFilters: TimeFilter[] = [
   { label: '24h', value: '1' },
   { label: '3 días', value: '3' },
   { label: '7 días', value: '7' },
@@ -163,55 +170,39 @@ const timeFilters = [
 
 const fetchMyEstablishments = async () => {
   try {
-    const { data } = await makeMenuApi.get('establishments/')
+    const { data } = await makeMenuApi.get<EstablishmentOption[]>('establishments/')
     myEstablishments.value = data
-  } catch (error) { console.error("Error cargando los locales:", error) }
+  } catch {
+    // El interceptor global maneja 401; otros errores no bloquean la UI
+  }
 }
 
 const fetchOrders = async () => {
   isLoading.value = true
   try {
-    const params: any = {}
+    const params: Record<string, string> = {}
     if (activeTimeFilter.value !== 'all') params.days = activeTimeFilter.value
     if (activeEstablishment.value !== 'all') params.establishment_id = activeEstablishment.value
-    const { data } = await makeMenuApi.get('orders/manager-orders/', { params })
+    const { data } = await makeMenuApi.get<OrderSummary[]>('orders/manager-orders/', { params })
     orders.value = data
-  } catch (error) { console.error("Error al cargar la lista de pedidos:", error) }
-  finally { isLoading.value = false }
-}
-
-const openOrderDetails = async (order: any) => {
-  selectedOrder.value = { ...order, details: [] }
-  isLoadingTicket.value = true
-  try {
-    const { data } = await makeMenuApi.get(`orders/manager-orders/${order.id}/details/`)
-    selectedOrder.value.details = data
-  } catch (error) { console.error("Error cargando los platos del ticket:", error) }
-  finally { isLoadingTicket.value = false }
-}
-
-const formatDate = (dateString: string) => {
-  if (!dateString) return ''
-  return new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString))
-}
-
-const getStatusClass = (status: number) => {
-  switch (status) {
-    case -1: return 'bg-danger-soft text-danger'
-    case 1: return 'bg-warning-soft text-warning'
-    case 2: return 'bg-info-soft text-info'
-    case 3: return 'bg-green-soft text-green-forest'
-    default: return 'bg-cream-dark text-text-muted'
+  } catch {
+    // El interceptor global maneja 401
+  } finally {
+    isLoading.value = false
   }
 }
 
-const getStatusDot = (status: number) => {
-  switch (status) {
-    case -1: return 'bg-danger'
-    case 1: return 'bg-warning'
-    case 2: return 'bg-info'
-    case 3: return 'bg-green-bright'
-    default: return 'bg-text-ghost'
+const openOrderDetails = async (order: OrderSummary) => {
+  selectedOrder.value = order
+  ticketDetails.value = []
+  isLoadingTicket.value = true
+  try {
+    const { data } = await makeMenuApi.get<OrderDetailItem[]>(`orders/manager-orders/${order.id}/details/`)
+    ticketDetails.value = data
+  } catch {
+    // El interceptor global maneja 401
+  } finally {
+    isLoadingTicket.value = false
   }
 }
 

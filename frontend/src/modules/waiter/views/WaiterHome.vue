@@ -52,18 +52,18 @@
           <p class="text-[11px] font-semibold" :class="statusTextClass(table.status)">{{ table.order.status_display }}</p>
           <p class="font-display text-[17px] font-bold mt-0.5" :class="numberClass(table.status)">{{ table.order.total }}€</p>
           <p class="text-[10px] text-text-muted mt-0.5">{{ table.order.items_count }} productos</p>
-          <p v-if="isUrgent(table)" class="text-[10px] font-semibold text-danger mt-1">{{ elapsedTime(table.order.placed_at) }}</p>
+          <p v-if="isUrgent(table.order.placed_at)" class="text-[10px] font-semibold text-danger mt-1">{{ elapsedTime(table.order.placed_at) }}</p>
         </div>
       </div>
     </div>
 
     <!-- Toast -->
     <Transition name="toast">
-      <div v-if="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-full text-sm shadow-lg z-50"
-        :class="toast.type === 'success' ? 'bg-green-forest text-cream' : 'bg-danger text-white'">
-        <svg v-if="toast.type === 'success'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <div v-if="localToast.toast.value" class="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-full text-sm shadow-lg z-50"
+        :class="localToast.toast.value.type === 'success' ? 'bg-green-forest text-cream' : 'bg-danger text-white'">
+        <svg v-if="localToast.toast.value.type === 'success'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         <svg v-else width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        <span class="font-semibold">{{ toast.message }}</span>
+        <span class="font-semibold">{{ localToast.toast.value.message }}</span>
       </div>
     </Transition>
 
@@ -138,18 +138,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useWaiterStore } from '../stores/waiter.store'
+import { useFormatters } from '@/composables/useFormatters'
+import { useLocalToast } from '@/composables/useLocalToast'
 import type { TableInfo, OrderDetail } from '../stores/waiter.store'
 
 const store = useWaiterStore()
-
-interface Toast { type: 'success' | 'error'; message: string }
-const toast = ref<Toast | null>(null)
-let toastTimer: ReturnType<typeof setTimeout> | null = null
-const showToast = (type: 'success' | 'error', message: string) => {
-  if (toastTimer) clearTimeout(toastTimer)
-  toast.value = { type, message }
-  toastTimer = setTimeout(() => { toast.value = null }, 4000)
-}
+const { formatTime, elapsedTime, isUrgent } = useFormatters()
+const localToast = useLocalToast()
 
 const selectedTable = ref<TableInfo | null>(null)
 const orderDetail = ref<OrderDetail | null>(null)
@@ -161,33 +156,22 @@ const openTable = async (table: TableInfo) => {
 
 const handleAdvance = async (orderId: number) => {
   const result = await store.advanceOrder(orderId)
-  showToast(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
+  localToast.show(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
   if (result.ok && selectedTable.value) { orderDetail.value = await store.fetchOrderDetail(selectedTable.value.number) }
 }
 const handleCancel = async (orderId: number) => {
   const result = await store.cancelOrder(orderId)
-  showToast(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
+  localToast.show(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
   if (result.ok) { selectedTable.value = null; orderDetail.value = null }
 }
 const handleClose = async (tableNum: number) => {
   const result = await store.closeTable(tableNum)
-  showToast(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
+  localToast.show(result.ok ? 'success' : 'error', result.ok ? result.message! : result.error!)
   if (result.ok) { selectedTable.value = null; orderDetail.value = null }
 }
 
-const formatTime = (iso: string) => new Date(iso).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
-const elapsedTime = (iso: string) => {
-  const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 60000)
-  if (diff < 1) return 'ahora'
-  return `${diff} min`
-}
-const isUrgent = (table: TableInfo) => {
-  if (!table.order) return false
-  return Math.floor((Date.now() - new Date(table.order.placed_at).getTime()) / 60000) >= 15
-}
-
 const tableCardClass = (table: TableInfo) => {
-  if (isUrgent(table)) return 'border-[rgba(185,60,60,0.3)] bg-[rgba(185,60,60,0.04)]'
+  if (table.order && isUrgent(table.order.placed_at)) return 'border-[rgba(185,60,60,0.3)] bg-[rgba(185,60,60,0.04)]'
   switch (table.status) {
     case 'pending': return 'border-[rgba(196,138,26,0.3)] bg-warning-soft'
     case 'in_progress': return 'border-[rgba(26,92,46,0.2)] bg-green-soft'
@@ -196,7 +180,7 @@ const tableCardClass = (table: TableInfo) => {
   }
 }
 const dotClass = (table: TableInfo) => {
-  if (isUrgent(table)) return 'bg-danger'
+  if (table.order && isUrgent(table.order.placed_at)) return 'bg-danger'
   switch (table.status) {
     case 'pending': return 'bg-warning'
     case 'in_progress': return 'bg-green-medium'
