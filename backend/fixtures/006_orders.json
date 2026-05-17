@@ -1,0 +1,1028 @@
+[
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "status": 2,
+    "table": 5,
+    "establishment": 1,
+    "placed_at": "2026-05-17T10:18:28.178Z",
+    "paid": false,
+    "total": "107.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "status": 2,
+    "table": 1,
+    "establishment": 1,
+    "placed_at": "2026-05-17T10:18:28.261Z",
+    "paid": false,
+    "total": "156.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "status": 2,
+    "table": 4,
+    "establishment": 1,
+    "placed_at": "2026-05-17T10:18:28.350Z",
+    "paid": false,
+    "total": "71.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "status": 2,
+    "table": 9,
+    "establishment": 2,
+    "placed_at": "2026-05-17T10:18:28.431Z",
+    "paid": false,
+    "total": "48.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "status": 2,
+    "table": 8,
+    "establishment": 2,
+    "placed_at": "2026-05-17T10:18:28.512Z",
+    "paid": false,
+    "total": "55.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 6,
+  "fields": {
+    "status": 2,
+    "table": 10,
+    "establishment": 2,
+    "placed_at": "2026-05-17T10:18:28.614Z",
+    "paid": false,
+    "total": "40.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 7,
+  "fields": {
+    "status": 2,
+    "table": 12,
+    "establishment": 3,
+    "placed_at": "2026-05-17T10:18:28.679Z",
+    "paid": false,
+    "total": "18.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 8,
+  "fields": {
+    "status": 2,
+    "table": 14,
+    "establishment": 3,
+    "placed_at": "2026-05-17T10:18:28.729Z",
+    "paid": false,
+    "total": "45.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 9,
+  "fields": {
+    "status": 2,
+    "table": 11,
+    "establishment": 3,
+    "placed_at": "2026-05-17T10:18:28.785Z",
+    "paid": false,
+    "total": "42.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 10,
+  "fields": {
+    "status": 2,
+    "table": 18,
+    "establishment": 4,
+    "placed_at": "2026-05-17T10:18:28.852Z",
+    "paid": false,
+    "total": "45.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 11,
+  "fields": {
+    "status": 2,
+    "table": 16,
+    "establishment": 4,
+    "placed_at": "2026-05-17T10:18:28.925Z",
+    "paid": false,
+    "total": "56.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 12,
+  "fields": {
+    "status": 2,
+    "table": 18,
+    "establishment": 4,
+    "placed_at": "2026-05-17T10:18:29.001Z",
+    "paid": false,
+    "total": "30.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 13,
+  "fields": {
+    "status": 2,
+    "table": 22,
+    "establishment": 5,
+    "placed_at": "2026-05-17T10:18:29.057Z",
+    "paid": false,
+    "total": "69.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 14,
+  "fields": {
+    "status": 2,
+    "table": 25,
+    "establishment": 5,
+    "placed_at": "2026-05-17T10:18:29.126Z",
+    "paid": false,
+    "total": "90.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 15,
+  "fields": {
+    "status": 2,
+    "table": 25,
+    "establishment": 5,
+    "placed_at": "2026-05-17T10:18:29.210Z",
+    "paid": false,
+    "total": "44.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 16,
+  "fields": {
+    "status": 2,
+    "table": 28,
+    "establishment": 6,
+    "placed_at": "2026-05-17T10:18:29.287Z",
+    "paid": false,
+    "total": "82.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 17,
+  "fields": {
+    "status": 2,
+    "table": 30,
+    "establishment": 6,
+    "placed_at": "2026-05-17T10:18:29.393Z",
+    "paid": false,
+    "total": "87.00",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 18,
+  "fields": {
+    "status": 2,
+    "table": 28,
+    "establishment": 6,
+    "placed_at": "2026-05-17T10:18:29.481Z",
+    "paid": false,
+    "total": "25.50",
+    "closed_at": null
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 6,
+    "price": "2.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "product": 3,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 3,
+  "fields": {
+    "order": 1,
+    "product": 5,
+    "price": "6.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 4,
+  "fields": {
+    "order": 1,
+    "product": 3,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 5,
+  "fields": {
+    "order": 2,
+    "product": 7,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 6,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 7,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 8,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 9,
+  "fields": {
+    "order": 2,
+    "product": 5,
+    "price": "6.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 10,
+  "fields": {
+    "order": 3,
+    "product": 5,
+    "price": "6.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 11,
+  "fields": {
+    "order": 3,
+    "product": 4,
+    "price": "16.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 12,
+  "fields": {
+    "order": 3,
+    "product": 1,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 13,
+  "fields": {
+    "order": 3,
+    "product": 1,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 14,
+  "fields": {
+    "order": 4,
+    "product": 8,
+    "price": "4.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 15,
+  "fields": {
+    "order": 4,
+    "product": 8,
+    "price": "4.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 16,
+  "fields": {
+    "order": 4,
+    "product": 13,
+    "price": "2.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 17,
+  "fields": {
+    "order": 4,
+    "product": 11,
+    "price": "12.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 18,
+  "fields": {
+    "order": 5,
+    "product": 13,
+    "price": "2.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 19,
+  "fields": {
+    "order": 5,
+    "product": 9,
+    "price": "8.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 20,
+  "fields": {
+    "order": 5,
+    "product": 9,
+    "price": "8.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 21,
+  "fields": {
+    "order": 5,
+    "product": 8,
+    "price": "4.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 22,
+  "fields": {
+    "order": 5,
+    "product": 9,
+    "price": "8.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 23,
+  "fields": {
+    "order": 6,
+    "product": 10,
+    "price": "10.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 24,
+  "fields": {
+    "order": 6,
+    "product": 11,
+    "price": "12.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 25,
+  "fields": {
+    "order": 6,
+    "product": 12,
+    "price": "6.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 26,
+  "fields": {
+    "order": 7,
+    "product": 20,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 27,
+  "fields": {
+    "order": 7,
+    "product": 19,
+    "price": "2.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 28,
+  "fields": {
+    "order": 8,
+    "product": 20,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 29,
+  "fields": {
+    "order": 8,
+    "product": 14,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 30,
+  "fields": {
+    "order": 9,
+    "product": 17,
+    "price": "16.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 31,
+  "fields": {
+    "order": 9,
+    "product": 18,
+    "price": "6.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 32,
+  "fields": {
+    "order": 9,
+    "product": 19,
+    "price": "2.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 33,
+  "fields": {
+    "order": 10,
+    "product": 25,
+    "price": "3.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 34,
+  "fields": {
+    "order": 10,
+    "product": 21,
+    "price": "4.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 35,
+  "fields": {
+    "order": 10,
+    "product": 25,
+    "price": "3.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 36,
+  "fields": {
+    "order": 10,
+    "product": 22,
+    "price": "6.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 37,
+  "fields": {
+    "order": 11,
+    "product": 22,
+    "price": "6.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 38,
+  "fields": {
+    "order": 11,
+    "product": 22,
+    "price": "6.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 39,
+  "fields": {
+    "order": 11,
+    "product": 24,
+    "price": "5.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 40,
+  "fields": {
+    "order": 11,
+    "product": 25,
+    "price": "3.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 41,
+  "fields": {
+    "order": 12,
+    "product": 25,
+    "price": "3.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 42,
+  "fields": {
+    "order": 12,
+    "product": 23,
+    "price": "10.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 43,
+  "fields": {
+    "order": 13,
+    "product": 28,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 44,
+  "fields": {
+    "order": 13,
+    "product": 31,
+    "price": "2.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 45,
+  "fields": {
+    "order": 13,
+    "product": 32,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 46,
+  "fields": {
+    "order": 13,
+    "product": 29,
+    "price": "16.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 47,
+  "fields": {
+    "order": 14,
+    "product": 28,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 48,
+  "fields": {
+    "order": 14,
+    "product": 28,
+    "price": "18.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 49,
+  "fields": {
+    "order": 14,
+    "product": 26,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 50,
+  "fields": {
+    "order": 14,
+    "product": 27,
+    "price": "9.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 51,
+  "fields": {
+    "order": 15,
+    "product": 32,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 52,
+  "fields": {
+    "order": 15,
+    "product": 26,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 53,
+  "fields": {
+    "order": 15,
+    "product": 31,
+    "price": "2.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 54,
+  "fields": {
+    "order": 15,
+    "product": 29,
+    "price": "16.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 55,
+  "fields": {
+    "order": 16,
+    "product": 38,
+    "price": "2.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 56,
+  "fields": {
+    "order": 16,
+    "product": 34,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 57,
+  "fields": {
+    "order": 16,
+    "product": 36,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 58,
+  "fields": {
+    "order": 16,
+    "product": 33,
+    "price": "9.00",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 59,
+  "fields": {
+    "order": 16,
+    "product": 35,
+    "price": "11.00",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 60,
+  "fields": {
+    "order": 17,
+    "product": 37,
+    "price": "5.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 61,
+  "fields": {
+    "order": 17,
+    "product": 36,
+    "price": "14.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 62,
+  "fields": {
+    "order": 17,
+    "product": 34,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 63,
+  "fields": {
+    "order": 17,
+    "product": 34,
+    "price": "8.50",
+    "notes": "",
+    "quantity": 3,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 64,
+  "fields": {
+    "order": 18,
+    "product": 38,
+    "price": "2.50",
+    "notes": "",
+    "quantity": 1,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 65,
+  "fields": {
+    "order": 18,
+    "product": 38,
+    "price": "2.50",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+},
+{
+  "model": "orders.orderdetail",
+  "pk": 66,
+  "fields": {
+    "order": 18,
+    "product": 33,
+    "price": "9.00",
+    "notes": "",
+    "quantity": 2,
+    "ready": false
+  }
+}
+]

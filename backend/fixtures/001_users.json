@@ -1,126 +1,420 @@
 [
-  {
-    "model": "auth.user",
-    "pk": 1,
-    "fields": {
-      "username": "admin",
-      "first_name": "Admin",
-      "last_name": "MakeMenu",
-      "email": "admin@makemenu.com",
-      "password": "pbkdf2_sha256$870000$test$KMbUPdJdKenwRxhmJZMVUbIXXs/IuZGpMPwxaEIYVLI=",
-      "is_superuser": true,
-      "is_staff": true,
-      "is_active": true
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 2,
-    "fields": {
-      "username": "carlos_manager",
-      "first_name": "Carlos",
-      "last_name": "Garc\u00eda",
-      "email": "carlos@makemenu.com",
-      "password": "pbkdf2_sha256$870000$FTPwdTCt82fPNxDY$C0yMZCKL1tRfDas+gZdQnBMsnqwTjO8hzkcsg8nxhE0=",
-      "is_superuser": false,
-      "is_staff": false,
-      "is_active": true
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 3,
-    "fields": {
-      "username": "laura_camarera",
-      "first_name": "Laura",
-      "last_name": "Mart\u00ednez",
-      "email": "laura@makemenu.com",
-      "password": "pbkdf2_sha256$870000$FTPwdTCt82fPNxDY$C0yMZCKL1tRfDas+gZdQnBMsnqwTjO8hzkcsg8nxhE0=",
-      "is_superuser": false,
-      "is_staff": false,
-      "is_active": true
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 4,
-    "fields": {
-      "username": "pedro_cocina",
-      "first_name": "Pedro",
-      "last_name": "L\u00f3pez",
-      "email": "pedro@makemenu.com",
-      "password": "pbkdf2_sha256$870000$test$KMbUPdJdKenwRxhmJZMVUbIXXs/IuZGpMPwxaEIYVLI=",
-      "is_superuser": false,
-      "is_staff": false,
-      "is_active": true
-    }
-  },
-  {
-    "model": "users.member",
-    "pk": 1,
-    "fields": {
-      "user": 1,
-      "phone": "+34600000001"
-    }
-  },
-  {
-    "model": "users.member",
-    "pk": 2,
-    "fields": {
-      "user": 2,
-      "phone": "+34600000002"
-    }
-  },
-  {
-    "model": "users.member",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "phone": "+34600000003"
-    }
-  },
-  {
-    "model": "users.member",
-    "pk": 4,
-    "fields": {
-      "user": 4,
-      "phone": "+34600000004"
-    }
-  },
-  {
-    "model": "users.token",
-    "pk": 1,
-    "fields": {
-      "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      "user": 1,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
-  },
-  {
-    "model": "users.token",
-    "pk": 2,
-    "fields": {
-      "key": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-      "user": 2,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
-  },
-  {
-    "model": "users.token",
-    "pk": 3,
-    "fields": {
-      "key": "c3d4e5f6-a7b8-9012-cdef-123456789012",
-      "user": 3,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
-  },
-  {
-    "model": "users.token",
-    "pk": 4,
-    "fields": {
-      "key": "d4e5f6a7-b8c9-0123-defa-234567890123",
-      "user": 4,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$UocxbwgPvk4sJInMhdfp6G$UYu1x+O/1YsdHcIi3xr7bbpwlScf9UeSezXYJHuOuFY=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Admin",
+    "last_name": "MakeMenu",
+    "email": "admin@makemenu.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:08.052Z",
+    "groups": [],
+    "user_permissions": []
   }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$njE6r5fmZjT2ivotDkXAqQ$wXHxFCUCdxzjYOZfvXMZj936iomwDNtnjL+fMNP8jKI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "carlos_manager",
+    "first_name": "Carlos",
+    "last_name": "García",
+    "email": "carlos_manager@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:08.445Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$9hJBmVxMJiflwETWS8dRle$f0k80vhqxmTI+B/VmtrocVV4dvxXqQ80F42YkqEo+eQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "laura_camarera",
+    "first_name": "Laura",
+    "last_name": "Martínez",
+    "email": "laura_camarera@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:08.885Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$m09DZdLYr7OvNbU2RWASJS$eTr09wwh/LdMDMULQ22vWC5dQFjZQNxeJIv79ru9l8U=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "pedro_cocina",
+    "first_name": "Pedro",
+    "last_name": "López",
+    "email": "pedro_cocina@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:09.292Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$jVFV7lsl0ugbT2hg4Tmvfx$YtFd5lzB4XgUQP9UOdv5nADJVxtFSRRUhDgahzzdQP0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "elena_manager",
+    "first_name": "Elena",
+    "last_name": "Gómez",
+    "email": "elena_manager@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:09.720Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ITRJ2bFEjL07ocw5a80NL8$WXVIvRpMhO77sf0jMtkltuiObmkikN2vb3AmuxEkI7E=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "javier_camarero",
+    "first_name": "Javier",
+    "last_name": "Ruíz",
+    "email": "javier_camarero@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:10.133Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cBzAhCL2NA0KGzp9Vd9Vhh$qkx07uLWIrywDpAuEr5v4RgkzMEIre5URUpaYLNgt/o=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ana_cocina",
+    "first_name": "Ana",
+    "last_name": "Fernández",
+    "email": "ana_cocina@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:10.544Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Nt1tkW10mPIxKvf2EmoOqa$B2r48n5oS3zJjJXs38KW3rXXAK5JLDR6AICqFMV6+qA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "marcos_manager",
+    "first_name": "Marcos",
+    "last_name": "Díaz",
+    "email": "marcos_manager@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:10.969Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$6hXBbOKLMIMOn8EsfKCPXR$8YritmzuZfNnijl7SsZ7gCrC6wvL8D1bHC5/Wzq3LmA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lucia_camarera",
+    "first_name": "Lucía",
+    "last_name": "Navarro",
+    "email": "lucia_camarera@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:11.398Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GiPH52WLaYHpd8lhlkI8IY$nan2wScxFqXuyM8/H/+BgVHQvHIJrrjIbNAcHlxPj/8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "diego_cocina",
+    "first_name": "Diego",
+    "last_name": "Serrano",
+    "email": "diego_cocina@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:11.869Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$hTJtefYwsiya9SPLQNugjl$UKIXeSAIcipvOkpERmWSr7fFSHIVBajBiJEusjNDjhM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sofia_manager",
+    "first_name": "Sofía",
+    "last_name": "Gil",
+    "email": "sofia_manager@makemenu.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-17T10:18:12.375Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.member",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "phone": "+34000000000",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "phone": "+34600000001",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "phone": "+34600000002",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "phone": "+34600000003",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "phone": "+34600000004",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "phone": "+34600000005",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 7,
+  "fields": {
+    "user": 7,
+    "phone": "+34600000006",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 8,
+  "fields": {
+    "user": 8,
+    "phone": "+34600000007",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 9,
+  "fields": {
+    "user": 9,
+    "phone": "+34600000008",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "phone": "+34600000009",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.member",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "phone": "+34600000010",
+    "avatar": "avatar/noavatar.png",
+    "manager_email_sent": false
+  }
+},
+{
+  "model": "users.token",
+  "pk": 1,
+  "fields": {
+    "key": "3d0ac50d-84d0-4ba1-91f4-66bddbe4634f",
+    "user": 1,
+    "created_at": "2026-05-17T10:18:08.413Z",
+    "expires_at": "2026-06-16T10:18:08.413Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 2,
+  "fields": {
+    "key": "e26f0f89-48ed-46e0-9230-558d1eb3153b",
+    "user": 2,
+    "created_at": "2026-05-17T10:18:08.857Z",
+    "expires_at": "2026-06-16T10:18:08.857Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 3,
+  "fields": {
+    "key": "257c670f-9c6b-4098-801b-9064aab0eb97",
+    "user": 3,
+    "created_at": "2026-05-17T10:18:09.263Z",
+    "expires_at": "2026-06-16T10:18:09.263Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 4,
+  "fields": {
+    "key": "a0202502-7a21-45b2-ba80-5978f13a0c3e",
+    "user": 4,
+    "created_at": "2026-05-17T10:18:09.687Z",
+    "expires_at": "2026-06-16T10:18:09.687Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 5,
+  "fields": {
+    "key": "ad1e7056-c21b-449c-ac8e-15056d6090c1",
+    "user": 5,
+    "created_at": "2026-05-17T10:18:10.103Z",
+    "expires_at": "2026-06-16T10:18:10.103Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 6,
+  "fields": {
+    "key": "ff023b94-4a89-4de8-8e4c-5e21b733d52c",
+    "user": 6,
+    "created_at": "2026-05-17T10:18:10.511Z",
+    "expires_at": "2026-06-16T10:18:10.511Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 7,
+  "fields": {
+    "key": "5a6ed499-63f4-40bd-a849-c39d667997bf",
+    "user": 7,
+    "created_at": "2026-05-17T10:18:10.939Z",
+    "expires_at": "2026-06-16T10:18:10.939Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 8,
+  "fields": {
+    "key": "52a565e2-e0c1-4101-b64d-94473d77dcd3",
+    "user": 8,
+    "created_at": "2026-05-17T10:18:11.365Z",
+    "expires_at": "2026-06-16T10:18:11.365Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 9,
+  "fields": {
+    "key": "48e79d21-1bfd-4ad0-9781-a4ebb68e6200",
+    "user": 9,
+    "created_at": "2026-05-17T10:18:11.835Z",
+    "expires_at": "2026-06-16T10:18:11.834Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 10,
+  "fields": {
+    "key": "838f5c4f-66f7-4aec-88e5-d0cbcc630043",
+    "user": 10,
+    "created_at": "2026-05-17T10:18:12.341Z",
+    "expires_at": "2026-06-16T10:18:12.341Z"
+  }
+},
+{
+  "model": "users.token",
+  "pk": 11,
+  "fields": {
+    "key": "d819a735-12d9-41fc-bf99-f053e32c73fb",
+    "user": 11,
+    "created_at": "2026-05-17T10:18:12.871Z",
+    "expires_at": "2026-06-16T10:18:12.871Z"
+  }
+}
 ]

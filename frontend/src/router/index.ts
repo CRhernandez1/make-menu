@@ -36,6 +36,16 @@ const router = createRouter({
           component: HomeView,
         },
       ],
+    },   
+    {
+    path: '/privacy',
+    name: 'privacy',
+    component: () => import('@/modules/landing/views/PrivacyView.vue'),
+    },
+    {
+    path: '/legal',
+    name: 'legal',
+    component: () => import('@/modules/landing/views/LegalView.vue'),
     },
 
     // --- ZONA DE AUTENTICACIÓN ---
@@ -179,7 +189,7 @@ const router = createRouter({
 })
 
 // Guard global: protección centralizada de autenticación
-const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing', 'public-menu']
+const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing', 'public-menu', 'privacy', 'legal']
 
 router.beforeEach(async (to) => {
   if (PUBLIC_ROUTES.includes(to.name as string)) return true
