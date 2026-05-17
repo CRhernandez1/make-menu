@@ -9,17 +9,17 @@
         </div>
         <div>
           <h1 class="font-display text-2xl font-bold text-cream tracking-tight">Cocina</h1>
-          <p class="text-sm text-[#7a7a6e]">{{ store.establishmentName }}</p>
+          <p class="text-sm text-[#aeae9f]">{{ store.establishmentName }}</p>
         </div>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-sm text-[#7a7a6e] font-display">{{ store.orders.length }} activos</span>
+        <span class="text-sm text-[#aeae9f] font-display">{{ store.orders.length }} activos</span>
         <button @click="store.fetchOrders()"
-          class="w-10 h-10 rounded-[14px] bg-[#2c2c2a] border border-[#3d3d38] text-[#7a7a6e] flex items-center justify-center cursor-pointer hover:text-warning hover:border-[rgba(196,138,26,0.3)] transition-all">
+          class="w-10 h-10 rounded-[14px] bg-[#2c2c2a] border border-[#3d3d38] text-[#aeae9f] flex items-center justify-center cursor-pointer hover:text-warning hover:border-[rgba(196,138,26,0.3)] transition-all">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </button>
         <button @click="handleLogout"
-          class="w-10 h-10 rounded-[14px] bg-[#2c2c2a] border border-[#3d3d38] text-[#7a7a6e] flex items-center justify-center cursor-pointer hover:text-danger hover:border-[rgba(185,60,60,0.3)] transition-all" title="Cerrar sesión">
+          class="w-10 h-10 rounded-[14px] bg-[#2c2c2a] border border-[#3d3d38] text-[#aeae9f] flex items-center justify-center cursor-pointer hover:text-danger hover:border-[rgba(185,60,60,0.3)] transition-all" title="Cerrar sesión">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
       </div>
@@ -42,7 +42,7 @@
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7a7a6e" stroke-width="1.5" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1"/><path d="M21 22v-7"/></svg>
       </div>
       <h3 class="font-display text-lg font-bold text-cream mb-2">Cocina despejada</h3>
-      <p class="text-sm text-[#7a7a6e]">Los pedidos aparecerán aquí cuando los clientes pidan desde el QR.</p>
+      <p class="text-sm text-[#aeae9f]">Los pedidos aparecerán aquí cuando los clientes pidan desde el QR.</p>
     </div>
 
     <!-- Grid pedidos -->
@@ -55,11 +55,11 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2.5">
             <span class="font-display text-[28px] font-bold text-cream tracking-tight">{{ String(order.table_number).padStart(2, '0') }}</span>
-            <span class="text-[11px] text-[#7a7a6e]">Mesa</span>
+            <span class="text-[11px] text-[#aeae9f]">Mesa</span>
             <span v-if="isUrgent(order.placed_at)" class="badge-mm bg-danger-soft text-danger text-[10px] px-2.5 py-0.5" style="animation:ring-pulse 2s infinite">Urgente</span>
           </div>
           <div class="text-right">
-            <span class="text-xs text-[#7a7a6e]">{{ formatTime(order.placed_at) }}</span>
+            <span class="text-xs text-[#aeae9f]">{{ formatTime(order.placed_at) }}</span>
             <p class="text-xs font-semibold mt-0.5" :class="isUrgent(order.placed_at) ? 'text-danger' : order.status === 1 ? 'text-warning' : 'text-info'">
               {{ elapsedTime(order.placed_at) }}
             </p>
@@ -74,7 +74,7 @@
               :style="{ width: `${(order.ready_count / order.total_count) * 100}%` }"></div>
           </div>
           <span class="text-xs font-display font-semibold min-w-[28px] text-right"
-            :class="isUrgent(order.placed_at) ? 'text-danger' : 'text-[#7a7a6e]'">{{ order.ready_count }}/{{ order.total_count }}</span>
+            :class="isUrgent(order.placed_at) ? 'text-danger' : 'text-[#aeae9f]'">{{ order.ready_count }}/{{ order.total_count }}</span>
         </div>
 
         <!-- Items -->

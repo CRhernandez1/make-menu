@@ -10,10 +10,10 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <RouterLink :to="{ name: 'privacy' }" class="text-xs text-text-ghost hover:text-gray-600 transition-colors">
+        <RouterLink :to="{ name: 'privacy' }" class="text-xs text-text-ghost hover:text-green-600 transition-colors">
           Política de privacidad
         </RouterLink>
-        <RouterLink :to="{ name: 'legal' }" class="text-xs text-text-ghost hover:text-gray-600 transition-colors">
+        <RouterLink :to="{ name: 'legal' }" class="text-xs text-text-ghost hover:text-green-600 transition-colors">
           Aviso legal
         </RouterLink>
       </div>
