@@ -1,168 +1,915 @@
 [
-  {
-    "model": "establishments.establishment",
-    "pk": 1,
-    "fields": {
-      "name": "La Tasca del Puerto",
-      "legal_name": "Tasca del Puerto S.L.",
-      "cif": "B12345678",
-      "description": "Restaurante de cocina tradicional canaria con vistas al puerto.",
-      "zip_code": "38001",
-      "city": "Santa Cruz de Tenerife",
-      "address": "Calle del Puerto 12, Santa Cruz de Tenerife",
-      "phone": "+34922100200",
-      "opened": true
-    }
-  },
-  {
-    "model": "establishments.establishment",
-    "pk": 2,
-    "fields": {
-      "name": "Pizzer\u00eda Da Mario",
-      "legal_name": "Da Mario Restauraci\u00f3n S.L.",
-      "cif": "B87654321",
-      "description": "Aut\u00e9ntica pizzer\u00eda italiana artesanal.",
-      "zip_code": "38002",
-      "city": "Santa Cruz de Tenerife",
-      "address": "Avenida de Anaga 45, Santa Cruz de Tenerife",
-      "phone": "+34922300400",
-      "opened": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 1,
-    "fields": {
-      "establishment": 1,
-      "number": 1,
-      "max_guests": 4,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 2,
-    "fields": {
-      "establishment": 1,
-      "number": 2,
-      "max_guests": 6,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 3,
-    "fields": {
-      "establishment": 1,
-      "number": 3,
-      "max_guests": 2,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 4,
-    "fields": {
-      "establishment": 1,
-      "number": 4,
-      "max_guests": 8,
-      "active": false
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 5,
-    "fields": {
-      "establishment": 2,
-      "number": 1,
-      "max_guests": 4,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 6,
-    "fields": {
-      "establishment": 2,
-      "number": 2,
-      "max_guests": 4,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.table",
-    "pk": 7,
-    "fields": {
-      "establishment": 2,
-      "number": 3,
-      "max_guests": 6,
-      "active": true
-    }
-  },
-  {
-    "model": "establishments.manage",
-    "pk": 1,
-    "fields": {
-      "establishment": 1,
-      "member": 2,
-      "role": "manager",
-      "end_date": null,
-      "joined_at": "2026-04-09"
-    }
-  },
-  {
-    "model": "establishments.manage",
-    "pk": 2,
-    "fields": {
-      "establishment": 1,
-      "member": 3,
-      "role": "waiter",
-      "end_date": null,
-      "joined_at": "2026-04-09"
-    }
-  },
-  {
-    "model": "establishments.manage",
-    "pk": 3,
-    "fields": {
-      "establishment": 1,
-      "member": 4,
-      "role": "kitchen",
-      "end_date": null,
-      "joined_at": "2026-04-09"
-    }
-  },
-  {
-    "model": "establishments.manage",
-    "pk": 4,
-    "fields": {
-      "establishment": 2,
-      "member": 2,
-      "role": "manager",
-      "end_date": null,
-      "joined_at": "2026-04-09"
-    }
-  },
-  {
-    "model": "establishments.invitation",
-    "pk": "11111111-1111-1111-1111-111111111111",
-    "fields": {
-      "establishment": 1,
-      "role": "waiter",
-      "created_by": 2,
-      "is_used": false,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
-  },
-  {
-    "model": "establishments.invitation",
-    "pk": "22222222-2222-2222-2222-222222222222",
-    "fields": {
-      "establishment": 2,
-      "role": "kitchen",
-      "created_by": 2,
-      "is_used": true,
-      "created_at": "2026-04-09T11:01:00.446754Z"
-    }
+{
+  "model": "establishments.establishment",
+  "pk": 1,
+  "fields": {
+    "cif": "B12345678",
+    "name": "La Tasca del Puerto",
+    "legal_name": "Tasca del Puerto S.L.",
+    "description": "Restaurante de cocina tradicional canaria con vistas al puerto.",
+    "zip_code": "38000",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 1",
+    "phone": "+34922000000",
+    "opened": true
   }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 2,
+  "fields": {
+    "cif": "B87654321",
+    "name": "Pizzería Da Mario",
+    "legal_name": "Da Mario Restauración S.L.",
+    "description": "Auténtica pizzería italiana artesanal.",
+    "zip_code": "38001",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 2",
+    "phone": "+34922000001",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 3,
+  "fields": {
+    "cif": "B11223344",
+    "name": "Asador El Torreón",
+    "legal_name": "Asados Torreón S.L.",
+    "description": "Especialistas en carnes a la brasa y asados tradicionales.",
+    "zip_code": "38002",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 3",
+    "phone": "+34922000002",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 4,
+  "fields": {
+    "cif": "B44332211",
+    "name": "Sushi Club",
+    "legal_name": "Sushi Club España S.L.",
+    "description": "Comida japonesa moderna con ingredientes de alta calidad.",
+    "zip_code": "38003",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 4",
+    "phone": "+34922000003",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 5,
+  "fields": {
+    "cif": "B55667788",
+    "name": "El Rinconcito Vegano",
+    "legal_name": "Vida Vegana S.L.",
+    "description": "Platos veganos creativos y saludables.",
+    "zip_code": "38004",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 5",
+    "phone": "+34922000004",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 6,
+  "fields": {
+    "cif": "B99887766",
+    "name": "Burger Master",
+    "legal_name": "Hamburguesas Premium S.L.",
+    "description": "Las mejores hamburguesas gourmet de la ciudad.",
+    "zip_code": "38005",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 6",
+    "phone": "+34922000005",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 7,
+  "fields": {
+    "cif": "B22334455",
+    "name": "Tacos El Rey",
+    "legal_name": "Rey Taco S.L.",
+    "description": "Tacos, burritos y auténtica comida mexicana.",
+    "zip_code": "38006",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 7",
+    "phone": "+34922000006",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 8,
+  "fields": {
+    "cif": "B66778899",
+    "name": "Marisquería El Pescador",
+    "legal_name": "Pescados del Mar S.L.",
+    "description": "Mariscos frescos y pescados del día.",
+    "zip_code": "38007",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 8",
+    "phone": "+34922000007",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 9,
+  "fields": {
+    "cif": "B11122233",
+    "name": "Cafetería La Central",
+    "legal_name": "Café Central S.L.",
+    "description": "Desayunos, meriendas y el mejor café de especialidad.",
+    "zip_code": "38008",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 9",
+    "phone": "+34922000008",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 10,
+  "fields": {
+    "cif": "B99988877",
+    "name": "Bistro Francés",
+    "legal_name": "Bistro C'est la Vie S.L.",
+    "description": "Cocina tradicional francesa con toque contemporáneo.",
+    "zip_code": "38009",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 10",
+    "phone": "+34922000009",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.establishment",
+  "pk": 11,
+  "fields": {
+    "cif": "B33344455",
+    "name": "Trattoria Bella Napoli",
+    "legal_name": "Napoli Foods S.L.",
+    "description": "Pastas caseras y pizzas al horno de leña.",
+    "zip_code": "38010",
+    "city": "Santa Cruz de Tenerife",
+    "address": "Calle Principal 11",
+    "phone": "+34922000010",
+    "opened": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 1,
+  "fields": {
+    "establishment": 1,
+    "number": 1,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 2,
+  "fields": {
+    "establishment": 1,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 3,
+  "fields": {
+    "establishment": 1,
+    "number": 3,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 4,
+  "fields": {
+    "establishment": 1,
+    "number": 4,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 5,
+  "fields": {
+    "establishment": 1,
+    "number": 5,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 6,
+  "fields": {
+    "establishment": 2,
+    "number": 1,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 7,
+  "fields": {
+    "establishment": 2,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 8,
+  "fields": {
+    "establishment": 2,
+    "number": 3,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 9,
+  "fields": {
+    "establishment": 2,
+    "number": 4,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 10,
+  "fields": {
+    "establishment": 2,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 11,
+  "fields": {
+    "establishment": 3,
+    "number": 1,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 12,
+  "fields": {
+    "establishment": 3,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 13,
+  "fields": {
+    "establishment": 3,
+    "number": 3,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 14,
+  "fields": {
+    "establishment": 3,
+    "number": 4,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 15,
+  "fields": {
+    "establishment": 3,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 16,
+  "fields": {
+    "establishment": 4,
+    "number": 1,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 17,
+  "fields": {
+    "establishment": 4,
+    "number": 2,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 18,
+  "fields": {
+    "establishment": 4,
+    "number": 3,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 19,
+  "fields": {
+    "establishment": 4,
+    "number": 4,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 20,
+  "fields": {
+    "establishment": 4,
+    "number": 5,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 21,
+  "fields": {
+    "establishment": 5,
+    "number": 1,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 22,
+  "fields": {
+    "establishment": 5,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 23,
+  "fields": {
+    "establishment": 5,
+    "number": 3,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 24,
+  "fields": {
+    "establishment": 5,
+    "number": 4,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 25,
+  "fields": {
+    "establishment": 5,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 26,
+  "fields": {
+    "establishment": 6,
+    "number": 1,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 27,
+  "fields": {
+    "establishment": 6,
+    "number": 2,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 28,
+  "fields": {
+    "establishment": 6,
+    "number": 3,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 29,
+  "fields": {
+    "establishment": 6,
+    "number": 4,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 30,
+  "fields": {
+    "establishment": 6,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 31,
+  "fields": {
+    "establishment": 7,
+    "number": 1,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 32,
+  "fields": {
+    "establishment": 7,
+    "number": 2,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 33,
+  "fields": {
+    "establishment": 7,
+    "number": 3,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 34,
+  "fields": {
+    "establishment": 7,
+    "number": 4,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 35,
+  "fields": {
+    "establishment": 7,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 36,
+  "fields": {
+    "establishment": 8,
+    "number": 1,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 37,
+  "fields": {
+    "establishment": 8,
+    "number": 2,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 38,
+  "fields": {
+    "establishment": 8,
+    "number": 3,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 39,
+  "fields": {
+    "establishment": 8,
+    "number": 4,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 40,
+  "fields": {
+    "establishment": 8,
+    "number": 5,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 41,
+  "fields": {
+    "establishment": 9,
+    "number": 1,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 42,
+  "fields": {
+    "establishment": 9,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 43,
+  "fields": {
+    "establishment": 9,
+    "number": 3,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 44,
+  "fields": {
+    "establishment": 9,
+    "number": 4,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 45,
+  "fields": {
+    "establishment": 9,
+    "number": 5,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 46,
+  "fields": {
+    "establishment": 10,
+    "number": 1,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 47,
+  "fields": {
+    "establishment": 10,
+    "number": 2,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 48,
+  "fields": {
+    "establishment": 10,
+    "number": 3,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 49,
+  "fields": {
+    "establishment": 10,
+    "number": 4,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 50,
+  "fields": {
+    "establishment": 10,
+    "number": 5,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 51,
+  "fields": {
+    "establishment": 11,
+    "number": 1,
+    "max_guests": 6,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 52,
+  "fields": {
+    "establishment": 11,
+    "number": 2,
+    "max_guests": 2,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 53,
+  "fields": {
+    "establishment": 11,
+    "number": 3,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 54,
+  "fields": {
+    "establishment": 11,
+    "number": 4,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.table",
+  "pk": 55,
+  "fields": {
+    "establishment": 11,
+    "number": 5,
+    "max_guests": 4,
+    "active": true
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 1,
+  "fields": {
+    "establishment": 1,
+    "member": 2,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 2,
+  "fields": {
+    "establishment": 2,
+    "member": 2,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 3,
+  "fields": {
+    "establishment": 1,
+    "member": 3,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 4,
+  "fields": {
+    "establishment": 1,
+    "member": 4,
+    "role": "kitchen",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 5,
+  "fields": {
+    "establishment": 2,
+    "member": 3,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 6,
+  "fields": {
+    "establishment": 3,
+    "member": 5,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 7,
+  "fields": {
+    "establishment": 3,
+    "member": 6,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 8,
+  "fields": {
+    "establishment": 3,
+    "member": 7,
+    "role": "kitchen",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 9,
+  "fields": {
+    "establishment": 4,
+    "member": 8,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 10,
+  "fields": {
+    "establishment": 5,
+    "member": 8,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 11,
+  "fields": {
+    "establishment": 4,
+    "member": 9,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 12,
+  "fields": {
+    "establishment": 4,
+    "member": 10,
+    "role": "kitchen",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 13,
+  "fields": {
+    "establishment": 6,
+    "member": 11,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 14,
+  "fields": {
+    "establishment": 6,
+    "member": 6,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 15,
+  "fields": {
+    "establishment": 6,
+    "member": 7,
+    "role": "kitchen",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 16,
+  "fields": {
+    "establishment": 7,
+    "member": 11,
+    "role": "manager",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 17,
+  "fields": {
+    "establishment": 7,
+    "member": 9,
+    "role": "waiter",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+},
+{
+  "model": "establishments.manage",
+  "pk": 18,
+  "fields": {
+    "establishment": 7,
+    "member": 10,
+    "role": "kitchen",
+    "joined_at": "2026-05-17",
+    "end_date": null
+  }
+}
 ]
