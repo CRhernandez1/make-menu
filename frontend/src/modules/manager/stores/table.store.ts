@@ -32,7 +32,7 @@ export const useTableStore = defineStore('tables', () => {
       const { data } = await makeMenuApi.get(`/establishments/${cif}/tables/`)
       tables.value = data
     } catch (err) {
-      error.value = extractError(err, 'Could not load tables. Please refresh the page.')
+      error.value = extractError(err, 'No se han podido cargar las mesas. Recarga la página.')
     } finally {
       loading.value = false
     }
@@ -42,9 +42,9 @@ export const useTableStore = defineStore('tables', () => {
     try {
       await makeMenuApi.post(`/establishments/${cif}/tables/add/`, payload)
       await fetchTables(cif)
-      return { ok: true, message: `Table ${String(payload.number).padStart(2, '0')} created successfully.` }
+      return { ok: true, message: `Mesa ${String(payload.number).padStart(2, '0')} creada correctamente.` }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not create the table.') }
+      return { ok: false, error: extractError(err, 'No se ha podido crear la mesa.') }
     }
   }
 
@@ -52,9 +52,9 @@ export const useTableStore = defineStore('tables', () => {
     try {
       await makeMenuApi.post(`/establishments/${cif}/tables/${tableNum}/edit/`, payload)
       await fetchTables(cif)
-      return { ok: true, message: `Table ${String(tableNum).padStart(2, '0')} updated.` }
+      return { ok: true, message: `Mesa ${String(tableNum).padStart(2, '0')} actualizada.` }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not update the table.') }
+      return { ok: false, error: extractError(err, 'No se ha podido actualizar la mesa.') }
     }
   }
 
@@ -63,10 +63,10 @@ export const useTableStore = defineStore('tables', () => {
       await makeMenuApi.post(`/establishments/${cif}/tables/${tableNum}/change/`)
       await fetchTables(cif)
       const table = tables.value.find(t => t.number === tableNum)
-      const status = table?.active ? 'activated' : 'deactivated'
-      return { ok: true, message: `Table ${String(tableNum).padStart(2, '0')} ${status}.` }
+      const status = table?.active ? 'activada' : 'desactivada'
+      return { ok: true, message: `Mesa ${String(tableNum).padStart(2, '0')} ${status}.` }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not change the table status.') }
+      return { ok: false, error: extractError(err, 'No se ha podido cambiar el estado de la mesa.') }
     }
   }
 
@@ -74,9 +74,9 @@ export const useTableStore = defineStore('tables', () => {
     try {
       await makeMenuApi.post(`/establishments/${cif}/tables/${tableNum}/delete/`)
       await fetchTables(cif)
-      return { ok: true, message: `Table ${String(tableNum).padStart(2, '0')} deleted successfully.` }
+      return { ok: true, message: `Mesa ${String(tableNum).padStart(2, '0')} eliminada correctamente.` }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not delete the table.') }
+      return { ok: false, error: extractError(err, 'No se ha podido eliminar la mesa.') }
     }
   }
 

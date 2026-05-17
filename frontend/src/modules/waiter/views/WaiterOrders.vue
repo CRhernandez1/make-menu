@@ -171,14 +171,13 @@ const knownOrderIds = ref<Set<number>>(new Set())
 const newOrderIds = ref<Set<number>>(new Set())
 const newOrderToast = ref<string | null>(null)
 let toastTimer: ReturnType<typeof setTimeout> | null = null
-let isPolling = false // Guard contra peticiones acumuladas
+let isPolling = false
 
 const timeFilters: TimeFilter[] = [
   { label: '24h', value: '1' }, { label: '3 días', value: '3' },
   { label: '7 días', value: '7' }, { label: 'Todos', value: 'all' },
 ]
 
-// AudioContext reutilizable — evita crear uno nuevo por cada notificación
 let audioCtx: AudioContext | null = null
 
 const playNotificationSound = () => {
@@ -201,14 +200,14 @@ const playNotificationSound = () => {
     gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15)
     gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6)
     osc2.start(ctx.currentTime + 0.15); osc2.stop(ctx.currentTime + 0.6)
-  } catch { /* Audio no disponible */ }
+  } catch {}
 }
 
 const fetchMyEstablishments = async () => {
   try {
     const { data } = await makeMenuApi.get<EstablishmentOption[]>('establishments/')
     myEstablishments.value = data
-  } catch { /* interceptor global maneja 401 */ }
+  } catch {}
 }
 
 const fetchOrders = async () => {
@@ -221,12 +220,12 @@ const fetchOrders = async () => {
     orders.value = data
     knownOrderIds.value = new Set(data.map(o => o.id))
     newOrderIds.value = new Set()
-  } catch { /* interceptor global maneja 401 */ }
+  } catch {}
   finally { isLoading.value = false }
 }
 
 const pollOrders = async () => {
-  if (isPolling) return // Guard: evitar acumulación si la red es lenta
+  if (isPolling) return
   isPolling = true
   try {
     const params: Record<string, string> = {}
@@ -252,7 +251,7 @@ const pollOrders = async () => {
       orders.value = data
       knownOrderIds.value = incomingIds
     }
-  } catch { /* interceptor global maneja 401 */ }
+  } catch {}
   finally { isPolling = false }
 }
 
@@ -269,7 +268,7 @@ const openOrderDetails = async (order: OrderSummary) => {
   try {
     const { data } = await makeMenuApi.get<OrderDetailItem[]>(`orders/waiter-orders/${order.id}/details/`)
     ticketDetails.value = data
-  } catch { /* interceptor global maneja 401 */ }
+  } catch {}
   finally { isLoadingTicket.value = false }
 }
 

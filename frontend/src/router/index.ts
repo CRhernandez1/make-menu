@@ -24,7 +24,7 @@ const requireRoleGuard = (expectedRole: string) => {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // --- ZONA PÚBLICA ---
+    // Zona pública
     {
       path: '/',
       name: 'landing',
@@ -48,7 +48,7 @@ const router = createRouter({
     component: () => import('@/modules/landing/views/LegalView.vue'),
     },
 
-    // --- ZONA DE AUTENTICACIÓN ---
+    // Zona de autenticación
     {
       path: '/auth',
       redirect: '/login',
@@ -77,7 +77,7 @@ const router = createRouter({
       ],
     },
 
-    // --- 👔 ZONA MANAGER ---
+    // Zona manager
     {
       path: '/manager',
       component: () => import('@/modules/manager/layouts/ManagerLayout.vue'),
@@ -146,7 +146,7 @@ const router = createRouter({
         }
       ]
     },
-    // --- 🏃‍♂️ ZONA WAITER ---
+    // Zona waiter
     {
       path: '/waiter',
       component: () => import('@/modules/waiter/layouts/WaiterLayout.vue'),
@@ -165,7 +165,7 @@ const router = createRouter({
       ],
     },
 
-    // --- 🍳 ZONA KITCHEN ---
+    // Zona kitchen
     {
       path: '/kitchen',
       component: () => import('@/modules/kitchen/layouts/KitchenLayout.vue'),
@@ -179,7 +179,7 @@ const router = createRouter({
       ],
     },
 
-    // --- 404 NOT FOUND ---
+    // 404
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
@@ -188,7 +188,6 @@ const router = createRouter({
   ],
 })
 
-// Guard global: protección centralizada de autenticación
 const PUBLIC_ROUTES = ['home', 'login', 'register', 'NotFound', 'landing', 'public-menu', 'privacy', 'legal']
 
 router.beforeEach(async (to) => {

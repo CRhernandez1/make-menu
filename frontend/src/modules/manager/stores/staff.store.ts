@@ -32,7 +32,7 @@ export const useStaffStore = defineStore('staff', () => {
       const { data } = await makeMenuApi.get(`/establishments/${cif}/staff/`)
       staff.value = data
     } catch (err) {
-      error.value = extractError(err, 'Could not load staff. Please refresh the page.')
+      error.value = extractError(err, 'No se ha podido cargar el equipo. Recarga la página.')
     } finally {
       loading.value = false
     }
@@ -42,9 +42,9 @@ export const useStaffStore = defineStore('staff', () => {
     try {
       await makeMenuApi.post(`/establishments/${cif}/staff/${memberId}/edit/`, { role })
       await fetchStaff(cif)
-      return { ok: true, message: 'Role updated successfully.' }
+      return { ok: true, message: 'Rol actualizado correctamente.' }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not update the role.') }
+      return { ok: false, error: extractError(err, 'No se ha podido actualizar el rol.') }
     }
   }
 
@@ -52,9 +52,9 @@ export const useStaffStore = defineStore('staff', () => {
     try {
       await makeMenuApi.post(`/establishments/${cif}/staff/${memberId}/remove/`)
       await fetchStaff(cif)
-      return { ok: true, message: 'Member removed successfully.' }
+      return { ok: true, message: 'Miembro eliminado correctamente.' }
     } catch (err) {
-      return { ok: false, error: extractError(err, 'Could not remove the member.') }
+      return { ok: false, error: extractError(err, 'No se ha podido eliminar al miembro.') }
     }
   }
 

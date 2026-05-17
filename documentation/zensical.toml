@@ -1,10 +1,10 @@
 [project]
-site_name = "Documentation"
-site_description = "A new project generated from the default template project."
-site_author = "<your name here>"
+site_name = "MakeMenu"
+site_description = "Documentación del proyecto MakeMenu: plataforma de carta digital y gestión de pedidos para hostelería."
+site_author = "Cristian Reyes Hernández, Samuel Domingo Cruz Sánchez, Daniele Dettori"
 extra_css = ["stylesheets/extra.css"]
 copyright = """
-Copyright &copy; 2026 The authors
+Copyright &copy; 2026 MakeMenu S.L. — Todos los derechos reservados.
 """
 nav = [
   {"MakeMenu" = [{"Overview" = "index.md"}]},
@@ -24,6 +24,12 @@ nav = [
     { "Backend" = "technical/backend.md" },
     { "Frontend" = "technical/frontend.md" },
     { "Despliegue" = "technical/deploy.md" },
+  ]},
+  { "Memoria académica" = [
+    { "Objetivos" = "academic/objetivos.md" },
+    { "Requisitos" = "academic/requisitos.md" },
+    { "Casos de uso" = "academic/casos-uso.md" },
+    { "Conclusiones y trabajo futuro" = "academic/conclusiones.md" },
   ]},
 ]
 

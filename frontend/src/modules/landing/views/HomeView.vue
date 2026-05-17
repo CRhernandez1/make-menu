@@ -103,11 +103,7 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 onMounted(async () => {
-  const result = await authStore.checkAuthStatus()
-  console.log('checkAuthStatus result:', result)
-  console.log('isAuthenticated:', authStore.isAuthenticated)
-  console.log('user:', authStore.user)
-  console.log('role:', authStore.user?.role)
+  await authStore.checkAuthStatus()
 
   if (authStore.isAuthenticated) {
     const role = authStore.user?.role

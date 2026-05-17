@@ -1,8 +1,3 @@
-/**
- * Funciones de formato de fecha/hora reutilizables.
- * Extraídas de ManagerOrders, WaiterOrders, WaiterHome, KitchenHome.
- */
-
 const dateFormatter = new Intl.DateTimeFormat('es-ES', {
   day: '2-digit',
   month: '2-digit',
